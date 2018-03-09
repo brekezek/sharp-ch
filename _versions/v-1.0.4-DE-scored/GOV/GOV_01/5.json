@@ -1,0 +1,11 @@
+{
+    "question-type": "binary_answer",
+    "title": "Hindern administrativen Einschränkungen Sie daran, Ihr Landwirtschaftssystem anzupassen?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
+}

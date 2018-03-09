@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"En règle générale, les besoins alimentaires de votre ménage sont-ils couverts?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"mandatory":"true"
+}

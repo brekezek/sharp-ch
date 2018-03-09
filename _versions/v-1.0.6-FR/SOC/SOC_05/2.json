@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Dans votre village / voisinage, faites-vous généralement confiance aux autres pour prêter et emprunter?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

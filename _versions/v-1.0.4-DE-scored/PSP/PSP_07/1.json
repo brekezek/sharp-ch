@@ -1,0 +1,24 @@
+{
+    "question-type": "table",
+    "title": "Frage/Tier",
+    "lines": [
+        "Mastrinder",
+        "Milchkuh",
+        "Ziege",
+        "Schaf",
+        "Schwein",
+        "Geflügel (Hühner, Truthuhn etc.)",
+        "Pferde",
+        "_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+    ],
+    "columns": [
+        {
+            "title": "Lassen Sie diese Tiere für einen Teil des Jahres auf die Weide?",
+            "type": "toggle",
+            "scoring": "by-value",
+            "scoring-type": "academic",
+            "scoring2": "average"
+        }
+    ],
+    "scoring-type": "academic"
+}

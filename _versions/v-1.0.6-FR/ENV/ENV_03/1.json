@@ -1,0 +1,22 @@
+{
+	"question-type":"table",
+	"title":"Avez-vous rencontré certains des problèmes de qualité de l'eau suivants:",
+	"lines": [
+		"Pollution par des pesticides ou d'autres produits chimiques (essence, sous-produits industriels)?",
+		"Lessivage (engrais)?",
+		"Augmentation de l'envasement (pollution par la boue)?",
+		"Déversement de déchets organiques (par ex. du fumier ou des matières fécales)",
+		"Pollution des eaux souterraines",
+		"_OTHER_INPUT::Autres activités (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Réponse",
+			"type":"binary"
+		}, 
+		{
+			"title":"Si oui, expliquer la nature du problème",
+			"type":"text"
+		}
+	]
+}

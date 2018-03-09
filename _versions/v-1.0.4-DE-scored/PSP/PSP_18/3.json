@@ -1,0 +1,11 @@
+{
+    "question-type": "binary_answer",
+    "title": "Bauen Sie Nutzpflanzen in Assoziation mit Aquakultur an?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
+}

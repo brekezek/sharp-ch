@@ -1,0 +1,28 @@
+{
+	"question-type":"table",
+	"title":"?",
+	"lines": [
+		"Téléphone mobile?",
+		"Connexion internet?",
+		"Ordinateur chez soi?",
+		"Tablette informatique?",
+		"Télévision?",
+		"Radio?",
+		"Guidage ou assistance par GPS?",
+		"Drone?",
+		"Cahier de champ électronique?",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Est-ce que vous utilisez",
+			"type":"choice",
+			"choices": [
+				"Oui",
+				"Non"
+			]
+		}
+	
+	]
+}
+	

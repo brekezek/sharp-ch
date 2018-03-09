@@ -1,0 +1,30 @@
+{
+    "question-type": "table",
+    "title": "Type",
+    "lines": [
+        "Landwirtschaftlich genutztes Land (Hektar)",
+        "Weideland (Hektar)",
+        "Anderes Land, das nicht zu landwirtschaftlichen Land oder Weideland gehört (Hektar)"
+    ],
+    "columns": [
+        {
+            "title": "Grundstücke in eigenem Besitz (ha)",
+            "type": "integer",
+            "scoring": "pending",
+            "result-define": "ENV_04.1"
+        },
+        {
+            "title": "Grundstücke unter festem schriftlichen Pachtvertrag (ha)",
+            "type": "integer"
+        },
+        {
+            "title": "Grundstücke unter mündlichem Pachtvertrag (ha) ",
+            "type": "integer"
+        },
+        {
+            "title": "Anderes (ha) ",
+            "type": "integer"
+        }
+    ],
+    "scoring-type": "academic"
+}

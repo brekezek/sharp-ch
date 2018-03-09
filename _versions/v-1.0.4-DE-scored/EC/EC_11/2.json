@@ -1,0 +1,26 @@
+{
+    "question-type": "table",
+    "title": "Was sind die drei Haupteinnahmequellen Ihres Betriebs?",
+    "lines": [
+        "Erste Quelle",
+        "Zweite Quelle",
+        "Dritte Quelle"
+    ],
+    "columns": [
+        {
+            "title": "Wichtigkeit",
+            "type": "choice",
+            "choices": [
+                "Landwirtschaftliche Produktion",
+                "Vermietung von Grundstücken",
+                "Landwirtschaftliche Arbeit für Dritte",
+                "Agrotourismus",
+                "Photovoltaik",
+                "Einnahmen außerhalb des Betriebs",
+                "Anderes (außer staatliche Direktzahlungen)"
+            ]
+        }
+    ],
+    "mandatory": true,
+    "scoring-type": "-"
+}

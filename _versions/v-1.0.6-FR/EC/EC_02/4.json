@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure l'utilisation de circuits courts répond-il aux besoins de votre système agricole?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+}

@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure êtes-vous satisfait du rôle que vous jouez au sein du ménage?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"mandatory":"true"
+}

@@ -1,0 +1,47 @@
+{
+	"question-type":"table",
+	"title":"Produits vendus qui vous rapportent le plus?",
+	"lines" : [
+		"Production 1",
+		"Production 2",
+		"Production 3",
+		"Production 4",
+		"Production 5",
+		"Production 6"
+	],
+	"columns": [
+		{
+			"title":"Description",
+			"type":"text"
+		},
+		{
+			"title":"Avez-vous des produits pour lesquels vous n'avez qu'un acheteur disponible?",
+			"type":"binary"
+		},
+		{
+			"title":"Si vous avez un accord ou bien des documents contraignants (par ex. contrat) avec un acheteur, êtes-vous satisfait des conditions ou est-ce que ça limite votre flexibilité?",
+			"type":"choice",
+			"choices": [
+				"Je suis satisfait",
+				"Un mixte des deux",
+				"Ca limite la flexibilité de mon exploitation"	
+			]
+		},
+		{
+			"title":"A quel point êtes-vous impliqué dans la chaîne de valorisation/transformation de vos produits?",
+			"type":"choice",
+			"choices": [
+				"Souvent",
+				"Quelques fois",
+				"Très rarement",
+				"Jamais"	
+			]
+
+		},
+		{
+			"title":"Pour chacun des produits du tableau, vous sentez-vous menacé par les bas prix des produits concurrents importés?",
+			"type":"binary"
+		}
+	],
+	"mandatory":true
+}

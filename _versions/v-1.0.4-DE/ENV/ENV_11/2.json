@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Falls Sie synthetischen Dünger verwendet haben, haben Sie überprüft (vor der Applikation), ob Boden und Pflanzen dies benötigen?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory": true
+}

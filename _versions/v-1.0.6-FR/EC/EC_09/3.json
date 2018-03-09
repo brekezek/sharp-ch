@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure la diversité de vos capitaux productifs est-elle importante pour votre système de production?",
+	"choices":[
+		"Aucune",
+		"Faible",
+		"Moyenne",
+		"Elevée",
+		"Très élevée"
+	],
+	"mandatory":"true"
+}

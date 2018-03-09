@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Si vous avez un accord ou bien des documents contraignants (par ex. un contrat) avec un vendeur/fournisseur, êtes-vous satisfait des conditions ou est-ce que ça limite votre flexibilité?",
+	"choices": 
+		[
+			"Je suis satisfait",
+			"Un mixte des deux",
+			"Ca limite la flexibilité de mon exploitation"
+		],
+	"mandatory":true
+}

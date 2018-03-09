@@ -1,0 +1,18 @@
+{
+	"question-type":"table",
+	"title":"Question / personne",
+	"lines": [
+		"Femmes",
+		"Hommes"
+	],
+	"columns": [
+		{
+			"title":"Les aînés/grands-parents jouent-ils un rôle au sein du ménage, par exemple prendre soin des enfants plus petits?",
+			"type":"binary"
+		},
+		{
+			"title":"Décrivez le rôle que les aînés jouent au sein du ménage, par exemple prendre soin des enfants plus petits, aider le ménage, etc.?",
+			"type":"text"
+		}
+	]
+}

@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Betreiben Sie Aquakultur?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":"true"
+}

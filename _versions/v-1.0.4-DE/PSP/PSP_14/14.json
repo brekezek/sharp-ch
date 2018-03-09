@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie wichtig sind diese Informationen, um Ihr Produktionssystem an Ihre Ziele anzupassen?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Ziemlich",
+		"Sehr"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+}

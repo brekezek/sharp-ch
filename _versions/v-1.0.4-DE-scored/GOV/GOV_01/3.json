@@ -1,0 +1,15 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "Falls Sie Ihr Betriebssystem verändern wollen/müssen, erlauben die aktuellen Regeln Ihnen, dies zu tun (z.B. notwendige Bauarbeiten)?",
+    "choices": [
+        {
+            "Ja, sie sind flexibel genug.": 10
+        },
+        {
+            "Nein, sie sind nicht flexibel genug.": 0
+        }
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
+}

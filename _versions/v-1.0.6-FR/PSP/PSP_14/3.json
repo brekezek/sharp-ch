@@ -1,0 +1,20 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Si oui, quels changements avez-vous observé?",
+	"choices": 
+		[
+			"Augmentation des précipitations",
+			"Diminution des précipitations",
+			"Plus grande variabilité des précipitations",
+			"Pluies tardives",
+			"Augmentation de la température",
+			"Baisse des températures",
+			"Inondations",
+			"Retard à l'arrivée du printemps",
+			"Arrivée du printemps précoce",
+			"Infestation inhabituelle d'animaux nuisibles",
+			"Sécheresse inhabituelle",
+			"_OTHER_INPUT::Autre (précisez)"
+
+		]
+}

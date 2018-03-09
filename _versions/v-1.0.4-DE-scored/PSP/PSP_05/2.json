@@ -1,0 +1,61 @@
+{
+    "question-type": "table",
+    "title": "Tätigkeiten:",
+    "lines": [
+        "Mastrinder",
+        "Milchkuh",
+        "Ziege",
+        "Schaf",
+        "Schwein",
+        "Geflügel (Hühner, Truthuhn etc.)",
+        "Pferde",
+        "_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+    ],
+    "columns": [
+        {
+            "title": "Wie viele Tiere haben Sie ungefähr?",
+            "type": "integer",
+            "scoring": "by-entries",
+            "scoring-grid": [
+                {
+                    "1-1": 0
+                },
+                {
+                    "2-2": 3
+                },
+                {
+                    "3-3": 6
+                },
+                {
+                    "4-4": 8
+                },
+                {
+                    "5-+": 10
+                }
+            ]
+        },
+        {
+            "title": "Wie viele Rassen besitzen Sie pro Kategorie?",
+            "type": "integer",
+            "scoring": "by-value",
+            "scoring2": "average",
+            "col-based-on": 0,
+            "scoring-grid": [
+                {
+                    "<-1": 0
+                },
+                {
+                    "2-+": 10
+                }
+            ]
+        },
+        {
+            "title": "Richten Sie sich nach einem Förderprogramm für Tierwohl (Bsp. FAKT in BaWü), bitte angeben, falls ja?",
+            "type": "binary",
+            "scoring": "by-value",
+            "scoring2": "average",
+            "col-based-on": 0
+        }
+    ],
+    "scoring-type": "academic"
+}

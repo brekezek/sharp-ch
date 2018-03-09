@@ -1,0 +1,17 @@
+{
+	"question-type":"table",
+	"title":"Quelles méthodes utilisez-vous?",
+	"lines": [
+		"Ampoules à faible consommation d'énergie",
+		"Installation de biogaz",
+		"Isolation efficace",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Cochez",
+			"type":"toggle"
+		}
+
+	]
+}

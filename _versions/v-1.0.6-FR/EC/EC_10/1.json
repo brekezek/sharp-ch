@@ -1,0 +1,32 @@
+{
+	"question-type":"table",
+	"title":"Quelles ont été vos plus grosses dépenses l'année dernière?",
+	"lines" : [
+		"1",
+		"2",
+		"3",
+		"4",
+		"5"
+	],
+	"columns": [
+		{
+			"title":"Elément de dépenses (par ex. éducation)",
+			"type":"choice",
+			"choices": [
+				"pesticides",
+				"engrais",
+				"matériel agricole",
+				"nouveau bâtiment",
+				"main-d'oeuvre",
+				"intérêts d'emprunts bancaires",
+				"énergie pour chauffage/éclairage/machines",
+				"assurances",
+				"bail/loyer",
+				"éducation",
+				"Autre"
+			]
+		}
+
+	],
+	"mandatory":true
+}

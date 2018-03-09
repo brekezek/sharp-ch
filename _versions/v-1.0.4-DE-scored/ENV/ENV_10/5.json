@@ -1,0 +1,11 @@
+{
+    "question-type": "binary_answer",
+    "title": "Falls einer der Container geschlossen ist, verwenden Sie eine Biogasanlage, um die Energie für Ihre Operation zurückzugewinnen?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": "true",
+    "scoring": "by-value",
+    "scoring-type": "academic"
+}

@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"scoring-type":"academic",
+	"scoring":"by-value",
+	"title":"Utilisez-vous des variétés végétales non indigènes nouvellement introduites (variétés présentes dans la région depuis moins de 15 ans) comme des cultivars modernes, des cultivars importés, des variétés à haut rendement, des semences du secteur privé, etc.?",
+	"choices":
+		[
+			{"Oui":10},
+			{"Non":0},
+			{"Je ne sais pas":0}
+		],
+	"mandatory":true
+}

@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure le maintien d'un niveau de dépenses gérables est-il important pour votre exploitation?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Très"
+	],
+	"mandatory":true
+}

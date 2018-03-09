@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Au niveau de votre système agricole considérez-vous important d'être membre d'un groupe?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Très"
+	],
+	"mandatory":"true"
+}

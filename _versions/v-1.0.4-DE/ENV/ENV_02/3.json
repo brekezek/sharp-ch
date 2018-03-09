@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie wichtig ist es für Ihren Betrieb Wasser einzusparen?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Ziemlich",
+		"Sehr"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+
+}

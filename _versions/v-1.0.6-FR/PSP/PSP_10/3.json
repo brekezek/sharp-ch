@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Avez-vous planté plusieurs variétés différentes d'une même espèce d'arbre?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

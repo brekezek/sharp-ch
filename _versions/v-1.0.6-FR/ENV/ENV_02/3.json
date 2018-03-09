@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Quelle est l'importance de la conservation de l'eau pour votre système de production",
+	"choices":[
+		"Aucune",
+		"Faible",
+		"Moyenne",
+		"Elevée",
+		"Très élevée"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+
+}

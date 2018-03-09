@@ -1,0 +1,18 @@
+{
+	"question-type":"table",
+	"title":"Est-ce que vous avez du soutien pour remplir les tâches ménagères?",
+	"lines": [
+		"Cuisine",
+		"Lessive",
+		"Nettoyage de la maison",
+		"Garde des enfants",
+		"_OTHER_INPUT::Autre(précisez)"
+	],
+	"columns": [
+		{
+			"title":"Soutien",
+			"type":"toggle"
+		}
+	],
+	"mandatory":true
+}

@@ -1,0 +1,24 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "Wie wichtig sind synthetische Pflanzenschutzmittel für Ihr Betriebssystem?",
+    "choices": [
+        {
+            "Überhaupt nicht": 10
+        },
+        {
+            "Ein wenig ": 7.5
+        },
+        {
+            "Mittelmäßig": 5
+        },
+        {
+            "Ziemlich": 2.5
+        },
+        {
+            "Sehr": 0
+        }
+    ],
+    "scoring": "by-value",
+    "mandatory": true,
+    "scoring-type": "importance"
+}

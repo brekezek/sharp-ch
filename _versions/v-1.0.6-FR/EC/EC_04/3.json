@@ -1,0 +1,13 @@
+ {
+	"question-type":"multiple_one_solution",
+	"title":"Quelle est l'importance pour votre exploitation du mode de commercialisation des produits?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Très"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+}

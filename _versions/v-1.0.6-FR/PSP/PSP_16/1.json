@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Utilisez-vous des pratiques de gestion des prédateurs (ravageurs)/maladies sur vos cultures?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

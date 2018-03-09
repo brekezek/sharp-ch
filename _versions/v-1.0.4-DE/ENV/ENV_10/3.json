@@ -1,0 +1,12 @@
+{
+	"question-type":"binary_answer",
+	"title":"Lagern Sie Gülle in einem offenen oder geschlossenen Behälter?",
+	"choices":
+		[
+			"Offen",
+			"Geschlossen",
+			"Nicht anwendbar"
+
+		],
+	"mandatory":"true"
+}

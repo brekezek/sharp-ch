@@ -1,0 +1,17 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Aus welchem Grund haben Sie diese Bäume gepflanzt?",
+	"choices": 
+		[
+			"Brennholz",
+			"Holz für Baumaterial",
+			"Bäume für Schatten",
+			"Futter Produkte (Tiere)",
+			"Lebensmittel (Menschen)",
+			"Dünger",
+			"Natürliche Heilmittel (Menschen)",
+			"Natürliche Heilmittel (Tiere)",
+			"Produkte zum Pflanzenschutz",
+			"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+		]
+}

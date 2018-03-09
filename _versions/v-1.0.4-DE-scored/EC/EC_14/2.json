@@ -1,0 +1,14 @@
+{
+    "question-type": "multiple_multiple_solution",
+    "title": "Wie sparen Sie Geld?",
+    "choices": [
+        "auf der Bank",
+        "Kauf von Investitionsgütern (Land, Immobilien, etc)",
+        "Geld zu Hause",
+        "Investitionen/Finanzanlagen",
+        "Kauf von Nutztieren",
+        "Spargruppe (Gruppe von Landwirten, die zusammen Geld sparen (ohne Bank))",
+        "_OTHER_INPUT::Anderes (Bitte erläutern):"
+    ],
+    "scoring-type": "-"
+}

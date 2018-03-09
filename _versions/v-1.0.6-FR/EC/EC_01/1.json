@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Quel pourcentage représente vos fonds propres par rapport au total des actifs?",
+	"choices":
+		[
+			"Moins de 45% de fonds propres",
+			"45-55% de fonds propres",
+			"Plus de 55% de fonds propres"
+		],
+	"mandatory":true
+}

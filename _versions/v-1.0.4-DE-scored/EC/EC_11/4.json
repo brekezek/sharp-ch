@@ -1,0 +1,24 @@
+{
+    "question-type": "integer_answer",
+    "title": "Wie hoch ist die staatliche Finanzhilfe (Direktzahlungen) in Relation zum totalen landwirtschaftlichen Umsatz Ihres Betriebs (in %)?",
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic",
+    "scoring-grid": [
+        {
+            "0-10": 10
+        },
+        {
+            "11-30": 7
+        },
+        {
+            "31-45": 5
+        },
+        {
+            "46-60": 3
+        },
+        {
+            "61-+": 0
+        }
+    ]
+}

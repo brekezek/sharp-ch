@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure la confiance et la coopération sont-elles suffisantes dans votre village / voisinage?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"mandatory":"true"
+}

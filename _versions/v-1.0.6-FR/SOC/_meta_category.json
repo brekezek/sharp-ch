@@ -1,0 +1,13 @@
+{
+	"group_id":"SOC",
+	"color":"blue",
+	"title":"Social",
+	"order": [
+		"SOC_01",
+		"SOC_02",
+		"SOC_03",
+		"SOC_04",
+		"SOC_05",
+		"SOC_06"
+	]
+}

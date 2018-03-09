@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure la combinaison des variétés locales/indigènes et nouvellement introduites que vous utilisez répond-elle aux besoins de votre système agricole?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"mandatory":"true"
+}

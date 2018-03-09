@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Machen Sie eine Bilanz des organischen Materials Ihres Bodens?",
+	"choices" : [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

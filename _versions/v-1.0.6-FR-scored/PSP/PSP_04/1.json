@@ -1,0 +1,10 @@
+{
+	"question-type":"binary_answer",
+	"scoring-type":"-",
+	"title":"Avez-vous des productions végétales (annuelles ou pérennes)?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":"true"
+}

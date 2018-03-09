@@ -1,0 +1,5 @@
+{
+	"question-type":"integer_answer",
+	"title":"Combien de types différents de sols pouvez-vous observer sur votre exploitation (approximativement)?",
+	"mandatory":true
+}

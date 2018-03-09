@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie wichtig sind IKTs für Ihren Betrieb?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein bisschen",
+		"Mittelmäßig",
+		"Ziemlich",
+		"Sehr"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+}

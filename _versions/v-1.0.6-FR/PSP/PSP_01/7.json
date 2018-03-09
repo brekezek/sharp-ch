@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Quelle importance donnez-vous à votre rôle au sein du ménage?",
+	"choices":[
+		"Aucune",
+		"Un peu",
+		"Moyenne",
+		"Elevée",
+		"Très élevée"
+	],
+	"mandatory":"true"
+}

@@ -1,0 +1,42 @@
+{
+	"question-type":"table",
+	"title":"Pour chaque source d'eau que vous pouvez utiliser pour l'irrigation ou l'areuvement du bétail",
+	"lines":[
+		"1",
+		"2",
+		"3",
+		"4",
+		"5"
+	],
+	"columns": [
+		{
+			"title":"Type de source d'eau utilisée",
+			"type":"choice",
+			"choices": [
+				"Puit",
+				"Barrage (structure pour la retenue d'eau)",
+				"Rivière/cours d'eau/lac",
+				"Forage",
+				"Bassin de récupération d'eau de pluie",
+				"Réseau d'irrigation",
+				"Autre (mais excepté la pluie)"
+
+			]
+		},
+		{
+			"title":"Avez-vous vu des changements de quantité d'eau avec ces sources au cours des 5 dernières années?",
+			"type":"choice",
+			"choices": [
+				"Changement négatif",
+				"Pas de changement",
+				"Amélioration"
+			]
+		},
+		{
+			"title":"Si oui, décrivez",
+			"type":"text"
+		}
+	],
+	"mandatory":true
+
+}

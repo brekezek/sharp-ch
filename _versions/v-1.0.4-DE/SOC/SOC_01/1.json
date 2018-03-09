@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Sind Sie ein Mitglied von Gruppen, Organisationen oder in einem Verband?",
+	"choices" : [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Selon vous, en moyenne, quelle est la richesse de votre sol en matière organique?",
+	"choices":
+		[
+			"Aucune",
+			"Faible",
+			"Moyenne",
+			"Assez riche",
+			"Elevée",
+			"Je ne sais pas"
+		],
+	"mandatory":true
+}

@@ -1,0 +1,38 @@
+{
+	"question-type":"table",
+	"title":"Quelles sources d'énergie sont utilisées dans votre système agricole?",
+	"lines":[
+		"Solaire",
+		"Vent",
+		"Eau",
+		"Bois de chauffage",
+		"Charbon",
+		"Déchets ménagers",
+		"Résidus agricoles",
+		"Résidus de bois",
+		"Fumier",
+		"Essence",
+		"Paraffine (pétrole)",
+		"Diesel",
+		"Gaz naturel (sous-terrain)",
+		"Biogaz (à partir de composte ou fumier)",
+		"Electricité (source publique)",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns" : [
+		{
+			"title":"Chauffage",
+			"type":"toggle"
+		},
+		{
+			"title":"Eclairage",
+			"type":"toggle"
+		},
+		{
+			"title":"Machines",
+			"type":"toggle"
+		}
+	],
+	"hidden":false,
+	"mandatory":"true"
+}

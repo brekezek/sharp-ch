@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure ces infrastructures remplissent-elles leur fonction?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":"true"
+}

@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Etes-vous satisfait du soutien gouvernemental reçu pour votre exploitation?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+
+}

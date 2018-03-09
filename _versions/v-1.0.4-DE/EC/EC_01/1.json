@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Welcher Prozentsatz repräsentiert Ihr Eigenkapital in Relation zum Gesamtvermögen?",
+	"choices":
+		[
+			"Weniger als 45% Eigenkapital",
+			"45-55% Eigenkapital",
+			"Mehr als 55% Eigenkapital"
+		],
+	"mandatory":true
+}

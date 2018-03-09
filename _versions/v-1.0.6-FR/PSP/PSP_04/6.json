@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Quelle est l'importance d'avoir un nombre diversifié de cultures pour votre système de production?",
+	"choices":[
+		"Nulle",
+		"Faible",
+		"Moyenne",
+		"Elevée",
+		"Très élevée"
+	],
+	"mandatory":"true"
+}

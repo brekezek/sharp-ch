@@ -1,0 +1,22 @@
+{
+	"question-type":"table",
+	"title":"Mit wem tauschen Sie Wissen/Erkenntnisse aus?",
+	"lines":
+		[
+			"(Agrar-)Wissenschaftler",
+			"Regierungsvertreter",
+			"Verteiler",
+			"Direkter Käufer des Produkts",
+			"Andere Landwirte",
+			"Familienmitglied, auf dem Betrieb arbeitend",
+			"Bürger/Verbraucher",
+			"_OTHER_INPUT::Andere (Bitte spezifizieren):"
+		],
+	"columns": [
+		{
+			"title":"Bitte auswählen",
+			"type":"toggle"
+		}
+	],
+	"mandatory":"true"
+}

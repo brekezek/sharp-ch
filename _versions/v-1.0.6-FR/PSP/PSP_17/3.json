@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Si oui, quelles protections utilisez-vous?" ,
+	"choices": 
+		[
+			"Lunettes de protection",
+			"Gants",
+			"Masque",
+			"Veste",
+			"_OTHER_INPUT::Autre (précisez)"
+		]
+}

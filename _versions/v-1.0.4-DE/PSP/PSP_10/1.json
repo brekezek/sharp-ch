@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Betreiben Sie Agroforstwirtschaft?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":"true"
+}

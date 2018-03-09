@@ -1,0 +1,10 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"De façon générale, diriez-vous que l'on peut faire confiance à la plupart des gens de votre village / voisinage?",
+	"choices": [
+		"Oui",
+		"Moyennement",
+		"None"
+	],
+	"mandatory":true
+}

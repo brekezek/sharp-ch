@@ -1,0 +1,17 @@
+{
+	"question-type":"table",
+	"title":"Falls Ja, welchen Einfluss haben diese auf Ihren Betrieb:",
+	"lines": 
+		[
+			"Keine",
+			"Direkte finanzielle Unterstützung",
+			"Schulungen/Training",
+			"_OTHER_INPUT::Anderes (bitte spezifizieren):"
+	],
+	"columns" : [
+		{
+			"title":"Bitte auswählen:",
+			"type":"toggle"
+		}
+	]
+}

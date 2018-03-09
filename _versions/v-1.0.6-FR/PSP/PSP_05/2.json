@@ -1,0 +1,32 @@
+{
+	"question-type":"table",
+	"title":"Activité",
+	"lines": [
+		"Vache à viande",
+		"Vache laitière",
+		"Chèvre",
+		"Mouton",
+		"Cochon",
+		"Volaille (poules, dindes, etc...)",
+		"Chevaux",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Combien d'animaux possédez-vous approximativement",
+			"type":"integer"
+		}, 
+		{
+			"title":"Combien de variétés/races différentes possédez-vous pour chaque catégorie?",
+			"type":"integer"
+		},
+		{
+			"title":"Appliquez-vous les normes/réglementations SST (Systèmes de stabulation particulièrement respectueux des animaux (cochez si oui)?",
+			"type":"binary"
+		},
+		{
+			"title":"Appliquez-vous les normes SRPA (Sorties régulières en plein air (cochez si oui)?",
+			"type":"binary"
+		}
+	]
+}

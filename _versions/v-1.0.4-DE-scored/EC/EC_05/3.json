@@ -1,0 +1,24 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "Wie sehr beeinflussen Preisschwankungen Ihren Lebensunterhalt?",
+    "choices": [
+        {
+            "Überhaupt nicht": 10
+        },
+        {
+            "Ein wenig": 7.5
+        },
+        {
+            "Mittelmäßig": 5
+        },
+        {
+            "Ziemlich": 2.5
+        },
+        {
+            "Sehr": 0
+        }
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "importance"
+}

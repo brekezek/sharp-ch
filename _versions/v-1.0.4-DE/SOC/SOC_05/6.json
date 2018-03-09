@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie wichtig sind Vertrauen und Kooperation für Ihren Betrieb?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig ",
+		"Ziemlich",
+		"Sehr"
+	],
+	"mandatory":"true"
+}

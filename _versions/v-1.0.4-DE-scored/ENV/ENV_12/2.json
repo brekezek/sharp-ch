@@ -1,0 +1,27 @@
+{
+    "question-type": "integer_answer",
+    "title": "Wieviele verschiedene invasive Arten haben Sie auf Ihren Feldern in den letzten zehn Jahren feststellen können?",
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic",
+    "scoring-grid": [
+        {
+            "0-0": 0
+        },
+        {
+            "1-1": 2
+        },
+        {
+            "2-2": 4
+        },
+        {
+            "3-3": 10
+        },
+        {
+            "4-4": 5
+        },
+        {
+            "5-+": 2
+        }
+    ]
+}

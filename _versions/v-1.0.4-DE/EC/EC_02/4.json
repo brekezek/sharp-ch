@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Inwieweit entspricht eine Direktvermarktung den Bedürfnissen Ihres Betriebs?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Beinahe völlig",
+		"Vollkommen"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+}

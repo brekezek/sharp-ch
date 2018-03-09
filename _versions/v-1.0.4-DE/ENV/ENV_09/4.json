@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie wichtig ist der Zugang zu Energie für Ihren Betrieb (bzgl. Heizen, Beleuchtung und Maschinen)?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Ziemlich",
+		"Sehr"
+	],
+	"mandatory":"true"
+}

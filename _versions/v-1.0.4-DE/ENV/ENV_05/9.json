@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Spielen die lokalen Klima- und Umweltbedingungen bei Ihrer Auswahl von Sorten/Arten von Nutzpflanzen eine Rolle?",
+	"choices":
+		[
+			"Ja",
+			"Nein",
+			"Nicht anwendbar"
+		],
+	"mandatory":true
+}

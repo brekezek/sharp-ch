@@ -1,0 +1,10 @@
+{
+	"question-type":"binary_answer",
+	"title":"Si un des récipients est fermé, utilisez-vous une centrale à biogaz pour récupérer l'énergie pour votre exploitation?",
+	"choices":
+		[
+			"Oui",
+			"Non"
+		],
+	"mandatory":"true"
+}

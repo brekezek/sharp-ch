@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Haben Sie Ihre Tätigkeiten als Reaktion auf klimatische Veränderungen geändert?",
+	"choices" : [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

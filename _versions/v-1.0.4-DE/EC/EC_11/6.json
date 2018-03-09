@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Inwieweit ist die Kombination von Einkommensquellen ausreichend für die Bedürfnisse Ihres Betriebs?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Beinahe völlig",
+		"Vollständig"
+	],
+	"mandatory":"true"
+}

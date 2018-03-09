@@ -1,0 +1,28 @@
+{
+	"question-type":"table",
+	"title":"Activité",
+	"lines": [
+		"Lieux de cultes",
+		"Centre Communautaire (centre culturel etc.)",
+		"Pompier",
+		"Bureau de poste",
+		"Ecole",
+		"Centre médical",
+		"Clinique vétérinaire",
+		"Magasin d'intrants",
+		"Banque de céréales",
+		"Installations de stockage",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Avez-vous les infrastructures suivantes dans un rayon de 10 km autour de votre exploitation?",
+			"type":"toggle"
+		}, 
+		{
+			"title":"Utilisez-vous ces infrastructures?",
+			"type":"binary"
+		}
+		
+	]
+}

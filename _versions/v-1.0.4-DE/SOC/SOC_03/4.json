@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Sind Sie fähig, im Falle eines Schocks/einer Störung damit umzugehen?",
+	"choices" : [
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Beinahe völlig",
+		"Vollständig"
+	],
+	"mandatory":true
+}

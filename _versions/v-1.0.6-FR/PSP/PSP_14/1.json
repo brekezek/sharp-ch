@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Dans votre travail, entendez-vous parler du changement climatique?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

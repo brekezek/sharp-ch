@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Haben Sie vergangene Saison synthetische, anorganische Dünger verwendet?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

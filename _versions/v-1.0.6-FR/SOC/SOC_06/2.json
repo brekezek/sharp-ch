@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Partagez-vous des machines avec d'autres agriculteurs?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

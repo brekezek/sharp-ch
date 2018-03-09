@@ -1,0 +1,10 @@
+{
+	"question-type":"binary_answer_with_comment",
+	"title":"Est-ce que vous cultivez des plantes pérennes?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"placeholder":"Plantes pérennes",
+	"mandatory":"true"
+}

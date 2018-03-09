@@ -1,0 +1,23 @@
+{
+	"question-type":"table",
+	"title":"Si oui, comment obtenez-vous généralement ces informations?",
+	"lines": 
+		[
+			"Radio",
+			"Journal",
+			"Revue spécialisée/professionnelle",
+			"Télévision",
+			"Agent de vulgarisation",
+			"Groupe/organisation/association agricole",
+			"Autres agriculteurs",
+			"Internet",
+			"_OTHER_INPUT::Autres (précisez)"
+		],
+		"columns": [
+			{
+				"title":"cochez",
+				"type":"toggle"
+			}
+
+		]
+}

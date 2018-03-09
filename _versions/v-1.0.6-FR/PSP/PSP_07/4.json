@@ -1,0 +1,10 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Donnez-vous à votre volaille d'autres aliments que les concentrés du commerce et/ou les céréales produites sur l'exploitation?",
+	"choices": [
+		"Oui",
+		"Non",
+		"Non-applicable"
+	],
+	"mandatory":"true"
+}

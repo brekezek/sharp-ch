@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Est-ce que vous cultivez des plantes en association avec l'aquaculture?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

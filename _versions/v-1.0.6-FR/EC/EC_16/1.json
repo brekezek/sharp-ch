@@ -1,0 +1,80 @@
+{
+	"question-type":"table",
+	"title":"Répondez pour chaque culture/animal séparément",
+	"lines" : [
+		"Production 1",
+		"Production 2",
+		"Production 3",
+		"Production 4",
+		"Production 5",
+		"Production 6"
+		
+	],
+	"columns": [
+		{
+			"title":"Description",
+			"type":"text"
+		},
+		{
+			"title":"Comment commercialisez-vous vos produits les plus rentables?",
+			"type":"choice",
+			"choices": [
+				"Agro-industrie",
+				"Coopérative agricole",
+				"Vente aux détaillants sans passer par un intermédiaire",
+				"Société coopérative locale",
+				"Vente directe"
+			]
+		},
+		{
+			"title":"Su vous faites de l'agriculture contractuelle, avez-vous un mot à dire lors des négociations du contenu du contrat?",
+			"type":"binary"
+		},
+		{
+			"title":"Vous considérez-vous comme un acteur de la chaîne agroalimentaire ou comme entité productive individuelle?",
+			"type":"choice",
+			"choices": [
+				"Acteur de la chaîne agroalimentaire",
+				"Entité productive individuelle"
+			]
+		},
+				{
+			"title":"Qui détermine principalement ce que vous produisez?",
+			"type":"choice",
+			"choices": [
+				"Vous",
+				"Vous et d'autres agriculteurs",
+				"Acteurs qui ne sont pas agriculteurs"
+			]
+		},
+		{
+			"title":"Participez-vous dans la détermination du cahier des charges local?",
+			"type":"choice",
+			"choices": [
+				"Un peu",
+				"Beaucoup",
+				"Pas du tout"
+			]
+		},
+		{
+			"title":"Participez-vous dans la détermination du cahier des charges régional?",
+			"type":"choice",
+			"choices": [
+				"Un peu",
+				"Beaucoup",
+				"Pas du tout"
+			]
+		},
+		{
+			"title":"Participez-vous dans la détermination du cahier des charges fédéral?",
+			"type":"choice",
+			"choices": [
+				"Un peu",
+				"Beaucoup",
+				"Pas du tout"
+			]
+		}
+		
+	],
+	"mandatory":true
+}

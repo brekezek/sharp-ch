@@ -1,0 +1,10 @@
+{
+	"question-type":"binary_answer",
+	"title":"Est-ce que vous stockez le fumier dans un récipient ouvert ou fermé?",
+	"choices":
+		[
+			"Ouvert",
+			"Fermé"
+		],
+	"mandatory":"true"
+}

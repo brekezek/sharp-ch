@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Est-ce que vos ressources financières sont suffisantes pour adapter votre exploitation en cas de nécessité?",
+	"choices":
+		[
+			"Pas du tout",
+			"Un peu",
+			"Moyennement",
+			"Beaucoup",
+			"Complètement"
+		],
+	"mandatory":true
+}

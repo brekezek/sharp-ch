@@ -1,0 +1,10 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Les prix (concernant la vente) sont-ils suffisamment élevés et constants pour votre exploitation?",
+	"choices" : [
+		"Oui",
+		"Pas suffisamment",
+		"Non"
+	],
+	"mandatory":true
+}

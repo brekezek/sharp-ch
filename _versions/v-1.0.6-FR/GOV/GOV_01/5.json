@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Est-ce que les contraintes administratives freinent la capacité d'adaptation de votre exploitation?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

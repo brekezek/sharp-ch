@@ -1,0 +1,36 @@
+{
+	"question-type":"table",
+	"title":"En général, quelles semences utilisez-vous?",
+	"all_visible":true,
+	"lines": [
+		"Gouvernement",
+		"Magasins locaux/marché",
+		"Amis/voisins/famille/autre exploitant",
+		"Production propre",
+		"Intermédiaires (commerçants d'intrants agricoles - fournisseurs/distributeurs)",
+		"Banque de semences",
+		"Groupes de producteurs ou entreprises de semences",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Origines des semences / du matériel végétal (graines, plants, etc.)",
+			"type":"choice",
+			"choices": [
+				"Oui",
+				"Non",
+				"Pas applicable"
+			]
+		},
+		{
+			"title":"Origines des semences pour le bétail (mâles améliorateurs, insémination artificielle, etc.)",
+			"type":"choice",
+			"choices": [
+				"Oui",
+				"Non",
+				"Pas applicable"
+			]
+
+		}
+	]
+}

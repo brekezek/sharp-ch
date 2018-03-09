@@ -1,0 +1,24 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "In welchem Ausmaß haben diese Ereignisse Ihr Betriebssystem beeinflusst?",
+    "choices": [
+        {
+            "Überhaupt nicht": 10
+        },
+        {
+            "Ein wenig": 7.5
+        },
+        {
+            "Mittelmäßig": 5
+        },
+        {
+            "Ziemlich": 2.5
+        },
+        {
+            "Vollständig": 0
+        }
+    ],
+    "scoring": "by-value",
+    "mandatory": true,
+    "scoring-type": "importance"
+}

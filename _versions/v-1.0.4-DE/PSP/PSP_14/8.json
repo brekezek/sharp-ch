@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Nutzen Sie Informations- und Beratungsdienste für Anbaumethoden/Viehbetrieb?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

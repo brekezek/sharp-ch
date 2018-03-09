@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure l'accès aux intrants agricoles locaux répond-il aux besoins de votre système agricole?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+}

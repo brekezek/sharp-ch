@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Inwieweit können Sie Wasser durch die von Ihnen eingesetzten Techniken einsparen?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Mehr oder weniger viel",
+		"Viel"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+
+}

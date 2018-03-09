@@ -1,0 +1,14 @@
+
+{"question-type":"multiple_one_solution",
+	"title":"Wie hoch ist der Anteil an Bäumen auf Ihren landwirtschaftlichen Flächen - natürlich vorkommende und gepflanzte Bäume?",
+	"choices":
+		[
+			"0 %",
+			"1-10 %",
+			"11-20 %",
+			"21-40 %",
+			"41-60 %",
+			"61+ %"
+		],
+	"mandatory":true
+}

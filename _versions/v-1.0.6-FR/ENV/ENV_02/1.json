@@ -1,0 +1,19 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Dans votre système agricole, utilisez-vous les techniques de conservation de l'eau suivantes?",
+	"choices": 
+		[
+			"Citernes",
+			"Irrigation - canaliser l'eau",
+			"Fosses de plantation et diguettes en pierre",
+			"Fossés de rétention d'eau, murets en pierre, bandes de végétation, lignes de contours et fossés (sillons)",
+			"Arrosage des plantes tôt le matin ou en soirée",
+			"Terrassement",
+			"Paillage",
+			"Cultures de couverture",
+			"Irrigation goutte à goutte",
+			"Fossé d'écoulement/canaux (pour drainer)",
+			"Barrage",
+			"_OTHER_INPUT::Autre (précisez)"
+		]
+}

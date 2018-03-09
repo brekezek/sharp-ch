@@ -1,0 +1,39 @@
+{
+	"question-type":"table",
+	"scoring-type":"academic",
+	"title":"?",
+	"lines": [
+		"Téléphone mobile?",
+		"Connexion internet?",
+		"Ordinateur chez soi?",
+		"Tablette informatique?",
+		"Télévision?",
+		"Radio?",
+		"Guidage ou assistance par GPS?",
+		"Drone?",
+		"Cahier de champ électronique?",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Est-ce que vous utilisez",
+			"type":"choice",
+			"choices": [
+				"Oui",
+				"Non"
+			],
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-1":1},
+				{"2-2":4},
+				{"3-3":5},
+				{"4-4":8},
+				{"5-+":10}
+			]
+		}
+	
+	]
+}
+	

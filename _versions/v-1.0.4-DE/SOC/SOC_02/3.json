@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie wichtig sind für Sie die Vielfalt und Qualität von Lebensmitteln für Ihren Haushalt?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Beinahe völlig",
+		"Sehr"
+	],
+	"mandatory":"true"
+}

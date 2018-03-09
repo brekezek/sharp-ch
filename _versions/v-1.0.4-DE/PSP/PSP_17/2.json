@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Haben Sie in der letzten Anbausaison Schutzkleidung benutzt?",
+	"choices":
+		[
+			"Immer",
+			"Manchmal",
+			"Nie"
+		],
+	"mandatory":true
+}

@@ -1,0 +1,16 @@
+{
+	"question-type":"multiple_one_solution",
+	"scoring-type":"academic",
+	"scoring":"by-value",
+	"title":"Quel pourcentage des aliments principaux pour animaux (en apport énergétique, pas en kg) est importé d'un autre pays?",
+	"choices":
+		[
+			{"0%":10},
+			{"1-10%":8},
+			{"11-20%":6},
+			{"21-40%":4},
+			{"41-80%":2},
+			{">80%":0}
+		],
+	"mandatory":"true"
+}

@@ -1,0 +1,5 @@
+{
+	"question-type":"integer_answer",
+	"title":"Welcher Prozentanteil aller Ihrer Produkte wird direkt an den Kunden verkauft?",
+	"mandatory":true
+}

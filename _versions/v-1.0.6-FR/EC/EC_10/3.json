@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Est-ce que vos dettes actuelles menacent votre exploitation de faire faillite prochainement?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

@@ -1,0 +1,5 @@
+{
+	"question-type":"integer_answer",
+	"title":"Quel pourcentage (approximativement) de vos intrants provient de votre propre exploitation?",
+	"mandatory":true
+}

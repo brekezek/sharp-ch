@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"scoring-type":"adequacy",
+	"scoring":"by-value",
+	"title":"Votre accès aux engrais de synthèse est-il suffisant pour les besoins de votre système agricole?",
+	"choices":[
+		{"Pas du tout":0},
+		{"Un peu":2.5},
+		{"Moyennement":5},
+		{"Beaucoup":7.5},
+		{"Complètement":10}
+	],
+	"mandatory":"true"
+}

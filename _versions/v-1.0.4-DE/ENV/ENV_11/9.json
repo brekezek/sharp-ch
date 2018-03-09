@@ -1,0 +1,21 @@
+{
+	"question-type":"table",
+	"title":"Woher beziehen Sie Ihren Dünger?",
+	"lines": [
+		"Vom Hof",
+		"Von einer landwirtschaftliche Genossenschaft",
+		"Von anderen Verteilern",
+		"Von anderer Betrieben",
+		"Von landwirtschaftlichen Beratern",
+		"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+
+	],
+	"columns": [
+		{
+			"title":"Bitte auswählen",
+			"type":"toggle"
+		}
+
+	],
+	"mandatory":"true"
+}

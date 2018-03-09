@@ -1,0 +1,32 @@
+{
+	"question-type":"table",
+	"title":"Dans votre système agricole pratiquez-vous:",
+	"lines": [
+		"Les grandes cultures (céréales, légumineues, oléagineux)?",
+		"L'élevage (production animale pour l'engraissement)?",
+		"Production laitière?",
+		"Culture maraîchère?",
+		"Arboriculture?",
+		"Viticulture?",
+		"L'agroforesterie (production de plants, régénération naturelle assistée, plantation d'arbres)?",
+		"L'aquaculture (production d'alevins, élevage de poissons) ?",
+		"L'apiculture?",
+		"La pêche?",
+		"L'aviculture?",
+		"_OTHER_INPUT::Autres activités (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Réponse",
+			"type":"binary"
+		}, 
+		{
+			"title":"Activités traditionnelles",
+			"type":"toggle"
+		},
+		{
+			"title":"Activité principale",
+			"type":"toggle_exactly_one"
+		}
+	]
+}

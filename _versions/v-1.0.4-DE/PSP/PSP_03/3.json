@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Entspricht das Futter den Anforderungen der Art, die Sie züchten?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig ",
+		"Mittelmäßig",
+		"Ziemlich",
+		"Sehr"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+}

@@ -1,0 +1,32 @@
+{
+	"question-type":"table",
+	"title":"Hat jemand in Ihrem Haushalt die folgenden Aufgaben?",
+	"lines": [
+		"Produktion von Nutzpflanzen (Getreide, Leguminosen, Ölfrüchte)?",
+		"Viehhaltung (Mastbetrieb)?",
+		"Milchbetrieb?",
+		"Gartenbau (Obstbau, Gemüsebau, Blumen- und Zierpflanzenbau etc.)?",
+		"Baumschule?",
+		"Weinbau?",
+		"Agroforstwirtschaft (Baumproduktion, unterstützte natürliche Regeneration, Baumpflanzungen)?",
+		"Aquakultur (Jungfischproduktion, Fischzucht)?",
+		"Bienenzucht?",
+		"Fischerei?",
+		"Geflügelhaltung?",
+		"_OTHER_INPUT::Andere Tätigkeiten (Bitte spezifizieren):"
+	],
+	"columns": [
+		{
+			"title":"Antwort",
+			"type":"binary"
+		}, 
+		{
+			"title":"Nebentätigkeit",
+			"type":"toggle"
+		},
+		{
+			"title":"Haupttätigkeit",
+			"type":"toggle_exactly_one"
+		}
+	]
+}

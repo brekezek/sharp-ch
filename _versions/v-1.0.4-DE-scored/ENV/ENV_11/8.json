@@ -1,0 +1,11 @@
+{
+    "question-type": "binary_answer",
+    "title": "Kombinieren Sie natürlichen und synthetischen Dünger?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": "true",
+    "scoring": "by-value",
+    "scoring-type": "academic"
+}

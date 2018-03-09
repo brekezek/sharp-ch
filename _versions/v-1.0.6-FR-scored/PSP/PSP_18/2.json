@@ -1,0 +1,8 @@
+{
+	"question-type":"integer_answer",
+	"scoring-type":"academic",
+	"scoring":"function",
+	"title":"Quel pourcentage de vos cultures est cultivé en culture associée?",
+	"scoring-function":"divide(x,10)",
+	"mandatory":true
+}

@@ -1,0 +1,23 @@
+{
+	"question-type":"table",
+	"title":"Welche Methoden zur Schädlingsbekämpfung haben Sie in der letzten Anbausession angewendet (wählen Sie aus)?",
+	"lines": [
+		"Natürliche Pflanzenschutzmittel",
+		"Schädlingsresistente Sorten oder Samen",
+		"Biologische Kontrollmethoden (Bsp. Parasitoiden, Marienkäfer)",
+		"Synthetische Pflanzenschutzmittel",
+		"Fruchtfolge zur Verringerung des Unkraut- und Schädlingsdrucks",
+		"Ausdünnung der Pflanzen",
+		"Manuelles Einfangen der Schädlinge",
+		"Behandlungen während der Pflanzenanzucht",
+		"Benutzung von Fallen",
+		"_OTHER_INPUT::Anderes (bitte spezifizieren):"
+	],
+	"columns": [
+		{
+			"title":"Bitte auswählen",
+			"type":"toggle"
+		}
+
+	]
+}

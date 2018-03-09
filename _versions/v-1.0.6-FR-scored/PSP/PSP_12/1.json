@@ -1,0 +1,45 @@
+{
+	"question-type":"table",
+	"scoring-type":"academic",
+	"title":"Tenez-vous des registres pour ce qui suit?",
+	"lines": [
+		"Rendement agricole?",
+		"Régime des pluies?",
+		"Espèces envahissantes?",
+		"Désherbage (lutte contre les mauvaises herbes)?",
+		"Analyse de sol?",
+		"Eau utilisée pour l'irrigation?",
+		"Engrais?",
+		"Produits phytosanitaires?",
+		"Carburants?",
+		"Recensement des animaux?",
+		"_OTHER_INPUT::Autres (précisez)"
+
+	],
+	"columns": [
+		{
+			"title":"Réponse",
+			"type":"choice",
+			"choices": [
+				"Oui",
+				"Non",
+				"Pas applicable"
+			],
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-1":1},
+				{"2-2":2},
+				{"3-3":3},
+				{"4-4":4},
+				{"5-5":5},
+				{"6-6":6},
+				{"7-7":7},
+				{"8-8":8},
+				{"9-9":9},
+				{"10-10":10}
+			]
+		}
+	]
+}

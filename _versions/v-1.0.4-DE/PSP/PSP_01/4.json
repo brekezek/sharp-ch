@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Hat der Vorstand des Betriebes sich seinen Beruf frei aussuchen können oder gab es Druck durch die Familie?",
+	"choices":
+		[
+			"Ja, er/sie konnte sich frei entscheiden.",
+			"Ein Mix aus beidem ",
+			"Er/Sie konnte sich nicht frei entscheiden, aber ist glücklich mit dem Beruf.",
+			"Nein, er/sie konnte sich nicht frei entscheiden, sondern wurde in einen Beruf gezwungen, den er/sie nicht gerne macht."
+		],
+	"mandatory":"true"
+}

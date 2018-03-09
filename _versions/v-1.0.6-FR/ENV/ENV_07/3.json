@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"De manière générale, dans quelle mesure vos cultures de légumineuses vous satisfont-elles (production, sol,...)?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"mandatory":"true"
+}

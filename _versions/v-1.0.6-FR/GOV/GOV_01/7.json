@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Quelle est l'importance du soutien gouvernemental pour le maintien de votre exploitation?",
+	"choices":[
+		"Aucune",
+		"Faible",
+		"Moyenne",
+		"Elevée",
+		"Très élevée"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+
+}

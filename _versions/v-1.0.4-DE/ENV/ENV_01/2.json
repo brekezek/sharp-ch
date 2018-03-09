@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Ist Ihr Zugang zu Wasser für die Bedürfnisse Ihres Betriebssystems ausreichend?",
+	"choices":[
+		"Überhaupt nicht ",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Beinahe",
+		"Vollständig"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+
+}

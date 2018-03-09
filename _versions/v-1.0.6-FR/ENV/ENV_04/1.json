@@ -1,0 +1,27 @@
+{
+	"question-type":"table",
+	"title":"Type",
+	"lines": [
+		"Surface agricole utile (hectares)",
+		"Surface d'estivage (hectares)",
+		"Autres surfaces ne rentrant ni dans la SAU ni dans les surfaces d'estivage (hectares)"
+	],
+	"columns": [
+		{
+			"title":"Parcelle(s) en propriété (ha.)",
+			"type":"integer"
+		}, 
+		{
+			"title":"Parcelle(s) prise(s) en location fixe avec bail (ha.)",
+			"type":"integer"
+		},
+		{
+			"title":"Parcelle(s) prise(s) en location verbale sans bail (ha.) ",
+			"type":"integer"
+		},
+		{
+			"title":"Autre (ha.) ",
+			"type":"integer"
+		}
+	]
+}

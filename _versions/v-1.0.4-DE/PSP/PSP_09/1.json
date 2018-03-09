@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Verwenden Sie neu eingeführte nicht-einheimische Pflanzensorten (Sorten, die seit weniger als 15 Jahren in der Region vorkommen) wie moderne Züchtungen, importierte Sorten, ertragreiche Sorten, Saatgut des privaten Sektors usw.?",
+	"choices":
+		[
+			"Ja",
+			"Nein",
+			"Ich weiß es nicht."
+		],
+	"mandatory":true
+}

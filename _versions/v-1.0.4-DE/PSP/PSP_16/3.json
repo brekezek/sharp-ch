@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Inwieweit erlauben die Praktiken, die Sie verwenden, eine ausreichende Schädlings-/Krankheitsbekämpfung?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Beinahe völlig",
+		"Vollständig"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+
+}

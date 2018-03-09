@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Quelle est l'importance des plantes légumineuses pour votre système de production?",
+	"choices":[
+		"Aucune",
+		"Faible",
+		"Moyenne",
+		"Elevée",
+		"Très élevée"
+	],
+	"mandatory":"true"
+}

@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"En général, est-ce que votre accès aux engrais naturels satisfait les besoins de votre système agricole?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"mandatory":"true"
+}

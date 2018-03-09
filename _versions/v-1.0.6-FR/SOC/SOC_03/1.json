@@ -1,0 +1,24 @@
+{
+	"question-type":"table",
+	"title":"Quels aléas avez-vous subis ces 10 dernières années?",
+	"lines" : [
+		"Invasion de prédateurs",
+		"Inondations",
+		"Incendie",
+		"Maladies (végétales, animales et humaines)",
+		"Conflit (de voisinage, villageois, politique, ...)",
+		"Pluies au mauvais moment",
+		"Neige",
+		"Grêle",
+		"Vents violents",
+		"Sécheresse",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Cochez",
+			"type":"toggle"
+		}
+	],
+	"mandatory":true
+}

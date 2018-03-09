@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Avez-vous plus d'économies qu'il y a cinq ans?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie gut können Sie durch die Tätigkeiten in Ihrem Betrieb Ihren Lebensunterhalt erwirtschaften?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Ausreichend",
+		"Vollständig"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+
+}

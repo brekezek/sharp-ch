@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure avez-vous pu atténuer les effets négatifs de ces pertes?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+}

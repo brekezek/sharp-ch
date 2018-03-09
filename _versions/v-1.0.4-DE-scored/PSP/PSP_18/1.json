@@ -1,0 +1,12 @@
+{
+    "question-type": "binary_answer_with_comment",
+    "title": "Bauen Sie zwei oder mehr Nutzpflanzenarten in Gesellschaft an?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "placeholder": "PLACEHOLDER",
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
+}

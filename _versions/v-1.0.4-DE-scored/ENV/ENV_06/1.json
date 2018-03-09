@@ -1,0 +1,55 @@
+{
+    "question-type": "table",
+    "title": "Welche Praktiken zur Verbesserung der Bodenqualität verwenden Sie?",
+    "lines": [
+        "Kalkung",
+        "Brache",
+        "Direktsaat",
+        "Minimale Bodenbearbeitung",
+        "Rotationsweiden",
+        "Fruchtfolge",
+        "Windbrecher/Hecken",
+        "Mischkultur",
+        "Mulchen",
+        "Zwischenfrucht",
+        "Düngung/Kompostierung",
+        "Vegetationsstreifen",
+        "Agroforstwirtschaft, Aufforstung",
+        "Kontrolle von Rillenerosion/Rehabilitation",
+        "Terrassierung des Bodens",
+        "Andere Bodenverbesserungspraktiken"
+    ],
+    "columns": [
+        {
+            "title": "Antwort",
+            "type": "binary",
+            "scoring": "by-entries",
+            "scoring-type": "academic",
+            "scoring-grid": [
+                {
+                    "0-0": 0
+                },
+                {
+                    "1-1": 1
+                },
+                {
+                    "2-2": 3
+                },
+                {
+                    "3-3": 5
+                },
+                {
+                    "4-4": 7
+                },
+                {
+                    "5-+": 9
+                }
+            ]
+        },
+        {
+            "title": "Wenn nötig, bitte Weiteres hinzufügen:",
+            "type": "text"
+        }
+    ],
+    "scoring-type": "academic"
+}

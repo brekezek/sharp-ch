@@ -1,0 +1,18 @@
+{
+	"question-type":"table",
+	"title":"Si oui lesquelles?",
+	"lines":[
+		"Vigne",
+		"Pommiers",
+		"Poiriers",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns":[
+		{
+			"title":"Cochez",
+			"type":"toggle"
+		}
+	],
+	"mandatory":"true",
+	"placeholder":"Précisez"
+}

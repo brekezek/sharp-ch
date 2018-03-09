@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Ist das Wasser für Tiere geeignet?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Ausreichend",
+		"Vollständig"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+
+}

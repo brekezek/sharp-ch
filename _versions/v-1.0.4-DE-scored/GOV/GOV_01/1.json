@@ -1,0 +1,11 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "Sind Sie sich der Regierungsstrategien zum Klimawandel und zur nachhaltigen Landwirtschaft bewusst?",
+    "choices": [
+        "Ja",
+        "Nein",
+        "Ich weiß es nicht"
+    ],
+    "mandatory": true,
+    "scoring-type": "-"
+}

@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Comment (cochez)?",
+	"choices": 
+		[
+			
+			"Maladies",
+			"Sécheresse",
+			"Inondations",
+			"Animaux non clôturés",
+			"Vol d'animaux",
+			"_OTHER_INPUT::Autre (précisez)"	
+		]
+}

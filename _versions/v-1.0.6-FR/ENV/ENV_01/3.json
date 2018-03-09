@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure est-ce important d'avoir accès aux points d'eau pour votre système de production?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Très"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+
+}

@@ -1,0 +1,17 @@
+{
+	"question-type":"table",
+	"title":"Welche Methoden verwenden Sie?",
+	"lines": [
+		"Energiesparlampen",
+		"Biogasanlage",
+		"Effiziente Isolierung",
+		"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+	],
+	"columns": [
+		{
+			"title":"Bitte auswählen:",
+			"type":"toggle"
+		}
+
+	]
+}

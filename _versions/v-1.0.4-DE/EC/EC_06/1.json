@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie oft nutzen Sie Informationen über den Markt/Marktpreis?",
+	"choices":
+		[
+			"Oft",
+			"Manchmal",
+			"Nie/Sehr selten"
+		],
+	"mandatory":true
+}

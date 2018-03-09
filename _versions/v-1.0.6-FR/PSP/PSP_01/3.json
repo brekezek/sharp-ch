@@ -1,0 +1,10 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Si vous avez des employés, est-ce qu'ils ont participé à des services de vulgarisation/formation agricole au cours des trois dernières années?",
+	"choices": [
+		"Oui",
+		"Non",
+		"Non-applicable"
+	],
+	"mandatory":true
+}

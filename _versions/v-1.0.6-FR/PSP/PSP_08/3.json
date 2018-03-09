@@ -1,0 +1,12 @@
+
+{"question-type":"multiple_one_solution",
+	"title":"Quelle est l'importance d'avoir accès à plusieurs sources de semences (végétales) pour votre système de production?",
+	"choices":[
+		"Aucune",
+		"Faible",
+		"Moyenne",
+		"Elevée",
+		"Très élevée"
+	],
+	"mandatory":"true"
+}

@@ -1,0 +1,10 @@
+{
+	"order": [
+		"ADM",
+		"PSP",
+		"GOV",
+		"ENV",
+		"SOC",
+		"EC"
+	]
+}

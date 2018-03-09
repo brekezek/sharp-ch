@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"De combien de sources différentes obtenez-vous des informations sur l'utilisation de pesticides?",
+	"choices":
+		[
+			"Une seule source",
+			"Deux sources",
+			"Trois sources ou +"
+		],
+	"mandatory":true
+}

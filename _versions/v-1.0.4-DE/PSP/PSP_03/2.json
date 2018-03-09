@@ -1,0 +1,32 @@
+{
+	"question-type":"table",
+	"title":"Tätigkeiten",
+	"lines": [
+		"1",
+		"2",
+		"3",
+		"4"
+	],
+	"columns": [
+		{
+			"title":"Falls ja, welche Arten bewirtschaften Sie? z.B. Karpfen, Tilapien etc.",
+			"type":"text"
+		}, 
+		{
+			"title":"Wie viele Sorten bewirtschaften Sie pro genannter Art?",
+			"type":"integer"
+		},
+		{
+			"title":"Geben Sie Nahrungszusätze pro genannter Art?",
+			"type":"toggle"
+		},
+		{
+			"title":"Falls ja, welche?",
+			"type":"text"
+		},
+		{
+			"title":"Falls ja, unter welchen Umständen geben Sie Nahrungszusätze?",
+			"type":"text"
+		}
+	]
+}

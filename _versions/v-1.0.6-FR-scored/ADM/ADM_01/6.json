@@ -1,0 +1,5 @@
+{
+	"question-type":"text",
+	"title":"Nom du chef de l'exploitation (si différent du répondant)",
+	"mandatory":true
+}

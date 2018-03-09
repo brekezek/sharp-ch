@@ -1,0 +1,10 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Si vous souhaitez/avez besoin d'adapter votre exploitation, est-ce que les normes/règles/politiques gouvernementales actuelles vous permettent d'entreprendre des travaux d'infrastructure nécessaires (par ex. travaux de construction)?",
+	"choices":
+		[
+			"Oui, elles sont suffisamment flexibles",
+			"Non, elles ne sont pas flexibles"
+		],
+	"mandatory":true
+}

@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Haben Sie zurzeit, ohne Geld zu leihen, die finanzielle Kapazität, um einen guten Betriebszustand Ihrer Maschinenanlage/Festinstallation zu gewährleisten?",
+	"choices" : [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

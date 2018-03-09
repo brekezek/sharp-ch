@@ -1,0 +1,23 @@
+{
+	"question-type":"table",
+	"title":"Dans vos parcelles, quelles pratiques de gestion des adventices utilisez-vous?",
+	"lines": [
+		"Cultures de couverture",
+		"Paillis",
+		"Désherbage manuel",
+		"Désherbage mécanique",
+		"Faux semis",
+		"Herbicides",
+		"Rotation des cultures",
+		"Pâturage du bétail",
+		"Mesures préventives (ex. travail avec machines)",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Cochez",
+			"type":"toggle"
+		}
+	],
+	"mandatory": true
+}

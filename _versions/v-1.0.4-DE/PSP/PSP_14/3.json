@@ -1,0 +1,19 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Falls ja, welche für Veränderungen haben Sie bemerkt?",
+	"choices": 
+		[
+			"Vermehrter Regenfall",
+			"Weniger Regenfall",
+			"Mehr Variabilität des Niederschlags",
+			"Späterer Regenfall",
+			"Höhere Temperaturen",
+			"Geringere Temperaturen",
+			"Überschwemmungen",
+			"Späterer Frühlingsbeginn ",
+			"Früherer Frühlingsbeginn",
+			"Ungewöhnlicher Schädlingsbefall",
+			"Ungewöhnliche Trockenheit",
+			"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+		]
+}

@@ -1,0 +1,10 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Ihrer Meinung nach, sind sich die Bürger den Herausforderungen in der Landwirtschaft bewusst?",
+	"choices" : [
+		"Ja",
+		"Nicht genug",
+		"Nein"
+	],
+	"mandatory":true
+}

@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Reichen Ihre finanziellen Ressourcen aus, um Ihren Betrieb zu verändern, falls es nötig ist?",
+	"choices":
+		[
+			"Überhaupt nicht",
+			"Ein wenig",
+			"Mittelmäßig",
+			"Beinahe völlig",
+			"Vollständig"
+		],
+	"mandatory":true
+}

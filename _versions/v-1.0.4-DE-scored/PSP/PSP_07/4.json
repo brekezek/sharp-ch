@@ -1,0 +1,18 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "Füttern Sie Ihrem Geflügel neben Kraftfutter, das auf dem Betrieb produziert worden ist, noch anderes?",
+    "choices": [
+        {
+            "Ja": 10
+        },
+        {
+            "Nein": 0
+        },
+        {
+            "Nicht anwendbar": 0
+        }
+    ],
+    "mandatory": "true",
+    "scoring": "by-value",
+    "scoring-type": "academic"
+}

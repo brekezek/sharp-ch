@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Inwieweit erfüllt die Kombination von Ergänzungsfutter und Hauptfutter die Ansprüche Ihrer Tiere?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Beinahe völlig",
+		"Vollständig"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":"true"
+}

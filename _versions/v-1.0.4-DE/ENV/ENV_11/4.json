@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Ist Ihr Zugang zu synthetischen Düngemitteln hinreichend für die Bedürfnisse Ihres Betriebs?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Beinahe völlig",
+		"Vollständig"
+	],
+	"mandatory":"true"
+}

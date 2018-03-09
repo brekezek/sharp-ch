@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Denken Sie, dass Ihr Betrieb ohne staatliche Finanzierungshilfen überleben könnte?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

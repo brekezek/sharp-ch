@@ -1,0 +1,23 @@
+{
+	"group_id":"EC",
+	"color":"red",
+	"title":"Volet économique",
+	"order": [
+		"EC_09",
+		"EC_08",
+		"EC_11",
+		"EC_12",
+		"EC_14",
+		"EC_01",
+		"EC_15",
+		"EC_10",
+		"EC_13",
+		"EC_07",
+		"EC_06",
+		"EC_03",
+		"EC_04",
+		"EC_02",
+		"EC_16",
+		"EC_05"
+	]
+}

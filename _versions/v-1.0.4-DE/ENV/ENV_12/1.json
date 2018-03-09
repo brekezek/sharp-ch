@@ -1,0 +1,23 @@
+{
+	"question-type":"table",
+	"title":"Welche Maßnahmen gegen Unkraut ergreifen Sie auf Ihren Feldern? ",
+	"lines": [
+		"Zwischenfrucht",
+		"Mulchen",
+		"Handarbeit",
+		"Mechanisch",
+		"Unkrautkur/Falsches Saatbett",
+		"Herbizide",
+		"Fruchtwechsel",
+		"Viehweiden",
+		"Präventive Maßnahmen (z.B. Arbeiten mit sauberen Maschinen)",
+		"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+	],
+	"columns": [
+		{
+			"title":"Bitte auswählen",
+			"type":"toggle"
+		}
+	],
+	"mandatory": true
+}

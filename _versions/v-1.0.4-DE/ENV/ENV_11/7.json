@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Falls Ja, haben Sie vor der Applikation überprüft, ob Boden und Pflanzen dies benötigen?",
+	"choices":[
+			"Ja",
+			"Nein"
+	],
+	"mandatory":"true"
+}

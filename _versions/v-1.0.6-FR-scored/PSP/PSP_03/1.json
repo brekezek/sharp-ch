@@ -1,0 +1,10 @@
+{
+	"question-type":"binary_answer",
+	"scoring-type":"-",
+	"title":"Pratiquez-vous l'aquaculture?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":"true"
+}

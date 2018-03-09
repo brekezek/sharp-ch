@@ -1,0 +1,15 @@
+{
+	"question-type":"multiple_one_solution",
+	"scoring-type":"adequacy",
+	"scoring":"by-value",
+	"title":"Dans quelle mesure les pratiques que vous utilisez vous permettent-elles une lutte suffisante contre les prédateurs/maladies?",
+	"choices":[
+		{"Pas du tout":0},
+		{"Un peu":2.5},
+		{"Moyennement":5},
+		{"Beaucoup":7.5},
+		{"Complètement":10}
+	],
+	"mandatory":true
+
+}

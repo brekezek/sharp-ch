@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Können Sie genug ansparen, um die Bedürfnisse Ihres Betriebs zu erfüllen?",
+	"choices":
+		[
+			"Überhaupt nicht",
+			"Ein wenig",
+			"Mittelmäßig",
+			"Beinahe völlig",
+			"Vollständig"
+		],
+	"mandatory":true
+}

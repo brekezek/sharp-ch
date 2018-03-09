@@ -1,0 +1,24 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "Wie wichtig ist ein Zugang zu Tierärzten für Ihren Betrieb?",
+    "choices": [
+        {
+            "Überhaupt nicht": 0
+        },
+        {
+            "Ein wenig": 2.5
+        },
+        {
+            "Mittelmäßig": 5
+        },
+        {
+            "Ziemlich": 7.5
+        },
+        {
+            "Sehr": 10
+        }
+    ],
+    "mandatory": "true",
+    "scoring": "by-value",
+    "scoring-type": "importance"
+}

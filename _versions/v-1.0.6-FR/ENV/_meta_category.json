@@ -1,0 +1,19 @@
+{
+	"group_id":"ENV",
+	"color":"green",
+	"title":"Environnement",
+	"order": [
+		"ENV_01",
+		"ENV_02",
+		"ENV_03",
+		"ENV_04",
+		"ENV_05",
+		"ENV_06",
+		"ENV_07",
+		"ENV_08",
+		"ENV_09",
+		"ENV_10",
+		"ENV_11",
+		"ENV_12"
+	]
+}

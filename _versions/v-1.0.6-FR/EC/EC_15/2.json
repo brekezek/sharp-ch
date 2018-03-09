@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Sans faire d'emprunts d'argent, est-ce que vous avez actuellement la capacité financière de maintenir un bon état de fonctionnement de votre parc machines/installations fixes?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

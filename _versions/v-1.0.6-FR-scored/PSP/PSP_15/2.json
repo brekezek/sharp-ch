@@ -1,0 +1,13 @@
+{
+	"question-type":"integer_answer",
+	"scoring-type":"academic",
+	"scoring":"by-value",
+	"scoring-grid":[
+		{"0-1":0},
+		{"2-2":2},
+		{"3-3":6},
+		{"4-+":10}
+	],
+	"title":"Combien de méthodes de lutte contre les maladies utilisez-vous pour vos animaux?",
+	"mandatory":true
+}

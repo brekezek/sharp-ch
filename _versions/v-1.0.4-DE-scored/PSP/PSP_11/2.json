@@ -1,0 +1,17 @@
+{
+    "question-type": "multiple_multiple_solution",
+    "title": "Wodurch?",
+    "choices": [
+        "Schädlinge",
+        "Krankheiten (Bakterien, Viren, Pilze etc.)",
+        "Dürre",
+        "Frost",
+        "Überflutungen",
+        "Starker Regen",
+        "Starker Wind ",
+        "Hagel",
+        "Samen mit schlechter Qualität, schlechtes Pflanzmaterial",
+        "_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+    ],
+    "scoring-type": "-"
+}

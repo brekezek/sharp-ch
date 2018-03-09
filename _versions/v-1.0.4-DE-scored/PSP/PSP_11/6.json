@@ -1,0 +1,19 @@
+{
+    "question-type": "table",
+    "title": "Wie sind Sie damit umgegangen?",
+    "lines": [
+        "Interne Strategie/Kapazitäten",
+        "Externe Hilfe"
+    ],
+    "columns": [
+        {
+            "title": "Bitte auswählen:",
+            "type": "toggle"
+        },
+        {
+            "title": "Bitte genauer ausführen:",
+            "type": "text"
+        }
+    ],
+    "scoring-type": "-"
+}

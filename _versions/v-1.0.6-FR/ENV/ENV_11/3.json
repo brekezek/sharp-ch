@@ -1,0 +1,17 @@
+{
+	"question-type":"table",
+	"title":"Si non, pourquoi?",
+	"lines":[
+			"_OTHER_INPUT::Je ne veux pas (expliquez pourquoi)",
+			"Trop cher",
+			"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Cochez",
+			"type":"toggle"
+		}
+
+	],
+	"mandatory":"true"
+}

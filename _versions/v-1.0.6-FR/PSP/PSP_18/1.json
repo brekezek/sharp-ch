@@ -1,0 +1,10 @@
+{
+	"question-type":"binary_answer_with_comment",
+	"title":"Pratiquez-vous la culture associée?",
+	"choices":[
+		"Oui",
+		"Non"
+	],
+	"placeholder":"PLACEHOLDER",
+	"mandatory":true
+}

@@ -1,0 +1,16 @@
+{
+	"question-type":"table",
+	"scoring-type":"-",
+	"title":"Quel est le type de main d'oeuvre travaillant sur votre exploitation?",
+	"lines": [
+		"Familiale uniquement",
+		"Salariée uniquement",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Cochez",
+			"type":"toggle"
+		}
+	]
+}

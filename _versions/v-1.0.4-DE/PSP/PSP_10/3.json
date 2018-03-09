@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Haben Sie verschiedene Sorten der gleichen Art gepflanzt?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

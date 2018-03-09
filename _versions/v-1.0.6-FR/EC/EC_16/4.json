@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Quelle est l'importance des interactions avec les autres acteurs de la chaîne agroalimentaire pour votre système agricole?",
+	"choices":
+		[
+			"Pas du tout",
+			"Un peu",
+			"Moyennement",
+			"Beaucoup",
+			"Très"
+		],
+	"mandatory":true
+}

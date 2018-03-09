@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie wichtig ist es Ihnen, verschiedene Arten von Nutztieren auf Ihrem Betrieb zu halten?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Ziemlich",
+		"Sehr"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":"true"
+}

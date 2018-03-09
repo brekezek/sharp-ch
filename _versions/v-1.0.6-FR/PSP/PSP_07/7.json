@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"La combinaison entre les compléments affouragés aux animaux et leur accès aux pâturages est-elle suffisante pour répondre à leurs besoins?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":"true"
+}

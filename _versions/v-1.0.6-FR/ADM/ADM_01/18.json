@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Taille de l'exploitation (hectares)",
+	"choices": [
+		"Moins de 5 ha",
+		"5-10 ha",
+		"11-30 ha",
+		"31-50 ha",
+		"51-100 ha",
+		"Plus de 100 ha"
+	],
+	"mandatory":true
+}

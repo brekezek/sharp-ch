@@ -1,0 +1,10 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Utilisez-vous les services vétérinaires?",
+	"choices": [
+		"Oui et ils sont de bonne qualité",
+		"Oui mais ils sont problématiques (personnel non qualifié, cher, distant, etc.)",
+		"Non"
+	],
+	"mandatory":true
+}

@@ -1,0 +1,80 @@
+{
+	"question-type":"table",
+	"title":"Bitte antworten Sie einzeln für Ihre profitabelsten Produkte:",
+	"lines" : [
+		"Produkt 1",
+		"Produkt 2",
+		"Produkt 3",
+		"Produkt 4",
+		"Produkt 5",
+		"Produkt 6"
+		
+	],
+	"columns": [
+		{
+			"title":"Beschreibung",
+			"type":"text"
+		},
+		{
+			"title":"Wie vermarkten Sie diese?",
+			"type":"choice_multiple",
+			"choices": [
+				"Agrarindustrie",
+				"Landwirtschaftliche Genossenschaft",
+				"Verkauf an Einzelhändler ohne Vermittlung durch Zwischenhändler",
+				"Lokale Genossenschaft",
+				"Direktvermarktung"
+			]
+		},
+		{
+			"title":"Falls Sie Vertragslandwirtschaft betreiben, haben Sie ein Mitspracherecht?",
+			"type":"binary"
+		},
+		{
+			"title":"Wie sehen Sie Ihre Rolle in der Lebensmittelkette?",
+			"type":"choice",
+			"choices": [
+				"Akteur einer Lebensmittelkette",
+				"Individuelle Produktionseinheit"
+			]
+		},
+				{
+			"title":"Wer entscheidet hauptsächlich, was Sie produzieren?",
+			"type":"choice",
+			"choices": [
+				"Ich",
+				"Ich und andere Landwirte",
+				"Akteure, die keine Landwirte sind"
+			]
+		},
+		{
+			"title":"Beteiligen Sie sich an der Ausarbeitung der örtlichen Betriebsvorschriften?",
+			"type":"choice",
+			"choices": [
+				"Etwas",
+				"Viel",
+				"Nein"
+			]
+		},
+		{
+			"title":",an der Ausarbeitung der regionalen Vorschriften?",
+			"type":"choice",
+			"choices": [
+				"Etwas",
+				"Viel",
+				"Nein"
+			]
+		},
+		{
+			"title":"und an der Ausarbeitung von nationalen Vorschriften?",
+			"type":"choice",
+			"choices": [
+				"Etwas",
+				"Viel",
+				"Nein"
+			]
+		}
+		
+	],
+	"mandatory":true
+}

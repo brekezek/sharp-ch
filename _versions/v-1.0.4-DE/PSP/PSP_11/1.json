@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Haben Sie über die letzten 10 Jahre einen großen Anteil Ihrer Pflanzen verloren?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Ces espèces d'adventices affectent-elles négativement votre système agricole?",
+	"choices":[
+		"Oui",
+		"Non"
+	],
+	"mandatory":"true"
+}

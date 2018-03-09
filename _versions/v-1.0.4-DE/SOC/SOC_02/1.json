@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Hat jeder in Ihrem Haushalt Zugang zu einer abwechslungsreichen und hochwertigen Ernährung?",
+	"choices" : [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

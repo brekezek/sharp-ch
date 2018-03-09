@@ -1,0 +1,49 @@
+{
+	"question-type":"table",
+	"title":"Welche Pflanzen kultivieren Sie",
+	"lines": [
+		"Gerste",
+		"Hafer",
+		"Triticale",
+		"Weizen",
+		"Mais",
+		"Emmer, eng",
+		"Roggen",
+		"Dinkel",
+		"Rüben",
+		"Kartoffeln",
+		"Raps",
+		"Soja",
+		"Sonnenblume",
+		"Leinen",
+		"Hanf",
+		"Ackerbohnen",
+		"Protein Erbse",
+		"Lupinen",
+		"Tabak",
+		"Gemüsebau auf dem Feld, ganzjährig (außer Dosengemüse)",
+		"Dosengemüse auf dem Feld angebaut",
+		"Buchweizen",
+		"Sorgum",
+		"Einjährige Beeren (Erdbeere, etc.)",
+		"Jährlicher nachwachsender Rohstoff (Kenaf, etc.)",
+		"Aromatische und medizinische Pflanzen",
+		"Einjähriger Gartenbau im Feld (Blumen, etc.)",
+		"Extensive Streifen mit Nutzpflanzen (Getreide, Ölpflanzen, Leguminosen)",
+		"Buntbrache",
+		"Fruchtfolgen",
+		"Blühstreifen für Bestäuber und andere Nützlinge",
+		"_OTHER_INPUT::Anderes (Bitte spezifizieren)"
+	],
+	"columns": [
+		{
+			"title":"Kreuzen Sie an, falls die Antwort zutrifft:",
+			"type":"toggle"
+		}, 
+		{
+			"title":"Wie viele Sorten bauen Sie an?",
+			"type":"integer"
+		}
+	]
+}
+	

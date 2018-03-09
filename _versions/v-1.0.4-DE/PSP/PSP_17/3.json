@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Welche Schutzkleidung nutzen Sie?",
+	"choices": 
+		[
+			"Augenschutz",
+			"Handschuhe",
+			"Maske",
+			"Jacke",
+			"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+		]
+}

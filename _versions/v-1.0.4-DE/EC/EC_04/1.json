@@ -1,0 +1,47 @@
+{
+	"question-type":"table",
+	"title":"Die profitabelsten Produkte, die Sie verkaufen, sind:",
+	"lines" : [
+		"Produkt 1",
+		"Produkt 2",
+		"Produkt 3",
+		"Produkt 4",
+		"Produkt 5",
+		"Produkt 6"
+	],
+	"columns": [
+		{
+			"title":"Beschreibung",
+			"type":"text"
+		},
+		{
+			"title":"Verkaufen Sie irgendeines der Produkte nur an einen verfügbaren Käufer?",
+			"type":"binary"
+		},
+		{
+			"title":"Falls Sie verbindliche Verträge mit dem Käufer haben, sind Sie zufrieden mit den Bedingungen oder fühlen Sie sich in Ihrer Flexibilität eingeschränkt?",
+			"type":"choice",
+			"choices": [
+				"Ich bin zufrieden",
+				"Eine Mischung aus beidem",
+				"Meine Flexibilität ist eingeschränkt"	
+			]
+		},
+		{
+			"title":"Sind Sie an der Aufbereitung/Verarbeitung einiger Ihrer Produkte beteiligt (z.B. für Milcherzeuger: Mitglied in einer Käserei)?",
+			"type":"choice",
+			"choices": [
+				"Oft",
+				"Manchmal",
+				"Sehr selten",
+				"Nie"	
+			]
+
+		},
+		{
+			"title":"Fühlen Sie sich durch die niedrigen Preise von konkurrierenden Importprodukten gefährdet?",
+			"type":"binary"
+		}
+	],
+	"mandatory":true
+}

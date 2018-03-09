@@ -1,0 +1,17 @@
+{
+	"question-type":"table",
+	"title":"Si oui, quels effets ont-ils sur votre exploitation agricole:",
+	"lines": 
+		[
+			"Aucun",
+			"Paiements directs",
+			"Education/Formation",
+			"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns" : [
+		{
+			"title":"Cochez",
+			"type":"toggle"
+		}
+	]
+}

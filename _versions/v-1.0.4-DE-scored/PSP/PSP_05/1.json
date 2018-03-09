@@ -1,0 +1,10 @@
+{
+    "question-type": "binary_answer",
+    "title": "Halten Sie Tiere (Nutztiere) auf Ihrem Betrieb?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": "true",
+    "scoring-type": "-"
+}

@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"A quelle fréquence utilisez-vous les informations sur les prix du marché?",
+	"choices":
+		[
+			"Souvent",
+			"Quelques fois ",
+			"Jamais/Très rarement"
+		],
+	"mandatory":true
+}

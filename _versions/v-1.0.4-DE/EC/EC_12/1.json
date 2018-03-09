@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Hat jemand in Ihrem Haushalt (außer Sie selbst) noch ein Einkommen außerhalb des Betriebs?",
+	"choices":
+		[
+			"Ja, das ganze Jahr",
+			"Ja, saisonal",
+			"Ja, manchmal",
+			"Nein"
+		],
+	"mandatory":true
+}

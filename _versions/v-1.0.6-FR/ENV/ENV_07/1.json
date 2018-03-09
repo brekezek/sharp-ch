@@ -1,0 +1,10 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Intégrez-vous des légumineuses dans votre plan de rotation?",
+	"choices":[
+		"Oui chaque année",
+		"Oui mais pas chaque année",
+		"Jamais"
+	],
+	"mandatory":"true"
+}

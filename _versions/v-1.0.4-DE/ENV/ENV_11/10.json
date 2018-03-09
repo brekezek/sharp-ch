@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Ist Ihr Zugang zu natürlichem Dünger ausreichend für die Anforderungen Ihres Betriebes?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig ",
+		"Mittelmäßig",
+		"Beinahe völlig",
+		"Vollständig"
+	],
+	"mandatory":"true"
+}

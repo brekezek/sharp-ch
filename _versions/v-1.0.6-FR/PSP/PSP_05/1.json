@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Possédez-vous des animaux au sein de votre exploitation agricole?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":"true"
+}

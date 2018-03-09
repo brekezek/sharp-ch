@@ -1,0 +1,39 @@
+{
+	"question-type":"table",
+	"title":"Welche Energiequellen nutzen Sie für Ihrem Betrieb?",
+	"all_visible":true,
+	"lines":[
+		"Sonne",
+		"Wind",
+		"Wasser",
+		"Brennholz",
+		"Kohle",
+		"Hausmüll",
+		"Landwirtschaftliche Rückstände",
+		"Holzreste",
+		"Dung",
+		"Benzin",
+		"Paraffin (Erdöl)",
+		"Diesel",
+		"Erdgas",
+		"Biogas (von Mist/Kompost/Mais)",
+		"Elektrizität (Öffentliche Quelle)",
+		"_OTHER_INPUT::Anderes (bitte spezifizieren):"
+	],
+	"columns" : [
+		{
+			"title":"Heizen",
+			"type":"toggle"
+		},
+		{
+			"title":"Beleuchtung",
+			"type":"toggle"
+		},
+		{
+			"title":"Maschinen",
+			"type":"toggle"
+		}
+	],
+	"hidden":false,
+	"mandatory":"true"
+}

@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Avez-vous utilisé des engrais de synthèse cette saison?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

@@ -1,0 +1,20 @@
+{
+	"question-type":"table",
+	"title":"Pesticide",
+	"lines": [
+		"Insecticide",
+		"Herbicide",
+		"Fongicide"
+	],
+	"columns": [
+		{
+			"title":"Avez-vous utilisé des pesticides chimiques?",
+			"type":"binary"
+		}, 
+		
+		{
+			"title":"Avez-vous vérifié la présence des prédateurs/maladies sur vos cultures avant de pulvériser?",
+			"type":"binary"
+		}
+	]
+}

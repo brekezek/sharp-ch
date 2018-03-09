@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Utilisez-vous des races non locales nouvellement introduites (variétés présentes dans la région depuis moins de 30 ans), comme des races importées, des races à rendement élevé, etc. ?",
+	"choices":
+		[
+			"Oui",
+			"Non",
+			"Je ne sais pas"
+		],
+	"mandatory":true
+}

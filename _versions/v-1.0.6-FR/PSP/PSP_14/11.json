@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Avez-vous déjà entendu parler de l'agriculture de conservation?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

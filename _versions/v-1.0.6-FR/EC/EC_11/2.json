@@ -1,0 +1,27 @@
+{
+	"question-type":"table",
+	"title":"Quelles sont les trois principales sources de revenus de votre ménage?",
+	"lines" : [
+		"1ère source",
+		"2ème source",
+		"3ème source"
+	],
+	"columns": [
+		{
+			"title":"Importance",
+			"type":"choice",
+			"choices": [
+				"Production agricoles",
+				"Agrotourisme",
+				"Location de terres",
+				"Travaux agricoles pour tiers",
+				"Agrotourisme",
+				"Activités non-agricoles",
+				"Revenu externe à l'exploitation",
+				"Autre (excepté les paiements directs)"
+			]
+		}
+
+	],
+	"mandatory":true
+}

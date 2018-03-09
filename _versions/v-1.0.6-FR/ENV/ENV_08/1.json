@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Votre terrain est-il bordé par des terres sauvages / zones protégées / non aménagées?",
+	"choices":[
+		"15% ou +",
+		"7% ou + mais moins de 15%",
+		"Moins de 7%",
+		"Pas du tout"
+	],
+	"mandatory":"true"
+}

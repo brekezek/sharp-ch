@@ -1,0 +1,17 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Pour quels usages avez-vous planté ces arbres (cochez les utilisations faites)?",
+	"choices": 
+		[
+			"Bois de chauffage",
+			"Bois pour les matériaux de construction",
+			"Arbres pour l'ombre",
+			"Produits alimentaires (pour animaux)",
+			"Produits alimentaires (personnes)",
+			"Fertilisants",
+			"Remèdes naturels (animaux)",
+			"Remèdes naturels (personnes)",
+			"Produits pour la protection des cultures",
+			"_OTHER_INPUT::Autre (précisez)"
+		]
+}

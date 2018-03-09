@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie wichtig ist es für Ihren Betrieb, genügend finanzielle Mittel zu haben, um diesen zu verändern, falls es nötig wird?",
+	"choices":
+		[
+			"Überhaupt nicht",
+			"Ein wenig",
+			"Mittelmäßig",
+			"Ziemlich",
+			"Sehr"
+		],
+	"mandatory":true
+}

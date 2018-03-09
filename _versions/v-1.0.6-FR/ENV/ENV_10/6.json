@@ -1,0 +1,10 @@
+{
+	"question-type":"binary_answer",
+	"title":"Si oui, est-ce que la centrale à biogaz est sur votre exploitation?",
+	"choices":
+		[
+			"Oui",
+			"Non"
+		],
+	"mandatory":"true"
+}

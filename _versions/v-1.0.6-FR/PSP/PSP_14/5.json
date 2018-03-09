@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Transmettez-vous des conseils donnés par des anciens permettant de faire face aux aléas du climat??",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

@@ -1,0 +1,10 @@
+{
+	"question-type":"binary_answer",
+	"scoring-type":"-",
+	"title":"Pensez-vous que le(s) groupe(s) au(x)quel(s) vous appartenez peut/peuvent influencer les politiques gouvernementales?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

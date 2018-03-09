@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Ist der Klimawandel bei Ihrer Arbeit ein Gesprächsthema?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Glauben Sie, dass Ihr Betrieb ohne diese Aktivitäten überleben könnte?",
+	"choices" : [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

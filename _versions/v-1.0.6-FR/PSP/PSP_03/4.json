@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Quelle est l'importance de l'alimentation de vos poissons pour votre système de production?",
+	"choices":[
+		"Nulle",
+		"Faible",
+		"Moyenne",
+		"Elevée",
+		"Très élevée"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+}

@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Sind Ihre Kontakte mit anderen Akteuren der Wertschöpfungskette gut genug, um den Anforderungen Ihres Betriebssystems zu erfüllen?",
+	"choices":
+		[
+			"Überhaupt nicht",
+			"Ein wenig",
+			"Mittelmäßig",
+			"Beinahe völlig",
+			"Vollständig"
+		],
+	"mandatory":true
+}

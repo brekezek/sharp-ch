@@ -1,0 +1,5 @@
+{
+	"question-type":"integer_answer",
+	"title":"Wie viele verschiedene Bodentypen haben Sie auf Ihren Feldern (ungefähr)?",
+	"mandatory":true
+}

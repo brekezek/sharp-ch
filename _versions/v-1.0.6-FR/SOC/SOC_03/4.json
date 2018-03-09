@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"En cas d'aléa, vous sentez-vous capable de vous adapter?",
+	"choices" : [
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"mandatory":true
+}

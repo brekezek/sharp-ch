@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure les fluctuations des prix influencent-elles votre subsistance?",
+	"choices":
+		[
+			"Pas du tout",
+			"Un peu",
+			"Moyennement",
+			"Beaucoup",
+			"Très"
+		],
+	"mandatory":true
+}

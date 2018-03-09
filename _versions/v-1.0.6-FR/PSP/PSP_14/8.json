@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Utilisez-vous des informations/services issus de la vulgarisation agricole?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

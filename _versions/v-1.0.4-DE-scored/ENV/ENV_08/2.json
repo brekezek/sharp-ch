@@ -1,0 +1,24 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "Verringert das Vorhandensein von Pufferzonen Ihre Ernteverluste durch Schädlinge?",
+    "choices": [
+        {
+            "Überhaupt nicht": 0
+        },
+        {
+            "Ein wenig": 2.5
+        },
+        {
+            "Mittelmäßig": 5
+        },
+        {
+            "Ziemlich": 7.5
+        },
+        {
+            "Vollständig": 10
+        }
+    ],
+    "mandatory": "true",
+    "scoring": "by-value",
+    "scoring-type": "adequacy"
+}

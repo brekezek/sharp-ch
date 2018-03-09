@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"En règle générale, dans quelle mesure est-ce que ces groupes vous apportent des avantages?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"mandatory":"true"
+}

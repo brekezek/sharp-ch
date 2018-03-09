@@ -1,0 +1,49 @@
+{
+    "question-type": "table",
+    "title": "Typ",
+    "lines": [
+        "Religiöse Einrichtung ",
+        "Gemeindezentrum (Kulturzentrum etc.)",
+        "Feuerwehr",
+        "Post",
+        "Schule",
+        "Gesundheitszentrum",
+        "Tierarztklinik ",
+        "Inputladen (z.B. Materialien etc.)",
+        "Lagermöglichkeiten",
+        "_OTHER_INPUT::Anderes (bitte spezifizieren):"
+    ],
+    "columns": [
+        {
+            "title": "Haben Sie eine der folgenden Infrastrukturen innerhalb von 10 km um Ihren Betrieb?",
+            "type": "toggle",
+            "scoring": "by-entries",
+            "scoring-type": "academic",
+            "scoring-grid": [
+                {
+                    "0-0": 0
+                },
+                {
+                    "1-1": 1
+                },
+                {
+                    "2-2": 2
+                },
+                {
+                    "3-3": 4
+                },
+                {
+                    "4-4": 6
+                },
+                {
+                    "5-+": 10
+                }
+            ]
+        },
+        {
+            "title": "Verwenden Sie einige dieser Infrastrukturen?",
+            "type": "binary"
+        }
+    ],
+    "scoring-type": "academic"
+}

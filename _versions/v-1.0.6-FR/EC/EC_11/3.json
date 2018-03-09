@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Comment est-ce que le revenu agricole de l'exploitation a évolué au cours des 5 dernières années?",
+	"choices": [
+		"Déficit croissant",
+		"Déficit stable",
+		"Pas de déficit et pas de profit",
+		"Profit stable",
+		"Profit croissant"
+	],
+	"mandatory":true
+}

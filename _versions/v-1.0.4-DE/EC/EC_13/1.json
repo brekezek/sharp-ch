@@ -1,0 +1,28 @@
+{
+	"question-type":"table",
+	"title":"Ist Ihr Betrieb weniger als 50 km von der Hauptvertriebsquelle Ihrer benötigten Inputs entfernt?",
+	"lines": [
+		"Saatgut/Setzlinge",
+		"Nutztiere/Besamer",
+		"Dünger",
+		"Equipment",
+		"Pestizide",
+		"Wissen/landwirtschaftliche Berater",
+		"Arbeitskraft (Bsp. Angestellte für manuelle Arbeit)",
+		"Kapital (e.g. Bank)",
+		"_OTHER_INPUT::Anderes (Bitte erläutern:)"
+	],
+	"columns": [
+		{
+			"title":"",
+			"type":"choice",
+			"choices": [
+				"Ja",
+				"Nein",
+				"Nicht anwendbar"
+			]
+		}
+	
+	]
+}
+	

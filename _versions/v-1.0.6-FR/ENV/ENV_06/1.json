@@ -1,0 +1,32 @@
+{
+	"question-type":"table",
+	"title":"Quelles pratiques d'amélioration de la qualité des sols utilisez-vous?",
+	"lines": [
+		"Chaulage",
+		"Jachère",
+		"Semis direct",
+		"Travail superficiel",
+		"Pâturage en rotation",
+		"Rotation des cultures",
+		"Coupe-vent/haie",
+		"Culture associée",
+		"Paillage",
+		"Culture de couverture",
+		"Fumure / compostage",
+		"Bandes végétales",
+		"Agroforesterie, reboisement",
+		"Contrôle / réhabilitation des ravins",
+		"Terrassement",
+		"Autres pratiques d'amélioration de la qualité des sols"
+	],
+	"columns": [
+		{
+			"title":"Réponse",
+			"type":"binary"
+		}, 
+		{
+			"title":"Merci de compléter si nécessaire",
+			"type":"text"
+		}
+	]
+}

@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Avez-vous changé vos habitudes en réponse au changement climatique?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

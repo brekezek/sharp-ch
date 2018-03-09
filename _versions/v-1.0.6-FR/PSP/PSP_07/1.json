@@ -1,0 +1,21 @@
+{
+	"question-type":"table",
+	"title":"Question / animaux",
+	"lines": [
+		"Vache à viande",
+		"Vache laitière",
+		"Chèvre",
+		"Mouton",
+		"Cochon",
+		"Volaille (poules, dindes, etc...)",
+		"Chevaux",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Laissez-vous les animaux pâturer dans les pâturages ou sur des terres agricoles pendant une partie de (ou toute) l'année?",
+			"type":"toggle"
+		}
+		
+	]
+}

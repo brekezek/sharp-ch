@@ -1,0 +1,42 @@
+{
+	"question-type":"table",
+	"title":"Geben Sie für jede Wasserquelle, die Sie für die Bewässerung oder Viehhaltung verwenden können an:",
+	"lines":[
+		"1",
+		"2",
+		"3",
+		"4",
+		"5"
+	],
+	"columns": [
+		{
+			"title":"Art der Wasserquelle",
+			"type":"choice",
+			"choices": [
+				"Brunnen",
+				"Damm (Struktur zum Wasserzurückhalten)",
+				"Fluss/Bach/See",
+				"Bohrloch",
+				"Regenwasserzurückhaltung",
+				"Bewässerungssystem",
+				"Anderes (außer Regen)"
+
+			]
+		},
+		{
+			"title":"Haben Sie eine Veränderung in der Wassermenge während der letzten fünf Jahren wahrgenommen?",
+			"type":"choice",
+			"choices": [
+				"Negative Veränderung",
+				"Keine Veränderung",
+				"Verbesserung"
+			]
+		},
+		{
+			"title":"Wenn ja, bitte beschreiben:",
+			"type":"text"
+		}
+	],
+	"mandatory":true
+
+}

@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure la diversité des activités pratiquées est-elle importante pour votre système agricole?",
+	"scoring-type":"importance",
+	"choices":[
+		{"Pas du tout": 0},
+		{"Un peu": 2.5},
+		{"Moyennement": 5},
+		{"Beaucoup": 7.5},
+		{"Très": 10}
+	],
+	"scoring":"by-value",
+	"mandatory":true
+}

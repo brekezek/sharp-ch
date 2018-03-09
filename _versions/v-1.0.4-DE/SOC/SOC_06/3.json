@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Tauschen Sie Grundstücke mit anderen Landwirten aus?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

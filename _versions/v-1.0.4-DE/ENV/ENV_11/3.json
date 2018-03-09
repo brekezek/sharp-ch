@@ -1,0 +1,17 @@
+{
+	"question-type":"table",
+	"title":"Falls Sie keinen benutzt haben, warum nicht?",
+	"lines":[
+			"_OTHER_INPUT::Weil ich nicht möchte. (Bitte erklären, warum):",
+			"Zu teuer",
+			"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+	],
+	"columns": [
+		{
+			"title":"Bitte auswählen",
+			"type":"toggle"
+		}
+
+	],
+	"mandatory":"true"
+}

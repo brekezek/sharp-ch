@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Quelle est l'importance pour votre exploitation de la maîtrise du foncier?",
+	"choices":[
+		"Aucune",
+		"Faible",
+		"Moyenne",
+		"Elevée",
+		"Très élevée"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+
+}

@@ -1,0 +1,5 @@
+{
+	"question-type":"integer_answer",
+	"title":"Wieviel Prozent der Inputs können Sie auf Ihrem Betrieb herstellen (z.B. Setzlinge)?",
+	"mandatory":true
+}

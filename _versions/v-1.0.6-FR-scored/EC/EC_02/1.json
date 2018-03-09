@@ -1,0 +1,11 @@
+{
+	"question-type":"binary_answer",
+	"scoring-type":"academic",
+	"scoring":"clear-aspect-score",
+	"title":"Utilisez-vous un(des) circuit(s) court(s)?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

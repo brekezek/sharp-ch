@@ -1,0 +1,17 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Comment (cochez)?",
+	"choices": 
+		[
+			"Prédateurs/Animaux nuisibles",
+			"Maladies (bactéries, virus, champignons, etc.)",
+			"Sécheresse",
+			"Gel",
+			"Inondations",
+			"Forte pluie",
+			"Vent violent",
+			"Grêle",
+			"Basse qualité des semences",
+			"_OTHER_INPUT::Autre précisez)"	
+		]
+}

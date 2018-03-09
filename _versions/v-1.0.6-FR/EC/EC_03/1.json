@@ -1,0 +1,24 @@
+{
+	"question-type":"table",
+	"title":"Activité",
+	"lines": [
+		"Achetez-vous la plupart de vos produits directement auprès des producteurs (par ex. producteurs d'intrants, autres agriculteurs)?",
+		"Est-ce qu'un de vos intrants pour la production végétale n'est disponible qu'auprès d'un seul vendeur/fournisseur?",
+		"Est-ce qu'un de vos intrants pour la production animale n'est disponible qu'auprès d'un seul vendeur/fournisseur?"
+	],
+	"columns": [
+		{
+			"title":"Réponse",
+			"type":"choice",
+			"choices": [
+				"Oui",
+				"Non",
+				"Non applicable"
+			]
+		}, 
+		{
+			"title":"Si oui, pour quels produits?",
+			"type":"text"
+		}
+	]
+}

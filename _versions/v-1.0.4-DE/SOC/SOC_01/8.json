@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Inwieweit hat eine Gruppenmitgliedschaft Ihnen mehr Wissen gegeben, um Ihren Betrieb zu verbessern?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Ziemlich",
+		"Vollständig"
+	],
+	"mandatory":"true"
+}

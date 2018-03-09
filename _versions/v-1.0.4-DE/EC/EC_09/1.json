@@ -1,0 +1,34 @@
+{
+	"question-type":"table",
+	"title":"Ordnen Sie Ihre Vermögenswerte nach Wichtigkeit (1 = am wichtigsten, 6 = am wenigsten wichtig).",
+	"lines" : [
+		"Land",
+		"Nutzpflanzen",
+		"Nutztiere",
+		"Saatgut/Setzlinge",
+		"Gebäude",
+		"Landwirtschaftliche Maschinen",
+		"_OTHER_INPUT::Anderes (Bitte spezifizieren)"
+	],
+	"columns": [
+		{
+			"title":"Wichtigkeit",
+			"type":"choice",
+			"choices": [
+				"1",
+				"2",
+				"3",
+				"4",
+				"5",
+				"6",
+				"Kein Besitz"
+			]
+		},
+		{
+			"title":"Bitte genauer ausführen, falls nötig:",
+			"type":"text"
+		}
+
+	],
+	"mandatory":true
+}

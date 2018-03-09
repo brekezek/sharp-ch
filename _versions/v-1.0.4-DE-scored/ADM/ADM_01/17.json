@@ -1,0 +1,9 @@
+{
+    "question-type": "binary_answer",
+    "title": "Produktionsmodell",
+    "choices": [
+        "Zertifiziert biologisch",
+        "Konventionell"
+    ],
+    "mandatory": true
+}

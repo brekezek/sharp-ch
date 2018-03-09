@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Au cours des 10 dernières années, avez-vous perdu une part importante de vos cultures (pertes avant récolte)?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

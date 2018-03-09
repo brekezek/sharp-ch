@@ -1,0 +1,36 @@
+{
+	"question-type":"table",
+	"title":"Décrivez les produits vendus qui vous rapportent le plus d'argent",
+	"lines" : [
+		"Culture / animal 1",
+		"Culture / animal 2",
+		"Culture / animal 3",
+		"Culture / animal 4",
+		"Culture / animal 5",
+		"Culture / animal 6"
+		
+	],
+	"columns": [
+		{
+			"title":"Description",
+			"type":"text"
+		},
+		{
+			"title":"Décrivez le prix de ce produit (au cours des 3 dernières années)",
+			"type":"choice",
+			"choices": [
+				"Stable",
+				"Croissant",
+				"Décroissant",
+				"Imprévisible",
+				"Suffisamment élevé",
+				"Trop bas"
+			]
+		},
+		{
+			"title":"Autre",
+			"type":"text"
+		}
+	],
+	"mandatory":true
+}

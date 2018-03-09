@@ -1,0 +1,11 @@
+{
+    "question-type": "binary_answer",
+    "title": "Teilen Sie sich Maschinen mit anderen Landwirten?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
+}

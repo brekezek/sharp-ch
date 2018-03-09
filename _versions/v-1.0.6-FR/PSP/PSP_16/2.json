@@ -1,0 +1,24 @@
+{
+	"question-type":"table",
+	"title":"Quelles pratiques de gestion des prédateurs avez-vous utilisé au cours de la dernière saison de culture (cochez celles utilisées)?",
+	"lines": [
+		"Pesticides naturels",
+		"Variétés ou semences résistantes aux prédateurs",
+		"Méthodes de lutte biologiques (par ex. parasitoïdes, coccinelles)",
+		"Lutte mécanique",
+		"Pesticides de synthèse",
+		"Rotation des cultures afin de réduire la croissance des adventices et des déprédateurs",
+		"Eclaircissement des plants",
+		"Capture à la main des déprédateurs trouvés sur les plantes",
+		"Traitement en pépinière",
+		"Utilisation de pièges ou de pièges végétaux",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Cochez",
+			"type":"toggle"
+		}
+
+	]
+}

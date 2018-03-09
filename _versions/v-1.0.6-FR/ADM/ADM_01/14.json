@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Sexe",
+	"choices": [
+		"Homme",
+		"Femme"
+	],
+	"mandatory":true
+}

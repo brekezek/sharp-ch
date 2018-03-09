@@ -1,0 +1,10 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Quelle est votre activité agricole principale",
+	"choices": [
+		"Production végétale",
+		"Elevage",
+		"Mixte"
+	],
+	"mandatory":true
+}

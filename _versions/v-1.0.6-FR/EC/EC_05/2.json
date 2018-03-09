@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Les prix (concernant la vente) sont-ils suffisamment élevés et constants pour vos moyens de subsistance?",
+	"choices":
+		[
+			"Pas du tout",
+			"Un peu",
+			"Moyennement",
+			"Beaucoup",
+			"Complètement"
+		],
+	"mandatory":true
+}

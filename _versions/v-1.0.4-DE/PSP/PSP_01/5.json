@@ -1,0 +1,18 @@
+{
+	"question-type":"table",
+	"title":"Frage / Person",
+	"lines": [
+		"Frauen",
+		"Männer"
+	],
+	"columns": [
+		{
+			"title":"Spielen Senioren/Großeltern eine besondere Rolle im Haushalt, z. B. bei der Kinderbetreuung?",
+			"type":"binary"
+		},
+		{
+			"title":"Beschreiben Sie deren Rolle innerhalb des Haushalts, bspw. Kundenbetreuung, Hilfe im Haushalt etc.:",
+			"type":"text"
+		}
+	]
+}

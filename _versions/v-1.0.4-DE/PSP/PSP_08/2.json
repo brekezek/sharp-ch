@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Sind Sie mit der Auswahl an Saatgutquellen für Ihren Betrieb zufrieden?",
+	"choices":[
+		"Überhaupt nicht ",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Beinahe völlig",
+		"Vollständig"
+	],
+	"mandatory":"true"
+}

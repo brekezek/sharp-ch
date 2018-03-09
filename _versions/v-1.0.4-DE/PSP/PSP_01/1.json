@@ -1,0 +1,42 @@
+{
+	"question-type":"table",
+	"title":"Frage/Person",
+	"lines": [
+		"Männer (16-65)",
+		"Frauen (16-65)",
+		"Jungen (0-15)",
+		"Mädchen (0-15)",
+		"Frauen  (66+)",
+		"Männer  (66+)"
+	],
+	"columns": [
+		{
+			"title":"Wieviele Menschen pro Kategorie sind in Ihrem Haushalt:",
+			"type":"integer"
+		}, 
+		{
+			"title":"Wer ist der Chef Ihres Betriebes (kreuzen Sie die richtige Kategorie an)?",
+			"type":"toggle_exactly_one"
+		},
+		{
+			"title":"Wie viele sind im Pflanzenbau beteiligt?",
+			"type":"integer"
+		},
+		{
+			"title":"Wie viele beteiligen sich an der Viehhaltung?",
+			"type":"integer"
+		},
+		{
+			"title":"Wie viele haben ein anderweitiges Einkommen?",
+			"type":"integer"
+		},
+		{
+			"title":"Wie viele können aus gesundheitlichen Gründen nicht arbeiten?",
+			"type":"integer"
+		},
+		{
+			"title":"Wie viele haben eine landwirtschaftliche Ausbildung / Studium absolviert?",
+			"type":"integer"
+		}
+	]
+}

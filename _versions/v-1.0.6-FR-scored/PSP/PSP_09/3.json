@@ -1,0 +1,14 @@
+{
+	"question-type":"text_answer",
+	"scoring-type":"academic",
+	"scoring":"by-value",
+	"scoring-grid":[
+		{"0-25":10},
+		{"26-50":6},
+		{"51-75":3},
+		{"76-90":1},
+		{"91-100":0}
+	],
+	"title":"Approximativement, quel pourcentage de vos cultures est une variété nouvellement introduite?",
+	"mandatory":true
+}

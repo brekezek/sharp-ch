@@ -1,0 +1,35 @@
+{
+	"question-type":"table",
+	"title":"Was waren Ihre größten Ausgaben im letzten Jahr?",
+	"lines" : [
+		"1",
+		"2",
+		"3",
+		"4",
+		"5"
+	],
+	"columns": [
+		{
+			"title":"Ausgabenposten",
+			"type":"choice",
+			"choices": [
+				"Pestizide (natürlich oder künstlich)",
+				"Dünger",
+				"Betriebsequipment",
+				"Neue Gebäude",
+				"Arbeit",
+				"Zinsen von Bankdarlehen",
+				"Energie fürs Heizen/Beleuchtung/Maschinen",
+				"Versicherungen",
+				"Leasing/Miete",
+				"Bildung",
+				"Anderes",
+				"Futter",
+				"Tiere",
+				"Anderes"
+			]
+		}
+
+	],
+	"mandatory":true
+}

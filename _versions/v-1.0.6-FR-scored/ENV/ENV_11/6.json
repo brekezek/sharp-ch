@@ -1,0 +1,29 @@
+{
+	"question-type":"table",
+	"scoring-type":"academic",
+	"title":"Avez-vous utilisé des engrais naturels organiques (fumier / compost) cette saison?",
+	"lines":[
+			"Compost",
+			"Purin / fumier animal",
+			"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Réponse",
+			"type":"binary",
+			"scoring":"pending",
+			"result-define":"ENV_11.6"
+		},
+		{
+			"title":"Si non, pourquoi?",
+			"type":"text"
+		},
+		{
+			"title":"Si oui, proviennent-ils de votre exploitation?",
+			"type":"binary"
+		}
+
+	],
+	"mandatory":"true",
+	"all_visible":true
+}

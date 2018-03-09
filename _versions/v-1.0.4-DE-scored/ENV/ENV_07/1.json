@@ -1,0 +1,19 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "Integrieren Sie Leguminosen in Ihre Fruchtfolge?",
+    "choices": [
+        {
+            "Ja, jedes Jahr": 10
+        },
+        {
+            "Ja, aber nicht jedes Jahr": 5
+        },
+        {
+            "Nie": 0
+        },
+        "Nicht anwendbar"
+    ],
+    "mandatory": "true",
+    "scoring": "by-value",
+    "scoring-type": "academic"
+}

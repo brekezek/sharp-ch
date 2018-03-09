@@ -1,0 +1,18 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "Nutzen Sie tierärztliche Dienste?",
+    "choices": [
+        {
+            "Ja, und mit hoher Qualität ": 10
+        },
+        {
+            "Ja, aber es ist problematisch (unqualifiziertes Personal, teuer, weit entfernt etc.).": 5
+        },
+        {
+            "Nein": 0
+        }
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
+}

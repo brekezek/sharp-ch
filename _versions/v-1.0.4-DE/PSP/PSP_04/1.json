@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Betreiben Sie Pflanzenbau (einjährig)?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":"true"
+}

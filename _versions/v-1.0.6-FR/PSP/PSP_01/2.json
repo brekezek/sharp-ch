@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Combien d'heures par semaine (sur l'exploitation et en dehors) travaille le chef de l'exploitation?",
+	"choices":
+		[
+			"Moins de 42h/semaine",
+			"Entre 42h et 50h/semaine",
+			"Entre 51h et 70h/semaine",
+			"Plus de 70h/semaine"
+		],
+	"mandatory":"true"
+}

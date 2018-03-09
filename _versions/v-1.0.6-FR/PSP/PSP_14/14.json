@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Quelle est l'importance de ces informations pour adapter votre système de production en fonction de vos objectifs?",
+	"choices":[
+		"Pas du tout",
+		"Faible",
+		"Moyenne",
+		"Elevée",
+		"Très élevée"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+}

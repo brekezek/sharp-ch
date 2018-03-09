@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Combinez-vous l'engrais synthétique et naturel?",
+	"choices":[
+			"Oui",
+			"Non"
+	],
+	"mandatory":"true"
+}

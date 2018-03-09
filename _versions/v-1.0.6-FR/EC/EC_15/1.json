@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Si vous avez besoin/envie d'adapter votre exploitation, est-ce que vos ressources financières vous permettent une certaine marge de manoeuvre?",
+	"choices":
+		[
+			"Oui, j'ai une grande 'marge de manoeuvre'",
+			"J'ai un peu de 'marge de manoeuvre' (c.-à-d. ce que je peux faire/entreprendre est limité)",
+			"Non, je n'ai pas de 'marge de manoeuvre' (par ex. dû à de grosses dettes)"
+		],
+	"mandatory":true
+}

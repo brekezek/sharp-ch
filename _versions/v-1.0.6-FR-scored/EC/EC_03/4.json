@@ -1,0 +1,14 @@
+ {
+	"question-type":"multiple_one_solution",
+	"scoring-type":"importance",
+	"scoring":"by-value",
+	"title":"Quelle est l'importance pour votre exploitation d'avoir plusieurs fournisseurs disponibles?",
+	"choices":[
+		{"Pas du tout":0},
+		{"Un peu":2.5},
+		{"Moyennement":5},
+		{"Beaucoup":7.5},
+		{"Très":10}
+	],
+	"mandatory":true
+} 

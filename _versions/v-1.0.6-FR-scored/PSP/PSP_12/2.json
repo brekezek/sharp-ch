@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"scoring-type":"adequacy",
+	"scoring":"by-value",
+	"title":"La tenue de vos registres est-elle adaptée pour comprendre et observer les tendances au fil du temps?",
+	"choices":[
+		{"Pas du tout":0},
+		{"Un peu":2.5},
+		{"Moyennement":5},
+		{"Beaucoup":7.5},
+		{"Complètement":10}
+	],
+	"mandatory":"true"
+}

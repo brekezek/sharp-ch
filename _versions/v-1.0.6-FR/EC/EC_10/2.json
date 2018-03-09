@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Etes-vous dûment rémunéré pour vos efforts écologiques?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

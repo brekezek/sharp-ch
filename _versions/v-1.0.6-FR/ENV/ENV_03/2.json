@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"L'eau à laquelle vous avez accès est-elle propre à la consommation humaine?",
+	"choices":[
+		"Pas du tout",
+		"Un peu",
+		"Moyennement",
+		"Beaucoup",
+		"Complètement"
+	],
+	"scoring":"SOME_OPTION",
+	"mandatory":true
+
+}

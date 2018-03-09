@@ -1,0 +1,22 @@
+{
+	"question-type":"table",
+	"title":"Avec qui échangez-vous directement?",
+	"lines":
+		[
+			"Ingénieur agronome",
+			"Représentant du gouvernement",
+			"Distributeur",
+			"Acheteur direct de mes produits",
+			"Autres agriculteurs",
+			"Membre de la famille travaillant sur l'exploitation",
+			"Citoyen-consommateur",
+			"_OTHER_INPUT::Autre (précisez)"
+		],
+	"columns": [
+		{
+			"title":"Cochez",
+			"type":"toggle"
+		}
+	],
+	"mandatory":"true"
+}

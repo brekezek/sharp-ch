@@ -1,0 +1,15 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans quelle mesure les activités pratiquées sont-elles suffisantes pour fournir un revenu qui réponde aux besoins de l’exploitation agricole?",
+	"scoring-type":"adequacy",
+	"choices":[
+		{"Pas du tout": 0},
+		{"Un peu": 2.5},
+		{"Moyennement": 5},
+		{"Beaucoup": 7.5},
+		{"Complètement": 10}
+	],
+	"scoring":"by-value",
+	"mandatory":true
+
+}

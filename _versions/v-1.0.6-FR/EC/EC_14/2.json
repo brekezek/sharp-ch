@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Comment économisez-vous de l'argent?",
+	"choices": 
+		[
+			"Banque",
+			"Achat de biens d'investissement (terrain, immobilier, etc.)",
+			"Argent à la maison",
+			"Investissements/placements financiers",
+			"Achat de bétail",
+			"Structure ou groupe d'épargne",
+			"_OTHER_INPUT::Autre (précisez)"
+		]
+}

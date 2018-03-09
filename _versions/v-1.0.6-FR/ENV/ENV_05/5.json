@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"En général, votre sol est-il fertile?",
+	"choices":
+		[
+			"Non",
+			"Un peu",
+			"Moyennement",
+			"Beaucoup",
+			"Complètement"
+		],
+	"mandatory":true
+	
+}

@@ -1,0 +1,10 @@
+{
+	"question-type":"binary_answer",
+	"scoring-type":"-",
+	"title":"Pensez-vous devoir encore vous former pour pouvoir diversifier votre système de production?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

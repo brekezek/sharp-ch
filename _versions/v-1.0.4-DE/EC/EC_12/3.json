@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie zufrieden sind Sie mit diesen außerbetrieblichen Aktivitäten?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßigt",
+		"Beinahe völlig",
+		"Vollständig"
+	],
+	"mandatory":true
+}

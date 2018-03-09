@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie viele Stunden pro Woche arbeitet der Chef des Betriebs?",
+	"choices":
+		[
+			"Weniger als 40h/Woche",
+			"Zwischen 40h und 48h/Woche",
+			"Zwischen 49h und 70h/Woche",
+			"Mehr als 70h/Woche"
+		],
+	"mandatory":"true"
+}

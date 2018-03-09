@@ -1,0 +1,10 @@
+{
+    "question-type": "binary_answer",
+    "title": "Wirken sich diese invasiven Unkrautarten negativ auf Ihr Landwirtschaftssystem aus?",
+    "choices": [
+        "Ja",
+        "Neinn"
+    ],
+    "mandatory": "true",
+    "scoring-type": "-"
+}

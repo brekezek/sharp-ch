@@ -1,0 +1,24 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "Inwieweit haben kollektive Handlungen geholfen, um Probleme zu lösen?",
+    "choices": [
+        {
+            "Überhaupt nicht": 0
+        },
+        {
+            "Ein wenig": 2.5
+        },
+        {
+            "Mittelmäßig": 5
+        },
+        {
+            "Beinahe völlig": 7.5
+        },
+        {
+            "Vollständig": 10
+        }
+    ],
+    "mandatory": "true",
+    "scoring": "by-value",
+    "scoring-type": "adequacy"
+}

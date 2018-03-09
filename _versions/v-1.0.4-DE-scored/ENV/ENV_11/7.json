@@ -1,0 +1,24 @@
+{
+    "question-type": "binary_answer",
+    "title": "Falls Ja, haben Sie vor der Applikation überprüft, ob Boden und Pflanzen dies benötigen?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": "true",
+    "scoring": "function",
+    "scoring-type": "academic",
+    "scoring-function": "add(x, ENV_11.6)",
+    "scoring-grid": [
+        {
+            "0-0": 0
+        },
+        {
+            "1-1": 2
+        },
+        {
+            "2-2": 10
+        }
+    ],
+    "result-required": "ENV_11.6"
+}

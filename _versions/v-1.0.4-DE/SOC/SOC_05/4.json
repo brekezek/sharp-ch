@@ -1,0 +1,18 @@
+{
+	"question-type":"table",
+	"title":"Bei welcher Art von Hausarbeit werden Sie unterstützt?",
+	"lines": [
+		"Kochen",
+		"Wäsche",
+		"Putzen (Haus)",
+		"Kinderbetreuung",
+		"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+	],
+	"columns": [
+		{
+			"title":"Unterstützung",
+			"type":"toggle"
+		}
+	],
+	"mandatory":true
+}

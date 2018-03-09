@@ -1,0 +1,11 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "Sind einige lokale Tierrassen durch Klimaänderungen ungeeignet geworden?",
+    "choices": [
+        "Ja",
+        "Nein",
+        "Ich weiß es nicht."
+    ],
+    "mandatory": true,
+    "scoring-type": "-"
+}

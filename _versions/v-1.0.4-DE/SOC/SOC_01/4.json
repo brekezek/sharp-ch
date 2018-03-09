@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Denken Sie, dass Ihre Gruppe die Politik beeinflussen kann?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":true
+}

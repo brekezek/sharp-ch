@@ -1,0 +1,11 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Dans votre choix variétal, prenez-vous en considération les conditions locales?",
+	"choices":
+		[
+			"Oui",
+			"Non",
+			"Pas applicable"
+		],
+	"mandatory":true
+}

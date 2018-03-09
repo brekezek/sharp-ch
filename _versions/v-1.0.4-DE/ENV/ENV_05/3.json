@@ -1,0 +1,14 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie reich ist Ihr Boden an organischem Material (im Durchschnitt)?",
+	"choices":
+		[
+			"Überhaupt nicht",
+			"Sehr wenig",
+			"Mittelmäßig",
+			"Ziemlich reich",
+			"Sehr",
+			"Ich weiß es nicht."
+		],
+	"mandatory":true
+}

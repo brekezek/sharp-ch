@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"S'il y a eu des problèmes d'ordre collectif qui ont nécessité de l'attention au cours de l'année passée, à quelle fréquence vous êtes-vous joint aux autres exploitants pour les régler?",
+	"choices": [
+		"Jamais",
+		"Rarement",
+		"Quelques fois",
+		"Fréquemment",
+		"Pas applicable"
+	],
+	"mandatory":true
+}

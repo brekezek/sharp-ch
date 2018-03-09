@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Inwieweit sind Sie mit den gepflanzten Leguminosen zufrieden (Produktion, Boden etc.)?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Ausreichend",
+		"Sehr"
+	],
+	"mandatory":"true"
+}

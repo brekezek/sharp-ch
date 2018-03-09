@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Avez-vous observé une tendance à la dégradation des sols ces 5 dernières années?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

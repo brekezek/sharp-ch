@@ -1,0 +1,32 @@
+{
+	"question-type":"table",
+	"title":"Activité",
+	"lines": [
+		"1",
+		"2",
+		"3",
+		"4"
+	],
+	"columns": [
+		{
+			"title":"Si oui, quelles espèces cultivez-vous? Par ex. crevette, perche, truite, etc.",
+			"type":"text"
+		}, 
+		{
+			"title":"Pour chaque espèce mentionnée, combien de variétés élevez-vous?",
+			"type":"integer"
+		},
+		{
+			"title":"Pour chaque espèce mentionnée, fournissez-vous des aliments complémentaires?",
+			"type":"toggle"
+		},
+		{
+			"title":"Si oui, lesquels?",
+			"type":"text"
+		},
+		{
+			"title":"Si oui, dans quelles circonstances fournissez-vous des aliments complémentaires?",
+			"type":"text"
+		}
+	]
+}

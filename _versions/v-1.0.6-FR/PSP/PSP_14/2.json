@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Au cours des 10 dernières années, avez-vous observé des changements concernant la météo?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

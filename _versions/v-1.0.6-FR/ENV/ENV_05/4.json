@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Est-ce que vous faites un bilan de votre matière organique?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

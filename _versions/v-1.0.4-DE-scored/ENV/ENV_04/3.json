@@ -1,0 +1,18 @@
+{
+    "question-type": "text_answer",
+    "title": "Wie viele verschiedene Parzellen mit gleichem Managementtyp haben Sie?",
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic",
+    "scoring-grid": [
+        {
+            "1-1": 0
+        },
+        {
+            "2-2": 7
+        },
+        {
+            "3-+": 10
+        }
+    ]
+}

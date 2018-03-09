@@ -1,0 +1,19 @@
+{
+	"question-type":"table",
+	"title":"Comment avez-vous fait face à ces pertes (cochez)?",
+	"lines": 
+	[
+		"Capacités/stratégies d'adaptation internes",
+		"Support externe"
+	],
+	"columns": [
+		{
+			"title":"Cochez",
+			"type":"toggle"
+		},
+		{
+			"title":"Précisez",
+			"type":"text"
+		}
+	]
+}

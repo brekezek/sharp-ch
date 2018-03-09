@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Pensez-vous que votre exploitation pourrait subsister sans le soutien financier gouvernemental?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

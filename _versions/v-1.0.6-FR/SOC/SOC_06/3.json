@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Echangez-vous des parcelles avec d'autres agriculteurs?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Que faites-vous des conteneurs après avoir utilisé les produits? (cochez les pratiques que vous utilisez)" ,
+	"choices": 
+		[
+			"Donnés à des collecteurs",
+			"Jetés à la poubelle",
+			"Réutilisés",
+			"Brûlés",
+			"_OTHER_INPUT::Autre (précisez)"
+		]
+}

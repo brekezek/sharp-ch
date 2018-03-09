@@ -1,0 +1,5 @@
+{
+	"question-type":"integer_answer",
+	"title":"Age",
+	"mandatory":true
+}

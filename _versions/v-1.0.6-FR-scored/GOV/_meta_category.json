@@ -1,0 +1,8 @@
+{
+	"group_id":"GOV",
+	"color":"orange",
+	"title":"Gouvernance",
+	"order": [
+		"GOV_01"
+	]
+}

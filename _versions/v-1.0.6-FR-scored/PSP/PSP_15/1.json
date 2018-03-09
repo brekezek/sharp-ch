@@ -1,0 +1,10 @@
+{
+	"question-type":"binary_answer",
+	"scoring-type":"academic",
+	"title":"Utilisez-vous des pratiques de contrôle des maladies pour vos animaux?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

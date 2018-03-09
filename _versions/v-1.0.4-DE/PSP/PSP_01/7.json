@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Wie wichtig sehen Sie Ihre Rolle im Haushalt?",
+	"choices":[
+		"Überhaupt nicht",
+		"Ein wenig",
+		"Mittelmäßig",
+		"Sehr",
+		"Am wichtigsten"
+	],
+	"mandatory":"true"
+}

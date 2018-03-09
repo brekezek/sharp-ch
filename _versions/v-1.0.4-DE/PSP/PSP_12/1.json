@@ -1,0 +1,29 @@
+{
+	"question-type":"table",
+	"title":"Führen Sie Bestand über das Folgende:",
+	"lines": [
+		"Landwirtschaftliche Erträge?",
+		"Niederschlagsmuster?",
+		"Invasive Arten?",
+		"Unkrautbekämpfung?",
+		"Bodenanalysen?",
+		"Wassernutzung für Bewässerung?",
+		"Dünger?",
+		"Produkte für die Pflanzengesundheit?",
+		"Treibstoff?",
+		"Anzahl Tiere?",
+		"_OTHER_INPUT::Anderes (bitte spezifizieren):"
+
+	],
+	"columns": [
+		{
+			"title":"Antwort",
+			"type":"choice",
+			"choices": [
+				"Ja",
+				"Nein",
+				"Nicht anwendbar"
+			]
+		}
+	]
+}

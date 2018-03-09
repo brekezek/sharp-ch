@@ -1,0 +1,28 @@
+{
+	"question-type":"table",
+	"title":"",
+	"lines": [
+		"Mobiltelefon",
+		"Internet",
+		"Computer",
+		"Tablet",
+		"Fernseher",
+		"Radio",
+		"Maschinen, die mit GPS ausgestattet sind",
+		"Drohnen",
+		"Elektronisches Feldbuch",
+		"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+	],
+	"columns": [
+		{
+			"title":"Nutzen Sie:",
+			"type":"choice",
+			"choices": [
+				"Ja",
+				"Nein"
+			]
+		}
+	
+	]
+}
+	

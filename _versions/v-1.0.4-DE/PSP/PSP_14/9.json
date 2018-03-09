@@ -1,0 +1,23 @@
+{
+	"question-type":"table",
+	"title":"Woher erhalten Sie am häufigsten relevante Informationen?",
+	"lines": 
+		[
+			"Radio",
+			"Zeitung",
+			"Professionelles Journal",
+			"Fernsehen",
+			"Landwirtschaftsberater",
+			"Landwirtschaftliche Gruppe/Organisation/Verband",
+			"Andere Landwirte",
+			"Internet",
+			"_OTHER_INPUT::Anderes (Bitte spezifizieren:)"
+		],
+		"columns": [
+			{
+				"title":"Bitte auswählen:",
+				"type":"toggle"
+			}
+
+		]
+}

@@ -1,0 +1,5 @@
+{
+	"question-type":"integer_answer",
+	"title":"Quel pourcentage de vos cultures est cultivé en culture associée?",
+	"mandatory":true
+}

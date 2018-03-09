@@ -1,0 +1,44 @@
+{
+	"question-type":"table",
+	"title":"Qu'avez-vous assuré?",
+	"lines" : [
+		"1",
+		"2",
+		"3",
+		"4",
+		"5",
+		"6",
+		"7",
+		"8",
+		"9",
+		"10"
+	],
+	"columns": [
+		{
+			"title":"Culture / bétail / revenu / bâtiments / ...",
+			"type":"text"
+		},
+		{
+			"title":"Contre une perte due au climat",
+			"type":"toggle"
+		},
+		{
+			"title":"Contre le feu / l'incendie",
+			"type":"toggle"
+		},
+		{
+			"title":"Contre d'autres pertes",
+			"type":"toggle"
+		},
+		{
+			"title":"Précisez",
+			"type":"text"
+		},
+		{
+			"title":"Avez-vous fait une déclaration à votre assurance au cours des 5 dernières années?",
+			"type":"toggle"
+		}
+
+	],
+	"mandatory":true
+}

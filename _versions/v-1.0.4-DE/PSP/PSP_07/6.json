@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Lagern Sie Futter für den Fall eines Engpasses?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"mandatory":"true"
+}

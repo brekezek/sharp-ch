@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Certification de l'exploitation agricole",
+	"choices": [
+		"Exploitation biologique certifiée",
+		"Exploitation conventionnelle"
+	],
+	"mandatory":true
+}

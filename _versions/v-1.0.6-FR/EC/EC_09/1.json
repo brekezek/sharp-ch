@@ -1,0 +1,33 @@
+{
+	"question-type":"table",
+	"title":"Classer par ordre d'importance les capitaux principaux liés à la production que vous possédez. (1 = le plus important, 6 = le moins important)",
+	"lines" : [
+		"Terre",
+		"Bétail",
+		"Semences agricoles / jeunes plants",
+		"Bâtiments",
+		"Machines agricoles",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Importance",
+			"type":"choice",
+			"choices": [
+				"1",
+				"2",
+				"3",
+				"4",
+				"5",
+				"6",
+				"Pas de possession"
+			]
+		},
+		{
+			"title":"Précision si nécessaire",
+			"type":"text"
+		}
+
+	],
+	"mandatory":true
+}

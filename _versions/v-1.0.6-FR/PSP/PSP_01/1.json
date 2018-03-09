@@ -1,0 +1,42 @@
+{
+	"question-type":"table",
+	"title":"Question / personne",
+	"lines": [
+		"Hommes (16-65)",
+		"Femmes (16-65)",
+		"Garçons (0-15)",
+		"Filles (0-15)",
+		"Femmes (66+)",
+		"Hommes (66+)"
+	],
+	"columns": [
+		{
+			"title":"Pour chaque catégorie, combien de personnes y a-t-il dans votre ménage?",
+			"type":"integer"
+		}, 
+		{
+			"title":"Qui est le chef de l'exploitation (cocher la bonne catégorie)?",
+			"type":"toggle_exactly_one"
+		},
+		{
+			"title":"Combien participent aux activités liées à la production végétale?",
+			"type":"integer"
+		},
+		{
+			"title":"Combien participent aux activités d'élevage?",
+			"type":"integer"
+		},
+		{
+			"title":"Combien sont impliqués dans d'autres activités génératrices de revenus?",
+			"type":"integer"
+		},
+		{
+			"title":"Combien ne peuvent pas travailler pour des raisons de santé?",
+			"type":"integer"
+		},
+		{
+			"title":"Combien ont terminé leur formation agricole?",
+			"type":"integer"
+		}
+	]
+}

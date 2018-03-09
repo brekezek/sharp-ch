@@ -1,0 +1,10 @@
+{
+	"question-type":"binary_answer",
+	"title":"Falls ja, ist es Ihre private Biogasanlage?",
+	"choices":
+		[
+			"Ja",
+			"Nein"
+		],
+	"mandatory":"true"
+}

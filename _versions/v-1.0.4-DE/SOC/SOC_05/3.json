@@ -1,0 +1,17 @@
+{
+	"question-type":"table",
+	"title":"Wenn Ihnen ein Gemeinschaftsprojekt nicht direkt zugutekommt, aber im Dorf/der Nachbarschaft viele Vorteile hat, würden Sie sich damit einverstanden erklären? (Wählen Sie den Beitrag aus, den Sie in Betracht ziehen)",
+	"lines": [
+		"Zeit",
+		"Geld",
+		"Keines von beidem",
+		"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+	],
+	"columns" :[
+		{
+			"title":"Beitrag",
+			"type":"toggle"
+		}
+	],
+	"mandatory":true
+}

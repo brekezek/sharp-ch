@@ -1,0 +1,13 @@
+{
+	"question-type":"multiple_one_solution",
+	"title":"Quelle est l'importance pour votre exploitation d'avoir suffisamment de ressources financière pour adapter votre exploitation en cas de nécessité?",
+	"choices":
+		[
+			"Pas du tout",
+			"Un peu",
+			"Moyennement",
+			"Beaucoup",
+			"Très"
+		],
+	"mandatory":true
+}

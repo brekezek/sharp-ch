@@ -1,0 +1,25 @@
+{
+	"question-type":"table",
+	"title":"Haben Sie diese Saison natürlichen, organischen Dünger (Mist/Kompost) verwendet?",
+	"lines":[
+			"Kompost",
+			"Gülle/Mist",
+			"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+	],
+	"columns": [
+		{
+			"title":"Antwort",
+			"type":"binary"
+		},
+		{
+			"title":"Falls nein, warum nicht?",
+			"type":"text"
+		},
+		{
+			"title":"Falls ja, stellen Sie diesen selbst her?",
+			"type":"binary"
+		}
+
+	],
+	"mandatory":"true"
+}

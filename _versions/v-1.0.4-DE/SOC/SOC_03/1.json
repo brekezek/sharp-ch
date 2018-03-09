@@ -1,0 +1,24 @@
+{
+	"question-type":"table",
+	"title":"Was für Arten von Störungen haben Sie in den letzten zehn Jahren erlebt?",
+	"lines" : [
+		"Schädlingsplage",
+		"Überflutungen",
+		"Feuer",
+		"Krankheiten (Nutzpflanzen, Nutztiere, Mensch)",
+		"Konflikt (Nachbarschaft, Dorfbewohner, Politik etc.)",
+		"Regen zur falschen Zeit",
+		"Schnee",
+		"Hagel",
+		"Starke Winde",
+		"Dürre",
+		"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+	],
+	"columns": [
+		{
+			"title":"Bitte auswählen",
+			"type":"toggle"
+		}
+	],
+	"mandatory":true
+}

@@ -1,0 +1,50 @@
+{
+	"question-type":"table",
+	"title":"Quelles plantes cultivez-vous",
+	"lines": [
+		"Orge",
+		"Avoine",
+		"Triticale",
+		"Blé",
+		"Maïs",
+		"Amidonnier, engrain",
+		"Seigle",
+		"Epeautre",
+		"Betteraves",
+		"Pommes de terre",
+		"Colza",
+		"Soja",
+		"Tournesol",
+		"Lin",
+		"Chanvre",
+		"Féveroles",
+		"Pois protéagineux",
+		"Lupins",
+		"Tabac",
+		"Culture maraîchère de plein champ annuelle (sauf légume de conserve)",
+		"Légumes de conserve cultivés en plein champ",
+		"Racines de chicorée (witloof)",
+		"Sarrasin",
+		"Sorgho",
+		"Baies annuelles (fraise, etc.)",
+		"Matière première renouvelable annuelle (kénaf, etc.)",
+		"Plantes aromatiques et médicinales annuelles",
+		"Cultures horticoles de plein champ annuelles (fleurs, etc.)",
+		"Bandes culturales extensives (céréales, oléagineux, légumineuses)",
+		"Jachères florales",
+		"Jachères tournantes",
+		"Bandes fleuries pour les pollinisateurs et les autres organismes utiles",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns": [
+		{
+			"title":"Cochez si c'est le cas",
+			"type":"toggle"
+		}, 
+		{
+			"title":"Combien de variétés cultivez-vous?",
+			"type":"integer"
+		}
+	]
+}
+	

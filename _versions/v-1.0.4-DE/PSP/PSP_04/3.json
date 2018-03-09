@@ -1,0 +1,10 @@
+{
+	"question-type":"binary_answer_with_comment",
+	"title":"Bauen Sie mehrjährige Nutzpflanzen an (Dauerkulturen)?",
+	"choices": [
+		"Ja",
+		"Nein"
+	],
+	"placeholder":"Mehrjährige Pflanzen",
+	"mandatory":"true"
+}

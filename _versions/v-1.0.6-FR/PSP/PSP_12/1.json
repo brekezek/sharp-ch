@@ -1,0 +1,29 @@
+{
+	"question-type":"table",
+	"title":"Tenez-vous des registres pour ce qui suit?",
+	"lines": [
+		"Rendement agricole?",
+		"Régime des pluies?",
+		"Espèces envahissantes?",
+		"Désherbage (lutte contre les mauvaises herbes)?",
+		"Analyse de sol?",
+		"Eau utilisée pour l'irrigation?",
+		"Engrais?",
+		"Produits phytosanitaires?",
+		"Carburants?",
+		"Recensement des animaux?",
+		"_OTHER_INPUT::Autres (précisez)"
+
+	],
+	"columns": [
+		{
+			"title":"Réponse",
+			"type":"choice",
+			"choices": [
+				"Oui",
+				"Non",
+				"Pas applicable"
+			]
+		}
+	]
+}

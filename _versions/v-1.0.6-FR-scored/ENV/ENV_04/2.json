@@ -1,0 +1,9 @@
+{
+	"question-type":"text_answer",
+	"scoring-type":"academic",
+	"title":"Surface totale (hectares):",
+	"result-required":"ENV_04.1",
+	"scoring":"special",
+	"scoring-function":"multiply(divide(sum(ENV_04.1), x), 10)",
+	"mandatory":true
+}

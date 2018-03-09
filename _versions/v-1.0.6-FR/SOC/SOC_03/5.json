@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"En cas d'aléa, pensez-vous avoir suffisamment de soutien de votre entourage (familial, amical, ...)?",
+	"choices" : [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

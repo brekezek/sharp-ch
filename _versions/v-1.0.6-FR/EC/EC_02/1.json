@@ -1,0 +1,9 @@
+{
+	"question-type":"binary_answer",
+	"title":"Utilisez-vous un(des) circuit(s) court(s)?",
+	"choices": [
+		"Oui",
+		"Non"
+	],
+	"mandatory":true
+}

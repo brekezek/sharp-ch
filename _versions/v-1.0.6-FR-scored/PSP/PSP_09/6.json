@@ -1,0 +1,12 @@
+{
+	"question-type":"multiple_one_solution",
+	"scoring-type":"-",
+	"title":"Est-ce que certaines plantes indigènes (locales) sont moins ou plus du tout adaptées à cause du changement climatique?",
+	"choices":
+		[
+			"Oui",
+			"Non",
+			"Je ne sais pas"
+		],
+	"mandatory":true
+}

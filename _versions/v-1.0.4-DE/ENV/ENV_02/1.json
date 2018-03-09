@@ -1,0 +1,19 @@
+{
+	"question-type":"multiple_multiple_solution",
+	"title":"Welche Techniken und Strategien wenden Sie an, um Wasser zu sparen?",
+	"choices": 
+		[
+			"Zisternen",
+			"Bewässerung – kanalisiertes Wasser",
+			"Pflanzgruben und Steinbunde",
+			"Wasserrückhaltegräben, Steinmauern, Vegetationsstreifen, Bewässerung folgt Höhenlinien, Gräben (Furchen)",
+			"Früh morgens oder spät abends bewässern",
+			"Terrassenbewässerung",
+			"Mulchen",
+			"Zwischenfrüchte",
+			"Tröpfchenbewässerung",
+			"Abgestufte Gräben/Wasserwege (zum Ablassen)",
+			"Dämme",
+			"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+		]
+}

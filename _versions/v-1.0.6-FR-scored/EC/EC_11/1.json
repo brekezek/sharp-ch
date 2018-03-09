@@ -1,0 +1,15 @@
+{
+	"question-type":"multiple_one_solution",
+	"scoring-type":"academic",
+	"scoring":"by-value",
+	"title":"Combien de sources différentes de revenus y a-t-il au sein de votre ménage? (revenus agricoles, revenus issus de l'agritourisme, revenus non-agricoles,...)",
+	"choices": [
+		{"1":0},
+		{"2":5},
+		{"3":10},
+		{"4":10},
+		{"5":10},
+		{"6+":10}
+	],
+	"mandatory":true
+}

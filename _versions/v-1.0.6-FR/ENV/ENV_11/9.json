@@ -1,0 +1,21 @@
+{
+	"question-type":"table",
+	"title":"En général, où vous approvisionnez-vous pour votre engrais?",
+	"lines": [
+		"Au sein de l'exploitation",
+		"Coopérative agricole",
+		"Autre distributeur",
+		"Autre exploitation",
+		"Agent de vulgarisation",
+		"_OTHER_INPUT::Autre (précisez)"
+
+	],
+	"columns": [
+		{
+			"title":"Cochez",
+			"type":"toggle"
+		}
+
+	],
+	"mandatory":"true"
+}

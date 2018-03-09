@@ -1,0 +1,24 @@
+{
+    "question-type": "multiple_one_solution",
+    "title": "Ist das Wasser, zu dem Sie Zugang haben, geeignet für den menschlichen Verzehr?",
+    "choices": [
+        {
+            "Überhaupt nicht": 0
+        },
+        {
+            "Ein wenig": 2.5
+        },
+        {
+            "Mittelmäßig": 5
+        },
+        {
+            "Ausreichend": 7.5
+        },
+        {
+            "Vollständig": 10
+        }
+    ],
+    "scoring": "by-value",
+    "mandatory": true,
+    "scoring-type": "adequacy"
+}

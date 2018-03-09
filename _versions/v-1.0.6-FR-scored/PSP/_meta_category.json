@@ -1,0 +1,24 @@
+{
+	"group_id":"PSP",
+	"color":"grey",
+	"title":"Systèmes de production et pratique",
+	"order": [
+		"PSP_02",
+		"PSP_01",
+		"PSP_04",
+		"PSP_05",
+		"PSP_07",
+		"PSP_03",
+		"PSP_08",
+		"PSP_09",
+		"PSP_10",
+		"PSP_11",
+		"PSP_12",
+		"PSP_13",
+		"PSP_14",
+		"PSP_15",
+		"PSP_16",
+		"PSP_17",
+		"PSP_18"
+	]
+}

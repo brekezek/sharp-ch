@@ -1,0 +1,68 @@
+{
+	"question-type":"table",
+	"scoring-type":"academic",
+	"title":"Type de groupe",
+	"lines": [
+		"Banque de semences",
+		"Groupe de vulgarisation",
+		"Association professionnelle",
+		"Groupe sur l'eau ou les déchets",
+		"Groupe religieux",
+		"Groupe de jeunes",
+		"Comité sur la santé",
+		"Groupes de paysans / pêcheurs",
+		"Coopératives/organisation de producteurs",
+		"Syndicat",
+		"Autre association locale / régionale",
+		"Association culturelle",
+		"Groupe de femmes",
+		"Groupe sportif",
+		"Club d'écoute",
+		"Organisation de commerçant, groupe d'entreprise",
+		"Groupe de crédit / de finance",
+		"Groupe société civile",
+		"Groupe politique",
+		"Groupe de parents / comité scolaire",
+		"_OTHER_INPUT::Autre (précisez)"
+	],
+	"columns":[
+		{
+			"title":"Participation",
+			"type":"toggle"
+		},
+		{
+			"title":"Degré",
+			"type":"choice",
+			"choices": [
+				"Pas actif",
+				"Assez actif",
+				"Très actif",
+				"Leader"
+			],
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"ignore-choice-number":[0],
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-1":2},
+				{"2-3":5},
+				{"4-+":10}
+			]
+		},
+		{
+			"title":"Fréquence des rencontres",
+			"type":"choice",
+			"scoring-type":"academic",
+			"scoring":"by-value",
+			"choices": [
+				{"Une fois par semaine":10},
+				{"Une fois toutes les deux semaines":7},
+				{"Une fois par mois":5},
+				{"Deux fois par année ou moins":2},
+				{"Jamais":0}
+			]
+		}
+
+	],
+	"mandatory":true
+}
