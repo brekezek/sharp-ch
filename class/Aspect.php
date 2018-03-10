@@ -24,6 +24,10 @@ class Aspect {
 		$this->index = $index;
 	}
 	
+	function getColor() {
+		return $this->color;
+	}
+	
 	function setCurrentIndex($index) {
 		$this->currentIndex = $index;
 		foreach($this->questions as $question)
@@ -53,7 +57,7 @@ class Aspect {
 	function drawHeader($currentIndex, $nbAspects) {
 		$html = 
 		'<div class="aspect-header '.$this->color->getClass().' rounded container d-flex justify-content-start align-items-center">'.
-			'<div class="px-1 font-weight-bold" style="width:75px">'.$currentIndex." / ".$nbAspects.'</div>'.
+			'<div class="px-1 font-weight-bold" style="width:78px">'.$currentIndex." / ".$nbAspects.'</div>'.
 			'<div class="p-3 w-100">'.
 				'<h5>'.$this->title.'</h5>'.
 				'<div>'.

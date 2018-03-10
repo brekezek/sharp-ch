@@ -8,9 +8,16 @@ if(isset($_COOKIE['version'])) {
 		
 		$questManager->goToAspect($goTo);
 		
+		$nbAspects = $questManager->getNumberAspects();
 		$currentIndex = $questManager->getCurrentIndex();
 		?>
-		<div id="questionnaire" class="container" style="margin-top:80px">
+		<div id="quest-progress" class="w-100 d-flex justify-space-between">
+			<?php for($i = 1; $i <= $nbAspects; $i++) {?>
+			<div class="<?= $questManager->getColorAspectByIndex($i)->getClass() ?>" style="opacity:<?= ($i <= $currentIndex) ? "1" : "0.25" ?>; height: 4px; width:<?= (100/$nbAspects) ?>%;"></div>
+			<?php } ?>
+		</div>
+		
+		<div id="questionnaire" class="container" style="margin-top:20px">
 			
 			<form method="post" action="">
 				
@@ -25,10 +32,10 @@ if(isset($_COOKIE['version'])) {
 				
 
 				<div class="bg-light clearfix rounded">
-					<?php if($currentIndex > 1 && $currentIndex <= $questManager->getNumberAspects()) {?>
+					<?php if($currentIndex > 1 && $currentIndex <= $nbAspects) {?>
 						<button type="submit" id="prev" class="btn btn-primary float-left"><?= $t['previous']?></button>
 					<?php } ?>
-					<?php if($currentIndex < $questManager->getNumberAspects()) {?>
+					<?php if($currentIndex < $nbAspects) {?>
 						<button type="submit" id="next" class="btn btn-primary float-right"><?= $t['next']?></button>
 					<?php } else { ?>
 						<button type="submit" id="end" class="btn btn-success float-right"><?= $t['finish']?></button>

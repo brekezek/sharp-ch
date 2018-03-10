@@ -86,5 +86,9 @@ class QuestionnaireManager {
 	function getAspects() {
 		return $this->aspects;
 	}
+	
+	function getColorAspectByIndex($index) {
+		return $this->aspects[$index-1]->getColor();
+	}
 }
 ?>
