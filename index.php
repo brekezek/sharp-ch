@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php 
+$reset = false;
 $debug = false;
 require_once('required/common.php');
 includeDependencies();
@@ -7,7 +8,7 @@ includeDependencies();
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -35,9 +36,11 @@ includeDependencies();
 	} else {?>
 		<div class="jumbotron">
 			<div class="container">
-			  <h1 class="display-4">Bievenue sur SHARP!</h1>
+			  <h1 class="display-4">Bienvenue sur SHARP!</h1>
+			  <p class="lead">Schéma Holistique pour l’Autoévaluation Paysanne de la Résilience climatique</p>
+			  <hr class="my-4">
 			  <p>Cet outil est conçu pour remplir les questionnaires plus simplement et plus rapidement.</p>
-			  <p><a class="btn btn-primary btn-lg" href="#" role="button">Nouveau questionnaire »</a></p>
+			  <p><a class="btn btn-primary btn-lg start-new-quest d-none" href="#" role="button">Nouveau questionnaire »</a></p>
 			</div>
 		</div>
 	<?php 
@@ -53,6 +56,13 @@ includeDependencies();
 	
 	<script>
 	$(function(){
+		<?php if($reset) { ?>
+		deleteCookie('device-opt');
+		deleteCookie('cookie_avert');
+		deleteCookie("indexAspect");
+		deleteCookie("version");
+		<?php } ?>
+		
 		<?php if(isset($_COOKIE['indexAspect'])) {?>
 		$('a#quit').click(function(e){
 			deleteCookie("indexAspect");
@@ -117,14 +127,14 @@ includeDependencies();
 				}
 			});
 		} else {
-			$('#new-quest').removeClass("d-none");
+			$('#new-quest, .start-new-quest').removeClass("d-none");
 		}
 		$('#version.dropdown-menu .dropdown-item').click(function(){
 			setCookie("version", $(this).attr("version"), 90);
 			$('.dropdown-toggle#dropdown-version').text($(this).attr("version"));
 			$('#new-quest').removeClass("d-none");
 		});
-		$('#new-quest').click(function(){
+		$('#new-quest, .start-new-quest').click(function(){
 			var version = getCookie("version");
 			if(version == "") {
 				alert("Tu dois d'abord choisir une version !");
@@ -146,8 +156,17 @@ includeDependencies();
 			setTimeout(function(){
 				$("#cookies-banner").slideUp(550);
 			}, 20000);
-		}
+		}	
 		<?php } ?>
+		
+		if(getCookie("device-opt") == "") {
+			$('#unset-device-message').click(function(){
+				setCookie("device-opt", "set", 365);
+				$('#device-not-optimized').slideUp(550);
+			});
+		} else {
+			$('#device-not-optimized').addClass("d-none");
+		}	
 	});
 	</script>
 	
@@ -184,6 +203,16 @@ includeDependencies();
 		  </div>
 		</div>
 	  </div>
+	</div>
+	
+	<div id="device-not-optimized" class="fixed-bottom w-100 mb-0 alert alert-warning justify-content-between align-items-end">
+		<div >
+			<h6>Application optimisée pour les tablettes et ordinateurs.</h6>
+			La dimension de votre appareil ne nous permettra pas de vous fournir une expérience agréable lorsque vous remplirez un questionnaire.
+		</div>
+		<div>
+			<button class="btn btn-success btn-gradient btn-sm" id="unset-device-message">J'ai compris</button>
+		</div>
 	</div>
 	
 </body>

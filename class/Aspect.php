@@ -73,7 +73,7 @@ class Aspect {
 		  </div>
 		  <div class="card-body py-2 px-1" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center">
 			<h5 class="card-title small p-0 m-0 mb-2 font-weight-bold" style="width:130px">'.$this->title.'</h5>
-			<p class="card-text m-0" style="font-size:70%">'.mb_substr($this->subtitle, 0, 25).(strlen($this->subtitle) > 25 ? "..." : "").'</p>
+			<p class="card-text m-0" style="max-width:140px; font-size:70%">'.mb_substr($this->subtitle, 0, 25).(strlen($this->subtitle) > 25 ? "..." : "").'</p>
 			<p class="card-text small d-none">Score</p>
 		  </div>
 		  '.($this->index == $this->currentIndex ? '<div class="small bg-danger text-white">Actif</div>' : "").'
