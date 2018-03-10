@@ -25,13 +25,13 @@ if(isset($_COOKIE['version'])) {
 				
 
 				<div class="bg-light clearfix rounded">
-					<?php if($currentIndex > 1 && $currentIndex < $questManager->getNumberAspects()) {?>
+					<?php if($currentIndex > 1 && $currentIndex <= $questManager->getNumberAspects()) {?>
 						<button type="submit" id="prev" class="btn btn-primary float-left"><?= $t['previous']?></button>
 					<?php } ?>
 					<?php if($currentIndex < $questManager->getNumberAspects()) {?>
 						<button type="submit" id="next" class="btn btn-primary float-right"><?= $t['next']?></button>
 					<?php } else { ?>
-						<button type="submit" id="end" class="btn btn-success w-100"><?= $t['finish']?></button>
+						<button type="submit" id="end" class="btn btn-success float-right"><?= $t['finish']?></button>
 					<?php } ?>
 				</div>
 			</form>

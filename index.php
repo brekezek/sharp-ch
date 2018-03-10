@@ -121,7 +121,7 @@ includeDependencies();
 					setCookie("version", value, 90);
 					$('.dropdown-toggle#dropdown-version').text(value);
 					$('#modalVersions').modal('hide');
-					$('#new-quest').removeClass("d-none");
+					$('#new-quest, .start-new-quest').removeClass("d-none");
 				} else {
 					$('.alert#version-empty').show();
 				}
@@ -155,7 +155,7 @@ includeDependencies();
 			
 			setTimeout(function(){
 				$("#cookies-banner").slideUp(550);
-			}, 20000);
+			}, 35000);
 		}	
 		<?php } ?>
 		

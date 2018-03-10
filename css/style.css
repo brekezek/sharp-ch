@@ -91,3 +91,13 @@
 	#questionnaire.container {max-width: 98%!important;}
 	#questionnaire .container {max-width:100%}
 }
+@media (max-width: 576px) { 
+	#navbarHome { margin-top: 8px; }
+	#navbarHome li, #new-quest {
+		width: 100%;
+		margin-bottom: 8px;
+	}
+	#dropdown-version {
+		width: 100%;
+	}
+}
