@@ -2,7 +2,7 @@
 if(isset($_COOKIE['version'])) {
 	
 	if(file_exists(DIR_VERSIONS."/".$_COOKIE['version'])) {
-		$questManager = new QuestionnaireManager($_COOKIE['version']);
+		$questManager = QuestionnaireManager::getInstance($_COOKIE['version']);
 		
 		$goTo = max(1, min($questManager->getNumberAspects(), $_COOKIE['indexAspect']));
 		

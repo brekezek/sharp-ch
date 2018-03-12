@@ -2,15 +2,24 @@
 class QuestionnaireManager {
 	const PATH_VERSIONS = DIR_VERSIONS;
 	
+	private static $_instance = null;
+	
 	private $version;
 	private $aspects;
 	private $currentIndex;
 	
-	function __construct($version) {
+	private function __construct($version) {
 		$this->version = $version;
 		$this->aspects = array();
 		$this->currentIndex = 1;
 		$this->parseVersion();
+	}
+	
+	public static function getInstance($version) {
+		if(is_null(self::$_instance)) {
+			self::$_instance = new QuestionnaireManager($version);
+		}
+		return self::$_instance;
 	}
 	
 	function addAspect($aspect) {
@@ -75,7 +84,10 @@ class QuestionnaireManager {
 				
 				foreach($listQuestions as $nb) {
 					$questionJSON = getJSONFromFile($pathAspect."/".$nb.".json");
-					$aspect->addQuestion(new Question($nb, $questionJSON));				
+					$questFactory = new QuestionFactory($nb, $questionJSON);
+					$question = $questFactory->getQuestion();
+					if($question != null)
+						$aspect->addQuestion($question);				
 				}
 							
 				$this->addAspect($aspect);

@@ -1,20 +1,21 @@
 <?php
 require_once("InterfaceQuestion.php");
 
-class Question implements InterfaceQuestion {
-	private $index;
-	private $type;
-	private $title;
-	private $mandatory;
-	private $color;
-	private $currentIndex;
+abstract class Question implements iQuestion {
+	protected $index;
+	protected $type;
+	protected $title;
+	protected $mandatory;
+	protected $color;
+	protected $currentIndex;
+	
+	protected $inputName;
+	protected $uid;
+
 	
 	function __construct($index, $json) {
 		$this->index = $index;
-		$this->parseQuestion($json);
-	}
-	
-	function parseQuestion($json) {
+		
 		$this->type = $json['question-type'];
 		$this->title = $json['title'];
 		$this->mandatory = isset($json['mandatory']) ? $json['mandatory'] : false;
@@ -36,18 +37,22 @@ class Question implements InterfaceQuestion {
 		$this->color = $color;
 	}
 	
-	function draw() {
-		
+	function getLabel() {
+		$mandatoryStar = "";
+		if($this->isMandatory()) {
+			$mandatoryStar = '<span class="text-danger font-weight-bold">*</span>';
+		}
+		return
+		'<label
+			for="'.$this->uid.'"
+			class="w-100 p-2 rounded">
+				<b>'.$mandatoryStar.$this->index.'.</b> '.$this->title.'
+		</label>';
 	}
 	
-	function getResult() {
-		
-	}
-	
-	function setResult() {
-		
-	}
-	
+	function parseQuestion($json) {}
+	function getResult() {}
+	function setResult() {}
 }
 /*
 question-type

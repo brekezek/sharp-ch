@@ -46,9 +46,10 @@ class Aspect {
 	
 	function drawQuestions() {
 		$html = 
-		'<div class="rounded container bg-light p-2 my-3">Questions';
-		foreach($this->questions as $question)
+		'<div class="rounded container bg-light p-2 my-3">';
+		foreach($this->questions as $question) {
 			$html .= $question->draw();
+		}
 		$html .=
 		'</div>';
 		echo $html;
