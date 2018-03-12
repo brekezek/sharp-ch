@@ -71,11 +71,25 @@ includeDependencies();
 		});
 		
 		$('#questionnaire #next, #questionnaire #prev').click(function(e){
-			var toAdd = $(this).attr("id") == "prev" ? -1 : 1;
-			setCookie("indexAspect", parseInt(getCookie("indexAspect")) + toAdd, 3);
-			document.location = '?nav';
-			e.preventDefault();
+			var isPrev = $(this).attr("id") == "prev";
+			var toAdd = isPrev ? -1 : 1;
+			var canUpdateCookie = true;
+			
+			if(!isPrev) {
+			   $("#questionnaire form").find('[required]').each(function() {
+				  if (!$(this).val() || $(this).val().length == 0 || $(this).val().length == null) { canUpdateCookie = false;  }
+			   });
+			}
+			
+			if(canUpdateCookie)
+				setCookie("indexAspect", parseInt(getCookie("indexAspect")) + toAdd, 3);
+			
+			if(isPrev) {
+				document.location = "?nav";
+				e.preventDefault();
+			}
 		});
+		
 		
 		function resizeAspectPanel() {
 			var screenH = $(document).height() - $('nav').height() - 16;
@@ -140,6 +154,7 @@ includeDependencies();
 				alert("Tu dois d'abord choisir une version !");
 			} else {
 				setCookie("indexAspect", "1", 3);
+				$.post('getUniqueName.php', {}, function(html){ setCookie("filename", html, 3); });
 				document.location = '?start';
 			}
 		});

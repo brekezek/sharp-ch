@@ -15,6 +15,8 @@ class Aspect {
 	/* Int : Ou on est dans le questionnaire (ex. ->5<-/53) */
 	private $currentIndex;
 	
+	private $jsonAnswers;
+	
 	function __construct($id, $title, $color, $subtitle, $index) {
 		$this->id = $id;
 		$this->title = $title;
@@ -36,6 +38,11 @@ class Aspect {
 	
 	function addQuestion($question) {
 		$question->setColor($this->color);
+		$question->setAspectId($this->id);
+		
+		if(isset($this->jsonAnswers[$question->getIndex()]))
+			$question->setJSONAnswer($this->jsonAnswers[$question->getIndex()]);
+		
 		array_push($this->questions, $question);
 	}
 	
@@ -88,7 +95,11 @@ class Aspect {
 		</div>';
 		echo $html;
 	}
+	
 	/* ------ JSON processing ------- */
+	function setJSONAnswers($json) {
+		$this->jsonAnswers = $json;
+	}
 	
 }
 ?>

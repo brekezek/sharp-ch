@@ -27,7 +27,7 @@ class QuestionFactory {
 			// ------------------------------------------
 			
 			case "multiple_one_solution":
-				return new MultipleOne($this->index, $this->json);
+				return null; //new MultipleOne($this->index, $this->json);
 			break;
 			
 			// ------------------------------------------

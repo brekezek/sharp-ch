@@ -8,10 +8,10 @@ abstract class Question implements iQuestion {
 	protected $mandatory;
 	protected $color;
 	protected $currentIndex;
-	
+	protected $aspectId;
 	protected $inputName;
 	protected $uid;
-
+	protected $jsonAnswer;
 	
 	function __construct($index, $json) {
 		$this->index = $index;
@@ -19,8 +19,16 @@ abstract class Question implements iQuestion {
 		$this->type = $json['question-type'];
 		$this->title = $json['title'];
 		$this->mandatory = isset($json['mandatory']) ? $json['mandatory'] : false;
+		
+		$this->uid = $this->type."_".uniqid();
+		
 	}
 	
+	function setAspectId($id) {
+		$this->aspectId = $id;
+		$this->inputName = "answers[".$this->aspectId."][".$this->index."][answer]";
+	}
+
 	function setCurrentIndex($index) {
 		$this->currentIndex = $index;
 	}
@@ -31,6 +39,10 @@ abstract class Question implements iQuestion {
 	
 	function getTitle() {
 		return $this->title;
+	}
+	
+	function getIndex() {
+		return $this->index;
 	}
 	
 	function setColor($color) {
@@ -48,6 +60,18 @@ abstract class Question implements iQuestion {
 			class="w-100 p-2 rounded">
 				<b>'.$mandatoryStar.$this->index.'.</b> '.$this->title.'
 		</label>';
+	}
+	
+	function getAnswer() {
+		if(trim($this->jsonAnswer) != "") {
+			return $this->jsonAnswer;
+		}
+		return "";
+	}
+	
+	function setJSONAnswer($json) {
+		if(isset($json['answer'])) 
+			$this->jsonAnswer = $json['answer'];
 	}
 	
 	function parseQuestion($json) {}

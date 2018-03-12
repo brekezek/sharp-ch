@@ -7,11 +7,14 @@ class QuestionnaireManager {
 	private $version;
 	private $aspects;
 	private $currentIndex;
+	private $filename;
+	
 	
 	private function __construct($version) {
 		$this->version = $version;
 		$this->aspects = array();
 		$this->currentIndex = 1;
+		$this->filename = $_COOKIE['filename'];
 		$this->parseVersion();
 	}
 	
@@ -44,18 +47,86 @@ class QuestionnaireManager {
 	
 	function goToAspect($index) {
 		if($index > 0 && $index <= $this->getNumberAspects())
-			$this->currentIndex = $index;
+			$this->currentIndex = max(1, min($this->getNumberAspects(), $index));
 	}
 	
 	function draw() {
 		if(count($this->aspects) >= $this->currentIndex) {
 			$aspectToDraw = $this->aspects[$this->currentIndex-1];
 			$aspectToDraw->setCurrentIndex($this->currentIndex);
-			$aspectToDraw->draw($this->currentIndex, count($this->aspects));
+			
+			echo '<form method="post" action="#">';
+				$aspectToDraw->draw($this->currentIndex, count($this->aspects));
+				$this->drawNavButtons();
+			echo '</form>';
+		}
+	}
+	
+	function drawNavButtons() {
+		global $t;
+		$html = '
+		<div class="bg-light clearfix rounded mb-4">';
+			if($this->currentIndex > 1 && $this->currentIndex <= $this->getNumberAspects()) {
+				$html.= '<button type="submit" id="prev" class="btn btn-primary float-left">'.$t['previous'].'</button>';
+			}
+			if($this->currentIndex < $this->getNumberAspects()) {
+				$html.= '<button type="submit" id="next" class="btn btn-primary float-right">'.$t['next'].'</button>';
+			} else { 
+				$html.= '<button type="submit" id="end" class="btn btn-success float-right">'.$t['finish'].'</button>';
+			}
+		$html.='</div>';
+		echo $html;
+	}
+	
+	function drawThumbnails() {
+		foreach($this->aspects as $aspect) {
+			$aspect->drawThumbnail();
+		}
+	}
+	
+	function collectAnswers() {
+		if(isset($_POST['answers'])) {
+			$filepath = DIR_ANSWERS."/".$this->filename;
+			
+			if(file_exists($filepath)) {
+				$toEncode = getJSONFromFile($filepath);
+				if(is_array($toEncode)) {
+					$handle = fopen($filepath, "w+");
+					foreach($_POST['answers'] as $id => $answers) {
+						$toEncode[$id] = $answers;
+					}
+				} else {
+					foreach($_COOKIE as $c) {
+						unset($c);
+					}
+				}
+			} else {
+				$handle = fopen($filepath, "w");
+				$_POST['answers']['filename'] = $this->filename;
+				$_POST['answers']['version'] = $this->version;
+				$toEncode = $_POST['answers'];
+			}
+			
+			$json = json_encode($toEncode, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
+			
+			if(is_array($toEncode)) {
+				fwrite($handle, $json);
+			}
+
+			fclose($handle);
+		
+			//echo '<pre>';
+			//print_r($json);
 		}
 	}
 	
 	function parseVersion() {
+		$filepath = DIR_ANSWERS."/".$this->filename;
+		$jsonAnswers = array();
+		if(file_exists($filepath)) {
+			$jsonAnswers = getJSONFromFile($filepath);
+		}
+		
 		$orderedAspectsList = array();
 		$pathVersion = DIR_VERSIONS."/".$this->version;
 		$packages = getJSONFromFile($pathVersion."/_meta_package.json")['order'];
@@ -73,6 +144,8 @@ class QuestionnaireManager {
 				$img = $aspectMeta['img'];
 	
 				$aspect = new Aspect($id, $title, $color, $subtitle, $this->getNumberAspects()+1);
+				if(isset($jsonAnswers[$id]))
+					$aspect->setJSONAnswers($jsonAnswers[$id]);
 			
 				$listQuestions = array();
 				foreach(scandir($pathAspect) as $questionFile) {
