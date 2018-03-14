@@ -1,5 +1,9 @@
 <?php 
+$res = array();
 if(isset($_COOKIE['version'])) {
-	echo sha1(uniqid().$_COOKIE['version']).".json";
+	$res['filename'] = sha1(uniqid().$_COOKIE['version']).".json";
+} else {
+	$res['filename'] = "error"; 
 }
+echo json_encode($res);
 ?>
