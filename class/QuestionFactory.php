@@ -18,31 +18,29 @@ class QuestionFactory {
 				return new Text($this->index, $this->json);
 			break;
 			
-			// ------------------------------------------
-			
 			case "multiple_multiple_solution":
-				return null;
+				return new MultipleMultiple($this->index, $this->json);
 			break;
-			
-			// ------------------------------------------
 			
 			case "multiple_one_solution":
-				return null; //new MultipleOne($this->index, $this->json);
+				if(count($this->json['choices']) == 3)
+					return new Binary($this->index, $this->json);
+				else 
+					return new MultipleOne($this->index, $this->json);
 			break;
-			
-			// ------------------------------------------
 			
 			case "binary_answer_with_comment":
+				return new BinaryComment($this->index, $this->json);;	
+			break;
+			
 			case "binary_answer":
-				return null;
+				return new Binary($this->index, $this->json);
 			break;
 			
-			// ------------------------------------------
 			case "integer_answer":
-				return null;
+				return new Integer($this->index, $this->json);
 			break;
 			
-			// ------------------------------------------
 			case "table":
 				return null;
 			break;

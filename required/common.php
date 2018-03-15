@@ -70,4 +70,18 @@ function getColor($colorName) {
 	global $colors;
 	return $colors[$colorName];
 }
+
+function getChoices($choices) {
+	$choicesRes = array();
+	foreach($choices as $choice) {
+		if(!is_array($choice)) {
+			$choicesRes[] = $choice;
+		} else {
+			foreach($choice as $text => $score) {
+				$choicesRes[] = $text;
+			}
+		}
+	}
+	return $choicesRes;
+}
 ?>

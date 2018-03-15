@@ -5,8 +5,10 @@
 	"previous":"Précédent",
 	"next":"Suivant",
 	"finish":"Terminer",
+	"choose...": "Choisir...",
+	"number" : "Nombre",
 	"new_questionnaire":"Nouveau questionnaire",
 	"quit_questionnaire":"Quitter le questionnaire",
-	"cookies_message":"Ce site utilise des cookies. Nous en avons besoin pour vous fournir la meilleure expérience possible. Nous ne traquons aucune données vous concernant."
-	
+	"cookies_message":"Ce site utilise des cookies. Nous en avons besoin pour vous fournir la meilleure expérience possible. Nous ne traquons aucune données vous concernant.",
+	"help_multiple_multiple": "Pour sélectionner plusieurs options, maintenez la touche <kbd>ctrl</kbd> en sélectionnant"
 }

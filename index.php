@@ -61,6 +61,10 @@ includeDependencies();
 			deleteCookie('cookie_avert');
 			deleteCookie("indexAspect");
 			deleteCookie("version");
+		<?php }
+		
+		if(isset($_REQUEST['end'])) {?>
+			deleteCookie("indexAspect");
 		<?php } ?>
 		
 		<?php if(isset($_COOKIE['indexAspect'])) {?>
@@ -76,19 +80,49 @@ includeDependencies();
 			var canUpdateCookie = true;
 			
 			if(!isPrev) {
-			   $("#questionnaire form").find('[required]').each(function() {
-				  if (!$(this).val() || $(this).val().length == 0 || $(this).val().length == null) { canUpdateCookie = false;  }
-			   });
+				$("#questionnaire form").find('[required]').each(function() {
+					var elem = $("#questionnaire form [name=\""+$(this).attr("name")+"\"]");
+					if(elem.is(":hidden")) elem.remove();
+					else {
+						if(elem.is(":invalid")) { canUpdateCookie = false;  }
+					}
+				});
 			}
 			
 			if(canUpdateCookie)
 				setCookie("indexAspect", parseInt(getCookie("indexAspect")) + toAdd, <?= LIFE_COOKIE_QUEST_PENDING ?>);
 			
-			if(isPrev) {
-				document.location = "?nav";
+			if(isPrev) {		
+				// save state of the field already filled
+				$.post('saveAspectState.php', {json:getJsonAnswersCurrentAspect()}, function(html){
+					document.location = "?nav";
+				});
+			
 				e.preventDefault();
 			}
 		});
+	
+		
+		function getJsonAnswersCurrentAspect() {
+			var jsonStr = "{";
+			$("#questionnaire form").find('[name]').each(function() {
+				var supp = "";
+				if($(this).is('input[type="radio"]')) {
+					supp = ":checked";
+				}
+				
+				var elem = $('#questionnaire form [name="'+$(this).attr("name")+'"]'+supp);
+				if(elem.is(":hidden")) elem.remove();
+				else {
+					if(elem.val() != "") {
+						jsonStr += '"'+$(this).attr("name")+'" : "'+elem.val()+'",';
+					}
+				}
+			});
+			jsonStr = jsonStr.substring(0, jsonStr.length-1);
+			jsonStr += "}";
+			return jsonStr;
+		}
 		
 		
 		function resizeAspectPanel() {
@@ -116,11 +150,25 @@ includeDependencies();
 				$(window).bind("resize",resizeAspectPanel);
 				$('#aspects .card:not(.cat-active)').bind('click', function(){
 					setCookie("indexAspect", $(this).attr("data-index"), <?= LIFE_COOKIE_QUEST_PENDING ?>);
-					document.location = '?nav';
+					
+					// save state of the field already filled
+					$.post('saveAspectState.php', {json:getJsonAnswersCurrentAspect()}, function(html){
+						document.location = "?nav";
+					});
 				});
 			}
 			resizeAspectPanel();
 			$(this).toggleClass("active btn-dark");
+		});
+		
+		$('.binary_comment').on("change", function(){
+			var comment_input = $(this).parent().parent().find('textarea');
+
+			if($(this).find("input").attr("index") == "0") { // Oui
+				comment_input.show();
+			} else { 
+				comment_input.hide();
+			}
 		});
 		
 		<?php } else { ?>

@@ -17,9 +17,11 @@
 				<a href="?quit" id="quit" class="dropdown-item"><?= $t['quit_questionnaire'] ?></a>
 			</div>
 		</div>
+		<?php if(!isset($_REQUEST['end'])) {?>
 		<button id="show-aspects" class="btn btn-primary" type="button">
 			<span class="oi oi-grid-three-up"></span>
 		</button>
+		<?php }?>
 	</div>
 	<?php } else {?>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHome" aria-controls="navbarHome" aria-expanded="false">

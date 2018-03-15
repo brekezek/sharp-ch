@@ -72,7 +72,7 @@ class QuestionnaireManager {
 			if($this->currentIndex < $this->getNumberAspects()) {
 				$html.= '<button type="submit" id="next" class="btn btn-primary float-right">'.$t['next'].'</button>';
 			} else { 
-				$html.= '<button type="submit" id="end" class="btn btn-success float-right">'.$t['finish'].'</button>';
+				$html.= '<button name="end" type="submit" id="end" class="btn btn-success float-right">'.$t['finish'].'</button>';
 			}
 		$html.='</div>';
 		echo $html;
@@ -86,6 +86,10 @@ class QuestionnaireManager {
 	
 	function collectAnswers() {
 		if(isset($_POST['answers'])) {
+			
+			//echo '<pre>';
+			//print_r($_POST['answers']);
+			
 			$filepath = DIR_ANSWERS."/".$this->filename;
 			
 			if(file_exists($filepath)) {

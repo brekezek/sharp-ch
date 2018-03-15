@@ -1,43 +1,60 @@
 <?php
 class MultipleOne extends Question {
-	private $choices;
+	protected $choices;
+	protected $isMultiple;
 	
 	function __construct($index, $json) {
 		parent::__construct($index, $json);
-		$this->parseQuestion($json);
-	}
-	
-	function parseQuestion($json) {
-		$this->choices = $json['choices'];
+		$this->choices = getChoices($json['choices']);
 	}
 	
 	function draw() {
+		global $t;
+		$otherInputTag = "_OTHER_INPUT::";
+		
 		$html =
 		'<div class="form-group">'.
 			parent::getLabel().
 			'<select 
+				 '.($this->isMultiple ? ' multiple size="'.(count($this->choices)+1).'" ' : "").'
 				 name="'.$this->inputName.'" 
-				 id="'.$this->uid.'" 
-				 placeholder="Texte" 
+				 id="'.$this->uid.'"  
 				 class="form-control w-100 rounded"
+				 aria-describedby="help_'.$this->uid.'"
 				 '.(parent::isMandatory() ? "required" : "").'>';
 		
-		foreach($this->choices as $choice) {
-			$html .= '<option value="">'.$choice.'</option>';
-		}
+				$html .= '<option style="color:#ddd" value=""';
+				if(parent::getAnswer() == "") $html .= ' selected';
+				$html .= '>';
 				
-		$html .=
-			'</select>'.
-		'</div>';
+				if($this->placeholder != "") 
+					$html .= $this->placeholder; 
+				else
+					$html .= $t['choose...'];
+				
+				$html .= '</option>';
+				
+				foreach($this->choices as $choice) {
+					$selected = "";
+					if(parent::getAnswer() == $choice) $selected = "selected";
+					$html .= '<option value="'.$choice.'" '.$selected.'>'.str_replace($otherInputTag, '', $choice).'</option>';
+				}
+				
+			$html .= '</select>';
+			
+			if($this->isMultiple) {
+				$html .=
+				'<small id="help_'.$this->uid.'" class="form-text text-muted text-center pc_only">'.
+					$t['help_multiple_multiple'].
+				'</small>';
+			}
+			
+		$html .= '</div>';
 		return $html;
 	}
 	
-	function getResult() {
-		
-	}
-	
-	function setResult() {
-		
+	protected function isMultiple($bool) {
+		$this->isMultiple = $bool;
 	}
 	
 }

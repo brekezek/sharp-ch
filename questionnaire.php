@@ -8,6 +8,10 @@ if(isset($_COOKIE['version'])) {
 			
 			$nbAspects = $questManager->getNumberAspects();
 			$currentIndex = $questManager->getCurrentIndex();
+			
+			$questManager->collectAnswers();
+			
+			if(!isset($_REQUEST['end'])) {
 			?>
 			
 			<div style="position: fixed; top:56px; left:0; width:100%">
@@ -22,7 +26,6 @@ if(isset($_COOKIE['version'])) {
 			
 			<div id="questionnaire" class="container" >
 				<?php
-				$questManager->collectAnswers();
 				$questManager->draw();
 				$debug = false;
 				if($debug) {
@@ -39,6 +42,21 @@ if(isset($_COOKIE['version'])) {
 			
 			
 			<div class="modal-backdrop fade show" style="top:56px; display: none"></div>
+			<?php 
+			} else {?>
+			<div class="container">
+				<div class="d-flex" style="opacity:0">-</div>
+				
+				<div class="alert alert-success mt-3 text-center" role="alert">
+					<h1 class="display-4">Merci!</h1>
+					<p class="lead">Félicitations et merci infiniment pour le temps que vous nous avez consacré pour remplir ce questionnaire !</p>
+					<hr class="my-4">
+					<p>Vos réponses ont été analysées automatiquement et un score leur a été attribué.</p>
+					<p><a class="btn btn-success btn-lg" href="?score" role="button">Afficher mon score »</a></p>
+				</div>
+				
+			</div>
+			<?php } ?>
 		<?php
 		} else {?>
 		<div class="alert alert-danger mt-3" role="alert">

@@ -12,6 +12,10 @@ abstract class Question implements iQuestion {
 	protected $inputName;
 	protected $uid;
 	protected $jsonAnswer;
+	protected $answer;
+	protected $hidden;
+	protected $placeholder;
+	protected $all_visible;
 	
 	function __construct($index, $json) {
 		$this->index = $index;
@@ -19,6 +23,9 @@ abstract class Question implements iQuestion {
 		$this->type = $json['question-type'];
 		$this->title = $json['title'];
 		$this->mandatory = isset($json['mandatory']) ? $json['mandatory'] : false;
+		$this->hidden = isset($json['hidden']) ? $json['hidden'] : false;
+		$this->placeholder = isset($json['placeholder']) ? $json['placeholder'] : "";
+		$this->all_visible = isset($json['all_visible']) ? $json['all_visible'] : true;
 		
 		$this->uid = $this->type."_".uniqid();
 		
@@ -63,20 +70,19 @@ abstract class Question implements iQuestion {
 	}
 	
 	function getAnswer() {
-		if(trim($this->jsonAnswer) != "") {
-			return $this->jsonAnswer;
+		if(trim($this->answer) != "") {
+			return $this->answer;
 		}
 		return "";
 	}
 	
 	function setJSONAnswer($json) {
-		if(isset($json['answer'])) 
-			$this->jsonAnswer = $json['answer'];
+		$this->jsonAnswer = $json;
+		if(isset($json['answer'])) {
+			$this->answer = $json['answer'];
+		}
 	}
 	
-	function parseQuestion($json) {}
-	function getResult() {}
-	function setResult() {}
 }
 /*
 question-type
