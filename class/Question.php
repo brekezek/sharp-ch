@@ -31,32 +31,39 @@ abstract class Question implements iQuestion {
 		
 	}
 	
-	function setAspectId($id) {
+	public function setAspectId($id) {
 		$this->aspectId = $id;
 		$this->inputName = "answers[".$this->aspectId."][".$this->index."][answer]";
 	}
+	
+	public function setColor($color) {
+		$this->color = $color;
+	}
 
-	function setCurrentIndex($index) {
+	public function setCurrentIndex($index) {
 		$this->currentIndex = $index;
 	}
 	
-	function isMandatory() {
+	public function setJSONAnswer($json) {
+		$this->jsonAnswer = $json;
+		if(isset($json['answer'])) {
+			$this->answer = $json['answer'];
+		}
+	}
+	
+	protected function isMandatory() {
 		return ($this->mandatory == true || $this->mandatory == 1 || $this->mandatory == "true");
 	}
 	
-	function getTitle() {
+	protected function getTitle() {
 		return $this->title;
 	}
 	
-	function getIndex() {
+	public function getIndex() {
 		return $this->index;
 	}
 	
-	function setColor($color) {
-		$this->color = $color;
-	}
-	
-	function getLabel() {
+	protected function getLabel() {
 		$mandatoryStar = "";
 		if($this->isMandatory()) {
 			$mandatoryStar = '<span class="text-danger font-weight-bold">*</span>';
@@ -69,18 +76,11 @@ abstract class Question implements iQuestion {
 		</label>';
 	}
 	
-	function getAnswer() {
+	public function getAnswer() {
 		if(trim($this->answer) != "") {
 			return $this->answer;
 		}
 		return "";
-	}
-	
-	function setJSONAnswer($json) {
-		$this->jsonAnswer = $json;
-		if(isset($json['answer'])) {
-			$this->answer = $json['answer'];
-		}
 	}
 	
 }

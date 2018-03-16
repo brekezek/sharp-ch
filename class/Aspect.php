@@ -26,17 +26,17 @@ class Aspect {
 		$this->index = $index;
 	}
 	
-	function getColor() {
+	public function getColor() {
 		return $this->color;
 	}
 	
-	function setCurrentIndex($index) {
+	public function setCurrentIndex($index) {
 		$this->currentIndex = $index;
 		foreach($this->questions as $question)
 			$question->setCurrentIndex($index);
 	}
 	
-	function addQuestion($question) {
+	public function addQuestion($question) {
 		$question->setColor($this->color);
 		$question->setAspectId($this->id);
 		
@@ -46,12 +46,12 @@ class Aspect {
 		array_push($this->questions, $question);
 	}
 	
-	function draw($currentIndex, $nbAspects) {
+	public function draw($currentIndex, $nbAspects) {
 		$this->drawHeader($currentIndex, $nbAspects);
 		$this->drawQuestions();
 	}
 	
-	function drawQuestions() {
+	public function drawQuestions() {
 		$html = 
 		'<div class="rounded container bg-light p-2 my-3">';
 		foreach($this->questions as $question) {
@@ -62,7 +62,7 @@ class Aspect {
 		echo $html;
 	}
 	
-	function drawHeader($currentIndex, $nbAspects) {
+	private function drawHeader($currentIndex, $nbAspects) {
 		$html = 
 		'<div class="aspect-header '.$this->color->getClass().' rounded container d-flex justify-content-start align-items-center">'.
 			'<div class="px-1 font-weight-bold" style="width:78px">'.$currentIndex." / ".$nbAspects.'</div>'.
@@ -77,7 +77,7 @@ class Aspect {
 		echo $html;
 	}
 	
-	function drawThumbnail() {
+	public function drawThumbnail() {
 		$html = '
 		<div data-index="'.$this->index.'" class="card text-center rounded m-2 cat-hover cat-border-'.$this->color->getColorName().' '.($this->index == $this->currentIndex ? "cat-active" : "").'" style="width: 12.7%; max-width: 160px; min-width:140px;">
 		  <div class="card-header p-1 '.$this->color->getClass().'">
@@ -97,7 +97,7 @@ class Aspect {
 	}
 	
 	/* ------ JSON processing ------- */
-	function setJSONAnswers($json) {
+	public function setJSONAnswers($json) {
 		$this->jsonAnswers = $json;
 	}
 	

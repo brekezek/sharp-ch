@@ -3,12 +3,10 @@ class QuestionnaireManager {
 	const PATH_VERSIONS = DIR_VERSIONS;
 	
 	private static $_instance = null;
-	
 	private $version;
 	private $aspects;
 	private $currentIndex;
 	private $filename;
-	
 	
 	private function __construct($version) {
 		$this->version = $version;
@@ -25,32 +23,20 @@ class QuestionnaireManager {
 		return self::$_instance;
 	}
 	
-	function addAspect($aspect) {
-		array_push($this->aspects, $aspect);
-	}
-	
-	function next() {
+	public function next() {
 		$this->currentIndex++;
 	}
 	
-	function previous() {
+	public function previous() {
 		$this->currentIndex--;
 	}
 	
-	function getCurrentIndex() {
-		return $this->currentIndex;
-	}
-	
-	function getNumberAspects() {
-		return count($this->aspects);
-	}
-	
-	function goToAspect($index) {
+	public function goToAspect($index) {
 		if($index > 0 && $index <= $this->getNumberAspects())
 			$this->currentIndex = max(1, min($this->getNumberAspects(), $index));
 	}
 	
-	function draw() {
+	public function draw() {
 		if(count($this->aspects) >= $this->currentIndex) {
 			$aspectToDraw = $this->aspects[$this->currentIndex-1];
 			$aspectToDraw->setCurrentIndex($this->currentIndex);
@@ -62,7 +48,7 @@ class QuestionnaireManager {
 		}
 	}
 	
-	function drawNavButtons() {
+	private function drawNavButtons() {
 		global $t;
 		$html = '
 		<div class="bg-light clearfix rounded mb-4">';
@@ -78,13 +64,13 @@ class QuestionnaireManager {
 		echo $html;
 	}
 	
-	function drawThumbnails() {
+	public function drawThumbnails() {
 		foreach($this->aspects as $aspect) {
 			$aspect->drawThumbnail();
 		}
 	}
 	
-	function collectAnswers() {
+	public function collectAnswers() {
 		if(isset($_POST['answers'])) {
 			
 			//echo '<pre>';
@@ -124,7 +110,27 @@ class QuestionnaireManager {
 		}
 	}
 	
-	function parseVersion() {
+	public function getCurrentIndex() {
+		return $this->currentIndex;
+	}
+	
+	public function getNumberAspects() {
+		return count($this->aspects);
+	}
+	
+	public function getAspects() {
+		return $this->aspects;
+	}
+	
+	public function getColorAspectByIndex($index) {
+		return $this->aspects[$index-1]->getColor();
+	}
+	
+	private function addAspect($aspect) {
+		array_push($this->aspects, $aspect);
+	}
+	
+	private function parseVersion() {
 		$filepath = DIR_ANSWERS."/".$this->filename;
 		$jsonAnswers = array();
 		if(file_exists($filepath)) {
@@ -172,12 +178,6 @@ class QuestionnaireManager {
 		}
 	}
 	
-	function getAspects() {
-		return $this->aspects;
-	}
 	
-	function getColorAspectByIndex($index) {
-		return $this->aspects[$index-1]->getColor();
-	}
 }
 ?>
