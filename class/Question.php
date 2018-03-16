@@ -77,8 +77,12 @@ abstract class Question implements iQuestion {
 	}
 	
 	public function getAnswer() {
-		if(trim($this->answer) != "") {
+		if(is_array($this->answer)) {
 			return $this->answer;
+		} else {
+			if(trim($this->answer) != "") {
+				return $this->answer;
+			}
 		}
 		return "";
 	}

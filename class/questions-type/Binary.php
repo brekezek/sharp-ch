@@ -38,7 +38,8 @@ class Binary extends Question {
 				
 				$html .=
 				'<label class="btn btn-secondary '.$checked[1].' '.$withComment.'">'.
-					'<input index="'.$i.'" type="radio" id="'.$id.'" name="'.$this->inputName.'" value="'.$choice.'" autocomplete="off" '.$checked[0].'> '.$choice.
+					'<input index="'.$i.'" type="radio" id="'.$id.'" name="'.$this->inputName.'"
+					value="'.$choice.'" autocomplete="off" '.$checked[0].' '.(parent::isMandatory() ? "required" : "").'> '.$choice.
 				'</label>';
 				/*
 				'<div class="custom-control custom-radio custom-control-inline">'.

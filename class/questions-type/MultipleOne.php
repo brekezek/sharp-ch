@@ -10,7 +10,7 @@ class MultipleOne extends Question {
 	
 	function draw() {
 		global $t;
-
+			
 		$html =
 		'<div class="form-group">'.
 			parent::getLabel().
@@ -22,21 +22,31 @@ class MultipleOne extends Question {
 				 aria-describedby="help_'.$this->uid.'"
 				 '.(parent::isMandatory() ? "required" : "").'>';
 		
-				$html .= '<option style="color:#ddd" value=""';
-				if(parent::getAnswer() == "") $html .= ' selected';
-				$html .= '>';
-				
-				if($this->placeholder != "") 
-					$html .= $this->placeholder; 
-				else
-					$html .= $t['choose...'];
-				
-				$html .= '</option>';
+				if(!$this->isMultiple) {
+					$html .= '<option style="color:#ddd" value=""';
+					if(parent::getAnswer() == "") $html .= ' selected';
+					$html .= '>';
+					
+					if($this->placeholder != "") 
+						$html .= $this->placeholder; 
+					else
+						$html .= $t['choose...'];
+					
+					$html .= '</option>';
+				}
 				
 				foreach($this->choices as $choice) {
+					$choice = str_replace(OTHER_INPUT_TAG, '', $choice);
 					$selected = "";
-					if(parent::getAnswer() == $choice) $selected = "selected";
-					$html .= '<option value="'.$choice.'" '.$selected.'>'.str_replace(OTHER_INPUT_TAG, '', $choice).'</option>';
+					
+					if($this->isMultiple && is_array(parent::getAnswer())) {
+						if(in_array($choice, getChoices(parent::getAnswer()))) $selected = "selected";
+					} else {
+						if(parent::getAnswer() == $choice) $selected = "selected";
+					}
+					
+					
+					$html .= '<option value="'.$choice.'" '.$selected.'>'.$choice.'</option>';
 				}
 				
 			$html .= '</select>';

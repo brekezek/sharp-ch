@@ -68,63 +68,41 @@ includeDependencies();
 		<?php } ?>
 		
 		<?php if(isset($_COOKIE['indexAspect'])) {?>
+		function goToAspect(index) {
+			setCookie("indexAspect", index, <?= LIFE_COOKIE_QUEST_PENDING ?>);
+			alert("index="+index);
+			alert("indexAspect="+getCookie("indexAspect"));
+		}
+		
 		$('a#quit').click(function(e){
 			deleteCookie("indexAspect");
 			document.location = '?quit';
 			e.preventDefault();
 		});
 		
-		$('#questionnaire #next, #questionnaire #prev').click(function(e){
+		$('#questionnaire').find('#next, #prev').click(function(e){
 			var isPrev = $(this).attr("id") == "prev";
-			var toAdd = isPrev ? -1 : 1;
 			var canUpdateCookie = true;
 			
 			if(!isPrev) {
 				$("#questionnaire form").find('[required]').each(function() {
 					var elem = $("#questionnaire form [name=\""+$(this).attr("name")+"\"]");
-					if(elem.is(":hidden")) elem.remove();
-					else {
-						if(elem.is(":invalid")) { canUpdateCookie = false;  }
+					if(!elem.is('[type="radio"]')) {
+						if(elem.is(":hidden")) {
+							elem.remove();
+						} else {
+							if(elem.is(":invalid")) { canUpdateCookie = false;  }
+						}
 					}
 				});
+			} else {
+				$("#questionnaire form").find('[required]').removeAttr("required");
 			}
 			
 			if(canUpdateCookie)
-				setCookie("indexAspect", parseInt(getCookie("indexAspect")) + toAdd, <?= LIFE_COOKIE_QUEST_PENDING ?>);
-			
-			if(isPrev) {		
-				// save state of the field already filled
-				$.post('saveAspectState.php', {json:getJsonAnswersCurrentAspect()}, function(html){
-					document.location = "?nav";
-				});
-			
-				e.preventDefault();
-			}
+				goToAspect(parseInt(getCookie("indexAspect")) + (isPrev ? -1 : 1));
 		});
 	
-		
-		function getJsonAnswersCurrentAspect() {
-			var jsonStr = "{";
-			$("#questionnaire form").find('[name]').each(function() {
-				var supp = "";
-				if($(this).is('input[type="radio"]')) {
-					supp = ":checked";
-				}
-				
-				var elem = $('#questionnaire form [name="'+$(this).attr("name")+'"]'+supp);
-				if(elem.is(":hidden")) elem.remove();
-				else {
-					if(elem.val() != "") {
-						jsonStr += '"'+$(this).attr("name")+'" : "'+elem.val()+'",';
-					}
-				}
-			});
-			jsonStr = jsonStr.substring(0, jsonStr.length-1);
-			jsonStr += "}";
-			return jsonStr;
-		}
-		
-		
 		function resizeAspectPanel() {
 			var screenH = $(document).outerHeight(true) - $('nav').outerHeight(true);
 			$('#aspects').css({height: screenH+"px"});
@@ -149,21 +127,18 @@ includeDependencies();
 				});
 				$(window).bind("resize",resizeAspectPanel);
 				$('#aspects .card:not(.cat-active)').bind('click', function(){
-					setCookie("indexAspect", $(this).attr("data-index"), <?= LIFE_COOKIE_QUEST_PENDING ?>);
-					
-					// save state of the field already filled
-					$.post('saveAspectState.php', {json:getJsonAnswersCurrentAspect()}, function(html){
-						document.location = "?nav";
-					});
+					goToAspect(parseInt($(this).attr("data-index")));
+					$("#questionnaire form").find('[required]').removeAttr("required");
+					$('#questionnaire #submitHidden').trigger("click");
 				});
+				resizeAspectPanel();
 			}
-			resizeAspectPanel();
+			
 			$(this).toggleClass("active btn-dark");
 		});
 		
 		$('.binary_comment').on("change", function(){
 			var comment_input = $(this).parent().parent().find('textarea');
-
 			if($(this).find("input").attr("index") == "0") { // Oui
 				comment_input.show();
 			} else { 

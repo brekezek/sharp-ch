@@ -50,8 +50,8 @@ class QuestionnaireManager {
 	
 	private function drawNavButtons() {
 		global $t;
-		$html = '
-		<div class="bg-light clearfix rounded mb-4">';
+		$html = '<button type="submit" id="submitHidden" style="opacity:0; position:absolute; z-index: -99"></button>'.
+		'<div class="bg-light clearfix rounded mb-4">';
 			if($this->currentIndex > 1 && $this->currentIndex <= $this->getNumberAspects()) {
 				$html.= '<button type="submit" id="prev" class="btn btn-primary float-left">'.$t['previous'].'</button>';
 			}
