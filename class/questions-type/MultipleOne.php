@@ -15,7 +15,7 @@ class MultipleOne extends Question {
 		'<div class="form-group">'.
 			parent::getLabel().
 			'<select 
-				 '.($this->isMultiple ? ' multiple size="'.(count($this->choices)+1).'" ' : "").'
+				 '.($this->isMultiple ? ' multiple size="'.(count($this->choices)).'" ' : "").'
 				 name="'.$this->inputName.'" 
 				 id="'.$this->uid.'"  
 				 class="form-control w-100 rounded"
@@ -35,8 +35,13 @@ class MultipleOne extends Question {
 					$html .= '</option>';
 				}
 				
+				$otherSelected = false;
 				foreach($this->choices as $choice) {
-					$choice = str_replace(OTHER_INPUT_TAG, '', $choice);
+					$isOther = "false";
+					if(strpos($choice, OTHER_INPUT_TAG) !== false) {
+						$isOther = "true";
+						$choice = str_replace(OTHER_INPUT_TAG, '', $choice);
+					}
 					$selected = "";
 					
 					if($this->isMultiple && is_array(parent::getAnswer())) {
@@ -45,15 +50,16 @@ class MultipleOne extends Question {
 						if(parent::getAnswer() == $choice) $selected = "selected";
 					}
 					
+					if($isOther && $selected == "selected") $otherSelected = true;
 					
-					$html .= '<option value="'.$choice.'" '.$selected.'>'.$choice.'</option>';
+					$html .= '<option isOther="'.$isOther.'" value="'.$choice.'" '.$selected.'>'.$choice.'</option>';
 				}
 				
 			$html .= '</select>';
 			
 			if($this->isMultiple) {
 				$html .=
-				'<small id="help_'.$this->uid.'" class="form-text text-muted text-center pc_only">'.
+				'<small id="help_'.$this->uid.'" class="form-text text-muted text-center pc_only" '.($otherSelected ? 'style="display:none"' : "").'>'.
 					$t['help_multiple_multiple'].
 				'</small>';
 			}

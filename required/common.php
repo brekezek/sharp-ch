@@ -79,6 +79,9 @@ function getColor($colorName) {
 }
 
 function getChoices($choices) {
+	if(!is_array($choices))
+		return $choices;
+	
 	$choicesRes = array();
 	foreach($choices as $choice) {
 		if(!is_array($choice)) {

@@ -70,8 +70,8 @@ includeDependencies();
 		<?php if(isset($_COOKIE['indexAspect'])) {?>
 		function goToAspect(index) {
 			setCookie("indexAspect", index, <?= LIFE_COOKIE_QUEST_PENDING ?>);
-			alert("index="+index);
-			alert("indexAspect="+getCookie("indexAspect"));
+			//alert("index="+index);
+			//alert("indexAspect="+getCookie("indexAspect"));
 		}
 		
 		$('a#quit').click(function(e){
@@ -143,6 +143,22 @@ includeDependencies();
 				comment_input.show();
 			} else { 
 				comment_input.hide();
+			}
+		});
+		
+		$('select[multiple]').on('change', function(){
+			var otherSelected = false;
+			var vals = $(this).val();
+			if(Array.isArray(vals) && vals.length > 0) {
+				var elem = $(this).find('option[value="'+vals[vals.length-1]+'"]');
+				var parentNode = $(this).parent();
+				if(elem.attr("isOther") == "true") {
+					parentNode.find('small[id^="help_"]').hide();
+					parentNode.parent().find('textarea').show();
+				} else {
+					parentNode.find('small[id^="help_"]').show();
+					parentNode.parent().find('textarea').hide();
+				}
 			}
 		});
 		

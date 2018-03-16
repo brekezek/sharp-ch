@@ -23,5 +23,6 @@
 	"display_my_score":"Afficher mon score",
 	"quest_version_not_exist":"Cette version de questionnaire n'existe malheureusement pas!",
 	"error_restart_quest": "Une erreur s'est produite. Veuillez essayer de re-démarrer un nouveau questionnaire. ",
-	"alert_choose_quest_version":"Vous devez d'abord choisir la version du questionnaire avant de démarrer une nouvelle session."
+	"alert_choose_quest_version":"Vous devez d'abord choisir la version du questionnaire avant de démarrer une nouvelle session.",
+	"other_placeholder":"Précisions..."
 }
