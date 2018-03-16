@@ -1,7 +1,14 @@
 <?php 
 require_once('const.php');
 
-$json_lang = file_get_contents(getLanguageFile('fr'));
+$lang = "fr";
+if(isset($_COOKIE['lang'])) {
+	if(file_exists(DIR_STR."/lang.".$_COOKIE['lang'].".json")) {
+		$lang = $_COOKIE['lang'];
+	}
+}
+
+$json_lang = file_get_contents(getLanguageFile($lang));
 $t = json_decode($json_lang, true);
 
 function getLanguageFile($lang) {

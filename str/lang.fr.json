@@ -1,4 +1,10 @@
 {
+	"welcome_msg_h1":"Bienvenue sur SHARP",
+	"sharp_meaning":"Schéma Holistique pour l’Autoévaluation Paysanne de la Résilience climatique",
+	"msg1_welcome":"Cet outil est conçu pour remplir les questionnaires plus simplement et plus rapidement.",
+	"opt_alert_h6":"Application optimisée pour les tablettes et ordinateurs",
+	"opt_alert_content":"La dimension de votre appareil ne nous permettra pas de vous fournir une expérience agréable lorsque vous remplirez un questionnaire.",
+	"understood":"J'ai compris",
 	"choose_version": "Choisir une version",
 	"change_version": "Changer de version",
 	"save": "Enregistrer",
@@ -10,5 +16,12 @@
 	"new_questionnaire":"Nouveau questionnaire",
 	"quit_questionnaire":"Quitter le questionnaire",
 	"cookies_message":"Ce site utilise des cookies. Nous en avons besoin pour vous fournir la meilleure expérience possible. Nous ne traquons aucune données vous concernant.",
-	"help_multiple_multiple": "Pour sélectionner plusieurs options, maintenez la touche <kbd>ctrl</kbd> en sélectionnant"
+	"help_multiple_multiple": "Pour sélectionner plusieurs options, maintenez la touche <kbd>ctrl</kbd> tout en les sélectionnant",
+	"thank_you":"Merci",
+	"txt1_end_quest":"Félicitations et merci infiniment pour le temps que vous nous avez consacré pour remplir ce questionnaire",
+	"txt2_end_quest":"Vos réponses ont été analysées automatiquement et un score leur a été attribué.",
+	"display_my_score":"Afficher mon score",
+	"quest_version_not_exist":"Cette version de questionnaire n'existe malheureusement pas!",
+	"error_restart_quest": "Une erreur s'est produite. Veuillez essayer de re-démarrer un nouveau questionnaire. ",
+	"alert_choose_quest_version":"Vous devez d'abord choisir la version du questionnaire avant de démarrer une nouvelle session."
 }

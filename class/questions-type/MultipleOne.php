@@ -10,8 +10,7 @@ class MultipleOne extends Question {
 	
 	function draw() {
 		global $t;
-		$otherInputTag = "_OTHER_INPUT::";
-		
+
 		$html =
 		'<div class="form-group">'.
 			parent::getLabel().
@@ -37,7 +36,7 @@ class MultipleOne extends Question {
 				foreach($this->choices as $choice) {
 					$selected = "";
 					if(parent::getAnswer() == $choice) $selected = "selected";
-					$html .= '<option value="'.$choice.'" '.$selected.'>'.str_replace($otherInputTag, '', $choice).'</option>';
+					$html .= '<option value="'.$choice.'" '.$selected.'>'.str_replace(OTHER_INPUT_TAG, '', $choice).'</option>';
 				}
 				
 			$html .= '</select>';

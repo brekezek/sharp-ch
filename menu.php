@@ -47,7 +47,7 @@
 					echo '<h6 class="text-center">'.$lang.'</h6>';
 					foreach($versions as $v) {
 						$version = getVersionText($v); ?>
-						<a version="<?= $v['file'] ?>" class="dropdown-item <?php if(isset($_COOKIE['version']) && $_COOKIE['version'] == $v['file']) {?>active<?php } ?>" href="#">
+						<a version="<?= $v['file'] ?>" lang="<?= $lang ?>" class="dropdown-item <?php if(isset($_COOKIE['version']) && $_COOKIE['version'] == $v['file']) {?>active<?php } ?>" href="#">
 							<?= $version ?>
 						</a>
 						<?php

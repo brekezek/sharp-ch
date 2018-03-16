@@ -36,11 +36,11 @@ includeDependencies();
 	} else {?>
 		<div class="jumbotron">
 			<div class="container">
-			  <h1 class="display-4">Bienvenue sur SHARP!</h1>
-			  <p class="lead">Schéma Holistique pour l’Autoévaluation Paysanne de la Résilience climatique</p>
+			  <h1 class="display-4"><?= $t['welcome_msg_h1'] ?>!</h1>
+			  <p class="lead"><?= $t['sharp_meaning'] ?></p>
 			  <hr class="my-4">
-			  <p>Cet outil est conçu pour remplir les questionnaires plus simplement et plus rapidement.</p>
-			  <p><a class="btn btn-primary btn-lg start-new-quest d-none" href="#" role="button">Nouveau questionnaire »</a></p>
+			  <p><?= $t['msg1_welcome'] ?></p>
+			  <p><a class="btn btn-primary btn-lg start-new-quest d-none" href="#" role="button"><?= $t['new_questionnaire']?> »</a></p>
 			</div>
 		</div>
 	<?php 
@@ -191,15 +191,24 @@ includeDependencies();
 		} else {
 			$('#new-quest, .start-new-quest').removeClass("d-none");
 		}
+		
+		var userLang = navigator.language || navigator.userLanguage; 
+		if(userLang != "" && getCookie("lang") == "") {
+			setCookie("lang", userLang, <?= LIFE_COOKIE_VERSION ?>);
+		}
+		
 		$('#version.dropdown-menu .dropdown-item').click(function(){
 			setCookie("version", $(this).attr("version"), <?= LIFE_COOKIE_VERSION ?>);
+			setCookie("lang", $(this).attr("lang"), <?= LIFE_COOKIE_VERSION ?>);
+			
 			$('.dropdown-toggle#dropdown-version').text($(this).attr("version"));
 			$('#new-quest').removeClass("d-none");
 		});
+		
 		$('#new-quest, .start-new-quest').click(function(){
 			var version = getCookie("version");
 			if(version == "") {
-				alert("Tu dois d'abord choisir une version !");
+				alert("<?= $t['alert_choose_quest_version'] ?>");
 			} else {
 				
 				$.post('getUniqueName.php', {}, function(html){
@@ -280,11 +289,11 @@ includeDependencies();
 	
 	<div id="device-not-optimized" class="fixed-bottom w-100 mb-0 alert alert-warning justify-content-between align-items-end">
 		<div >
-			<h6>Application optimisée pour les tablettes et ordinateurs.</h6>
-			La dimension de votre appareil ne nous permettra pas de vous fournir une expérience agréable lorsque vous remplirez un questionnaire.
+			<h6><?= $t['opt_alert_h6']?>.</h6>
+			<?= $t['opt_alert_content']?>
 		</div>
 		<div>
-			<button class="btn btn-success btn-gradient btn-sm" id="unset-device-message">J'ai compris</button>
+			<button class="btn btn-success btn-gradient btn-sm" id="unset-device-message"><?= $t['understood']?></button>
 		</div>
 	</div>
 	

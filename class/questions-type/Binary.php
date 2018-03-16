@@ -29,9 +29,7 @@ class Binary extends Question {
 				
 				if(parent::getAnswer() == $choice) {
 					$checked = $tab;
-				} else {
-					if(parent::getAnswer() == "" && $i == 1) $checked = $tab;
-				}
+				} 
 				
 				$withComment = "";
 				if($this->hasComment) {
