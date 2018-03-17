@@ -13,6 +13,7 @@ class MultipleMultiple extends MultipleOne {
 	function draw() {
 		global $t;
 		
+		$html = "";
 		$otherExist = false;
 		$otherSelected = false;
 		
@@ -26,7 +27,7 @@ class MultipleMultiple extends MultipleOne {
 		}
 		
 		if($otherExist) {
-			$html = '<div class="form-group">';
+			$html .= '<div class="form-group">';
 		}
 		
 		$this->inputName = $this->inputName."[]";

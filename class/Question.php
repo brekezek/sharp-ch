@@ -17,6 +17,8 @@ abstract class Question implements iQuestion {
 	protected $placeholder;
 	protected $all_visible;
 	
+	protected $isInTable;
+	
 	function __construct($index, $json) {
 		$this->index = $index;
 		
@@ -28,7 +30,7 @@ abstract class Question implements iQuestion {
 		$this->all_visible = isset($json['all_visible']) ? $json['all_visible'] : true;
 		
 		$this->uid = $this->type."_".uniqid();
-		
+		$this->isInTable = false;
 	}
 	
 	public function setAspectId($id) {
@@ -64,16 +66,27 @@ abstract class Question implements iQuestion {
 	}
 	
 	protected function getLabel() {
+		if($this->isInTable) return "";
+		
 		$mandatoryStar = "";
 		if($this->isMandatory()) {
 			$mandatoryStar = '<span class="text-danger font-weight-bold">*</span>';
 		}
-		return
-		'<label
-			for="'.$this->uid.'"
-			class="w-100 p-2 rounded">
-				<b>'.$mandatoryStar.$this->index.'.</b> '.$this->title.'
-		</label>';
+		
+		if($this->type == "table") {
+			return '<b>'.$mandatoryStar.$this->index.'.</b> '.$this->title;
+		} else {
+			return 
+			'<label
+				for="'.$this->uid.'"
+				class="w-100 p-2 rounded">
+					<b>'.$mandatoryStar.$this->index.'.</b> '.$this->title.'
+			</label>';
+		}
+	}
+	
+	public function isInTable($bool) {
+		$this->isInTable = $bool;
 	}
 	
 	public function getAnswer() {

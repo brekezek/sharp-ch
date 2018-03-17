@@ -42,7 +42,7 @@ class QuestionFactory {
 			break;
 			
 			case "table":
-				return null;
+				return new Table($this->index, $this->json);
 			break;
 			
 		}
