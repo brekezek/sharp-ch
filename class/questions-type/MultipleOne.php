@@ -12,7 +12,7 @@ class MultipleOne extends Question {
 		global $t;
 			
 		$html =
-		'<div class="form-group">'.
+		parent::startWrapper().
 			parent::getLabel().
 			'<select 
 				 '.($this->isMultiple ? ' multiple size="'.(count($this->choices)).'" ' : "").'
@@ -64,7 +64,7 @@ class MultipleOne extends Question {
 				'</small>';
 			}
 			
-		$html .= '</div>';
+		$html .= parent::endWrapper();
 		return $html;
 	}
 	

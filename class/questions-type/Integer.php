@@ -8,7 +8,7 @@ class Integer extends Question {
 	function draw() {
 		global $t;
 		return
-		'<div class="form-group">'.
+		parent::startWrapper().
 			parent::getLabel().
 			'<input 
 				 type="number" 
@@ -20,7 +20,7 @@ class Integer extends Question {
 				 style="max-height:110px; min-height:40px; height:40px"
 				 value="'.parent::getAnswer().'"
 				 '.(parent::isMandatory() ? "required" : "").'>'.
-		'</div>';
+		parent::endWrapper();
 	}
 	
 }

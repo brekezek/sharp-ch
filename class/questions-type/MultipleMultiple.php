@@ -27,7 +27,7 @@ class MultipleMultiple extends MultipleOne {
 		}
 		
 		if($otherExist) {
-			$html .= '<div class="form-group">';
+		    $html .= parent::startWrapper();
 		}
 		
 		$this->inputName = $this->inputName."[]";
@@ -47,7 +47,7 @@ class MultipleMultiple extends MultipleOne {
 						 >'.$this->comment.'</textarea>';
 						 
 						 
-			$html .= '</div>';
+			$html .= parent::endWrapper();
 		}
 		
 		return $html;

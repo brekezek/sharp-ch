@@ -72,10 +72,11 @@ class QuestionnaireManager {
 	
 	public function collectAnswers() {
 		if(isset($_POST['answers'])) {
-			
-			//echo '<pre>';
-			//print_r($_POST['answers']);
-			
+			/*
+			echo '<pre>';
+			print_r($_POST['answers']);
+			echo '</pre>';
+			*/
 			$filepath = DIR_ANSWERS."/".$this->filename;
 			
 			if(file_exists($filepath)) {

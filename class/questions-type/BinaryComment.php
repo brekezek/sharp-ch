@@ -11,7 +11,7 @@ class BinaryComment extends Binary {
 	function draw() {
 		global $t;
 
-		$html = '<div class="form-group">';
+		$html = parent::startWrapper();
 		$html .= parent::draw();
 		
 		$this->fetchJSON();
@@ -26,7 +26,7 @@ class BinaryComment extends Binary {
 				 style="max-height:110px; min-height:40px; height:40px; '.($displayed ? "" : "display:none").'" 
 				 '.(parent::isMandatory() ? "required" : "").'>'.$this->comment.'</textarea>';
 				 
-		$html .= '</div>';
+		$html .= parent::endWrapper();
 		
 		return $html;
 	}

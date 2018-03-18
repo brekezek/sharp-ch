@@ -7,7 +7,7 @@ class Text extends Question {
 	
 	function draw() {
 		return
-		'<div class="form-group">'.
+		parent::startWrapper().
 			parent::getLabel().
 			'<textarea 
 				 name="'.$this->inputName.'" 
@@ -16,7 +16,7 @@ class Text extends Question {
 				 class="form-control w-100 rounded" 
 				 style="max-height:110px; min-height:40px; height:40px" 
 				 '.(parent::isMandatory() ? "required" : "").'>'.parent::getAnswer().'</textarea>'.
-		'</div>';
+		parent::endWrapper();
 	}
 	
 }

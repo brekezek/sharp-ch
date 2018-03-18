@@ -35,7 +35,11 @@ abstract class Question implements iQuestion {
 	
 	public function setAspectId($id) {
 		$this->aspectId = $id;
-		$this->inputName = "answers[".$this->aspectId."][".$this->index."][answer]";
+		
+		$this->inputName = "answers[".$this->aspectId."][".$this->index."]";
+		if(!$this->isInTable) {
+		  $this->inputName .= "[answer]";
+		}
 	}
 	
 	public function setColor($color) {
@@ -98,6 +102,14 @@ abstract class Question implements iQuestion {
 			}
 		}
 		return "";
+	}
+	
+	protected function startWrapper() {
+	    return $this->isInTable ? '' : '<div class="form-group">';
+	}
+	
+	protected function endWrapper() {
+	    return $this->isInTable ? '' : '</div>';
 	}
 	
 }

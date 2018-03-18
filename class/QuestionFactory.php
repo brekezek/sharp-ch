@@ -4,11 +4,17 @@ class QuestionFactory {
 	private $type;
 	private $index;
 	private $json;
+	private $isInTable;
 	
 	public function __construct($index, $json) {
 		$this->type = $json['question-type'];
 		$this->index = $index;
 		$this->json = $json;
+		$this->isInTable = false;
+	}
+	
+	public function isInTable($isInTable) {
+		$this->isInTable = $isInTable;
 	}
 	
 	public function getQuestion() {
@@ -23,7 +29,7 @@ class QuestionFactory {
 			break;
 			
 			case "multiple_one_solution":
-				if(count($this->json['choices']) == 3)
+				if(count($this->json['choices']) == 3 && !$this->isInTable)
 					return new Binary($this->index, $this->json);
 				else 
 					return new MultipleOne($this->index, $this->json);
@@ -45,6 +51,13 @@ class QuestionFactory {
 				return new Table($this->index, $this->json);
 			break;
 			
+			case "toggle":
+				return new Checkbox($this->index, $this->json);
+			break;
+			
+			case "toggle_one":
+				return null; //new Radio($this->index, $this->json);
+			break;
 		}
 	}
 }

@@ -161,6 +161,27 @@ includeDependencies();
 				}
 			}
 		});
+
+
+		$('table:not([data-type="toggle"]) tbody td[data-type="toggle"]').click(function(e){
+			if(!$(e.target).is('label')) {
+    			var elem = $(this).find('label[type="checkbox"]');
+    			elem.trigger("click");
+			}
+		});
+		$('table[data-type="toggle"] tbody tr').click(function(e){
+			if(!$(e.target).is('label')) {
+    			var elem = $(this).find('label[type="checkbox"]');
+    			elem.trigger("click");
+			}
+		});
+
+		$('table input[type="checkbox"]').on("change", function(){
+			var elem = $(this).parent().find('input[name="'+$(this).attr("trigger")+'"][type="hidden"]');
+			if(elem.val() == "0") elem.val("1");
+			else elem.val("0");
+		});
+
 		
 		<?php } else { ?>
 		if(getCookie("version") == "") {

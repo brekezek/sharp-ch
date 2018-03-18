@@ -50,6 +50,9 @@
 }
 .cat-border-orange { border: 1px solid rgb(230, 126, 34); }
 
+.custom-control-label[type="checkbox"]::before {
+	background-color: #6b757d;
+}
 
 #aspects {
 	display:none;

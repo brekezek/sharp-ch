@@ -16,7 +16,7 @@ class Binary extends Question {
 		$html = "";
 		
 		if(!$this->hasComment)
-			$html .= '<div class="form-group">';
+			$html .= parent::startWrapper();
 		
 		$html .= parent::getLabel().
 			'<div class="btn-group btn-group-toggle" data-toggle="buttons">';
@@ -56,7 +56,7 @@ class Binary extends Question {
 		$html .= '</div>';
 		
 		if(!$this->hasComment)
-			$html .= '</div>';
+			$html .= parent::endWrapper();
 		
 		return $html;
 	}
