@@ -25,6 +25,7 @@ class MultipleMultiple extends MultipleOne {
 				$otherExist = true;
 			}
 		}
+		parent::otherExists($otherExist);
 		
 		if($otherExist) {
 		    $html .= parent::startWrapper();

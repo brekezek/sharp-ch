@@ -2,10 +2,12 @@
 class MultipleOne extends Question {
 	protected $choices;
 	protected $isMultiple;
+	protected $otherExists;
 	
 	function __construct($index, $json) {
 		parent::__construct($index, $json);
 		$this->choices = getChoices($json['choices']);
+		$this->otherExists = false;
 	}
 	
 	function draw() {
@@ -19,6 +21,7 @@ class MultipleOne extends Question {
 				 name="'.$this->inputName.'" 
 				 id="'.$this->uid.'"  
 				 class="form-control w-100 rounded"
+                '.($this->otherExists ? 'other-exist="1"' : '').'
 				 aria-describedby="help_'.$this->uid.'"
 				 '.(parent::isMandatory() ? "required" : "").'>';
 		
@@ -70,6 +73,10 @@ class MultipleOne extends Question {
 	
 	protected function isMultiple($bool) {
 		$this->isMultiple = $bool;
+	}
+	
+	protected function otherExists($bool) {
+	    $this->otherExists = $bool;
 	}
 	
 }

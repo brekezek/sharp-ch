@@ -29,7 +29,11 @@ class QuestionFactory {
 			break;
 			
 			case "multiple_one_solution":
-				if(count($this->json['choices']) == 3 && !$this->isInTable)
+			    $sumLetters = 0;
+			    foreach(getChoices($this->json['choices']) as $choice) {
+			        $sumLetters += strlen($choice);
+			    }
+				if(count($this->json['choices']) == 3 && $sumLetters < 135 && !$this->isInTable)
 					return new Binary($this->index, $this->json);
 				else 
 					return new MultipleOne($this->index, $this->json);

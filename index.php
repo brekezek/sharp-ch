@@ -146,7 +146,7 @@ includeDependencies();
 			}
 		});
 		
-		$('select[multiple]').on('change', function(){
+		$('select[multiple][other-exist]').on('change', function(){
 			var otherSelected = false;
 			var vals = $(this).val();
 			if(Array.isArray(vals) && vals.length > 0) {
