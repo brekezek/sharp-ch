@@ -73,7 +73,13 @@ class Table extends Question {
 							if(isset($this->jsonAnswer[$indexRow]) && isset($this->jsonAnswer[$indexRow][$indexCol])) {
 							    $questionObj->setJSONAnswer($this->jsonAnswer[$indexRow][$indexCol]);
 							} 
-							$questionObj->inputName .= "[".$indexRow."][".$indexCol."][answer]";
+							
+							if($json['question-type'] == "toggle_one") {
+							    $questionObj->inputName .= "[".$indexCol."][answer]";
+							    $questionObj->setValue("answers[".$this->aspectId."][".$this->index."][".$indexRow."][".$indexCol."][answer]");
+							} else {
+							     $questionObj->inputName .= "[".$indexRow."][".$indexCol."][answer]";
+							}
 						}
 						$html .= '<td data-type="'.$json['question-type'].'" class="align-middle text-center border-right">'.($questionObj == null ? "" : $questionObj->draw()).'</td>';
 					}
@@ -81,8 +87,9 @@ class Table extends Question {
 			    ++$indexRow;
 		  } 
 			
-		  $html .= '</tbody>'.
-		'</table>';
+		 $html .= '</tbody>'.
+		 '</table>';
+		 
 			
 		$html .= '</div>';
 		return $html;

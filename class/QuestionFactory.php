@@ -56,7 +56,7 @@ class QuestionFactory {
 			break;
 			
 			case "toggle_one":
-				return null; //new Radio($this->index, $this->json);
+				return new Radio($this->index, $this->json);
 			break;
 		}
 	}

@@ -162,7 +162,7 @@ includeDependencies();
 			}
 		});
 
-
+		// Checkboxes ----------------------------
 		$('table:not([data-type="toggle"]) tbody td[data-type="toggle"]').click(function(e){
 			if(!$(e.target).is('label')) {
     			var elem = $(this).find('label[type="checkbox"]');
@@ -175,11 +175,24 @@ includeDependencies();
     			elem.trigger("click");
 			}
 		});
-
 		$('table input[type="checkbox"]').on("change", function(){
 			var elem = $(this).parent().find('input[name="'+$(this).attr("trigger")+'"][type="hidden"]');
 			if(elem.val() == "0") elem.val("1");
 			else elem.val("0");
+		});
+
+		// Radio buttons ---------------------------
+		$('table input[type="radio"]').on("change", function(){
+			$('input[radio-group="'+$(this).attr("name").replace('radio_', '')+'"][type="hidden"]').val("");
+			
+			var elem = $(this).parent().find('input[name="'+$(this).attr("value")+'"][type="hidden"]');
+			if($(this).is(":checked")) elem.val("1");
+		});
+		$('table:not([data-type="toggle_one"]) tbody td[data-type="toggle_one"]').click(function(e){
+			if(!$(e.target).is('label')) {
+    			var elem = $(this).find('label[type="radio"]');
+    			elem.trigger("click");
+			}
 		});
 
 		
@@ -230,7 +243,7 @@ includeDependencies();
 						setCookie("indexAspect", "1", <?= LIFE_COOKIE_QUEST_PENDING ?>);
 						document.location = '?start';
 					} else {
-						alert("erreur");
+						alert("Erreur : le nom de fichier unique n'a pas pu être distribué. Réessayez et si le problème persiste, veuillez nous le signaler.");
 					}
 					
 				});
