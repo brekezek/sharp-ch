@@ -195,6 +195,13 @@ includeDependencies();
 			}
 		});
 
+		// Tables "other" fields
+		/*
+		$('table tbody tr[other] td').on('click', function(){
+			var row = $(this).parent().parent().parent("table").find('tr[other-field]');
+			row.show();
+		});
+		*/
 		
 		<?php } else { ?>
 		if(getCookie("version") == "") {

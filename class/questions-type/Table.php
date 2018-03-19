@@ -12,7 +12,7 @@ class Table extends Question {
 		
 		$this->equivQuestionType = array(
 			"binary" => "binary_answer",
-			"toggle" => "toggle", // Une case Ã  cocher
+			"toggle" => "toggle", // Une case a  cocher
 			"toggle_exactly_one" => "toggle_one", // un groupe bouton radio, un seul choix possible dans la colonne
 			"integer" => "integer_answer",
 			"text" => "text_answer",
@@ -42,7 +42,7 @@ class Table extends Question {
 			<tr>
 				<th scope="col" class="align-middle border-right border-top-0">'.parent::getLabel().'</th>';
 				foreach($this->columns as $col) {
-					$html .= '<th scope="col" class="text-center align-middle border-right border-top-0">'.$col['title'].'</th>';
+					$html .= '<th scope="col" class="text-center align-middle border-right border-top">'.$col['title'].'</th>';
 				}
 			$html.=
 			'</tr>
@@ -51,9 +51,14 @@ class Table extends Question {
 			
 		  $indexRow = 0;
 		  foreach($this->rows as $row) {
+		        $row_brut = $row;
 				$row = str_replace(OTHER_INPUT_TAG, '', $row);
-				$html .= '<tr>';
-					$html .= '<td class="align-middle border-right">'.$row.'</td>';
+				$isOther = strpos($row_brut, OTHER_INPUT_TAG) !== false;
+				
+				$html .= '<tr '.($isOther ? "other" : "").'>';
+				
+					$html .= '<td class="align-middle border-right '.($isOther ? "border-bottom" : "").'">'.$row.'</td>';
+					
 					foreach($this->columns as $indexCol => $col) {
 						$json = $col;
 						$json['question-type'] = $this->equivQuestionType[$col['type']];
@@ -81,9 +86,40 @@ class Table extends Question {
 							     $questionObj->inputName .= "[".$indexRow."][".$indexCol."][answer]";
 							}
 						}
-						$html .= '<td data-type="'.$json['question-type'].'" class="align-middle text-center border-right">'.($questionObj == null ? "" : $questionObj->draw()).'</td>';
+						$html .=
+						'<td data-type="'.$json['question-type'].'" class="align-middle text-center border-right '.($isOther ? "border-bottom" : "").'">'.
+						  ($questionObj == null ? "" : $questionObj->draw()).
+						'</td>';
 					}
 				$html .= '</tr>';
+				
+				// Other exists
+				if($isOther) {
+				    $otherFilled = false;
+				    if(isset($this->jsonAnswer[$indexRow])) {
+    				    foreach($this->jsonAnswer[$indexRow] as $rowAnswer) {
+    				        if(isset($rowAnswer['answer'])) {
+    				            if(trim($rowAnswer['answer']) != "" && $rowAnswer['answer'] != "0") {
+    				                $otherFilled = true;
+    				                break;
+    				            }
+    				        }
+    				    }
+				    }
+				    
+				    $comment = isset($this->jsonAnswer[$indexRow]['comment']) ? trim($this->jsonAnswer[$indexRow]['comment']) : "";
+				    $inputName = "answers[".$this->aspectId."][".$this->index."][".$indexRow."][comment]";
+				    $displayed = true; //$otherFilled === true || ($comment != "");
+				    
+				    $html .=
+                    '<tr other-field style="background:'.(($indexRow % 2 == 0) ? "rgba(0,0,0,.05)" : "transparent").';">'.
+				        '<td class="border border-left-0" colspan="'.(count($this->columns)+1).'">'.
+				        '<input class="form-control w-100 rounded" name="'.$inputName.'" id="'."text_".uniqid().'" 
+						      placeholder="'.$t['other_placeholder'].'" type="text" value="'.$comment.'">'.
+				        '</td>'.
+				    '</tr>';
+				}
+				
 			    ++$indexRow;
 		  } 
 			
