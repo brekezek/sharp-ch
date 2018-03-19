@@ -265,7 +265,7 @@ includeDependencies();
 			}
 			
 			setCookie("version", $(this).attr("version"), <?= LIFE_COOKIE_VERSION ?>);
-			setCookie("lang", $(this).attr("lang"), <?= LIFE_COOKIE_VERSION ?>);
+			setCookie("lang", $(this).attr("lang").toLowerCase(), <?= LIFE_COOKIE_VERSION ?>);
 
 			$(this).parent().find(".active").removeClass("active");
 			$(this).addClass("active");
