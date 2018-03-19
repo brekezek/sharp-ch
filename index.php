@@ -31,19 +31,23 @@ includeDependencies();
 	
 	<div id="content" class="position-relative" style="margin-top: 56px;">
 	<?php
-	if(isset($_COOKIE['indexAspect'])) {
-		include_once('questionnaire.php');
-	} else {?>
-		<div class="jumbotron">
-			<div class="container">
-			  <h1 class="display-4"><?= $t['welcome_msg_h1'] ?>!</h1>
-			  <p class="lead"><?= $t['sharp_meaning'] ?></p>
-			  <hr class="my-4">
-			  <p><?= $t['msg1_welcome'] ?></p>
-			  <p><a class="btn btn-primary btn-lg start-new-quest d-none" href="#" role="button"><?= $t['new_questionnaire']?> »</a></p>
-			</div>
-		</div>
-	<?php 
+	if(isset($_GET['admin'])) {
+	    include_once('pages/list-all-quest.php');
+	} else {
+    	if(isset($_COOKIE['indexAspect'])) {
+    		include_once('questionnaire.php');
+    	} else {?>
+    		<div class="jumbotron">
+    			<div class="container">
+    			  <h1 class="display-4"><?= $t['welcome_msg_h1'] ?>!</h1>
+    			  <p class="lead"><?= $t['sharp_meaning'] ?></p>
+    			  <hr class="my-4">
+    			  <p><?= $t['msg1_welcome'] ?></p>
+    			  <p><a class="btn btn-primary btn-lg start-new-quest d-none" href="#" role="button"><?= $t['new_questionnaire']?> »</a></p>
+    			</div>
+    		</div>
+    	<?php 
+    	}
 	}
 	?>
 	</div>
@@ -53,6 +57,35 @@ includeDependencies();
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="js/cookie.js"></script>
+	
+	<?php if(isset($_GET['admin'])) {?>
+    	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script  src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdn.datatables.net/fixedheader/3.1.3/js/dataTables.fixedHeader.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+        
+        <script>
+        	$(document).ready(function() {
+        		$('#repondants').dataTable( {
+        			"pagingType": "full_numbers",
+        			fixedHeader: true
+        		});
+        		
+        		<?php if(isset($_GET['display'])) { ?>
+        			var display = "<?php echo $_GET['display']; ?>".replace("?display=", "");
+        			$.post('displayQuestionnaire.php', {id:display}, function(html){
+        				$('body').css("overflow-x","hidden");
+        				$('#modal .content').html(html);
+        				$('#modal').css("display","block");
+        			});
+        		
+        			$('#modal .top').click(function(){
+        				document.location.href="?";
+        			});
+        		<?php } ?>
+        	});
+        </script>
+    <?php }?>
 	
 	<script>
 	$(function(){
