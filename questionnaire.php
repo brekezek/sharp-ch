@@ -35,7 +35,9 @@ if(isset($_COOKIE['version'])) {
 				
 				
 				<div class="container-fluid bg-white w-75 fixed-top p-3 border-left" id="aspects">
-					<?php $questManager->drawThumbnails(); ?>
+					<div class="aspect-container">
+						<?php $questManager->drawThumbnails(); ?>
+					</div>
 				</div>
 				
 				

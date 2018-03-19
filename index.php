@@ -104,7 +104,7 @@ includeDependencies();
 		});
 	
 		function resizeAspectPanel() {
-			var screenH = $(document).outerHeight(true) - $('nav').outerHeight(true);
+			var screenH = $(window).height() - $('nav').outerHeight(true);
 			$('#aspects').css({height: screenH+"px"});
 		}
 		
@@ -117,7 +117,7 @@ includeDependencies();
 				$('#aspects .card:not(.cat-active)').unbind('click');
 			} else {
 				$("body").css("overflow-y","hidden");
-				$('#aspects').css({display:"flex", overflowY:"auto"}).animate({right:0, opacity:1 }, 500, function(){
+				$('#aspects').css({display:"block"}).animate({right:0, opacity:1 }, 500, function(){
 					if($('#aspects').scrollTop() == 0) {
 						$('#aspects').animate({scrollTop: $("#aspects .card.cat-active").offset().top + 8 - ($("#aspects .card.cat-active").height()/2) }, 600);
 					}
@@ -209,7 +209,7 @@ includeDependencies();
 		$('table tr td[trigger-display]').find('input:not([type="text"]), select').on('change', function(){
 			displayRowCells($(this));
 		});
-		$('table tr td[trigger-display]').find('textarea, input[type="text"]').on('keyup', function(){
+		$('table tr td[trigger-display]').find('textarea, input[type="text"], input[type="number"]').on('keyup', function(){
 			displayRowCells($(this));
 		});
 
@@ -227,9 +227,9 @@ includeDependencies();
 			var elems = $('table tr[indexRow="'+elm.parents("td[trigger-display]").attr("trigger-display")+'"] td:not([trigger-display]) span.display-manager');
 
 			if(display)
-				elems.show();
+				elems.slideDown(450);
 			else
-				elems.hide();
+				elems.slideUp(450);
 		}
 		
 		<?php } else { ?>

@@ -56,18 +56,22 @@
 }
 
 #aspects {
-	display:none;
+	display: none;
+	margin-top: 56px;
+	box-sizing: border-box;
+	overflow-y: scroll;
+	z-index:1072;
+	left:auto;
+	opacity:0; 
+	right: -80%;
+	width: 80%!important;
+}
+#aspects .aspect-container {
+	display: flex;
 	align-items: stretch;
 	justify-content: flex-start;
 	flex-wrap: wrap;
-	margin-top: 56px;
 	box-sizing: border-box;
-	overflow-y: auto;
-	z-index:1072;
-	opacity:0;
-	left:auto;
-	right: -80%;
-	width: 80%!important;
 }
 #aspects [class*="cat-"] {
 	cursor: default;

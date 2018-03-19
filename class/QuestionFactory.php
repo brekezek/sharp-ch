@@ -33,7 +33,9 @@ class QuestionFactory {
 			    foreach(getChoices($this->json['choices']) as $choice) {
 			        $sumLetters += strlen($choice);
 			    }
-				if(count($this->json['choices']) == 3 && $sumLetters < 135 && !$this->isInTable)
+			    $nbChoices = count($this->json['choices']);
+			    
+			    if( ($nbChoices == 2 && $sumLetters <= 20) || ($nbChoices == 3 && $sumLetters < 135 && !$this->isInTable) )
 					return new Binary($this->index, $this->json);
 				else 
 					return new MultipleOne($this->index, $this->json);

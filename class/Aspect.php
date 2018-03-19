@@ -79,7 +79,7 @@ class Aspect {
 	
 	public function drawThumbnail() {
 		$html = '
-		<div data-index="'.$this->index.'" class="card text-center rounded m-2 cat-hover cat-border-'.$this->color->getColorName().' '.($this->index == $this->currentIndex ? "cat-active" : "").'" style="width: 12.7%; max-width: 160px; min-width:140px;">
+		<div data-index="'.$this->index.'" class="card text-center rounded m-2 cat-hover cat-border-'.$this->color->getColorName().' '.($this->index == $this->currentIndex ? "cat-active" : "").'" style="width: 12.7%; max-width: 160px; min-width:140px; max-height: 180px">
 		  <div class="card-header p-1 '.$this->color->getClass().'">
 			'.$this->index.'
 		  </div>

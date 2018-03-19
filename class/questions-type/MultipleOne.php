@@ -60,7 +60,7 @@ class MultipleOne extends Question {
 				
 			$html .= '</select>';
 			
-			if($this->isMultiple) {
+			if($this->isMultiple && !$this->isInTable) {
 				$html .=
 				'<small id="help_'.$this->uid.'" class="form-text text-muted text-center pc_only" '.($otherSelected ? 'style="display:none"' : "").'>'.
 					$t['help_multiple_multiple'].
