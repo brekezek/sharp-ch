@@ -88,8 +88,11 @@
 	display: none;
 }
 
+.min-width-multiselect { min-width: 508px; }
+
 @media (pointer:coarse) { 
 	.pc_only { display:none!important; }
+	.min-width-multiselect { min-width: 165px; }
 }
 
 @media (max-width: 767.98px) {

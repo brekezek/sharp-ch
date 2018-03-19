@@ -25,10 +25,9 @@ class MultipleOne extends Question {
 			parent::getLabel().
 			'<select 
 				 '.($this->isMultiple ? ' multiple size="'.(count($this->choices)).'" ' : "").
-                 ($this->isMultiple && $this->isInTable && $this->maxChoiceSize > 50 ? 'style="min-width: '.(7.8*$this->maxChoiceSize).'px"' : '').
 				 'name="'.$this->inputName.'" 
 				 id="'.$this->uid.'"  
-				 class="form-control w-100 rounded"
+				 class="form-control w-100 rounded '.($this->isMultiple && $this->isInTable && $this->maxChoiceSize > 58 ? 'min-width-multiselect' : '').'"
                 '.($this->otherExists ? 'other-exist="1"' : '').'
 				 aria-describedby="help_'.$this->uid.'"
 				 '.(parent::isMandatory() ? "required" : "").'>';
