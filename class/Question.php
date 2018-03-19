@@ -27,7 +27,7 @@ abstract class Question implements iQuestion {
 		$this->mandatory = isset($json['mandatory']) ? $json['mandatory'] : false;
 		$this->hidden = isset($json['hidden']) ? $json['hidden'] : false;
 		$this->placeholder = isset($json['placeholder']) ? $json['placeholder'] : "";
-		$this->all_visible = isset($json['all_visible']) ? $json['all_visible'] : true;
+		$this->all_visible = isset($json['all_visible']) ? $json['all_visible'] : false;
 		
 		$this->uid = $this->type."_".uniqid();
 		$this->isInTable = false;

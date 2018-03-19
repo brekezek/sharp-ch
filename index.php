@@ -165,8 +165,10 @@ includeDependencies();
 		// Checkboxes ----------------------------
 		$('table:not([data-type="toggle"]) tbody td[data-type="toggle"]').click(function(e){
 			if(!$(e.target).is('label')) {
-    			var elem = $(this).find('label[type="checkbox"]');
-    			elem.trigger("click");
+				if($(this).find("span.display-manager").css("display") != "none") {
+        			var elem = $(this).find('label[type="checkbox"]');
+        			elem.trigger("click");
+				}
 			}
 		});
 		$('table[data-type="toggle"] tbody tr').click(function(e){
@@ -190,8 +192,10 @@ includeDependencies();
 		});
 		$('table:not([data-type="toggle_one"]) tbody td[data-type="toggle_one"]').click(function(e){
 			if(!$(e.target).is('label')) {
-    			var elem = $(this).find('label[type="radio"]');
-    			elem.trigger("click");
+				if($(this).find("span.display-manager").css("display") != "none") {
+        			var elem = $(this).find('label[type="radio"]');
+        			elem.trigger("click");
+				}
 			}
 		});
 
@@ -202,6 +206,31 @@ includeDependencies();
 			row.show();
 		});
 		*/
+		$('table tr td[trigger-display]').find('input:not([type="text"]), select').on('change', function(){
+			displayRowCells($(this));
+		});
+		$('table tr td[trigger-display]').find('textarea, input[type="text"]').on('keyup', function(){
+			displayRowCells($(this));
+		});
+
+		function displayRowCells(elm) {
+			var display = true;
+			var type = elm.attr('type');
+			var tagname = elm.prop("tagName");
+			
+			if(type == "checkbox") {
+				display = elm.is(":checked"); 
+			} else if(tagname == "TEXTAREA" || type == "number" || type == "text" || tagname == "SELECT") {
+				display = elm.val().trim() != "";
+			} 
+
+			var elems = $('table tr[indexRow="'+elm.parents("td[trigger-display]").attr("trigger-display")+'"] td:not([trigger-display]) span.display-manager');
+
+			if(display)
+				elems.show();
+			else
+				elems.hide();
+		}
 		
 		<?php } else { ?>
 		if(getCookie("version") == "") {
@@ -253,7 +282,7 @@ includeDependencies();
 						setCookie("indexAspect", "1", <?= LIFE_COOKIE_QUEST_PENDING ?>);
 						document.location = '?start';
 					} else {
-						alert("Erreur : le nom de fichier unique n'a pas pu être distribué. Réessayez et si le problème persiste, veuillez nous le signaler.");
+						alert("Erreur : le nom de fichier unique n'a pas pu ï¿½tre distribuï¿½. Rï¿½essayez et si le problï¿½me persiste, veuillez nous le signaler.");
 					}
 					
 				});

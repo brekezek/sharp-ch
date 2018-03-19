@@ -12,7 +12,7 @@ class Table extends Question {
 		
 		$this->equivQuestionType = array(
 			"binary" => "binary_answer",
-			"toggle" => "toggle", // Une case a  cocher
+			"toggle" => "toggle", // Une case aï¿½ cocher
 			"toggle_exactly_one" => "toggle_one", // un groupe bouton radio, un seul choix possible dans la colonne
 			"integer" => "integer_answer",
 			"text" => "text_answer",
@@ -55,7 +55,7 @@ class Table extends Question {
 				$row = str_replace(OTHER_INPUT_TAG, '', $row);
 				$isOther = strpos($row_brut, OTHER_INPUT_TAG) !== false;
 				
-				$html .= '<tr '.($isOther ? "other" : "").'>';
+				$html .= '<tr '.($isOther ? "other" : "").' indexRow="'.$this->uid."_".$indexRow.'">';
 				
 					$html .= '<td class="align-middle border-right '.($isOther ? "border-bottom" : "").'">'.$row.'</td>';
 					
@@ -67,6 +67,9 @@ class Table extends Question {
 							$json['choices'] = array($t['yes'], $t['no']);
 						}
 						
+						$displayCell = $this->all_visible || count($this->columns) == 1 || $indexCol == 0;
+						$triggerDisplay = !$this->all_visible && $indexCol == 0 && count($this->columns) > 1;
+						
 						$questFactory = new QuestionFactory($this->index, $json);
 						$questFactory->isInTable(true);
 						$questionObj = $questFactory->getQuestion();
@@ -75,9 +78,18 @@ class Table extends Question {
 							$questionObj->isInTable(true);
 							$questionObj->setAspectId($this->aspectId);
 							
-							if(isset($this->jsonAnswer[$indexRow]) && isset($this->jsonAnswer[$indexRow][$indexCol])) {
-							    $questionObj->setJSONAnswer($this->jsonAnswer[$indexRow][$indexCol]);
+							if(isset($this->jsonAnswer[$indexRow])) {    
+							    if(isset($this->jsonAnswer[$indexRow][$indexCol])) {
+							       $questionObj->setJSONAnswer($this->jsonAnswer[$indexRow][$indexCol]);
+							    }
 							} 
+							
+							if(!$displayCell) {
+							    if(isset($this->jsonAnswer[$indexRow][0]['answer'])) {
+							        $firstColAnswer = $this->jsonAnswer[$indexRow][0]['answer'];
+							        $displayCell = (trim($firstColAnswer) != "" && $firstColAnswer != "0");
+							    }
+							}
 							
 							if($json['question-type'] == "toggle_one") {
 							    $questionObj->inputName .= "[".$indexCol."][answer]";
@@ -86,15 +98,20 @@ class Table extends Question {
 							     $questionObj->inputName .= "[".$indexRow."][".$indexCol."][answer]";
 							}
 						}
+						
+						
 						$html .=
-						'<td data-type="'.$json['question-type'].'" class="align-middle text-center border-right '.($isOther ? "border-bottom" : "").'">'.
-						  ($questionObj == null ? "" : $questionObj->draw()).
+						'<td '.($triggerDisplay ? 'trigger-display="'.$this->uid."_".$indexRow.'"' : "").' data-type="'.$json['question-type'].'" class="align-middle text-center border-right '.($isOther ? "border-bottom" : "").'">'.
+						  '<span class="display-manager" style="'.($displayCell ? "" : "display:none").'">'.
+						      ($questionObj == null ? "" : $questionObj->draw()).
+						  '</span>'.
 						'</td>';
 					}
 				$html .= '</tr>';
 				
 				// Other exists
 				if($isOther) {
+				    /*
 				    $otherFilled = false;
 				    if(isset($this->jsonAnswer[$indexRow])) {
     				    foreach($this->jsonAnswer[$indexRow] as $rowAnswer) {
@@ -105,11 +122,11 @@ class Table extends Question {
     				            }
     				        }
     				    }
-				    }
+				    }*/
 				    
 				    $comment = isset($this->jsonAnswer[$indexRow]['comment']) ? trim($this->jsonAnswer[$indexRow]['comment']) : "";
 				    $inputName = "answers[".$this->aspectId."][".$this->index."][".$indexRow."][comment]";
-				    $displayed = true; //$otherFilled === true || ($comment != "");
+				    //$displayed = true; //$otherFilled === true || ($comment != "");
 				    
 				    $html .=
                     '<tr other-field style="background:'.(($indexRow % 2 == 0) ? "rgba(0,0,0,.05)" : "transparent").';">'.
