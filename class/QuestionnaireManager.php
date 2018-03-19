@@ -93,8 +93,12 @@ class QuestionnaireManager {
 				}
 			} else {
 				$handle = fopen($filepath, "w");
-				$_POST['answers']['filename'] = $this->filename;
-				$_POST['answers']['version'] = $this->version;
+				$_POST['answers']['meta'] = array(
+				    'filename'      =>  $this->filename,
+    				'version'       =>  $this->version,
+    				'creation-date' =>  time(),
+    				'client-ip'     =>  getClientIP()
+				);
 				$toEncode = $_POST['answers'];
 			}
 			

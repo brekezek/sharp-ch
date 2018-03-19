@@ -87,7 +87,7 @@ class Table extends Question {
 							if(!$displayCell) {
 							    if(isset($this->jsonAnswer[$indexRow][0]['answer'])) {
 							        $firstColAnswer = $this->jsonAnswer[$indexRow][0]['answer'];
-							        $displayCell = (trim($firstColAnswer) != "" && $firstColAnswer != "0");
+							        $displayCell = (trim($firstColAnswer) != "" && trim($firstColAnswer) != "0");
 							    }
 							}
 							

@@ -34,5 +34,6 @@
 		}
 	],
 	"hidden":false,
-	"mandatory":"true"
+	"mandatory":"true",
+	"all_visible":true
 }

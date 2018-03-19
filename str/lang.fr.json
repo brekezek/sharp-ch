@@ -26,5 +26,6 @@
 	"alert_choose_quest_version":"Vous devez d'abord choisir la version du questionnaire avant de démarrer une nouvelle session.",
 	"other_placeholder":"Précisions...",
 	"yes":"Oui",
-	"no":"Non"
+	"no":"Non",
+	"active":"Actif"
 }

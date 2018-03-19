@@ -259,6 +259,11 @@ includeDependencies();
 		}
 		
 		$('#version.dropdown-menu .dropdown-item').click(function(){
+			var previousLang = "";
+			if(getCookie("lang") != "") {
+				previousLang = getCookie("lang");
+			}
+			
 			setCookie("version", $(this).attr("version"), <?= LIFE_COOKIE_VERSION ?>);
 			setCookie("lang", $(this).attr("lang"), <?= LIFE_COOKIE_VERSION ?>);
 
@@ -267,6 +272,10 @@ includeDependencies();
 
 			$('.dropdown-toggle#dropdown-version').text($(this).attr("version"));
 			$('#new-quest').removeClass("d-none");
+
+			if(previousLang != "" && $(this).attr("lang") != previousLang) {
+				document.location = '';
+			}
 		});
 		
 		$('#new-quest, .start-new-quest').click(function(){

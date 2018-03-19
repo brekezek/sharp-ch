@@ -3,11 +3,18 @@ class MultipleOne extends Question {
 	protected $choices;
 	protected $isMultiple;
 	protected $otherExists;
+	protected $maxChoiceSize = -1;
 	
 	function __construct($index, $json) {
 		parent::__construct($index, $json);
 		$this->choices = getChoices($json['choices']);
 		$this->otherExists = false;
+		
+		foreach($this->choices as $choice) {
+		    $size = strlen($choice);
+		    if($this->maxChoiceSize < $size)
+		        $this->maxChoiceSize = $size;
+		}
 	}
 	
 	function draw() {
@@ -17,8 +24,9 @@ class MultipleOne extends Question {
 		parent::startWrapper().
 			parent::getLabel().
 			'<select 
-				 '.($this->isMultiple ? ' multiple size="'.(count($this->choices)).'" ' : "").'
-				 name="'.$this->inputName.'" 
+				 '.($this->isMultiple ? ' multiple size="'.(count($this->choices)).'" ' : "").
+                 ($this->isMultiple && $this->isInTable && $this->maxChoiceSize > 50 ? 'style="min-width: '.(7.8*$this->maxChoiceSize).'px"' : '').
+				 'name="'.$this->inputName.'" 
 				 id="'.$this->uid.'"  
 				 class="form-control w-100 rounded"
                 '.($this->otherExists ? 'other-exist="1"' : '').'
