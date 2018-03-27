@@ -1,13 +1,14 @@
-
-{"question-type":"multiple_one_solution",
+{
+	"question-type":"multiple_one_solution",
+	"scoring-type":"adequacy",
+	"scoring":"by-value",
 	"title":"Est-ce que le nombre et la variété de votre bétail suffisent à pourvoir aux besoins de votre système de production?",
 	"choices":[
-		"Pas du tout",
-		"Un peu",
-		"Moyennement",
-		"Beaucoup",
-		"Complètement"
+		{"Pas du tout":0},
+		{"Un peu":2.5},
+		{"Moyennement":5},
+		{"Beaucoup":7.5},
+		{"Complètement":10}
 	],
-	"scoring":"SOME_OPTION",
 	"mandatory":"true"
 }

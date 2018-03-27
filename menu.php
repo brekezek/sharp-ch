@@ -1,22 +1,42 @@
+<?php $readonly = isset($_COOKIE['indexAspect'], $_COOKIE['readonly']) && $_COOKIE['readonly'] == "true"; ?>
+
 <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark justify-content-between">
 	
-	<div class="navbar-brand">SHARP</div>
-  
-	
+	<div class="navbar-brand">
+		<?php if($readonly) {?>
+		<a href="admin.php?page=1" id="back" class="btn btn-outline-secondary mr-1">
+			<span class="oi oi-chevron-left"></span>
+		</a>
+		<?php } ?>
+		
+		SHARP <span class="badge badge-danger">CH</span>
+	</div>
+  	
 	<?php if(isset($_COOKIE['indexAspect'])) {?>
 	<div class="text-light" >
-		<?= $_COOKIE['version'] ?>
+		<?php if($readonly) {
+		    echo '<span class="oi oi-eye mr-1"></span> <span id="name-ro">Read-Only</span>';
+		} else {
+		    echo $_COOKIE['version'];
+		}?>
 	</div>
 	
 	<div>
+		<?php if(!$readonly) {?>
 		<div class="dropdown d-inline mr-2">
 			<button id="others" class="btn btn-secondary dropdown-toggle" id="dropd-settings" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<span class="oi oi-cog"></span>
 			</button>
 			<div class="dropdown-menu mt-3" aria-labelledby="dropd-settings" style="margin-left:-90px">
 				<a href="?quit" id="quit" class="dropdown-item"><?= $t['quit_questionnaire'] ?></a>
-			</div>
+			</div>	
 		</div>
+		<?php } else { ?>
+		<button id="edit" class="btn btn-primary" type="button">
+			<span class="oi oi-pencil mr-1"></span> Editer
+		</button>
+		<?php } ?>
+		
 		<?php if(!isset($_REQUEST['end'])) {?>
 		<button id="show-aspects" class="btn btn-primary" type="button">
 			<span class="oi oi-grid-three-up"></span>

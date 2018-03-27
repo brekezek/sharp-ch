@@ -1,13 +1,24 @@
-
-{"question-type":"multiple_one_solution",
-	"title":"Wie wichtig ist es Ihnen, unterschiedliche Züchter für Nutztiere zu haben?",
-	"choices":[
-		"Überhaupt nicht",
-		"Ein wenig",
-		"Mittelmäßig",
-		"Ziemlich",
-		"Sehr"
-	],
-	"scoring":"SOME_OPTION",
-	"mandatory":"true"
+{
+    "question-type": "multiple_one_solution",
+    "title": "Wie wichtig ist es Ihnen, unterschiedliche Züchter für Nutztiere zu haben?",
+    "choices": [
+        {
+            "Überhaupt nicht": 0
+        },
+        {
+            "Ein wenig": 2.5
+        },
+        {
+            "Mittelmäßig": 5
+        },
+        {
+            "Ziemlich": 7.5
+        },
+        {
+            "Sehr": 10
+        }
+    ],
+    "scoring": "by-value",
+    "mandatory": "true",
+    "scoring-type": "importance"
 }

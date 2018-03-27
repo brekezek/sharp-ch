@@ -1,5 +1,15 @@
 {
 	"question-type":"integer_answer",
+	"scoring-type":"academic",
+	"scoring":"by-value",
+	"scoring-grid":[
+		{"0-10":10},
+		{"11-30":7},
+		{"31-45":5},
+		{"46-60":3},
+		{"61-+":0}
+	],
+	"indicateur":[13],
 	"title":"Quel pourcentage représente le soutien financier gouvernemental (paiements directs) par rapport au chiffre d'affaires agricole de votre exploitation?",
 	"mandatory":true
 }

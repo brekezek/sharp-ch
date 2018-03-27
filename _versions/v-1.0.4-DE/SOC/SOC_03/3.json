@@ -1,5 +1,6 @@
 {
-	"question-type":"text",
-	"title":"Falls ja, wie?",
-	"mandatory":true
+    "question-type": "text",
+    "title": "Falls ja, wie?",
+    "mandatory": true,
+    "scoring-type": "-"
 }

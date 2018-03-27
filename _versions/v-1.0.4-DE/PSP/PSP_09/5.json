@@ -1,11 +1,11 @@
 {
-	"question-type":"multiple_one_solution",
-	"title":"Haben sich diese neuen Sorten oder Rassen gut an die Konditionen Ihres Betriebs angepasst?",
-	"choices":
-		[
-			"Ja",
-			"Nein",
-			"Ich weiß es nicht."
-		],
-	"mandatory":true
+    "question-type": "multiple_one_solution",
+    "title": "Haben sich diese neuen Sorten oder Rassen gut an die Konditionen Ihres Betriebs angepasst?",
+    "choices": [
+        "Ja",
+        "Nein",
+        "Ich weiß es nicht."
+    ],
+    "mandatory": true,
+    "scoring-type": "-"
 }

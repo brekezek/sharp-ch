@@ -1,34 +1,50 @@
 {
-	"question-type":"table",
-	"title":"Ordnen Sie Ihre Vermögenswerte nach Wichtigkeit (1 = am wichtigsten, 6 = am wenigsten wichtig).",
-	"lines" : [
-		"Land",
-		"Nutzpflanzen",
-		"Nutztiere",
-		"Saatgut/Setzlinge",
-		"Gebäude",
-		"Landwirtschaftliche Maschinen",
-		"_OTHER_INPUT::Anderes (Bitte spezifizieren)"
-	],
-	"columns": [
-		{
-			"title":"Wichtigkeit",
-			"type":"choice",
-			"choices": [
-				"1",
-				"2",
-				"3",
-				"4",
-				"5",
-				"6",
-				"Kein Besitz"
-			]
-		},
-		{
-			"title":"Bitte genauer ausführen, falls nötig:",
-			"type":"text"
-		}
-
-	],
-	"mandatory":true
+    "question-type": "table",
+    "title": "Ordnen Sie Ihre Vermögenswerte nach Wichtigkeit (1 = am wichtigsten, 6 = am wenigsten wichtig).",
+    "lines": [
+        "Land",
+        "Nutzpflanzen",
+        "Nutztiere",
+        "Saatgut/Setzlinge",
+        "Gebäude",
+        "Landwirtschaftliche Maschinen",
+        "_OTHER_INPUT::Anderes (Bitte spezifizieren)"
+    ],
+    "columns": [
+        {
+            "title": "Wichtigkeit",
+            "type": "choice",
+            "choices": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                "Kein Besitz"
+            ],
+            "scoring": "by-entries",
+            "scoring-type": "academic",
+            "scoring-grid": [
+                {
+                    "1-1": 2
+                },
+                {
+                    "2-2": 5
+                },
+                {
+                    "3-3": 7
+                },
+                {
+                    "4-+": 10
+                }
+            ]
+        },
+        {
+            "title": "Bitte genauer ausführen, falls nötig:",
+            "type": "text"
+        }
+    ],
+    "mandatory": true,
+    "scoring-type": "academic"
 }

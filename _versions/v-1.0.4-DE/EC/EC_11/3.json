@@ -1,12 +1,24 @@
 {
-	"question-type":"multiple_one_solution",
-	"title":"Wie hat sich das landwirtschaftliche Einkommen Ihres Betriebs in den letzten fünf Jahren entwickelt?",
-	"choices": [
-		"Zunahme des Defizits",
-		"Stabiles Defizit",
-		"Kein Defizit und kein Profit",
-		"Stabiler Profit",
-		"Zunahme des Profits"
-	],
-	"mandatory":true
+    "question-type": "multiple_one_solution",
+    "title": "Wie hat sich das landwirtschaftliche Einkommen Ihres Betriebs in den letzten fünf Jahren entwickelt?",
+    "choices": [
+        {
+            "Zunahme des Defizits": 0
+        },
+        {
+            "Stabiles Defizit": 2
+        },
+        {
+            "Kein Defizit und kein Profit": 4
+        },
+        {
+            "Stabiler Profit": 8
+        },
+        {
+            "Zunahme des Profits": 10
+        }
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
 }

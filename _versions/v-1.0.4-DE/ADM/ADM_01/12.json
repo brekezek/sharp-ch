@@ -1,5 +1,4 @@
 {
-	"question-type":"text",
-	"title":"Längengrad",
-	"mandatory":true
+    "question-type": "text",
+    "title": "Längengrad"
 }

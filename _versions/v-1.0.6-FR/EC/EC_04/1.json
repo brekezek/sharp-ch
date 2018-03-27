@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Produits vendus qui vous rapportent le plus?",
 	"lines" : [
 		"Production 1",
@@ -12,35 +13,64 @@
 	"columns": [
 		{
 			"title":"Description",
-			"type":"text"
+			"type":"text",
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-1":1},
+				{"2-2":4},
+				{"3-3":5},
+				{"4-4":6},
+				{"5-5":7},
+				{"6-+":10}
+			],
+			"indicateur":[5]
 		},
 		{
 			"title":"Avez-vous des produits pour lesquels vous n'avez qu'un acheteur disponible?",
-			"type":"binary"
+			"type":"binary",
+			"scoring":"by-value",
+			"scoring2":"average",
+			"score-reversed":true,
+			"col-based-on":0,
+			"indicateur":[4,5]
 		},
 		{
 			"title":"Si vous avez un accord ou bien des documents contraignants (par ex. contrat) avec un acheteur, êtes-vous satisfait des conditions ou est-ce que ça limite votre flexibilité?",
 			"type":"choice",
 			"choices": [
-				"Je suis satisfait",
-				"Un mixte des deux",
-				"Ca limite la flexibilité de mon exploitation"	
-			]
+				{"Je suis satisfait":10},
+				{"Un mixte des deux":5},
+				{"Ca limite la flexibilité de mon exploitation":0}
+			],
+			"scoring":"by-value",
+			"scoring2":"average",
+			"col-based-on":0,
+			"indicateur":[3]
 		},
 		{
 			"title":"A quel point êtes-vous impliqué dans la chaîne de valorisation/transformation de vos produits?",
 			"type":"choice",
 			"choices": [
-				"Souvent",
-				"Quelques fois",
-				"Très rarement",
-				"Jamais"	
-			]
-
+				{"Souvent":10},
+				{"Quelques fois":5},
+				{"Très rarement":2},
+				{"Jamais":0}	
+			],
+			"scoring":"by-value",
+			"scoring2":"average",
+			"col-based-on":0,
+			"indicateur":[13]
 		},
 		{
 			"title":"Pour chacun des produits du tableau, vous sentez-vous menacé par les bas prix des produits concurrents importés?",
-			"type":"binary"
+			"type":"binary",
+			"scoring":"by-value",
+			"scoring2":"average",
+			"score-reversed":true,
+			"col-based-on":0,
+			"indicateur":[3]
 		}
 	],
 	"mandatory":true

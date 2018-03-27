@@ -7,12 +7,14 @@ class QuestionnaireManager {
 	private $aspects;
 	private $currentIndex;
 	private $filename;
+	private $readonly;
 	
 	private function __construct($version) {
 		$this->version = $version;
 		$this->aspects = array();
 		$this->currentIndex = 1;
 		$this->filename = $_COOKIE['filename'];
+		$this->readonly = false;
 		$this->parseVersion();
 	}
 	
@@ -40,6 +42,7 @@ class QuestionnaireManager {
 		if(count($this->aspects) >= $this->currentIndex) {
 			$aspectToDraw = $this->aspects[$this->currentIndex-1];
 			$aspectToDraw->setCurrentIndex($this->currentIndex);
+			$aspectToDraw->setReadOnly($this->readonly);
 			
 			echo '<form method="post" action="#">';
 				$aspectToDraw->draw($this->currentIndex, count($this->aspects));
@@ -53,12 +56,26 @@ class QuestionnaireManager {
 		$html = '<button type="submit" id="submitHidden" tabindex="999" style="opacity:0; position:absolute; z-index: -99"></button>'.
 		'<div class="bg-light clearfix rounded mb-4">';
 			if($this->currentIndex > 1 && $this->currentIndex <= $this->getNumberAspects()) {
-				$html.= '<button type="submit" id="prev" tabindex="55" class="btn btn-primary float-left">'.$t['previous'].'</button>';
+				$html.=
+				'<button type="submit" id="prev" tabindex="55" class="btn btn-primary float-left">'.
+				    '<span class="oi oi-chevron-left mr-2"></span>'.
+				    $t['previous'].
+				'</button>';
 			}
 			if($this->currentIndex < $this->getNumberAspects()) {
-				$html.= '<button type="submit" id="next" class="btn btn-primary float-right">'.$t['next'].'</button>';
+				$html.=
+				'<button type="submit" id="next" class="btn btn-primary float-right">'.
+				    $t['next'].
+				    '<span class="oi oi-chevron-right ml-2"></span>'.
+				'</button>';
 			} else { 
-				$html.= '<button name="end" type="submit" id="end" class="btn btn-success float-right">'.$t['finish'].'</button>';
+			    if(!$this->readonly) {
+    				$html.=
+    				'<button name="end" type="submit" id="end" class="btn btn-success float-right">'.
+    				   $t['finish'].
+    				    '<span class="oi oi-check ml-2"></span>'.
+    				'</button>';
+			    }
 			}
 		$html.='</div>';
 		echo $html;
@@ -71,7 +88,7 @@ class QuestionnaireManager {
 	}
 	
 	public function collectAnswers() {
-		if(isset($_POST['answers'])) {
+		if(!$this->readonly && isset($_POST['answers'])) {
 			/*
 			echo '<pre>';
 			print_r($_POST['answers']);
@@ -129,6 +146,10 @@ class QuestionnaireManager {
 	
 	public function getColorAspectByIndex($index) {
 		return $this->aspects[$index-1]->getColor();
+	}
+	
+	public function setReadOnly($readonly) {
+	    $this->readonly = $readonly;
 	}
 	
 	private function addAspect($aspect) {

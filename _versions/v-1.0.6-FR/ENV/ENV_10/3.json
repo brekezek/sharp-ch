@@ -1,10 +1,13 @@
 {
 	"question-type":"binary_answer",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Est-ce que vous stockez le lisier dans un récipient ouvert ou fermé?",
 	"choices":
 		[
-			"Ouvert",
-			"Fermé"
+			{"Ouvert":0},
+			{"Fermé":10}
 		],
-	"mandatory":"true"
+	"mandatory":"true",
+	"indicateur":[2]
 }

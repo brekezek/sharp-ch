@@ -1,10 +1,13 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Les prix (concernant la vente) sont-ils suffisamment élevés et constants pour votre exploitation?",
 	"choices" : [
-		"Oui",
-		"Pas suffisamment",
-		"Non"
+		{"Oui":10},
+		{"Pas suffisamment":5},
+		{"Non":0}
 	],
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[3]
 }

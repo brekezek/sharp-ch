@@ -1,10 +1,13 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Utilisez-vous les services vétérinaires?",
 	"choices": [
-		"Oui et ils sont de bonne qualité",
-		"Oui mais ils sont problématiques (personnel non qualifié, cher, distant, etc.)",
-		"Non"
+		{"Oui et ils sont de bonne qualité":10},
+		{"Oui mais ils sont problématiques (personnel non qualifié, cher, distant, etc.)":5},
+		{"Non":0}
 	],
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[3]
 }

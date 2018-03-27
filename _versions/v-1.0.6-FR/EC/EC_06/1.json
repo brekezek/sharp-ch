@@ -1,11 +1,14 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"A quelle fréquence utilisez-vous les informations sur les prix du marché?",
 	"choices":
 		[
-			"Souvent",
-			"Quelques fois ",
-			"Jamais/Très rarement"
+			{"Souvent":10},
+			{"Quelques fois":5},
+			{"Jamais/Très rarement":0}
 		],
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[3]
 }

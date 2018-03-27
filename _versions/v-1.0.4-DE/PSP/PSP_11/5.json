@@ -1,13 +1,13 @@
 {
-	"question-type":"multiple_multiple_solution",
-	"title":"Wodurch?",
-	"choices": 
-		[
-			"Krankheiten",
-			"Dürre",
-			"Überflutungen",
-			"Nicht eingezäunte Tiere",
-			"Tierdiebstahl",
-			"_OTHER_INPUT::Anderes (Bitte spezifizieren)"	
-		]
+    "question-type": "multiple_multiple_solution",
+    "title": "Wodurch?",
+    "choices": [
+        "Krankheiten",
+        "Dürre",
+        "Überflutungen",
+        "Nicht eingezäunte Tiere",
+        "Tierdiebstahl",
+        "_OTHER_INPUT::Anderes (Bitte spezifizieren)"
+    ],
+    "scoring-type": "-"
 }

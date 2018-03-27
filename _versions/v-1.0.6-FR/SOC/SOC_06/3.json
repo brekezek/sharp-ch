@@ -1,9 +1,12 @@
 {
 	"question-type":"binary_answer",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Echangez-vous des parcelles avec d'autres agriculteurs?",
 	"choices": [
 		"Oui",
 		"Non"
 	],
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[1]
 }

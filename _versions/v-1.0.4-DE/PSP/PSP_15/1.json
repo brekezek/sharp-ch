@@ -1,9 +1,10 @@
 {
-	"question-type":"binary_answer",
-	"title":"Verwenden Sie Methoden, um Krankheiten bei Ihren Tieren einzudämmen?",
-	"choices" : [
-		"Ja",
-		"Nein"
-	],
-	"mandatory":true
+    "question-type": "binary_answer",
+    "title": "Verwenden Sie Methoden, um Krankheiten bei Ihren Tieren einzudämmen?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": true,
+    "scoring-type": "academic"
 }

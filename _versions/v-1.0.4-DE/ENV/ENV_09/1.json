@@ -1,39 +1,45 @@
 {
-	"question-type":"table",
-	"title":"Welche Energiequellen nutzen Sie für Ihrem Betrieb?",
-	"all_visible":true,
-	"lines":[
-		"Sonne",
-		"Wind",
-		"Wasser",
-		"Brennholz",
-		"Kohle",
-		"Hausmüll",
-		"Landwirtschaftliche Rückstände",
-		"Holzreste",
-		"Dung",
-		"Benzin",
-		"Paraffin (Erdöl)",
-		"Diesel",
-		"Erdgas",
-		"Biogas (von Mist/Kompost/Mais)",
-		"Elektrizität (Öffentliche Quelle)",
-		"_OTHER_INPUT::Anderes (bitte spezifizieren):"
-	],
-	"columns" : [
-		{
-			"title":"Heizen",
-			"type":"toggle"
-		},
-		{
-			"title":"Beleuchtung",
-			"type":"toggle"
-		},
-		{
-			"title":"Maschinen",
-			"type":"toggle"
-		}
-	],
-	"hidden":false,
-	"mandatory":"true"
+    "question-type": "table",
+    "title": "Welche Energiequellen nutzen Sie für Ihrem Betrieb?",
+    "all_visible": true,
+    "lines": [
+        "Sonne",
+        "Wind",
+        "Wasser",
+        "Brennholz",
+        "Kohle",
+        "Hausmüll",
+        "Landwirtschaftliche Rückstände",
+        "Holzreste",
+        "Dung",
+        "Benzin",
+        "Paraffin (Erdöl)",
+        "Diesel",
+        "Erdgas",
+        "Biogas (von Mist/Kompost/Mais)",
+        "Elektrizität (Öffentliche Quelle)",
+        "_OTHER_INPUT::Anderes (bitte spezifizieren):"
+    ],
+    "columns": [
+        {
+            "title": "Heizen",
+            "type": "toggle"
+        },
+        {
+            "title": "Beleuchtung",
+            "type": "toggle"
+        },
+        {
+            "title": "Maschinen",
+            "type": "toggle"
+        }
+    ],
+    "hidden": false,
+    "mandatory": "true",
+    "scoring": "special",
+    "scoring-type": "academic",
+    "scoring-grid": {
+        "0,1,5,6,7": 4,
+        "2,3,4,8,9,10,11,12,13,14,15": 1
+    }
 }

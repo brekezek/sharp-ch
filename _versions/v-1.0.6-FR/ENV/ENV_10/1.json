@@ -1,9 +1,12 @@
 {
 	"question-type":"binary_answer",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Utilisez-vous des pratiques de conservation de l'énergie pour réduire les coûts de l'énergie sur l'exploitation?",
 	"choices": [
 		"Oui",
 		"Non"
 	],
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[8]
 }

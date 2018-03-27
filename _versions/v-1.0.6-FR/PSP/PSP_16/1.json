@@ -1,5 +1,6 @@
 {
 	"question-type":"binary_answer",
+	"scoring-type":"academic",
 	"title":"Utilisez-vous des pratiques de gestion des prédateurs (ravageurs)/maladies sur vos cultures?",
 	"choices" : [
 		"Oui",

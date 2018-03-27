@@ -1,5 +1,7 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
+	"indicateur":[13],
 	"title":"Qu'avez-vous assuré?",
 	"lines" : [
 		"1",
@@ -16,7 +18,8 @@
 	"columns": [
 		{
 			"title":"Culture / bétail / revenu / bâtiments / ...",
-			"type":"text"
+			"type":"text",
+			"scoring":"by-entries"
 		},
 		{
 			"title":"Contre une perte due au climat",

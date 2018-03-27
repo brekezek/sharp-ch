@@ -1,9 +1,11 @@
 {
-	"question-type":"binary_answer",
-	"title":"Verkaufen Sie Produkte direkt an den Kunden?",
-	"choices": [
-		"Ja",
-		"Nein"
-	],
-	"mandatory":true
+    "question-type": "binary_answer",
+    "title": "Verkaufen Sie Produkte direkt an den Kunden?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": true,
+    "scoring": "clear-aspect-score",
+    "scoring-type": "academic"
 }

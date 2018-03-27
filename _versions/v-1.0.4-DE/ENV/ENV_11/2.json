@@ -1,9 +1,24 @@
 {
-	"question-type":"binary_answer",
-	"title":"Falls Sie synthetischen Dünger verwendet haben, haben Sie überprüft (vor der Applikation), ob Boden und Pflanzen dies benötigen?",
-	"choices": [
-		"Ja",
-		"Nein"
-	],
-	"mandatory": true
+    "question-type": "binary_answer",
+    "title": "Falls Sie synthetischen Dünger verwendet haben, haben Sie überprüft (vor der Applikation), ob Boden und Pflanzen dies benötigen?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": true,
+    "scoring": "function",
+    "scoring-type": "academic",
+    "scoring-function": "add(x, ENV_11.1)",
+    "scoring-grid": [
+        {
+            "0-0": 0
+        },
+        {
+            "1-1": 2
+        },
+        {
+            "2-2": 6
+        }
+    ],
+    "result-required": "ENV_11.1"
 }

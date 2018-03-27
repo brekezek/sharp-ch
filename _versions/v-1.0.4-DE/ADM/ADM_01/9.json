@@ -1,5 +1,5 @@
 {
-	"question-type":"text",
-	"title":"Regierungsbezirk",
-	"mandatory":true
+    "question-type": "text",
+    "title": "Regierungsbezirk",
+    "mandatory": true
 }

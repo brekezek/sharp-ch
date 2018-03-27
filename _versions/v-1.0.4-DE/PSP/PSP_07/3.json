@@ -1,5 +1,21 @@
 {
-	"question-type":"text_answer",
-	"title":"Füttern Sie Ihren Schweinen neben Kraftfutter und/oder Getreide, das auf dem Betrieb produziert wurde noch anderes? (z.B. Molke, Nebenprodukte aus Bäckereien, Käse etc.)?",
-	"mandatory":true
+    "question-type": "text_answer",
+    "title": "Füttern Sie Ihren Schweinen neben Kraftfutter und/oder Getreide, das auf dem Betrieb produziert wurde noch anderes? (z.B. Molke, Nebenprodukte aus Bäckereien, Käse etc.)?",
+    "mandatory": true,
+    "scoring": "by-entries",
+    "scoring-type": "academic",
+    "scoring-grid": [
+        {
+            "0-0": 0
+        },
+        {
+            "1-1": 3
+        },
+        {
+            "2-2": 7
+        },
+        {
+            "3-+": 10
+        }
+    ]
 }

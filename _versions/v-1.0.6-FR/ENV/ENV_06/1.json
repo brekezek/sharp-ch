@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Quelles pratiques d'amélioration de la qualité des sols utilisez-vous?",
 	"lines": [
 		"Chaulage",
@@ -22,7 +23,18 @@
 	"columns": [
 		{
 			"title":"Réponse",
-			"type":"binary"
+			"type":"binary",
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-1":1},
+				{"2-2":3},
+				{"3-3":5},
+				{"4-4":7},
+				{"5-+":9}
+			],
+			"indicateur":[5,6,8,12]
 		}, 
 		{
 			"title":"Merci de compléter si nécessaire",

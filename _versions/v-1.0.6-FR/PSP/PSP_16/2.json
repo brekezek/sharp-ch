@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Quelles pratiques de gestion des prédateurs avez-vous utilisé au cours de la dernière saison de culture (cochez celles utilisées)?",
 	"lines": [
 		"Pesticides naturels",
@@ -17,7 +18,19 @@
 	"columns": [
 		{
 			"title":"Cochez",
-			"type":"toggle"
+			"type":"toggle",
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-1":1},
+				{"2-2":2},
+				{"3-3":3},
+				{"4-4":4},
+				{"5-5":5},
+				{"6-+":10}
+			],
+			"indicateur":[4]
 		}
 
 	]

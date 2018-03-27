@@ -1,12 +1,23 @@
 {
-	"question-type":"multiple_multiple_solution",
-	"title":"Was machen Sie mit leeren Containern?",
-	"choices": 
-		[
-			"Rücknahmestation (z.B. Pamira)",
-			"In den Müll",
-			"Wiederverwenden",
-			"Verbrennen",
-			"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
-		]
+    "question-type": "multiple_multiple_solution",
+    "title": "Was machen Sie mit leeren Containern?",
+    "choices": [
+        {
+            "Rücknahmestation (z.B. Pamira)": 10
+        },
+        {
+            "In den Müll": 4
+        },
+        {
+            "Wiederverwenden": 0
+        },
+        {
+            "Verbrennen": 0
+        },
+        {
+            "_OTHER_INPUT::Anderes (Bitte spezifizieren):": 0
+        }
+    ],
+    "scoring": "by-value",
+    "scoring-type": "academic"
 }

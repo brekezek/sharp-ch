@@ -1,5 +1,14 @@
 {
 	"question-type":"multiple_multiple_solution",
+	"scoring-type":"academic",
+	"scoring":"by-entries",
+	"scoring-grid":[
+		{"0-0":0},
+		{"1-1":2},
+		{"2-2":4},
+		{"3-4":7},
+		{"5-+":10}
+	],
 	"title":"Dans votre système agricole, utilisez-vous les techniques de conservation de l'eau suivantes?",
 	"choices": 
 		[
@@ -15,5 +24,6 @@
 			"Fossé d'écoulement/canaux (pour drainer)",
 			"Barrage",
 			"_OTHER_INPUT::Autre (précisez)"
-		]
+		],
+	"indicateur":[8]
 }

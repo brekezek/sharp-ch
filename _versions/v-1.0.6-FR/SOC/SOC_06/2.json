@@ -1,9 +1,12 @@
 {
 	"question-type":"binary_answer",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Partagez-vous des machines avec d'autres agriculteurs?",
 	"choices": [
 		"Oui",
 		"Non"
 	],
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[1,3,10]
 }

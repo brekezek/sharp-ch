@@ -1,5 +1,5 @@
 {
-	"question-type":"text",
-	"title":"ID-Nummer",
-	"mandatory":true
+    "question-type": "text",
+    "title": "ID-Nummer",
+    "mandatory": true
 }

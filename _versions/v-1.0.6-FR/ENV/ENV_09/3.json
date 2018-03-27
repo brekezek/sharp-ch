@@ -1,12 +1,14 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"adequacy",
+	"scoring":"by-value",
 	"title":"Les sources d'énergie utilisées sont-elles suffisantes pour répondre aux besoins de votre système agricole?",
 	"choices":[
-		"Pas du tout",
-		"Un peu",
-		"Moyennement",
-		"Beaucoup",
-		"Complètement"
+		{"Pas du tout":0},
+		{"Un peu":2.5},
+		{"Moyennement":5},
+		{"Beaucoup":7.5},
+		{"Complètement":10}
 	],
 	"mandatory":"true"
 }

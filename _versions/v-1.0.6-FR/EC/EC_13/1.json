@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Etes-vous à moins de 50 km du lieu d'approvisionnement de la plupart de vos intrants?",
 	"lines": [
 		"Semences agricoles/jeunes plants",
@@ -20,9 +21,11 @@
 				"Oui",
 				"Non",
 				"Pas applicable"
-			]
+			],
+			"scoring":"by-value",
+			"scoring2":"average",
+			"indicateur":[10]
 		}
-	
 	]
 }
 	

@@ -1,5 +1,6 @@
 {
 	"question-type":"binary_answer",
+	"scoring-type":"-",
 	"title":"Possédez-vous des animaux au sein de votre exploitation agricole?",
 	"choices": [
 		"Oui",

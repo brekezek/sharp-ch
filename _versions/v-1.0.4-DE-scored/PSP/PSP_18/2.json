@@ -1,8 +1,0 @@
-{
-    "question-type": "integer_answer",
-    "title": "Wie viel Prozent Ihrer Kulturpflanzen bauen Sie in Mischkultur an?",
-    "mandatory": true,
-    "scoring": "function",
-    "scoring-type": "academic",
-    "scoring-function": "divide(x,10)"
-}

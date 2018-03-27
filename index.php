@@ -4,11 +4,17 @@ $reset = false;
 $debug = false;
 require_once('required/common.php');
 includeDependencies();
+
+if(isset($_GET['admin'])) {
+    header('Location: admin.php');
+}
 ?>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="Dominique Roduit">
+	<meta name="description" content="">
 
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -21,7 +27,7 @@ includeDependencies();
 	<link rel="stylesheet" href="css/style.css">
 	
 	<title>SHARP-CH</title>
-	<link rel="shortcut icon" href="img/favicon.png">
+	<link rel="shortcut icon" href="img/favicon.ico">
 </head>
 <body>
 	
@@ -31,23 +37,20 @@ includeDependencies();
 	
 	<div id="content" class="position-relative" style="margin-top: 56px;">
 	<?php
-	if(isset($_GET['admin'])) {
-	    include_once('pages/list-all-quest.php');
-	} else {
-    	if(isset($_COOKIE['indexAspect'])) {
-    		include_once('questionnaire.php');
-    	} else {?>
-    		<div class="jumbotron">
-    			<div class="container">
-    			  <h1 class="display-4"><?= $t['welcome_msg_h1'] ?>!</h1>
-    			  <p class="lead"><?= $t['sharp_meaning'] ?></p>
-    			  <hr class="my-4">
-    			  <p><?= $t['msg1_welcome'] ?></p>
-    			  <p><a class="btn btn-primary btn-lg start-new-quest d-none" href="#" role="button"><?= $t['new_questionnaire']?> »</a></p>
-    			</div>
-    		</div>
-    	<?php 
-    	}
+	if(isset($_COOKIE['indexAspect'])) {
+		include_once('pages/questionnaire.php');
+	} else {?>
+		<div class="jumbotron">
+			<div class="container">
+			  <h1 class="display-4"><?= $t['welcome_msg_h1'] ?> <span class="badge badge-light">CH</span></h1>
+			  <p class="lead"><?= $t['sharp_meaning'] ?></p>
+			  <hr class="my-4">
+			  <p><?= $t['msg1_welcome'] ?></p>
+			  <hr class="my-4">
+			  <p><a class="btn btn-primary btn-lg start-new-quest d-none" href="#" role="button"><?= $t['new_questionnaire']?> »</a></p>
+			</div>
+		</div>
+	<?php 
 	}
 	?>
 	</div>
@@ -57,35 +60,7 @@ includeDependencies();
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="js/cookie.js"></script>
-	
-	<?php if(isset($_GET['admin'])) {?>
-    	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-        <script  src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-        <script src="https://cdn.datatables.net/fixedheader/3.1.3/js/dataTables.fixedHeader.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-        
-        <script>
-        	$(document).ready(function() {
-        		$('#repondants').dataTable( {
-        			"pagingType": "full_numbers",
-        			fixedHeader: true
-        		});
-        		
-        		<?php if(isset($_GET['display'])) { ?>
-        			var display = "<?php echo $_GET['display']; ?>".replace("?display=", "");
-        			$.post('displayQuestionnaire.php', {id:display}, function(html){
-        				$('body').css("overflow-x","hidden");
-        				$('#modal .content').html(html);
-        				$('#modal').css("display","block");
-        			});
-        		
-        			$('#modal .top').click(function(){
-        				document.location.href="?";
-        			});
-        		<?php } ?>
-        	});
-        </script>
-    <?php }?>
+
 	
 	<script>
 	$(function(){
@@ -94,6 +69,7 @@ includeDependencies();
 			deleteCookie('cookie_avert');
 			deleteCookie("indexAspect");
 			deleteCookie("version");
+			deleteCookie('readonly');
 		<?php }
 		
 		if(isset($_REQUEST['end'])) {?>
@@ -246,6 +222,13 @@ includeDependencies();
 			displayRowCells($(this));
 		});
 
+		$('#edit').click(function(){
+			deleteCookie('readonly');
+			document.location = '?edit';
+		});
+
+
+
 		function displayRowCells(elm) {
 			var display = true;
 			var type = elm.attr('type');
@@ -264,8 +247,16 @@ includeDependencies();
 			else
 				elems.slideUp(450);
 		}
+
+		$('#questionnaire').on( 'change keyup keydown paste cut', 'textarea', function (){
+	        var diff = parseInt($(this).height(),10) - $(this).outerHeight();
+		    $(this).css("overflow-y","hidden").height(0).height(Math.max(22, this.scrollHeight + diff)+"px");
+		}).find( 'textarea' ).change();
+    
 		
 		<?php } else { ?>
+		deleteCookie('readonly');
+		
 		if(getCookie("version") == "") {
 			$('#modalVersions').modal('show');
 			$('#modalVersions .list-group .list-group-item').click(function(){
@@ -317,7 +308,7 @@ includeDependencies();
 				alert("<?= $t['alert_choose_quest_version'] ?>");
 			} else {
 				
-				$.post('getUniqueName.php', {}, function(html){
+				$.post('functions/getUniqueName.php', {}, function(html){
 					var json = JSON.parse(html);
 					if(json.filename != "error") {
 						setCookie("filename", json.filename, <?= LIFE_COOKIE_QUEST_PENDING ?>);

@@ -1,9 +1,12 @@
 {
 	"question-type":"binary_answer",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Est-ce que chaque individu du ménage a accès à une alimentation suffisante et de qualité?",
 	"choices" : [
 		"Oui",
 		"Non"
 	],
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[5,12]
 }

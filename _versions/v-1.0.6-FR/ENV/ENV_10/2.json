@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Quelles méthodes utilisez-vous?",
 	"lines": [
 		"Ampoules à faible consommation d'énergie",
@@ -10,7 +11,16 @@
 	"columns": [
 		{
 			"title":"Cochez",
-			"type":"toggle"
+			"type":"toggle",
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-1":3},
+				{"2-2":7},
+				{"3-+":10}
+			],
+			"indicateur":[8]
 		}
 
 	]

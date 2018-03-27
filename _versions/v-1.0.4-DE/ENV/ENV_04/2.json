@@ -1,5 +1,9 @@
 {
-	"question-type":"text_answer",
-	"title":"Totales Land, zu dem Sie Zugang haben (ha):",
-	"mandatory":true
+    "question-type": "text_answer",
+    "title": "Totales Land, zu dem Sie Zugang haben (ha):",
+    "mandatory": true,
+    "scoring": "special",
+    "scoring-type": "academic",
+    "scoring-function": "multiply(divide(sum(ENV_04.1), x), 10)",
+    "result-required": "ENV_04.1"
 }

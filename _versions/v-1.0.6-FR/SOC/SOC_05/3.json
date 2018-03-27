@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Si un projet collectif ne vous profite pas directement, mais profite à beaucoup d'autres dans le village / voisinage, seriez-vous d'accord pour consacrer (cocher la/les contribution(s) que vous envisagez)",
 	"lines": [
 		"Du temps",
@@ -10,7 +11,15 @@
 	"columns" :[
 		{
 			"title":"Contribution",
-			"type":"toggle"
+			"type":"toggle",
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-1":8},
+				{"2-+":10}
+			],
+			"indicateur":[3]
 		}
 	],
 	"mandatory":true

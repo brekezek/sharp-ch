@@ -1,42 +1,64 @@
 {
-	"question-type":"table",
-	"title":"Frage/Person",
-	"lines": [
-		"Männer (16-65)",
-		"Frauen (16-65)",
-		"Jungen (0-15)",
-		"Mädchen (0-15)",
-		"Frauen  (66+)",
-		"Männer  (66+)"
-	],
-	"columns": [
-		{
-			"title":"Wieviele Menschen pro Kategorie sind in Ihrem Haushalt:",
-			"type":"integer"
-		}, 
-		{
-			"title":"Wer ist der Chef Ihres Betriebes (kreuzen Sie die richtige Kategorie an)?",
-			"type":"toggle_exactly_one"
-		},
-		{
-			"title":"Wie viele sind im Pflanzenbau beteiligt?",
-			"type":"integer"
-		},
-		{
-			"title":"Wie viele beteiligen sich an der Viehhaltung?",
-			"type":"integer"
-		},
-		{
-			"title":"Wie viele haben ein anderweitiges Einkommen?",
-			"type":"integer"
-		},
-		{
-			"title":"Wie viele können aus gesundheitlichen Gründen nicht arbeiten?",
-			"type":"integer"
-		},
-		{
-			"title":"Wie viele haben eine landwirtschaftliche Ausbildung / Studium absolviert?",
-			"type":"integer"
-		}
-	]
+    "question-type": "table",
+    "title": "Frage/Person",
+    "lines": [
+        "Männer (16-65)",
+        "Frauen (16-65)",
+        "Jungen (0-15)",
+        "Mädchen (0-15)",
+        "Frauen  (66+)",
+        "Männer  (66+)"
+    ],
+    "columns": [
+        {
+            "title": "Wieviele Menschen pro Kategorie sind in Ihrem Haushalt:",
+            "type": "integer",
+            "result-define": "TOTAL_HOUSEHOLD"
+        },
+        {
+            "title": "Wer ist der Chef Ihres Betriebes (kreuzen Sie die richtige Kategorie an)?",
+            "type": "toggle_exactly_one"
+        },
+        {
+            "title": "Wie viele sind im Pflanzenbau beteiligt?",
+            "type": "integer"
+        },
+        {
+            "title": "Wie viele beteiligen sich an der Viehhaltung?",
+            "type": "integer"
+        },
+        {
+            "title": "Wie viele haben ein anderweitiges Einkommen?",
+            "type": "integer"
+        },
+        {
+            "title": "Wie viele können aus gesundheitlichen Gründen nicht arbeiten?",
+            "type": "integer",
+            "scoring": "function",
+            "scoring-function": "divide(x,TOTAL_HOUSEHOLD)",
+            "scoring-range": [
+                {
+                    "0-0": 10
+                },
+                {
+                    "0.01-0.1": 7
+                },
+                {
+                    "0.11-0.2": 5
+                },
+                {
+                    "0.21-+": 3
+                }
+            ],
+            "result-required": "TOTAL_HOUSEHOLD"
+        },
+        {
+            "title": "Wie viele haben eine landwirtschaftliche Ausbildung / Studium absolviert?",
+            "type": "integer",
+            "scoring": "function",
+            "scoring-function": "multiply(divide(x,TOTAL_HOUSEHOLD), 10)",
+            "result-required": "TOTAL_HOUSEHOLD"
+        }
+    ],
+    "scoring-type": "academic"
 }

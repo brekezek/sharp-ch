@@ -1,32 +1,77 @@
 {
-	"question-type":"table",
-	"title":"Tätigkeiten",
-	"lines": [
-		"1",
-		"2",
-		"3",
-		"4"
-	],
-	"columns": [
-		{
-			"title":"Falls ja, welche Arten bewirtschaften Sie? z.B. Karpfen, Tilapien etc.",
-			"type":"text"
-		}, 
-		{
-			"title":"Wie viele Sorten bewirtschaften Sie pro genannter Art?",
-			"type":"integer"
-		},
-		{
-			"title":"Geben Sie Nahrungszusätze pro genannter Art?",
-			"type":"toggle"
-		},
-		{
-			"title":"Falls ja, welche?",
-			"type":"text"
-		},
-		{
-			"title":"Falls ja, unter welchen Umständen geben Sie Nahrungszusätze?",
-			"type":"text"
-		}
-	]
+    "question-type": "table",
+    "title": "Tätigkeiten",
+    "lines": [
+        1,
+        2,
+        3,
+        4
+    ],
+    "columns": [
+        {
+            "title": "Falls ja, welche Arten bewirtschaften Sie? z.B. Karpfen, Tilapien etc.",
+            "type": "text",
+            "scoring": "by-entries",
+            "scoring-type": "academic",
+            "scoring-grid": [
+                {
+                    "1-1": 0
+                },
+                {
+                    "2-2": 4
+                },
+                {
+                    "3-3": 7
+                },
+                {
+                    "4-+": 10
+                }
+            ]
+        },
+        {
+            "title": "Wie viele Sorten bewirtschaften Sie pro genannter Art?",
+            "type": "integer",
+            "scoring": "by-value",
+            "scoring-type": "academic",
+            "scoring2": "average",
+            "col-based-on": 0,
+            "scoring-grid": [
+                {
+                    "0-1": 0
+                },
+                {
+                    "2-+": 10
+                }
+            ]
+        },
+        {
+            "title": "Geben Sie Nahrungszusätze pro genannter Art?",
+            "type": "toggle",
+            "scoring": "by-entries",
+            "scoring-type": "academic",
+            "scoring-grid": [
+                {
+                    "0-0": 0
+                },
+                {
+                    "1-1": 5
+                },
+                {
+                    "2-2": 7
+                },
+                {
+                    "3-+": 10
+                }
+            ]
+        },
+        {
+            "title": "Falls ja, welche?",
+            "type": "text"
+        },
+        {
+            "title": "Falls ja, unter welchen Umständen geben Sie Nahrungszusätze?",
+            "type": "text"
+        }
+    ],
+    "scoring-type": "academic"
 }

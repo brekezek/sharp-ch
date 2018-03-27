@@ -1,24 +1,47 @@
 {
-	"question-type":"table",
-	"title":"Was für Arten von Störungen haben Sie in den letzten zehn Jahren erlebt?",
-	"lines" : [
-		"Schädlingsplage",
-		"Überflutungen",
-		"Feuer",
-		"Krankheiten (Nutzpflanzen, Nutztiere, Mensch)",
-		"Konflikt (Nachbarschaft, Dorfbewohner, Politik etc.)",
-		"Regen zur falschen Zeit",
-		"Schnee",
-		"Hagel",
-		"Starke Winde",
-		"Dürre",
-		"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
-	],
-	"columns": [
-		{
-			"title":"Bitte auswählen",
-			"type":"toggle"
-		}
-	],
-	"mandatory":true
+    "question-type": "table",
+    "title": "Was für Arten von Störungen haben Sie in den letzten zehn Jahren erlebt?",
+    "lines": [
+        "Schädlingsplage",
+        "Überflutungen",
+        "Feuer",
+        "Krankheiten (Nutzpflanzen, Nutztiere, Mensch)",
+        "Konflikt (Nachbarschaft, Dorfbewohner, Politik etc.)",
+        "Regen zur falschen Zeit",
+        "Schnee",
+        "Hagel",
+        "Starke Winde",
+        "Dürre",
+        "_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+    ],
+    "columns": [
+        {
+            "title": "Bitte auswählen",
+            "type": "toggle",
+            "scoring": "by-entries",
+            "scoring-type": "academic",
+            "scoring-grid": [
+                {
+                    "0-0": 5
+                },
+                {
+                    "1-1": 10
+                },
+                {
+                    "2-2": 8
+                },
+                {
+                    "3-3": 6
+                },
+                {
+                    "4-4": 4
+                },
+                {
+                    "5-+": 0
+                }
+            ]
+        }
+    ],
+    "mandatory": true,
+    "scoring-type": "academic"
 }

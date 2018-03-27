@@ -1,5 +1,4 @@
 {
 	"question-type":"text",
-	"title":"Latitude",
-	"mandatory":true
+	"title":"Latitude"
 }

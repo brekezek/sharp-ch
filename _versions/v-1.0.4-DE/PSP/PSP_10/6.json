@@ -1,5 +1,6 @@
 {
-	"question-type":"text_answer",
-	"title":"Welche Arten kommen natürlich vor?",
-	"mandatory":true
+    "question-type": "text_answer",
+    "title": "Welche Arten kommen natürlich vor?",
+    "mandatory": true,
+    "scoring-type": "academic"
 }

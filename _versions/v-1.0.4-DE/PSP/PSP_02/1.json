@@ -1,32 +1,60 @@
 {
-	"question-type":"table",
-	"title":"Hat jemand in Ihrem Haushalt die folgenden Aufgaben?",
-	"lines": [
-		"Produktion von Nutzpflanzen (Getreide, Leguminosen, Ölfrüchte)?",
-		"Viehhaltung (Mastbetrieb)?",
-		"Milchbetrieb?",
-		"Gartenbau (Obstbau, Gemüsebau, Blumen- und Zierpflanzenbau etc.)?",
-		"Baumschule?",
-		"Weinbau?",
-		"Agroforstwirtschaft (Baumproduktion, unterstützte natürliche Regeneration, Baumpflanzungen)?",
-		"Aquakultur (Jungfischproduktion, Fischzucht)?",
-		"Bienenzucht?",
-		"Fischerei?",
-		"Geflügelhaltung?",
-		"_OTHER_INPUT::Andere Tätigkeiten (Bitte spezifizieren):"
-	],
-	"columns": [
-		{
-			"title":"Antwort",
-			"type":"binary"
-		}, 
-		{
-			"title":"Nebentätigkeit",
-			"type":"toggle"
-		},
-		{
-			"title":"Haupttätigkeit",
-			"type":"toggle_exactly_one"
-		}
-	]
+    "question-type": "table",
+    "title": "Hat jemand in Ihrem Haushalt die folgenden Aufgaben?",
+    "lines": [
+        "Produktion von Nutzpflanzen (Getreide, Leguminosen, Ölfrüchte)?",
+        "Viehhaltung (Mastbetrieb)?",
+        "Milchbetrieb?",
+        "Gartenbau (Obstbau, Gemüsebau, Blumen- und Zierpflanzenbau etc.)?",
+        "Baumschule?",
+        "Weinbau?",
+        "Agroforstwirtschaft (Baumproduktion, unterstützte natürliche Regeneration, Baumpflanzungen)?",
+        "Aquakultur (Jungfischproduktion, Fischzucht)?",
+        "Bienenzucht?",
+        "Fischerei?",
+        "Geflügelhaltung?",
+        "_OTHER_INPUT::Andere Tätigkeiten (Bitte spezifizieren):"
+    ],
+    "columns": [
+        {
+            "title": "Antwort",
+            "type": "binary",
+            "scoring": "by-entries",
+            "scoring-grid": [
+                {
+                    "0-1": 0
+                },
+                {
+                    "2-2": 5
+                },
+                {
+                    "3-3": 7
+                },
+                {
+                    "4-+": 10
+                }
+            ]
+        },
+        {
+            "title": "Nebentätigkeit",
+            "type": "toggle",
+            "scoring": "by-entries",
+            "scoring-grid": [
+                {
+                    "0-0": 0
+                },
+                {
+                    "1-1": 7
+                },
+                {
+                    "2-+": 10
+                }
+            ]
+        },
+        {
+            "title": "Haupttätigkeit",
+            "type": "toggle_exactly_one"
+        }
+    ],
+    "scoring-type": "academic"
 }

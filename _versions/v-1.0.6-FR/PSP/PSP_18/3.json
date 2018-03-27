@@ -1,9 +1,12 @@
 {
 	"question-type":"binary_answer",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Est-ce que vous cultivez des plantes en association avec l'aquaculture?",
 	"choices" : [
 		"Oui",
 		"Non"
 	],
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[3]
 }

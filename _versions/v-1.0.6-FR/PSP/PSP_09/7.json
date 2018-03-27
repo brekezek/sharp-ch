@@ -1,5 +1,6 @@
 {
 	"question-type":"text_answer",
+	"scoring-type":"-",
 	"title":"Si oui, lesquelles?",
 	"mandatory":true
 }

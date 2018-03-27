@@ -1,5 +1,6 @@
  {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Produits vendus en circuit court?",
 	"lines" : [
 		"Production 1",
@@ -17,29 +18,40 @@
 		},
 		{
 			"title":"Vendez/négociez-vous ces produits directement auprès des consommateurs?",
-			"type":"binary"
+			"type":"binary",
+			"scoring":"by-value",
+			"scoring2":"average",
+			"col-based-on":0,
+			"indicateur":[10]
 		},
-				{
+		{
 			"title":"Si oui, à quelle fréquence?",
 			"type":"choice",
 			"choices": [
-				"Chaque semaine",
-				"Chaque mois",
-				"Une fois par saison",
-				"Une fois par an",
-				"Jamais"	
-			]
+				{"Chaque semaine":10},
+				{"Chaque mois":7},
+				{"Une fois par saison":5},
+				{"Une fois par an":2},
+				{"Jamais":0}	
+			],
+			"scoring":"by-value",
+			"scoring2":"average",
+			"col-based-on":0,
+			"indicateur":[10]
 		},
 		{
 			"title":"Vendez-vous vos produits sur les marchés locaux?",
 			"type":"choice",
 			"choices": [
-				"Non",
-				"1-2 fois par mois",
-				"1-3 fois par semaine",
-				"Tout le temps (4+ fois par semaine)"	
-			]
-
+				{"Non":0},
+				{"1-2 fois par mois":2},
+				{"1-3 fois par semaine":4},
+				{"Tout le temps (4+ fois par semaine)":10}
+			],
+			"scoring":"by-value",
+			"scoring2":"average",
+			"col-based-on":0,
+			"indicateur":[1,10]
 		}
 	],
 	"mandatory":true

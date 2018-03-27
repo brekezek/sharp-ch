@@ -1,12 +1,15 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"academic",
 	"title":"Est-ce que le chef de l'exploitation a choisi sa profession librement ou est-ce qu'il a repris la ferme sous pression de la famille?",
+	"scoring":"by-value",
 	"choices":
 		[
-			"Oui, il a pu choisir librement",
-			"Un mix des deux",
-			"Il n'a pas pu choisir mais il est heureux/satisfait de sa profession",
-			"Il n'a pas pu choisir, il a été forcé de faire une profession qu'il n'apprécie pas"
+			{"Oui, il a pu choisir librement": 10},
+			{"Un mix des deux": 5},
+			{"Il n'a pas pu choisir mais il est heureux/satisfait de sa profession": 5},
+			{"Il n'a pas pu choisir, il a été forcé de faire une profession qu'il n'apprécie pas": 0}
 		],
+	"indicateur":[12],
 	"mandatory":"true"
 }

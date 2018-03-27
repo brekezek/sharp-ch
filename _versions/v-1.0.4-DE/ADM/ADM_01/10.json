@@ -1,5 +1,5 @@
 {
-	"question-type":"text",
-	"title":"Dorf/Stadt",
-	"mandatory":true
+    "question-type": "text",
+    "title": "Dorf/Stadt",
+    "mandatory": true
 }

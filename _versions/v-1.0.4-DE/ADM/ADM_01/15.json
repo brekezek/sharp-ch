@@ -1,5 +1,5 @@
 {
-	"question-type":"integer_answer",
-	"title":"Alter",
-	"mandatory":true
+    "question-type": "integer_answer",
+    "title": "Alter",
+    "mandatory": true
 }

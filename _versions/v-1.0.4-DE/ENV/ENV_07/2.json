@@ -1,5 +1,6 @@
 {
-	"question-type":"text",
-	"title":"Was für Sorten/Arten?",
-	"mandatory":"true"
+    "question-type": "text",
+    "title": "Was für Sorten/Arten?",
+    "mandatory": "true",
+    "scoring-type": "-"
 }

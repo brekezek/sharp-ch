@@ -1,15 +1,16 @@
 {
-	"question-type":"table",
-	"title":"Wer arbeitet auf Ihrem Betrieb?",
-	"lines": [
-		"Nur Familienmitglieder",
-		"Nur Mitarbeiter",
-		"_OTHER_INPUT::Anderes (Bitte spezifizieren)"
-	],
-	"columns": [
-		{
-			"title":"Bitte auswählen:",
-			"type":"toggle"
-		}
-	]
+    "question-type": "table",
+    "title": "Wer arbeitet auf Ihrem Betrieb?",
+    "lines": [
+        "Nur Familienmitglieder",
+        "Nur Mitarbeiter",
+        "_OTHER_INPUT::Anderes (Bitte spezifizieren)"
+    ],
+    "columns": [
+        {
+            "title": "Bitte auswählen:",
+            "type": "toggle"
+        }
+    ],
+    "scoring-type": "-"
 }

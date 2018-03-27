@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"-",
 	"title":"Comment avez-vous fait face à ces pertes (cochez)?",
 	"lines": 
 	[
@@ -9,7 +10,13 @@
 	"columns": [
 		{
 			"title":"Cochez",
-			"type":"toggle"
+			"type":"toggle",
+			"scoring-type":"-",
+			"scoring":"by-value",
+			"scoring-grid":[
+				{"0":10, "1":0}
+			],
+			"indicateur":[1]
 		},
 		{
 			"title":"Précisez",

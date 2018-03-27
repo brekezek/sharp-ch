@@ -1,19 +1,27 @@
 {
-	"question-type":"table",
-	"title":"Wie sind Sie mit dem Verlust umgegangen?",
-	"lines": 
-	[
-		"Interne Strategie/Kapazitäten",
-		"Externe Hilfe"
-	],
-	"columns": [
-		{
-			"title":"Bitte auswählen:",
-			"type":"toggle"
-		},
-		{
-			"title":"Bitte genauer ausführen:",
-			"type":"text"
-		}
-	]
+    "question-type": "table",
+    "title": "Wie sind Sie mit dem Verlust umgegangen?",
+    "lines": [
+        "Interne Strategie/Kapazitäten",
+        "Externe Hilfe"
+    ],
+    "columns": [
+        {
+            "title": "Bitte auswählen:",
+            "type": "toggle",
+            "scoring": "by-value",
+            "scoring-type": "-",
+            "scoring-grid": [
+                [
+                    10,
+                    0
+                ]
+            ]
+        },
+        {
+            "title": "Bitte genauer ausführen:",
+            "type": "text"
+        }
+    ],
+    "scoring-type": "-"
 }

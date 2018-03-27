@@ -1,14 +1,17 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Selon vous, en moyenne, quelle est la richesse de votre sol en matière organique?",
 	"choices":
 		[
-			"Aucune",
-			"Faible",
-			"Moyenne",
-			"Assez riche",
-			"Elevée",
-			"Je ne sais pas"
+			{"Aucune":0},
+			{"Faible":2.5},
+			{"Moyenne":5},
+			{"Assez riche":7.5},
+			{"Elevée":10},
+			{"Je ne sais pas":0}
 		],
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[8]
 }

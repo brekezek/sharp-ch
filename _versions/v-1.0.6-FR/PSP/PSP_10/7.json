@@ -1,5 +1,12 @@
 {
 	"question-type":"multiple_multiple_solution",
+	"scoring-type":"academic",
+	"scoring":"by-entries",
+	"scoring-grid":[
+		{"0-0":0},
+		{"1-1":7},
+		{"2-+":10}
+	],
 	"title":"Quelle utilisation faites-vous des produits provenant de ces arbres spontanés/naturels?",
 	"choices": 
 		[
@@ -13,5 +20,6 @@
 			"Remèdes naturels (personnes)",
 			"Produits pour la protection des cultures",
 			"_OTHER_INPUT::Autre précisez)"
-		]
+		],
+	"indicateur":[11]
 }

@@ -1,5 +1,6 @@
 {
-	"question-type":"text_answer",
-	"title":"Wenn ja, nennen Sie die Hauptursachen für diese Verschlechterung:",
-	"mandatory":true
+    "question-type": "text_answer",
+    "title": "Wenn ja, nennen Sie die Hauptursachen für diese Verschlechterung:",
+    "mandatory": true,
+    "scoring-type": "-"
 }

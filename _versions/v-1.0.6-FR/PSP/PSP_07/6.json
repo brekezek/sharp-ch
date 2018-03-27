@@ -1,9 +1,12 @@
 {
 	"question-type":"binary_answer",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Est-ce que vous stockez des aliments pour animaux au cas où il y aurait une pénurie?",
 	"choices": [
 		"Oui",
 		"Non"
 	],
+	"indicateur":[5],
 	"mandatory":"true"
 }

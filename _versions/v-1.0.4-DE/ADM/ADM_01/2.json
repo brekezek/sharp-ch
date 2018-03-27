@@ -1,5 +1,5 @@
 {
-	"question-type":"text",
-	"title":"Name",
-	"mandatory":true
+    "question-type": "text",
+    "title": "Name",
+    "mandatory": true
 }

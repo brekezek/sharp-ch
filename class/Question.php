@@ -16,7 +16,7 @@ abstract class Question implements iQuestion {
 	protected $hidden;
 	protected $placeholder;
 	protected $all_visible;
-	
+	protected $readonly;
 	protected $isInTable;
 	
 	function __construct($index, $json) {
@@ -31,6 +31,7 @@ abstract class Question implements iQuestion {
 		
 		$this->uid = $this->type."_".uniqid();
 		$this->isInTable = false;
+		$this->readonly = false;
 	}
 	
 	public function setAspectId($id) {
@@ -89,6 +90,17 @@ abstract class Question implements iQuestion {
 		}
 	}
 	
+	protected function getTextColor() {
+	    if($this->readonly) {
+	        if($this->getAnswer() == "")
+	            return "color:red";
+	        else
+	            return "color:green";
+	    } else {
+	        return "";
+	    }
+	}
+	
 	public function isInTable($bool) {
 		$this->isInTable = $bool;
 	}
@@ -97,11 +109,18 @@ abstract class Question implements iQuestion {
 		if(is_array($this->answer)) {
 			return $this->answer;
 		} else {
+		    if(is_bool($this->answer)) {
+		        return (bool)$this->answer;
+		    }
 			if(trim($this->answer) != "") {
 				return $this->answer;
 			}
 		}
 		return "";
+	}
+	
+	public function setReadOnly($readonly) {
+	    $this->readonly = $readonly;
 	}
 	
 	protected function startWrapper() {

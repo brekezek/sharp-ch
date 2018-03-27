@@ -77,6 +77,7 @@ class Table extends Question {
 						if($questionObj != null) {
 							$questionObj->isInTable(true);
 							$questionObj->setAspectId($this->aspectId);
+							$questionObj->setReadOnly($this->readonly);
 							
 							if(isset($this->jsonAnswer[$indexRow])) {    
 							    if(isset($this->jsonAnswer[$indexRow][$indexCol])) {
@@ -101,7 +102,7 @@ class Table extends Question {
 						
 						
 						$html .=
-						'<td '.($triggerDisplay ? 'trigger-display="'.$this->uid."_".$indexRow.'"' : "").' data-type="'.$json['question-type'].'" class="align-middle text-center border-right '.($isOther ? "border-bottom" : "").'">'.
+						'<td '.($triggerDisplay ? 'trigger-display="'.$this->uid."_".$indexRow.'"' : "").' data-type="'.$json['question-type'].'" class="align-middle text-center border-right border-bottom">'.
 						  '<span class="display-manager" style="'.($displayCell ? "" : "display:none").'">'.
 						      ($questionObj == null ? "" : $questionObj->draw()).
 						  '</span>'.
@@ -132,7 +133,7 @@ class Table extends Question {
                     '<tr other-field style="background:'.(($indexRow % 2 == 0) ? "rgba(0,0,0,.05)" : "transparent").';">'.
 				        '<td class="border border-left-0" colspan="'.(count($this->columns)+1).'">'.
 				        '<input class="form-control w-100 rounded" name="'.$inputName.'" id="'."text_".uniqid().'" 
-						      placeholder="'.$t['other_placeholder'].'" type="text" value="'.$comment.'">'.
+						      placeholder="'.$t['other_placeholder'].'" type="text" value="'.$comment.'" '.($this->readonly ? "readonly" : "").'>'.
 				        '</td>'.
 				    '</tr>';
 				}

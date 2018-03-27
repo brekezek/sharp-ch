@@ -1,11 +1,18 @@
 {
-	"question-type":"multiple_one_solution",
-	"title":"Vonwievielen Quellen erhalten Sie Informationen über die Verwendung von Pestiziden?",
-	"choices":
-		[
-			"Eine Quelle",
-			"Zwei Quellen",
-			"Drei Quellen oder mehr"
-		],
-	"mandatory":true
+    "question-type": "multiple_one_solution",
+    "title": "Vonwievielen Quellen erhalten Sie Informationen über die Verwendung von Pestiziden?",
+    "choices": [
+        {
+            "Eine Quelle": 0
+        },
+        {
+            "Zwei Quellen": 5
+        },
+        {
+            "Drei Quellen oder mehr": 10
+        }
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
 }

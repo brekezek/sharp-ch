@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Activité",
 	"lines": [
 		"Lieux de cultes",
@@ -17,7 +18,17 @@
 	"columns": [
 		{
 			"title":"Avez-vous les infrastructures suivantes dans un rayon de 10 km autour de votre exploitation?",
-			"type":"toggle"
+			"type":"toggle",
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-1":1},
+				{"2-2":2},
+				{"3-3":4},
+				{"4-4":6},
+				{"5-+":10}
+			]
 		}, 
 		{
 			"title":"Utilisez-vous ces infrastructures?",

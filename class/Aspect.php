@@ -17,6 +17,8 @@ class Aspect {
 	
 	private $jsonAnswers;
 	
+	private $readonly;
+	
 	function __construct($id, $title, $color, $subtitle, $index) {
 		$this->id = $id;
 		$this->title = $title;
@@ -24,6 +26,7 @@ class Aspect {
 		$this->subtitle = $subtitle;
 		$this->questions = array();
 		$this->index = $index;
+		$this->readonly = false;
 	}
 	
 	public function getColor() {
@@ -55,6 +58,7 @@ class Aspect {
 		$html = 
 		'<div class="rounded container bg-light p-2 my-3">';
 		foreach($this->questions as $question) {
+		    $question->setReadOnly($this->readonly);
 			$html .= $question->draw();
 		}
 		$html .=
@@ -102,5 +106,9 @@ class Aspect {
 		$this->jsonAnswers = $json;
 	}
 	
+	
+	public function setReadOnly($readonly) {
+	    $this->readonly = $readonly;
+	}
 }
 ?>

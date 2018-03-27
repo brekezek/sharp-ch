@@ -1,13 +1,13 @@
 {
-	"question-type":"multiple_one_solution",
-	"title":"Betriebsgröße (in Hektar)",
-	"choices": [
-		"Weniger als 5 ha",
-		"5-10 ha",
-		"11-30 ha",
-		"31-50 ha",
-		"51-100 ha",
-		"Mehr als 100 ha"
-	],
-	"mandatory":true
+    "question-type": "multiple_one_solution",
+    "title": "Betriebsgröße (in Hektar)",
+    "choices": [
+        "Weniger als 5 ha",
+        "5-10 ha",
+        "11-30 ha",
+        "31-50 ha",
+        "51-100 ha",
+        "Mehr als 100 ha"
+    ],
+    "mandatory": true
 }

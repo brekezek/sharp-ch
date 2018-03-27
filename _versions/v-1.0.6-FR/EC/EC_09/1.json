@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Classer par ordre d'importance les capitaux principaux liés à la production que vous possédez. (1 = le plus important, 6 = le moins important)",
 	"lines" : [
 		"Terre",
@@ -13,6 +14,15 @@
 		{
 			"title":"Importance",
 			"type":"choice",
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"1-1":2},
+				{"2-2":5},
+				{"3-3":7},
+				{"4-+":10}
+			],
+			"indicateur":[5,13],
 			"choices": [
 				"1",
 				"2",

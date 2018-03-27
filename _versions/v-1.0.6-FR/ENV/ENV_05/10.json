@@ -1,11 +1,14 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Dans votre choix des races d'animaux, prenez-vous en considération les conditions locales?",
 	"choices":
 		[
-			"Oui",
-			"Non",
-			"Pas applicable"
+			{"Oui":10},
+			{"Non":0},
+			{"Pas applicable":0}
 		],
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[8]
 }

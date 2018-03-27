@@ -1,5 +1,7 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
+	"indicateur":[12],
 	"title":"Quelles ont été vos plus grosses dépenses l'année dernière?",
 	"lines" : [
 		"1",
@@ -24,6 +26,16 @@
 				"bail/loyer",
 				"éducation",
 				"Autre"
+			],
+			"scoring-type":"academic",
+			"scoring":"special",
+			"scoring-grid":[
+				{"1-1":0},
+				{"2-2":2},
+				{"3-3":4},
+				{"4-4":6},
+				{"5-5":8},
+				{"0-0":10}
 			]
 		}
 

@@ -1,5 +1,14 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
+	"scoring":"by-entries",
+	"scoring-grid":[
+		{"1-1":0},
+		{"2-2":3},
+		{"3-3":5},
+		{"4-+":10}
+	],
+	"indicateur":[4],
 	"title":"Dans vos parcelles, quelles pratiques de gestion des adventices utilisez-vous?",
 	"lines": [
 		"Cultures de couverture",

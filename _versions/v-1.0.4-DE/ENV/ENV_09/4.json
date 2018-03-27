@@ -1,12 +1,24 @@
 {
-	"question-type":"multiple_one_solution",
-	"title":"Wie wichtig ist der Zugang zu Energie für Ihren Betrieb (bzgl. Heizen, Beleuchtung und Maschinen)?",
-	"choices":[
-		"Überhaupt nicht",
-		"Ein wenig",
-		"Mittelmäßig",
-		"Ziemlich",
-		"Sehr"
-	],
-	"mandatory":"true"
+    "question-type": "multiple_one_solution",
+    "title": "Wie wichtig ist der Zugang zu Energie für Ihren Betrieb (bzgl. Heizen, Beleuchtung und Maschinen)?",
+    "choices": [
+        {
+            "Überhaupt nicht": 0
+        },
+        {
+            "Ein wenig": 2.5
+        },
+        {
+            "Mittelmäßig": 5
+        },
+        {
+            "Ziemlich": 7.5
+        },
+        {
+            "Sehr": 10
+        }
+    ],
+    "mandatory": "true",
+    "scoring": "by-value",
+    "scoring-type": "importance"
 }

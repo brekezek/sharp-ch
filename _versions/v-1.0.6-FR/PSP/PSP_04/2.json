@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Quelles plantes cultivez-vous",
 	"lines": [
 		"Orge",
@@ -39,11 +40,29 @@
 	"columns": [
 		{
 			"title":"Cochez si c'est le cas",
-			"type":"toggle"
+			"type":"toggle",
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"1-1":0},
+				{"2-3":4},
+				{"4-5":6},
+				{"6-+":10}
+			],
+			"result-define":"PSP_04.2.col0",
+			"indicateur":[4]
 		}, 
 		{
 			"title":"Combien de variétés cultivez-vous?",
-			"type":"integer"
+			"type":"integer",
+			"scoring":"by-value",
+			"scoring2":"average",
+			"col-based-on":0,
+			"scoring-grid":[
+				{"<-1":0},
+				{"2-+":10}
+			],
+			"indicateur":[4]
 		}
 	]
 }

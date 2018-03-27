@@ -1,9 +1,12 @@
 {
 	"question-type":"binary_answer",
+	"scoring-type":"academic",
 	"title":"Avez-vous utilisé des engrais de synthèse cette saison?",
 	"choices": [
 		"Oui",
 		"Non"
 	],
+	"scoring":"pending",
+	"result-define":"ENV_11.1",
 	"mandatory":true
 }

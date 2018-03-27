@@ -1,5 +1,15 @@
 {
 	"question-type":"multiple_multiple_solution",
+	"scoring-type":"academic",
+	"scoring":"by-entries",
+	"scoring-grid":[
+		{"0-0":0},
+		{"1-1":8},
+		{"2-2":10},
+		{"3-3":6},
+		{"4-4":4},
+		{"5-+":0}
+	],
 	"title":"Si oui, quels changements avez-vous observé?",
 	"choices": 
 		[
@@ -16,5 +26,6 @@
 			"Sécheresse inhabituelle",
 			"_OTHER_INPUT::Autre (précisez)"
 
-		]
+		],
+	"indicateur":[7]
 }

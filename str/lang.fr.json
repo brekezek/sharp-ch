@@ -1,7 +1,7 @@
 {
 	"welcome_msg_h1":"Bienvenue sur SHARP",
-	"sharp_meaning":"Schéma Holistique pour l’Autoévaluation Paysanne de la Résilience climatique",
-	"msg1_welcome":"Cet outil est conçu pour remplir les questionnaires plus simplement et plus rapidement.",
+	"sharp_meaning":"Évaluation et renforcement de la résilience des systèmes agricoles",
+	"msg1_welcome":"Pour évaluer la résilience de fermes, nous utilisons l'outil SHARP, développé par la FAO (Organisation des Nations unies pour l'alimentation et l'agriculture). L'outil SHARP est utilisé dans de nombreuses régions du monde. Cette application est une adaptation de cet outil au contexte suisse, testée et validée par des experts agricoles de Suisse.",
 	"opt_alert_h6":"Application optimisée pour les tablettes et ordinateurs",
 	"opt_alert_content":"La dimension de votre appareil ne nous permettra pas de vous fournir une expérience agréable lorsque vous remplirez un questionnaire.",
 	"understood":"J'ai compris",
@@ -27,5 +27,6 @@
 	"other_placeholder":"Précisions...",
 	"yes":"Oui",
 	"no":"Non",
-	"active":"Actif"
+	"active":"Actif",
+	"quit":"Quitter"
 }

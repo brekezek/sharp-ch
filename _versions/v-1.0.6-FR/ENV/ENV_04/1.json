@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Type",
 	"lines": [
 		"Surface agricole utile (hectares)",
@@ -9,7 +10,10 @@
 	"columns": [
 		{
 			"title":"Parcelle(s) en propriété (ha.)",
-			"type":"integer"
+			"type":"integer",
+			"scoring":"pending",
+			"result-define":"ENV_04.1",
+			"indicateur":[10]
 		}, 
 		{
 			"title":"Parcelle(s) prise(s) en location fixe avec bail (ha.)",

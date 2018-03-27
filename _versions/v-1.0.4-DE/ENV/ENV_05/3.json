@@ -1,14 +1,27 @@
 {
-	"question-type":"multiple_one_solution",
-	"title":"Wie reich ist Ihr Boden an organischem Material (im Durchschnitt)?",
-	"choices":
-		[
-			"Überhaupt nicht",
-			"Sehr wenig",
-			"Mittelmäßig",
-			"Ziemlich reich",
-			"Sehr",
-			"Ich weiß es nicht."
-		],
-	"mandatory":true
+    "question-type": "multiple_one_solution",
+    "title": "Wie reich ist Ihr Boden an organischem Material (im Durchschnitt)?",
+    "choices": [
+        {
+            "Überhaupt nicht": 0
+        },
+        {
+            "Sehr wenig": 2.5
+        },
+        {
+            "Mittelmäßig": 5
+        },
+        {
+            "Ziemlich reich": 7.5
+        },
+        {
+            "Sehr": 10
+        },
+        {
+            "Ich weiß es nicht.": 0
+        }
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
 }

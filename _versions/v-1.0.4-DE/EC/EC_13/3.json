@@ -1,13 +1,24 @@
 {
-	"question-type":"multiple_one_solution",
-	"title":"Inwieweit ist der Zugang zu lokalen Vertriebsquellen ausreichend für Ihren Betrieb?",
-	"choices":[
-		"Überhaupt nicht",
-		"Ein wenig",
-		"Mittelmäßig",
-		"Beinahe völlig",
-		"Vollständig"
-	],
-	"scoring":"SOME_OPTION",
-	"mandatory":true
+    "question-type": "multiple_one_solution",
+    "title": "Inwieweit ist der Zugang zu lokalen Vertriebsquellen ausreichend für Ihren Betrieb?",
+    "choices": [
+        {
+            "Überhaupt nicht": 0
+        },
+        {
+            "Ein wenig": 2.5
+        },
+        {
+            "Mittelmäßig": 5
+        },
+        {
+            "Beinahe völlig": 7.5
+        },
+        {
+            "Vollständig": 10
+        }
+    ],
+    "scoring": "by-value",
+    "mandatory": true,
+    "scoring-type": "adequacy"
 }

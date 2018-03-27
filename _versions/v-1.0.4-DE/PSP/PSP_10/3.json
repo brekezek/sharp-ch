@@ -1,9 +1,11 @@
 {
-	"question-type":"binary_answer",
-	"title":"Haben Sie verschiedene Sorten der gleichen Art gepflanzt?",
-	"choices": [
-		"Ja",
-		"Nein"
-	],
-	"mandatory":true
+    "question-type": "binary_answer",
+    "title": "Haben Sie verschiedene Sorten der gleichen Art gepflanzt?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
 }

@@ -1,5 +1,16 @@
 {
 	"question-type":"integer_answer",
+	"scoring-type":"academic",
+	"scoring":"by-value",
+	"scoring-grid":[
+		{"0-0":0},
+		{"1-1":2},
+		{"2-2":4},
+		{"3-3":10},
+		{"4-4":5},
+		{"5-+":2}
+	],
+	"indicateur":[7],
 	"title":"Combien d'espèces envahissantes avez-vous observé sur votre exploitation ces 10 dernières années?",
 	"mandatory":true
 }

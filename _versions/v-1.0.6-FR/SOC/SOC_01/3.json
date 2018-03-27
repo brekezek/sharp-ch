@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Avec qui échangez-vous directement?",
 	"lines":
 		[
@@ -15,8 +16,19 @@
 	"columns": [
 		{
 			"title":"Cochez",
-			"type":"toggle"
+			"type":"toggle",
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-2":2},
+				{"3-4":4},
+				{"5-5":5},
+				{"6-6":6},
+				{"7-+":10}
+			]
 		}
 	],
-	"mandatory":"true"
+	"mandatory":"true",
+	"indicateur":[9]
 }

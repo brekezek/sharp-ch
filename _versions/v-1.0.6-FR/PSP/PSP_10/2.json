@@ -1,5 +1,15 @@
 {
-	"question-type":"text_answer",
+	"question-type":"integer_answer",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Approximativement, combien d'espèces d'arbres avez-vous plantées dans votre ferme?",
-	"mandatory":true
+	"scoring-grid": [
+		{"1-1":0},
+		{"2-2":2},
+		{"3-4":5},
+		{"5-5":7},
+		{"6-+":10}
+	],
+	"mandatory":true,
+	"indicateur":[2,4]
 }

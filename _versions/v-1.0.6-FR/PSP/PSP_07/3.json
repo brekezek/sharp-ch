@@ -1,5 +1,14 @@
 {
 	"question-type":"text_answer",
+	"scoring-type":"academic",
+	"scoring":"by-entries",
+	"scoring-grid":[
+		{"0-0":0},
+		{"1-1":3},
+		{"2-2":7},
+		{"3-+":10}
+	],
 	"title":"Combien d'autres aliments que les concentrés du commerce et/ou les céréales produites sur l'exploitation donnez-vous à vos porcs? (par ex. petit-lait, sous-produits de boulangerie, fromage, etc)",
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[5]
 }

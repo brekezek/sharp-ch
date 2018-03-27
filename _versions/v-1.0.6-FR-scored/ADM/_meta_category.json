@@ -1,8 +1,0 @@
-{
-	"group_id":"ADM",
-	"color":"blue",
-	"title":"Informations générales",
-	"order": [
-		"ADM_01"
-	]
-}

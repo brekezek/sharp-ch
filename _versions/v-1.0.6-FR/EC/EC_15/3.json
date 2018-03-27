@@ -1,13 +1,15 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"adequacy",
+	"scoring":"by-value",
 	"title":"Est-ce que vos ressources financières sont suffisantes pour adapter votre exploitation en cas de nécessité?",
 	"choices":
 		[
-			"Pas du tout",
-			"Un peu",
-			"Moyennement",
-			"Beaucoup",
-			"Complètement"
+			{"Pas du tout":0},
+			{"Un peu":2.5},
+			{"Moyennement":5},
+			{"Beaucoup":7.5},
+			{"Complètement":10}
 		],
 	"mandatory":true
 }

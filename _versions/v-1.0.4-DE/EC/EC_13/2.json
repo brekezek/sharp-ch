@@ -1,5 +1,8 @@
 {
-	"question-type":"integer_answer",
-	"title":"Wieviel Prozent der Inputs können Sie auf Ihrem Betrieb herstellen (z.B. Setzlinge)?",
-	"mandatory":true
+    "question-type": "integer_answer",
+    "title": "Wieviel Prozent der Inputs können Sie auf Ihrem Betrieb herstellen (z.B. Setzlinge)?",
+    "mandatory": true,
+    "scoring": "function",
+    "scoring-type": "academic",
+    "scoring-function": "divide(x,10)"
 }

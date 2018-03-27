@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Question / personne",
 	"lines": [
 		"Hommes (16-65)",
@@ -12,7 +13,8 @@
 	"columns": [
 		{
 			"title":"Pour chaque catégorie, combien de personnes y a-t-il dans votre ménage?",
-			"type":"integer"
+			"type":"integer",
+			"result-define":"TOTAL_HOUSEHOLD"
 		}, 
 		{
 			"title":"Qui est le chef de l'exploitation (cocher la bonne catégorie)?",
@@ -32,11 +34,25 @@
 		},
 		{
 			"title":"Combien ne peuvent pas travailler pour des raisons de santé?",
-			"type":"integer"
+			"type":"integer",
+			"result-required":"TOTAL_HOUSEHOLD",
+			"scoring":"function",
+			"scoring-function":"divide(x,TOTAL_HOUSEHOLD)",
+			"scoring-range":[
+				{"0-0":10},
+				{"0.01-0.1":7},
+				{"0.11-0.2":5},
+				{"0.21-+":3}
+			],
+			"indicateur":12
 		},
 		{
 			"title":"Combien ont terminé leur formation agricole?",
-			"type":"integer"
+			"type":"integer",
+			"result-required":"TOTAL_HOUSEHOLD",
+			"scoring":"function",
+			"scoring-function":"multiply(divide(x,TOTAL_HOUSEHOLD), 10)",
+			"indicateur":12
 		}
 	]
 }

@@ -1,12 +1,14 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"importance",
+	"scoring":"by-value",
 	"title":"Quelle importance des pratiques de gestion des terres pour votre système de production?",
 	"choices":[
-		"Aucune",
-		"Faible",
-		"Moyenne",
-		"Elevée",
-		"Très élevée"
+		{"Aucune":0},
+		{"Faible":2.5},
+		{"Moyenne":5},
+		{"Elevée":7.5},
+		{"Très élevée":10}
 	],
 	"mandatory":"true"
 }

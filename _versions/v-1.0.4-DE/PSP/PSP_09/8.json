@@ -1,11 +1,18 @@
 {
-	"question-type":"multiple_one_solution",
-	"title":"Nutzen Sie neue Tierrassen (die in der Region vor 30 Jahren noch nicht genutzt wurden) - nicht heimische Züchtungen, wie moderne oder importierte Rassen, Hochertragsrassen etc.?",
-	"choices":
-		[
-			"Ja",
-			"Nein",
-			"Ich weiß es nicht."
-		],
-	"mandatory":true
+    "question-type": "multiple_one_solution",
+    "title": "Nutzen Sie neue Tierrassen (die in der Region vor 30 Jahren noch nicht genutzt wurden) - nicht heimische Züchtungen, wie moderne oder importierte Rassen, Hochertragsrassen etc.?",
+    "choices": [
+        {
+            "Ja": 10
+        },
+        {
+            "Nein": 0
+        },
+        {
+            "Ich weiß es nicht.": 0
+        }
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
 }

@@ -1,5 +1,24 @@
 {
-	"question-type":"text_answer",
-	"title":"Wie viel Prozent Ihrer Pflanzen sind schätzungsweise neue Sorten?",
-	"mandatory":true
+    "question-type": "text_answer",
+    "title": "Wie viel Prozent Ihrer Pflanzen sind schätzungsweise neue Sorten?",
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic",
+    "scoring-grid": [
+        {
+            "0-25": 10
+        },
+        {
+            "26-50": 6
+        },
+        {
+            "51-75": 3
+        },
+        {
+            "76-90": 1
+        },
+        {
+            "91-100": 0
+        }
+    ]
 }

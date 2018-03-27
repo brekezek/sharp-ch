@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Activité",
 	"lines": [
 		"Achetez-vous la plupart de vos produits directement auprès des producteurs (par ex. producteurs d'intrants, autres agriculteurs)?",
@@ -9,6 +10,8 @@
 	"columns": [
 		{
 			"title":"Réponse",
+			"scoring-type":"academic",
+			"scoring":"special",
 			"type":"choice",
 			"choices": [
 				"Oui",

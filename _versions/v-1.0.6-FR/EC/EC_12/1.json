@@ -1,12 +1,15 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Est-ce qu'une personne de votre ménage (autre que vous même) a une activité génératrice de revenus externe à l'exploitation agricole?",
 	"choices":
 		[
-			"Oui, toute l'année",
-			"Oui, saisonnièrement",
-			"Oui, occasionnellement",
-			"Non"
+			{"Oui, toute l'année":10},
+			{"Oui, saisonnièrement":7},
+			{"Oui, occasionnellement":3},
+			{"Non":0}
 		],
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[13]
 }

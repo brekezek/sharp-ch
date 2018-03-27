@@ -1,5 +1,6 @@
 {
-	"question-type":"text_answer",
-	"title":"Nennen Sie einige Sorten:",
-	"mandatory":"true"
+    "question-type": "text_answer",
+    "title": "Nennen Sie einige Sorten:",
+    "mandatory": "true",
+    "scoring-type": "-"
 }

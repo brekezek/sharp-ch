@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Pesticide",
 	"lines": [
 		"Insecticide",
@@ -16,5 +17,8 @@
 			"title":"Avez-vous vérifié la présence des prédateurs/maladies sur vos cultures avant de pulvériser?",
 			"type":"binary"
 		}
-	]
+	],
+	"scoring":"special",
+	"scoring-grid":{"00":10, "11":5, "10":0},
+	"indicateur":[2,8]
 }

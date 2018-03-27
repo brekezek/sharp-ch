@@ -1,5 +1,18 @@
 {
-	"question-type":"integer_answer",
-	"title":"Wie viele verschiedene Bodentypen haben Sie auf Ihren Feldern (ungefähr)?",
-	"mandatory":true
+    "question-type": "integer_answer",
+    "title": "Wie viele verschiedene Bodentypen haben Sie auf Ihren Feldern (ungefähr)?",
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic",
+    "scoring-grid": [
+        {
+            "1-1": 0
+        },
+        {
+            "2-2": 5
+        },
+        {
+            "3-+": 10
+        }
+    ]
 }

@@ -1,5 +1,6 @@
 {
 	"question-type":"text_answer",
+	"scoring-type":"academic",
 	"title":"Si oui, veuillez préciser la qualité de ces services. Si non, pourquoi?",
 	"mandatory":true
 }

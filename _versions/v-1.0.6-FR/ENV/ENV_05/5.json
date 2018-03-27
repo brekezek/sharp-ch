@@ -1,13 +1,15 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"adequacy",
+	"scoring":"by-value",
 	"title":"En général, votre sol est-il fertile?",
 	"choices":
 		[
-			"Non",
-			"Un peu",
-			"Moyennement",
-			"Beaucoup",
-			"Complètement"
+			{"Non":0},
+			{"Un peu":2.5},
+			{"Moyennement":5},
+			{"Beaucoup":7.5},
+			{"Complètement":10}
 		],
 	"mandatory":true
 	

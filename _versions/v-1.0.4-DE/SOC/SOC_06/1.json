@@ -1,12 +1,24 @@
 {
-	"question-type":"multiple_one_solution",
-	"title":"Falls es in Ihrem Dorf oder in Ihrer Nachbarschaft im letzten Jahr Probleme gab, wie oft haben Sie sich mit anderen Betrieben zusammengetan, um diese zu lösen?",
-	"choices": [
-		"Nie",
-		"Selten",
-		"Manchmal",
-		"Häufig",
-		"Nicht anwendbar"
-	],
-	"mandatory":true
+    "question-type": "multiple_one_solution",
+    "title": "Falls es in Ihrem Dorf oder in Ihrer Nachbarschaft im letzten Jahr Probleme gab, wie oft haben Sie sich mit anderen Betrieben zusammengetan, um diese zu lösen?",
+    "choices": [
+        {
+            "Nie": 0
+        },
+        {
+            "Selten": 4
+        },
+        {
+            "Manchmal": 7
+        },
+        {
+            "Häufig": 10
+        },
+        {
+            "Nicht anwendbar": 0
+        }
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
 }

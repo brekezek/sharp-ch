@@ -1,5 +1,6 @@
 {
 	"question-type":"binary_answer",
+	"scoring-type":"-",
 	"title":"Êtes-vous membres d'un groupe, d'une organisation ou d'une association?",
 	"choices" : [
 		"Oui",

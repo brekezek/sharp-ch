@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Activité",
 	"lines": [
 		"Vache à viande",
@@ -14,19 +15,44 @@
 	"columns": [
 		{
 			"title":"Combien d'animaux possédez-vous approximativement",
-			"type":"integer"
+			"type":"integer",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"1-1":0},
+				{"2-2":3},
+				{"3-3":6},
+				{"4-4":8},
+				{"5-+":10}
+			],
+			"indicateur":[4]
 		}, 
 		{
 			"title":"Combien de variétés/races différentes possédez-vous pour chaque catégorie?",
-			"type":"integer"
+			"type":"integer",
+			"scoring":"by-value",
+			"scoring2":"average",
+			"col-based-on":0,
+			"scoring-grid":[
+				{"<-1":0},
+				{"2-+":10}
+			],
+			"indicateur":[5]
 		},
 		{
 			"title":"Appliquez-vous les normes/réglementations SST (Systèmes de stabulation particulièrement respectueux des animaux (cochez si oui)?",
-			"type":"binary"
+			"type":"binary",
+			"scoring":"by-value",
+			"scoring2":"average",
+			"col-based-on": 0,
+			"indicateur":[8]
 		},
 		{
 			"title":"Appliquez-vous les normes SRPA (Sorties régulières en plein air (cochez si oui)?",
-			"type":"binary"
+			"type":"binary",
+			"scoring":"by-value",
+			"scoring2":"average",
+			"col-based-on": 0,
+			"indicateur":[8]
 		}
 	]
 }

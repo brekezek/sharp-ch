@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Est-ce que vous avez du soutien pour remplir les tâches ménagères?",
 	"lines": [
 		"Cuisine",
@@ -11,7 +12,16 @@
 	"columns": [
 		{
 			"title":"Soutien",
-			"type":"toggle"
+			"type":"toggle",
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-1":2},
+				{"2-3":7},
+				{"4-+":10}
+			],
+			"indicateur":[1]
 		}
 	],
 	"mandatory":true

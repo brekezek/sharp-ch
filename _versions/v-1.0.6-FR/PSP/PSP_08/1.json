@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"En général, quelles semences utilisez-vous?",
 	"all_visible":true,
 	"lines": [
@@ -20,7 +21,15 @@
 				"Oui",
 				"Non",
 				"Pas applicable"
-			]
+			],
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"1-1":1},
+				{"2-3":6},
+				{"4-+":10}
+			],
+			"indicateur":[3,5]
 		},
 		{
 			"title":"Origines des semences pour le bétail (mâles améliorateurs, insémination artificielle, etc.)",
@@ -29,8 +38,15 @@
 				"Oui",
 				"Non",
 				"Pas applicable"
-			]
-
+			],
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"1-1":1},
+				{"2-3":6},
+				{"4-+":10}
+			],
+			"indicateur":[3,5]
 		}
 	]
 }

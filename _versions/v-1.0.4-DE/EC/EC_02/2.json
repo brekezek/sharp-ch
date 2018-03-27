@@ -1,42 +1,47 @@
- {
-	"question-type":"table",
-	"title":"Produkte, die Sie direkt an den Kunden verkaufen?",
-	"lines" : [
-		"Produkt 1",
-		"Produkt 2",
-		"Produkt 3",
-		"Produkt 4",
-		"Produkt 5",
-		"Produkt 6"
-	
-	],
-	"columns": [
-		{
-			"title":"Beschreibung",
-			"type":"text"
-		},
-				{
-			"title":"Wie oft?",
-			"type":"choice",
-			"choices": [
-				"Jede Woche",
-				"Jeden Monat",
-				"Einmal in der Saison",
-				"Einmal pro Jahr",
-				""	
-			]
-		},
-		{
-			"title":"Verkaufen Sie Ihre Produkte auf dem lokalen Markt?",
-			"type":"choice",
-			"choices": [
-				"Nein",
-				"1-2 Mal im Monat",
-				"1-3 Mal in der Woche",
-				"Sehr oft (4+ in der Woche)"	
-			]
-
-		}
-	],
-	"mandatory":true
+{
+    "question-type": "table",
+    "title": "Produkte, die Sie direkt an den Kunden verkaufen?",
+    "lines": [
+        "Produkt 1",
+        "Produkt 2",
+        "Produkt 3",
+        "Produkt 4",
+        "Produkt 5",
+        "Produkt 6"
+    ],
+    "columns": [
+        {
+            "title": "Beschreibung",
+            "type": "text"
+        },
+        {
+            "title": "Wie oft?",
+            "type": "choice",
+            "choices": [
+                {"Jede Woche":10},
+                {"Jeden Monat":7},
+                {"Einmal in der Saison":5},
+                {"Einmal pro Jahr":2},
+                {"Nie":0}
+            ],
+            "scoring": "by-value",
+            "scoring2": "average",
+            "col-based-on": 0
+        },
+        {
+            "title": "Verkaufen Sie Ihre Produkte auf dem lokalen Markt?",
+            "type": "choice",
+            "choices": [
+                {"Nein":0},
+                {"1-2 Mal im Monat":2},
+                {"1-3 Mal in der Woche":4},
+                {"Sehr oft (4+ in der Woche)":10}
+            ],
+            "scoring": "by-value",
+            "scoring2": "average",
+            "col-based-on": 0
+        }
+    ],
+    "mandatory": true,
+    "scoring-type": "academic"
 }

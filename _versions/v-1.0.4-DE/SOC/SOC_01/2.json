@@ -1,56 +1,87 @@
 {
-	"question-type":"table",
-	"title":"Gruppentyp",
-	"lines": [
-		"Samenbank",
-		"Landwirtschaftliche Berater Organisation",
-		"Berufsverband",
-		"Wasser-/Abfallorganisation",
-		"Religiöse Gemeinschaft",
-		"Jugendgruppe",
-		"Gesundheitskomitee",
-		"Bauern-/Fischergruppe",
-		"Genossenschaft/Erzeugerorganisation",
-		"Gewerkschaft",
-		"Nachbarschaft/Dorf/Regionalverband",
-		"Kulturelle Vereinigung",
-		"Frauengruppe",
-		"Sportverband",
-		"Zuhörer Clubs",
-		"Händlerverband/Unternehmensgruppe",
-		"Kredit-/Finanzgruppe",
-		"Bürgerliche Gruppe",
-		"Politische Gruppe",
-		"Elterngruppe/Schulkomitee",
-		"_OTHER_INPUT::Anderes (Bitte spezifizieren):"
-	],
-	"columns":[
-		{
-			"title":"Beteiligung",
-			"type":"toggle"
-		},
-		{
-			"title":"Grad",
-			"type":"choice",
-			"choices": [
-				"Nicht aktiv",
-				"Ziemlich aktiv",
-				"Sehr aktiv",
-				"Leiter*in"
-			]
-		},
-		{
-			"title":"Häufigkeit der Treffen",
-			"type":"choice",
-			"choices": [
-				"Einmal die Woche",
-				"Einmal alle zwei Wochen",
-				"Einmal im Monat",
-				"Zweimal im Jahr oder weniger",
-				"Nie"
-			]
-		}
-
-	],
-	"mandatory":true
+    "question-type": "table",
+    "title": "Gruppentyp",
+    "lines": [
+        "Samenbank",
+        "Landwirtschaftliche Berater Organisation",
+        "Berufsverband",
+        "Wasser-/Abfallorganisation",
+        "Religiöse Gemeinschaft",
+        "Jugendgruppe",
+        "Gesundheitskomitee",
+        "Bauern-/Fischergruppe",
+        "Genossenschaft/Erzeugerorganisation",
+        "Gewerkschaft",
+        "Nachbarschaft/Dorf/Regionalverband",
+        "Kulturelle Vereinigung",
+        "Frauengruppe",
+        "Sportverband",
+        "Zuhörer Clubs",
+        "Händlerverband/Unternehmensgruppe",
+        "Kredit-/Finanzgruppe",
+        "Bürgerliche Gruppe",
+        "Politische Gruppe",
+        "Elterngruppe/Schulkomitee",
+        "_OTHER_INPUT::Anderes (Bitte spezifizieren):"
+    ],
+    "columns": [
+        {
+            "title": "Beteiligung",
+            "type": "toggle"
+        },
+        {
+            "title": "Grad",
+            "type": "choice",
+            "choices": [
+                "Nicht aktiv",
+                "Ziemlich aktiv",
+                "Sehr aktiv",
+                "Leiter*in"
+            ],
+            "scoring": "by-entries",
+            "scoring-type": "academic",
+            "scoring-grid": [
+                {
+                    "0-0": 0
+                },
+                {
+                    "1-1": 2
+                },
+                {
+                    "2-3": 5
+                },
+                {
+                    "4-+": 10
+                }
+            ],
+            "ignore-choice-number": [
+                0
+            ]
+        },
+        {
+            "title": "Häufigkeit der Treffen",
+            "type": "choice",
+            "choices": [
+                {
+                    "Einmal die Woche": 10
+                },
+                {
+                    "Einmal alle zwei Wochen": 7
+                },
+                {
+                    "Einmal im Monat": 5
+                },
+                {
+                    "Zweimal im Jahr oder weniger": 2
+                },
+                {
+                    "Nie": 0
+                }
+            ],
+            "scoring": "by-value",
+            "scoring-type": "academic"
+        }
+    ],
+    "mandatory": true,
+    "scoring-type": "academic"
 }

@@ -27,7 +27,7 @@ class Binary extends Question {
 				
 				$checked = array("","");
 				
-				if(parent::getAnswer() == $choice) {
+				if($this->getAnswer() == $choice) {
 					$checked = $tab;
 				} 
 				
@@ -36,10 +36,16 @@ class Binary extends Question {
 					$withComment = "binary_comment";
 				}
 				
+				$value = $choice;
+				if(count($this->choices) == 2 && strlen(implode('', $this->choices)) <= 2*3) {
+				    $value = 1 - $i;
+				}
+				
 				$html .=
 				'<label class="btn btn-secondary '.$checked[1].' '.$withComment.'">'.
 					'<input index="'.$i.'" type="radio" id="'.$id.'" name="'.$this->inputName.'"
-					value="'.$choice.'" autocomplete="off" '.$checked[0].' '.(parent::isMandatory() ? "required" : "").'> '.$choice.
+                    '.($this->readonly ? "disabled" : "").' 
+					value="'.$value.'" autocomplete="off" '.$checked[0].' '.(parent::isMandatory() ? "required" : "").'> '.$choice.
 				'</label>';
 				/*
 				'<div class="custom-control custom-radio custom-control-inline">'.
@@ -59,6 +65,17 @@ class Binary extends Question {
 			$html .= parent::endWrapper();
 		
 		return $html;
+	}
+	
+	public function getAnswer() {
+	    $answer = parent::getAnswer();
+	    if(is_bool($answer)) {
+	        if($answer === true)
+	            return $this->choices[0];
+	        else 
+	            return $this->choices[1];
+	    }
+	    return $answer;
 	}
 	
 	protected function hasComment($bool) {

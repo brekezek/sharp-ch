@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Type de groupe",
 	"lines": [
 		"Banque de semences",
@@ -37,18 +38,31 @@
 				"Assez actif",
 				"Très actif",
 				"Leader"
-			]
+			],
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"ignore-choice-number":[0],
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-1":2},
+				{"2-3":5},
+				{"4-+":10}
+			],
+			"indicateur":[1,9,12]
 		},
 		{
 			"title":"Fréquence des rencontres",
 			"type":"choice",
+			"scoring-type":"academic",
+			"scoring":"by-value",
 			"choices": [
-				"Une fois par semaine",
-				"Une fois toutes les deux semaines",
-				"Une fois par mois",
-				"Deux fois par année ou moins",
-				"Jamais"
-			]
+				{"Une fois par semaine":10},
+				{"Une fois toutes les deux semaines":7},
+				{"Une fois par mois":5},
+				{"Deux fois par année ou moins":2},
+				{"Jamais":0}
+			],
+			"indicateur":[1,9]
 		}
 
 	],

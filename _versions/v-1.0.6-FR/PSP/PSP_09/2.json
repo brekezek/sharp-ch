@@ -1,5 +1,6 @@
 {
 	"question-type":"text_answer",
+	"scoring-type":"-",
 	"title":"Pouvez-vous en nommer quelques-unes?",
 	"mandatory":"true"
 }

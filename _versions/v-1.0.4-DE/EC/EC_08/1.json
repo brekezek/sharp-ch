@@ -1,44 +1,45 @@
 {
-	"question-type":"table",
-	"title":"Was haben Sie versichert?",
-	"lines" : [
-		"1",
-		"2",
-		"3",
-		"4",
-		"5",
-		"6",
-		"7",
-		"8",
-		"9",
-		"10"
-	],
-	"columns": [
-		{
-			"title":"Nutzpflanzen/Nutztiere/Einkommen/Gebäude/etc.",
-			"type":"text"
-		},
-		{
-			"title":"Wetterschäden",
-			"type":"toggle"
-		},
-		{
-			"title":"Brandschäden",
-			"type":"toggle"
-		},
-		{
-			"title":"andere Verluste",
-			"type":"toggle"
-		},
-		{
-			"title":"Bitte spezifizieren",
-			"type":"text"
-		},
-		{
-			"title":"Haben Sie in den letzten fünf Jahren Anspruch auf die Versicherung genommen?",
-			"type":"toggle"
-		}
-
-	],
-	"mandatory":true
+    "question-type": "table",
+    "title": "Was haben Sie versichert?",
+    "lines": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+    ],
+    "columns": [
+        {
+            "title": "Nutzpflanzen/Nutztiere/Einkommen/Gebäude/etc.",
+            "type": "text",
+            "scoring": "by-entries"
+        },
+        {
+            "title": "Wetterschäden",
+            "type": "toggle"
+        },
+        {
+            "title": "Brandschäden",
+            "type": "toggle"
+        },
+        {
+            "title": "andere Verluste",
+            "type": "toggle"
+        },
+        {
+            "title": "Bitte spezifizieren",
+            "type": "text"
+        },
+        {
+            "title": "Haben Sie in den letzten fünf Jahren Anspruch auf die Versicherung genommen?",
+            "type": "toggle"
+        }
+    ],
+    "mandatory": true,
+    "scoring-type": "academic"
 }

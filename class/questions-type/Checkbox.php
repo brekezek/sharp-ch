@@ -21,7 +21,9 @@ class Checkbox extends Question {
 		
 		$html .=
 		'<div class="custom-control custom-checkbox custom-control-inline mr-0">'.
-			'<input type="checkbox" id="'.$this->uid.'" trigger="'.$this->inputName.'" class="custom-control-input" '.($this->isTrue(parent::getAnswer()) ? "checked" : "").'>'.
+			'<input type="checkbox" id="'.$this->uid.'" trigger="'.$this->inputName.'"
+                '.($this->readonly ? "disabled" : "").'
+                class="custom-control-input" '.($this->isTrue(parent::getAnswer()) ? "checked" : "").'>'.
 			'<label type="checkbox" class="custom-control-label" for="'.$this->uid.'"></label>'.
 			'<input type="hidden" value="'.$answer.'" name="'.$this->inputName.'"> '.
 		'</div>';

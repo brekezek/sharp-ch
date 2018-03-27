@@ -1,20 +1,26 @@
 {
-	"question-type":"table",
-	"title":"Pestizide",
-	"lines": [
-		"Insektizide",
-		"Herbizide",
-		"Fungizide"
-	],
-	"columns": [
-		{
-			"title":"Haben Sie schon einmal synthetische Pestizide verwendet?",
-			"type":"binary"
-		}, 
-		
-		{
-			"title":"Kontrollieren Sie die Pflanzen vor dem Pflanzenschutzeinsatz auf Krankheiten/Schädlingen?",
-			"type":"binary"
-		}
-	]
+    "question-type": "table",
+    "title": "Pestizide",
+    "lines": [
+        "Insektizide",
+        "Herbizide",
+        "Fungizide"
+    ],
+    "columns": [
+        {
+            "title": "Haben Sie schon einmal synthetische Pestizide verwendet?",
+            "type": "binary"
+        },
+        {
+            "title": "Kontrollieren Sie die Pflanzen vor dem Pflanzenschutzeinsatz auf Krankheiten/Schädlingen?",
+            "type": "binary"
+        }
+    ],
+    "scoring": "special",
+    "scoring-type": "academic",
+    "scoring-grid": {
+        "00": 10,
+        "11": 5,
+        "10": 0
+    }
 }

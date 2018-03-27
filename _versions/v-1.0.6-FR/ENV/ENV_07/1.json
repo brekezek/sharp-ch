@@ -1,10 +1,13 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"Intégrez-vous des légumineuses dans votre plan de rotation?",
 	"choices":[
-		"Oui chaque année",
-		"Oui mais pas chaque année",
-		"Jamais"
+		{"Oui chaque année":10},
+		{"Oui mais pas chaque année":5},
+		{"Jamais":0}
 	],
-	"mandatory":"true"
+	"mandatory":"true",
+	"indicateur":[2,8,12]
 }

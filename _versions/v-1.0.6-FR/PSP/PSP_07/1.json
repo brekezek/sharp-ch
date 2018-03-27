@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Question / animaux",
 	"lines": [
 		"Vache à viande",
@@ -14,7 +15,11 @@
 	"columns": [
 		{
 			"title":"Laissez-vous les animaux pâturer dans les pâturages ou sur des terres agricoles pendant une partie de (ou toute) l'année?",
-			"type":"toggle"
+			"type":"toggle",
+			"scoring-type":"academic",
+			"scoring":"by-value",
+			"scoring2":"average",
+			"indicateur":[5]
 		}
 		
 	]

@@ -1,9 +1,11 @@
 {
-	"question-type":"binary_answer",
-	"title":"Haben Sie in den letzten zehn Jahren irgendwelche Veränderungen bezüglich des Wetters bemerkt?",
-	"choices": [
-		"Ja",
-		"Nein"
-	],
-	"mandatory":true
+    "question-type": "binary_answer",
+    "title": "Haben Sie in den letzten zehn Jahren irgendwelche Veränderungen bezüglich des Wetters bemerkt?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
 }

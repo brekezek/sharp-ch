@@ -1,9 +1,11 @@
 {
-	"question-type":"binary_answer",
-	"title":"Vertrauen Sie in Ihrem Dorf/Ihrer Nachbarschaft in der Regel anderen, um Geld zu leihen und zu verleihen?",
-	"choices": [
-		"Ja",
-		"Nein"
-	],
-	"mandatory":true
+    "question-type": "binary_answer",
+    "title": "Vertrauen Sie in Ihrem Dorf/Ihrer Nachbarschaft in der Regel anderen, um Geld zu leihen und zu verleihen?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
 }

@@ -24,6 +24,8 @@ class MultipleOne extends Question {
 		parent::startWrapper().
 			parent::getLabel().
 			'<select 
+                 '.($this->readonly ? "disabled" : "").' 
+                 style="'.parent::getTextColor().'" 
 				 '.($this->isMultiple ? ' multiple size="'.(count($this->choices)).'" ' : "").
 				 'name="'.$this->inputName.'" 
 				 id="'.$this->uid.'"  
@@ -37,11 +39,14 @@ class MultipleOne extends Question {
 					if(parent::getAnswer() == "") $html .= ' selected';
 					$html .= '>';
 					
-					if($this->placeholder != "") 
-						$html .= $this->placeholder; 
-					else
-						$html .= $t['choose...'];
-					
+					if($this->readonly && trim($this->getAnswer()) == "") {
+					    $html .= "-";
+					} else {
+    					if($this->placeholder != "") 
+    						$html .= $this->placeholder; 
+    					else
+    						$html .= $t['choose...'];
+					}
 					$html .= '</option>';
 				}
 				

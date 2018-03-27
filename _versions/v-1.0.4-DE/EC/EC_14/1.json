@@ -1,9 +1,11 @@
 {
-	"question-type":"binary_answer",
-	"title":"Haben Sie mehr Ersparnisse als vor fünf Jahren?",
-	"choices" : [
-		"Ja",
-		"Nein"
-	],
-	"mandatory":true
+    "question-type": "binary_answer",
+    "title": "Haben Sie mehr Ersparnisse als vor fünf Jahren?",
+    "choices": [
+        "Ja",
+        "Nein"
+    ],
+    "mandatory": true,
+    "scoring": "by-value",
+    "scoring-type": "academic"
 }

@@ -1,24 +1,27 @@
 {
-	"question-type":"table",
-	"title":"Aktivitäten",
-	"lines": [
-		"Kaufen Sie die meisten Ihrer Produkte direkt beim Hersteller (Bsp. Betriebsmittelanbieter, andere Bauern)?",
-		"Brauchen Sie speziellen Input für die Pflanzenproduktion, die Sie nur von einem verfügbaren Händler bekommen?",
-		"Brauchen Sie speziellen Input für die Tierproduktion, die Sie nur von einem verfügbaren Händler bekommen?"
-	],
-	"columns": [
-		{
-			"title":"Antwort",
-			"type":"choice",
-			"choices": [
-				"Ja",
-				"Nein",
-				"Nicht anwendbar"
-			]
-		}, 
-		{
-			"title":"Falls ja, für welche Produkte",
-			"type":"text"
-		}
-	]
+    "question-type": "table",
+    "title": "Aktivitäten",
+    "lines": [
+        "Kaufen Sie die meisten Ihrer Produkte direkt beim Hersteller (Bsp. Betriebsmittelanbieter, andere Bauern)?",
+        "Brauchen Sie speziellen Input für die Pflanzenproduktion, die Sie nur von einem verfügbaren Händler bekommen?",
+        "Brauchen Sie speziellen Input für die Tierproduktion, die Sie nur von einem verfügbaren Händler bekommen?"
+    ],
+    "columns": [
+        {
+            "title": "Antwort",
+            "type": "choice",
+            "choices": [
+                "Ja",
+                "Nein",
+                "Nicht anwendbar"
+            ],
+            "scoring": "special",
+            "scoring-type": "academic"
+        },
+        {
+            "title": "Falls ja, für welche Produkte",
+            "type": "text"
+        }
+    ],
+    "scoring-type": "academic"
 }

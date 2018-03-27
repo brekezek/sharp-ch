@@ -1,35 +1,57 @@
 {
-	"question-type":"table",
-	"title":"Was waren Ihre größten Ausgaben im letzten Jahr?",
-	"lines" : [
-		"1",
-		"2",
-		"3",
-		"4",
-		"5"
-	],
-	"columns": [
-		{
-			"title":"Ausgabenposten",
-			"type":"choice",
-			"choices": [
-				"Pestizide (natürlich oder künstlich)",
-				"Dünger",
-				"Betriebsequipment",
-				"Neue Gebäude",
-				"Arbeit",
-				"Zinsen von Bankdarlehen",
-				"Energie fürs Heizen/Beleuchtung/Maschinen",
-				"Versicherungen",
-				"Leasing/Miete",
-				"Bildung",
-				"Anderes",
-				"Futter",
-				"Tiere",
-				"Anderes"
-			]
-		}
-
-	],
-	"mandatory":true
+    "question-type": "table",
+    "title": "Was waren Ihre größten Ausgaben im letzten Jahr?",
+    "lines": [
+        1,
+        2,
+        3,
+        4,
+        5
+    ],
+    "columns": [
+        {
+            "title": "Ausgabenposten",
+            "type": "choice",
+            "choices": [
+                "Pestizide (natürlich oder künstlich)",
+                "Dünger",
+                "Betriebsequipment",
+                "Neue Gebäude",
+                "Arbeit",
+                "Zinsen von Bankdarlehen",
+                "Energie fürs Heizen/Beleuchtung/Maschinen",
+                "Versicherungen",
+                "Leasing/Miete",
+                "Bildung",
+                "Anderes",
+                "Futter",
+                "Tiere",
+                "Anderes"
+            ],
+            "scoring": "special",
+            "scoring-type": "academic",
+            "scoring-grid": [
+                {
+                    "1-1": 0
+                },
+                {
+                    "2-2": 2
+                },
+                {
+                    "3-3": 4
+                },
+                {
+                    "4-4": 6
+                },
+                {
+                    "5-5": 8
+                },
+                {
+                    "0-0": 10
+                }
+            ]
+        }
+    ],
+    "mandatory": true,
+    "scoring-type": "academic"
 }

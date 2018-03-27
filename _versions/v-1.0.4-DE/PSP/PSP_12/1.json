@@ -1,29 +1,66 @@
 {
-	"question-type":"table",
-	"title":"Führen Sie Bestand über das Folgende:",
-	"lines": [
-		"Landwirtschaftliche Erträge?",
-		"Niederschlagsmuster?",
-		"Invasive Arten?",
-		"Unkrautbekämpfung?",
-		"Bodenanalysen?",
-		"Wassernutzung für Bewässerung?",
-		"Dünger?",
-		"Produkte für die Pflanzengesundheit?",
-		"Treibstoff?",
-		"Anzahl Tiere?",
-		"_OTHER_INPUT::Anderes (bitte spezifizieren):"
-
-	],
-	"columns": [
-		{
-			"title":"Antwort",
-			"type":"choice",
-			"choices": [
-				"Ja",
-				"Nein",
-				"Nicht anwendbar"
-			]
-		}
-	]
+    "question-type": "table",
+    "title": "Führen Sie Bestand über das Folgende:",
+    "lines": [
+        "Landwirtschaftliche Erträge?",
+        "Niederschlagsmuster?",
+        "Invasive Arten?",
+        "Unkrautbekämpfung?",
+        "Bodenanalysen?",
+        "Wassernutzung für Bewässerung?",
+        "Dünger?",
+        "Produkte für die Pflanzengesundheit?",
+        "Treibstoff?",
+        "Anzahl Tiere?",
+        "_OTHER_INPUT::Anderes (bitte spezifizieren):"
+    ],
+    "columns": [
+        {
+            "title": "Antwort",
+            "type": "choice",
+            "choices": [
+                "Ja",
+                "Nein",
+                "Nicht anwendbar"
+            ],
+            "scoring": "by-entries",
+            "scoring-type": "academic",
+            "scoring-grid": [
+                {
+                    "0-0": 0
+                },
+                {
+                    "1-1": 1
+                },
+                {
+                    "2-2": 2
+                },
+                {
+                    "3-3": 3
+                },
+                {
+                    "4-4": 4
+                },
+                {
+                    "5-5": 5
+                },
+                {
+                    "6-6": 6
+                },
+                {
+                    "7-7": 7
+                },
+                {
+                    "8-8": 8
+                },
+                {
+                    "9-9": 9
+                },
+                {
+                    "10-10": 10
+                }
+            ]
+        }
+    ],
+    "scoring-type": "academic"
 }

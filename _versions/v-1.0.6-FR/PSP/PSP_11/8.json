@@ -1,13 +1,14 @@
 {
 	"question-type":"multiple_one_solution",
+	"scoring-type":"importance",
+	"scoring":"by-value",
 	"title":"Dans quelle mesure ces événements ont-ils affecté votre système agricole?",
 	"choices":[
-		"Pas du tout",
-		"Un peu",
-		"Moyennement",
-		"Beaucoup",
-		"Très"
+		{"Pas du tout":10},
+		{"Un peu":7.5},
+		{"Moyennement":5},
+		{"Beaucoup":2.5},
+		{"Très":0}
 	],
-	"scoring":"SOME_OPTION",
 	"mandatory":true
 }

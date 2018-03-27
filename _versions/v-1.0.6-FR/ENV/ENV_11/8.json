@@ -1,9 +1,12 @@
 {
 	"question-type":"binary_answer",
+	"scoring-type":"academic",
 	"title":"Combinez-vous l'engrais synthétique et naturel?",
 	"choices":[
 			"Oui",
 			"Non"
 	],
-	"mandatory":"true"
+	"scoring":"by-value",
+	"mandatory":"true",
+	"indicateur":[2]
 }

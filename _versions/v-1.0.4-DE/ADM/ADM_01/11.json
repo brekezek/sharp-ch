@@ -1,5 +1,4 @@
 {
-	"question-type":"text",
-	"title":"Breitengrad",
-	"mandatory":true
+    "question-type": "text",
+    "title": "Breitengrad"
 }

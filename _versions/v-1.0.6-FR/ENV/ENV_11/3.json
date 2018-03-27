@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"-",
 	"title":"Si non, pourquoi?",
 	"lines":[
 			"_OTHER_INPUT::Je ne veux pas (expliquez pourquoi)",

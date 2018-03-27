@@ -1,14 +1,17 @@
-
-{"question-type":"multiple_one_solution",
+{	
+	"question-type":"multiple_one_solution",
+	"scoring-type":"academic",
+	"scoring":"by-value",
 	"title":"En général, quel est le pourcentage global de vos terres agricoles couvertes par des arbres - en incluant les naturels et les plantés?",
 	"choices":
 		[
-			"0 %",
-			"1-10 %",
-			"11-20 %",
-			"21-40 %",
-			"41-60 %",
-			"61+ %"
+			{"0 %":0},
+			{"1-10 %":2},
+			{"11-20 %":7},
+			{"21-40 %":10},
+			{"41-60 %":7},
+			{"60+ %":1}
 		],
-	"mandatory":true
+	"mandatory":true,
+	"indicateur":[2,6]
 }

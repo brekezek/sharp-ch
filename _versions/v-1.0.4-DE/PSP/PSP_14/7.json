@@ -1,5 +1,6 @@
 {
-	"question-type":"text_answer",
-	"title":"Falls Ja, bitte erläutern Sie die Qualität des Zugangs. Falls nein, warum nicht?",
-	"mandatory":true
+    "question-type": "text_answer",
+    "title": "Falls Ja, bitte erläutern Sie die Qualität des Zugangs. Falls nein, warum nicht?",
+    "mandatory": true,
+    "scoring-type": "academic"
 }

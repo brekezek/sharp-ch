@@ -1,5 +1,7 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
+	"indicateur":[3],
 	"title":"?",
 	"lines": [
 		"Téléphone mobile?",
@@ -20,6 +22,16 @@
 			"choices": [
 				"Oui",
 				"Non"
+			],
+			"scoring-type":"academic",
+			"scoring":"by-entries",
+			"scoring-grid":[
+				{"0-0":0},
+				{"1-1":1},
+				{"2-2":4},
+				{"3-3":5},
+				{"4-4":8},
+				{"5-+":10}
 			]
 		}
 	

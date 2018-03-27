@@ -1,5 +1,6 @@
 {
 	"question-type":"table",
+	"scoring-type":"academic",
 	"title":"Dans votre système agricole pratiquez-vous:",
 	"lines": [
 		"Les grandes cultures (céréales, légumineues, oléagineux)?",
@@ -18,11 +19,26 @@
 	"columns": [
 		{
 			"title":"Réponse",
-			"type":"binary"
+			"type":"binary",
+			"scoring":"by-entries",
+			"scoring-grid": [
+				{ "0-1":0 },
+				{ "2-2":5 },
+				{ "3-3":7 },
+				{ "4-+":10 }
+			],
+			"indicateur":4
 		}, 
 		{
 			"title":"Activités traditionnelles",
-			"type":"toggle"
+			"type":"toggle",
+			"scoring":"by-entries",
+			"scoring-grid": [
+				{ "0-0":0 },
+				{ "1-1":7 },
+				{ "2-+":10 }
+			],
+			"indicateur":11
 		},
 		{
 			"title":"Activité principale",
