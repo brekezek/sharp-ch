@@ -14,10 +14,12 @@ if(isset($_COOKIE['version'])) {
 			$questManager->collectAnswers();
 			
 			if(!isset($_REQUEST['end'])) {?>
-				<div style="position: fixed; top: <?= $readonly ? "64px" : "56px" ?>; left:0; width:100%">
+				<div id="quest-progress-wrapper" style="top: <?= $readonly ? "64px" : "56px" ?>;">
 					<div id="quest-progress" class="w-100 d-flex justify-space-between">
 						<?php for($i = 1; $i <= $nbAspects; $i++) {?>
-						<div class="<?= $questManager->getColorAspectByIndex($i)->getClass() ?>" style="opacity:<?= ($i <= $currentIndex) ? "1" : "0.25" ?>; height: 4px; width:<?= (100.05/$nbAspects) ?>%;"></div>
+						<div data-index="<?= $i ?>" class="<?= $questManager->getColorAspectByIndex($i)->getClass() ?> item" style="opacity:<?= ($i <= $currentIndex) ? "1" : "0.25" ?>; width:<?= (100.05/$nbAspects) ?>%;">
+							<span><?= $i ?></span>
+						</div>
 						<?php } ?>
 					</div>
 				</div>

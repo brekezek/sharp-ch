@@ -27,7 +27,7 @@ if(isset($_GET['admin'])) {
 	<link rel="stylesheet" href="css/style.css">
 	
 	<title>SHARP-CH</title>
-	<link rel="shortcut icon" href="img/favicon.ico">
+	<link rel="shortcut icon" href="img/favicon.png">
 </head>
 <body>
 	
@@ -42,12 +42,20 @@ if(isset($_GET['admin'])) {
 	} else {?>
 		<div class="jumbotron">
 			<div class="container">
-			  <h1 class="display-4"><?= $t['welcome_msg_h1'] ?> <span class="badge badge-light">CH</span></h1>
-			  <p class="lead"><?= $t['sharp_meaning'] ?></p>
+			  <div class="text-center">
+    			  <img src="img/logo_round.jpg" class="mb-3" width="220">
+    			  <h1 class="display-4 d-none"><?= $t['welcome_msg_h1'] ?> <span class="badge badge-light">CH</span></h1>
+    			  <p class="lead"><?= $t['sharp_meaning'] ?></p>
+		  	  </div>
 			  <hr class="my-4">
 			  <p><?= $t['msg1_welcome'] ?></p>
 			  <hr class="my-4">
-			  <p><a class="btn btn-primary btn-lg start-new-quest d-none" href="#" role="button"><?= $t['new_questionnaire']?> »</a></p>
+			  <p class="text-center">
+			  	<a class="btn btn-primary btn-lg start-new-quest d-none" href="#" role="button">
+			  		<?= $t['new_questionnaire']?>
+			  		<span class="oi oi-media-play ml-1"></span>
+			  	</a>
+			  </p>
 			</div>
 		</div>
 	<?php 
@@ -144,6 +152,12 @@ if(isset($_GET['admin'])) {
 			}
 			
 			$(this).toggleClass("active btn-dark");
+		});
+
+		$('#quest-progress .item[data-index]').click(function(){
+			goToAspect(parseInt($(this).attr("data-index")));
+			$("#questionnaire form").find('[required]').removeAttr("required");
+			$('#questionnaire #submitHidden').trigger("click");
 		});
 		
 		$('.binary_comment').on("change", function(){

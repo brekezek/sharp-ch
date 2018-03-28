@@ -3,6 +3,7 @@ include_once("login.redirect.php");
 
 
 $repondants = array();
+$hidden = array();
 
 foreach(scanAllDir(DIR_ANSWERS) as $quest) {
     $scoringFile = file_get_contents(DIR_ANSWERS."/".$quest);
@@ -18,10 +19,13 @@ foreach(scanAllDir(DIR_ANSWERS) as $quest) {
 	$infos['uid'] = optInfoAdm($json, 4); 
 	//$infos['Age'] = optInfoAdm($json, 15);
 	$infos['Création'] = date("d.m.y", isset($json['meta']) ? $json['meta']['creation-date'] :  filemtime(DIR_ANSWERS."/".$quest));
-	$infos['Download'] = '<a class="btn btn-success btn-sm" href="download.php?file='.DIR_ANSWERS."/".$quest.'">Down <span class="oi oi-cloud-download ml-1"></span></a>';
+	//$infos['Download'] = '<a class="btn btn-success btn-sm" href="download.php?file='.DIR_ANSWERS."/".$quest.'">Down <span class="oi oi-cloud-download ml-1"></span></a>';
 	$infos['Consulter'] = '<a class="btn btn-primary text-white btn-sm reviewFile" data-file='.$quest.'">Afficher <span class="oi oi-eye ml-1"></span></a>';
 	$infos['Score'] = '<a class="btn btn-danger text-white btn-sm" data-file='.$quest.'">Scores <span class="oi oi-bar-chart ml-1"></span></a>';
-	//$infos['Fichier'] = '<a class="btn btn-success btn-sm" href="'.DIR_ANSWERS."/".$quest.'">Télécharger</a>';
+    
+	$name = remAccent(mb_strtolower($infos["Nom"]."_".$infos["Prénom"]));
+	if(strlen($name) < 3)
+	    $name = "";
 	
 	unset($json['filename']);
 	$fileContent = json_encode($json);
@@ -33,8 +37,13 @@ foreach(scanAllDir(DIR_ANSWERS) as $quest) {
 		if(strlen(trim($info)) > 2) $nbInfoFilled++;
 	}
 	
-	if($nbInfoFilled > 0)
+	if($nbInfoFilled > 0) {
 		$repondants[$hash] = $infos;
+		$hidden[$hash] = array(
+		    "file" => $quest,
+		    "name" => $name
+		);
+	}
 }
 
 function hash_str($str) {
@@ -50,7 +59,10 @@ function optInfoAdm($json, $index) {
 }
 
 function remAccent($arg) {
-	return str_replace(array('é','ë','è','ö','ü','ä','ù','ô','/'), array('e','e','e','o','u','ae','u','o','-'), $arg);
+	return str_replace(
+	    array('é','ë','è','ö','ü','ä','ù','ô','/'),
+	    array('e','e','e','o','u','ae','u','o','-'),
+	    $arg);
 }
 ?>
 
@@ -73,7 +85,19 @@ foreach($repondants as $hash => $infos)
 	$lastHash = $hash;
 ?>	
 
-<div style="display:none;" id="tools">outils</div>
+<div class="bg-secondary text-white p-2" id="tools" style="display:none">
+	<div class="d-flex justify-content-between align-items-center">
+		<div>
+    		<span id="nb-selected" class="badge badge-light px-3 mr-1" style="padding: .25rem .5rem; font-size:1.1em"><span>0</span> sélectionnés</span>
+    		<button id="unselect" class="btn btn-light btn-sm" style="padding: .25rem .5rem; vertical-align:baseline; line-height:1">Désélectionner</button> 
+    	</div>
+    	
+    	<div>
+    		<a class="btn btn-primary btn-sm" id="download"><span class="oi oi-cloud-download mr-1"></span> <span class="text">Télécharger</span> <span data-track-row class="badge badge-light ml-1">0</span></a>
+    		<a class="btn btn-danger btn-sm" id="delete"><span class="oi oi-x mr-1"></span> <span class="text">Supprimer</span> <span data-track-row class="badge badge-light ml-1">0</span></a>
+    	</div>
+	</div>
+</div>
 
 <?php 
 echo '<table id="repondants" class="table table-striped table-hover display table-sm" data-page-length="11">';
@@ -90,7 +114,7 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
 		$i = 0; 
 		foreach($repondants as $key => $rep) {
 			++$i;
-			echo '<tr>';
+			echo '<tr data-file="'.$hidden[$key]['file'].'" data-name="'.$hidden[$key]['name'].'">';
 				echo '<td class="align-middle text-center">'.$i.'</td>';
 				foreach($rep as $key => $info) {
 					echo '<td class="align-middle">'.$info.'</td>';
@@ -116,11 +140,39 @@ echo '</table>';
 			"pagingType": "full_numbers"
 		});
 
-		$('body').on('click', '#repondants tr', function(){
-			$(this).toggleClass("active bg-dark").find('td').toggleClass('text-white');
-			
+		$('body').on('click', '#repondants tr', function(e){
+			if(!$(e.target).is('a')) {
+    			$(this).toggleClass("active bg-dark").find('td').toggleClass('text-white');
+
+				var nbSelected = $('#repondants tr.active').length;
+    			$('#tools').toggle(nbSelected > 0);
+    			$('#nb-selected span, [data-track-row]').text(nbSelected);
+			}
+		});
+
+		$('#tools #unselect').click(function(){
+			$('#repondants tr.active').removeClass("active bg-dark").find("td").removeClass("text-white");
 			$('#tools').toggle($('#repondants tr.active').length > 0);
-			
+		});
+
+		$('#tools #download').click(function(){
+			var selectedRows = $('#repondants tr.active');
+			if(selectedRows.length == 1) {
+				document.location = 'download.php?file=<?= DIR_ANSWERS ?>/'+selectedRows.attr("data-file")+"&name="+selectedRows.attr("data-name");
+			} else {
+				$(this).attr("disabled","disabled").find("span.text").text("Génération...");
+    			var files = "";
+    			selectedRows.each(function(){
+    				files += $(this).attr("data-file")+":"+$(this).attr("data-name")+",";
+    			});
+    			$.post('pages/admin/download.questionnaires.php', { f:files }, function(resp) {
+    				$('#tools #download').removeAttr("disabled").find("span.text").text("Télécharger");
+					if(resp == "ok") 
+    					document.location = 'download.php?file=pages/admin/questionnaires.zip';
+					else
+						alert(resp);
+    			});
+			}
 		});
 
 		$('body').on('click', '.reviewFile', function(){

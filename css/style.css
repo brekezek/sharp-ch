@@ -19,37 +19,42 @@
 	transform: scale(1.09);
 }
 
-
+/* ------------------------- */
 .cat-grey {
 	background: rgb(189, 195, 199);
 	color: black;
 }
 .cat-border-grey { border: 1px solid rgb(189, 195, 199); }
-
+.cat-border-grey .subtitle { color: rgb(169, 175, 179); }
+/* ------------------------- */
 .cat-red {
 	background: rgb(192, 57, 43);
 	color: white;
 }
 .cat-border-red { border: 1px solid rgb(192, 57, 43); }
-
+.cat-border-red .subtitle { color: rgb(192, 57, 43); }
+/* ------------------------- */
 .cat-blue {
 	background: rgb(52, 152, 219);
 	color: white;
 }
 .cat-border-blue { border: 1px solid rgb(52, 152, 219); }
-
+.cat-border-blue .subtitle { color: rgb(52, 152, 219); }
+/* ------------------------- */
 .cat-green {
 	background: rgb(39, 174, 96);
 	color: white;
 }
 .cat-border-green { border: 1px solid rgb(39, 174, 96); }
-
+.cat-border-green .subtitle { color: rgb(39, 174, 96); }
+/* ------------------------- */
 .cat-orange {
 	background: rgb(230, 126, 34);
 	color: white;
 }
 .cat-border-orange { border: 1px solid rgb(230, 126, 34); }
-
+.cat-border-orange .subtitle { color: rgb(230, 126, 34); }
+/* ------------------------- */
 .custom-control-label[type="checkbox"]::before,
 .custom-control-label[type="radio"]::before {
 	background-color: #6b757d;
@@ -83,6 +88,33 @@
 	cursor: default;
 }
 
+#quest-progress-wrapper {
+	position: fixed;
+	left:0;
+	width:100%;
+	z-index: 99;
+}
+#quest-progress .item {
+	cursor: default;
+	height: 5px;
+	transition: 0.2s linear all;
+	text-align:center;
+	writing-mode: vertical-rl;
+    text-orientation: sideways;
+}
+#quest-progress .item:hover {
+	cursor: pointer;
+	height: 40px;
+	padding: 10px 0;
+	border-radius: 0 0 5px 5px;
+}
+#quest-progress .item span {
+	display: none;
+	font-size: 1.2vw;
+}
+#quest-progress .item:hover span {
+	display: block;	
+}
 
 #device-not-optimized {
 	display: none;
