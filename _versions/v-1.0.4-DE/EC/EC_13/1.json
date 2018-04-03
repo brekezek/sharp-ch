@@ -22,7 +22,10 @@
                 "Nicht anwendbar"
             ],
             "scoring": "by-value",
-            "scoring2": "average"
+            "scoring2": "average",
+            "indicateur": [
+                10
+            ]
         }
     ],
     "scoring-type": "academic"

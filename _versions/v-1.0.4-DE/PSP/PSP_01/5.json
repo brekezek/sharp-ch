@@ -10,7 +10,10 @@
             "title": "Spielen Senioren/Großeltern eine besondere Rolle im Haushalt, z. B. bei der Kinderbetreuung?",
             "type": "binary",
             "scoring": "by-value",
-            "scoring-type": "academic"
+            "scoring-type": "academic",
+            "indicateur": [
+                11
+            ]
         },
         {
             "title": "Beschreiben Sie deren Rolle innerhalb des Haushalts, bspw. Kundenbetreuung, Hilfe im Haushalt etc.:",

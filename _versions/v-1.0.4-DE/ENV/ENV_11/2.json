@@ -20,5 +20,8 @@
             "2-2": 6
         }
     ],
-    "result-required": "ENV_11.1"
+    "result-required": "ENV_11.1",
+    "indicateur": [
+        2
+    ]
 }

@@ -37,6 +37,9 @@
                 {
                     "6-+": 10
                 }
+            ],
+            "indicateur": [
+                5
             ]
         },
         {
@@ -45,7 +48,11 @@
             "scoring": "by-value",
             "scoring2": "average",
             "col-based-on": 0,
-            "score-reversed": true
+            "score-reversed": true,
+            "indicateur": [
+                4,
+                5
+            ]
         },
         {
             "title": "Falls Sie verbindliche Verträge mit dem Käufer haben, sind Sie zufrieden mit den Bedingungen oder fühlen Sie sich in Ihrer Flexibilität eingeschränkt?",
@@ -63,7 +70,10 @@
             ],
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                3
+            ]
         },
         {
             "title": "Sind Sie an der Aufbereitung/Verarbeitung einiger Ihrer Produkte beteiligt (z.B. für Milcherzeuger: Mitglied in einer Käserei)?",
@@ -84,7 +94,10 @@
             ],
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                13
+            ]
         },
         {
             "title": "Fühlen Sie sich durch die niedrigen Preise von konkurrierenden Importprodukten gefährdet?",
@@ -92,7 +105,10 @@
             "scoring": "by-value",
             "scoring2": "average",
             "col-based-on": 0,
-            "score-reversed": true
+            "score-reversed": true,
+            "indicateur": [
+                3
+            ]
         }
     ],
     "mandatory": true,

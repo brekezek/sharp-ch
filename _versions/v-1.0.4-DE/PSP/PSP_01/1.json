@@ -50,14 +50,16 @@
                     "0.21-+": 3
                 }
             ],
-            "result-required": "TOTAL_HOUSEHOLD"
+            "result-required": "TOTAL_HOUSEHOLD",
+            "indicateur": 12
         },
         {
             "title": "Wie viele haben eine landwirtschaftliche Ausbildung / Studium absolviert?",
             "type": "integer",
             "scoring": "function",
             "scoring-function": "multiply(divide(x,TOTAL_HOUSEHOLD), 10)",
-            "result-required": "TOTAL_HOUSEHOLD"
+            "result-required": "TOTAL_HOUSEHOLD",
+            "indicateur": 12
         }
     ],
     "scoring-type": "academic"

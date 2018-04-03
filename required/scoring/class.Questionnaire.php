@@ -53,6 +53,16 @@ class Questionnaire {
             echo "La version du questionnaire n'a pas pu être déterminée";
     }
     
+    public function feedLive($aspectId, $numQuest, $answer) {
+        if(!isset($this->json[$aspectId])) {
+            $this->json[$aspectId] = array();
+        }
+        if(!isset($this->json[$aspectId][$numQuest])) {
+            $this->json[$aspectId][$numQuest] = array();
+        }
+        $this->json[$aspectId][$numQuest]["answer"] = $answer;
+    }
+    
     public function getPersonInfos() {
         return $this->infosPerson;
     }
@@ -78,18 +88,51 @@ class Questionnaire {
         return $this->json;
     }
     
+    public function getDBId() {
+        global $mysqli;
+        
+        $filename = "%".basename($this->getFilename());
+        $qid = null;
+        if ($stmt = $mysqli->prepare("SELECT qid FROM questionnaires WHERE file LIKE ? LIMIT 1")) {
+            $stmt->bind_param("s", $filename);
+            $stmt->execute();
+            $stmt->bind_result($qid);
+            $stmt->fetch();
+            return $qid; 
+        }  
+    }
+    
+    public function writeDB($typeScore, $bufferStr) {
+        global $mysqli;
+        
+        $fieldTypeScore = "scoresByQuestion";
+        if($typeScore == "byAspect") $fieldTypeScore = "scoresByAspect";
+        if($typeScore == "byIndicator") $fieldTypeScore = "scoresByIndicator";
+        
+        $qid = $this->getDBId();
+        if (!empty($qid)) {
+            
+            if ($stmt = $mysqli->prepare("UPDATE questionnaires SET ".$fieldTypeScore."=? WHERE qid=?")) {
+                $stmt->bind_param("ss", $bufferStr, $qid);
+                $stmt->execute();
+                return true;
+            }  
+        }
+        return false;
+    }
+    
     public function evalScoreForQuestion($aspectId, $numQuest) {
         $resultsDefined = $this->bufferResults;
         $fixEC_16 = $this->needFixEC_16();
         
-       
+
         $answer = array();
         if(isset($this->json[$aspectId][$numQuest])) 
             $answer = $this->json[$aspectId][$numQuest];
             
         // Corrige le probleme dans la version 1.0.6 avant correction, ou EC_05 ecrasait les reponses de EC_16
         if($fixEC_16 && $aspectId == "EC_16") $aspectId = "EC_05"; 
-        
+            
         $fileToRead = getAbsolutePath().DIR_VERSIONS."/".$this->getVersion()."/".explode("_", $aspectId)[0]."/".$aspectId."/".$numQuest.".json";
         $json = getJSONFromFile($fileToRead);
         
@@ -97,7 +140,7 @@ class Questionnaire {
         $scoringType = isset($json['scoring-type']) ? $json['scoring-type'] : "-";
         $scoring = isset($json['scoring']) ? $json['scoring'] : "-";
         
-        if((!isset($json['scoring']) && $questionType != "table") || $scoringType == "-") {
+        if((!isset($json['scoring']) && $questionType != "table") ) {
             return array(
                 "score" => -1,
                 "scoring-type" => $scoringType,
@@ -107,7 +150,7 @@ class Questionnaire {
         }
         
         $questId = $aspectId.".".$numQuest;
-        
+
         if(isset($json['result-define'])) {
             $newTab = array();
             foreach($answer as $answ) {
@@ -140,7 +183,7 @@ class Questionnaire {
                     
             case "multiple_one_solution":
                 if(isset($answer['answer'])) {
-                    $score = processMultipleOneSolution($answer['answer'], $scoringType, $scoring, $json, $resultsDefined);
+                    $score = processMultipleOneSolution($answer['answer'], $scoringType, $scoring, $json, $questId, $resultsDefined);
                 }
                 break;
                 

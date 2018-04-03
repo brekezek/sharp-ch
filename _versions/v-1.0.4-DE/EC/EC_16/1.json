@@ -36,14 +36,20 @@
             ],
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                3
+            ]
         },
         {
             "title": "Falls Sie Vertragslandwirtschaft betreiben, haben Sie ein Mitspracherecht?",
             "type": "binary",
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                3
+            ]
         },
         {
             "title": "Wie sehen Sie Ihre Rolle in der Lebensmittelkette?",
@@ -58,7 +64,10 @@
             ],
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                3
+            ]
         },
         {
             "title": "Wer entscheidet hauptsächlich, was Sie produzieren?",
@@ -76,7 +85,10 @@
             ],
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                3
+            ]
         },
         {
             "title": "Beteiligen Sie sich an der Ausarbeitung der örtlichen Betriebsvorschriften?",
@@ -94,7 +106,10 @@
             ],
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                3
+            ]
         },
         {
             "title": ",an der Ausarbeitung der regionalen Vorschriften?",
@@ -112,7 +127,10 @@
             ],
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                3
+            ]
         },
         {
             "title": "und an der Ausarbeitung von nationalen Vorschriften?",
@@ -130,7 +148,10 @@
             ],
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                3
+            ]
         }
     ],
     "mandatory": true,

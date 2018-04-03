@@ -140,8 +140,9 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
 	echo '<tbody>';
 		$i = 0; 
 		if ($stmt = $mysqli->prepare(
-		    "SELECT collecte_par, firstname, lastname, commune, creation_date, version, cluster, atelier, file FROM questionnaires q
+		    "SELECT collecte_par, firstname, lastname, commune, creation_date, version, cluster, atelier, file, COUNT(q.pid) as nbQuest FROM questionnaires q
             LEFT JOIN participants p ON q.pid = p.pid
+            GROUP BY q.pid 
             ORDER BY lastname ASC, firstname ASC")) {
                 
             $stmt->execute();
@@ -178,8 +179,7 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
                 echo '<td class="align-middle text-center">'.$row['version'].'</td>';
 
                 echo '<td class="align-middle text-center" width="100px">
-                        
-
+                       
                         <div class="dropleft d-inline" id="actions">
                     	 	<button class="btn btn-primary btn-sm mr-1 dropdown-toggle" type="button" id="action_'.$i.'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     	 		 <span class="text">Actions</span> <span class="oi oi-menu ml-1"></span>
@@ -247,11 +247,11 @@ echo '</table>';
 			alert("Implémenté bientot");
 		})
 		.addDropdown("Générer scores pour <b>R</b>", "scores", itemsScore, "success", "bar-chart", function(){
-			var selectedRows = $('#repondants tr.active');
+			var selectedRows = $('#repondants tbody tr.active');
 			var button = $(this).parents(".dropdown").find("button");
 			var initBtText = button.find("span.text").html();
 			
-			button.attr("disabled","disabled").find("span.text").text("Génération...");
+			button.attr("disabled","disabled").find("span.text").html('Génération <img src="img/loader-score.svg">');
 			
 			var files = "";
 			selectedRows.each(function(){
@@ -260,12 +260,17 @@ echo '</table>';
 			files = files.substring(0, files.length-1);
 			//$('input[type="search"]').val(files);
 			
-			$.post('pages/generateScores.php', { data:files, typeScore:$(this).attr("data-action") }, function(resp) {
+			$.post('pages/generateScores.php', {
+    				data:files,
+    				typeScore:$(this).attr("data-action"),
+    				output:"csv"
+				}, function(resp) {
 				button.removeAttr("disabled").find("span.text").html(initBtText);
-				if(resp != "error") 
+				if(resp != "error") {
 					document.location = 'download.php?file=<?= DIR_ANSWERS ?>/scores/'+resp;
-				else
+				} else {
 					alert(resp);
+				}
 			});	
 			
 			

@@ -23,5 +23,6 @@
         }
     ],
     "mandatory": "true",
-    "scoring-type": "academic"
+    "scoring-type": "academic",
+    "all_visible": true
 }

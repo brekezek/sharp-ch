@@ -33,7 +33,8 @@
                 {
                     "4-+": 10
                 }
-            ]
+            ],
+            "indicateur": 4
         },
         {
             "title": "Nebentätigkeit",
@@ -49,7 +50,8 @@
                 {
                     "2-+": 10
                 }
-            ]
+            ],
+            "indicateur": 11
         },
         {
             "title": "Haupttätigkeit",

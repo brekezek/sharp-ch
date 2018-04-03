@@ -56,6 +56,11 @@
             ],
             "ignore-choice-number": [
                 0
+            ],
+            "indicateur": [
+                1,
+                9,
+                12
             ]
         },
         {
@@ -79,7 +84,11 @@
                 }
             ],
             "scoring": "by-value",
-            "scoring-type": "academic"
+            "scoring-type": "academic",
+            "indicateur": [
+                1,
+                9
+            ]
         }
     ],
     "mandatory": true,

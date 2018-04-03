@@ -12,7 +12,7 @@ if(isset($_COOKIE['version'])) {
 			$currentIndex = $questManager->getCurrentIndex();
 			
 			if(!isset($_REQUEST['end'])) {?>
-				<div id="quest-progress-wrapper" style="top: <?= $readonly ? "64px" : "56px" ?>;">
+				<div id="quest-progress-wrapper" style="top: <?= $logged ? "64px" : "56px" ?>;">
 					<div id="quest-progress" class="w-100 d-flex justify-space-between">
 						<?php for($i = 1; $i <= $nbAspects; $i++) {?>
 						<div data-index="<?= $i ?>" class="<?= $questManager->getColorAspectByIndex($i)->getClass() ?> item" style="opacity:<?= ($i <= $currentIndex) ? "1" : "0.25" ?>; width:<?= (100.05/$nbAspects) ?>%;">

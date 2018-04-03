@@ -1,6 +1,7 @@
 {
 	"question-type":"table",
 	"scoring-type":"academic",
+	"indicateur":[12],
 	"title":"Activité",
 	"lines": [
 		"Lieux de cultes",

@@ -13,6 +13,7 @@
 			'</div>'+
 		'</div>');
 		
+		$('select[name="repondants_length"]').append('<option value="2000">Tous</option>');
 		$('#repondants_length').append('<div class="btn btn-light btn-sm ml-2" style="vertical-align:top" id="selectAll">Sélectionner tout</div>');
 		
 		$('body').on('click', '#repondants tbody tr', function(e){

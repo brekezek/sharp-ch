@@ -8,5 +8,9 @@
     "placeholder": "Mehrjährige Pflanzen",
     "mandatory": "true",
     "scoring": "by-value",
-    "scoring-type": "academic"
+    "scoring-type": "academic",
+    "indicateur": [
+        2,
+        6
+    ]
 }

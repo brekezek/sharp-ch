@@ -18,28 +18,52 @@
             "title": "Wie oft?",
             "type": "choice",
             "choices": [
-                {"Jede Woche":10},
-                {"Jeden Monat":7},
-                {"Einmal in der Saison":5},
-                {"Einmal pro Jahr":2},
-                {"Nie":0}
+                {
+                    "Jede Woche": 10
+                },
+                {
+                    "Jeden Monat": 7
+                },
+                {
+                    "Einmal in der Saison": 5
+                },
+                {
+                    "Einmal pro Jahr": 2
+                },
+                {
+                    "Nie": 0
+                }
             ],
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                10
+            ]
         },
         {
             "title": "Verkaufen Sie Ihre Produkte auf dem lokalen Markt?",
             "type": "choice",
             "choices": [
-                {"Nein":0},
-                {"1-2 Mal im Monat":2},
-                {"1-3 Mal in der Woche":4},
-                {"Sehr oft (4+ in der Woche)":10}
+                {
+                    "Nein": 0
+                },
+                {
+                    "1-2 Mal im Monat": 2
+                },
+                {
+                    "1-3 Mal in der Woche": 4
+                },
+                {
+                    "Sehr oft (4+ in der Woche)": 10
+                }
             ],
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                10
+            ]
         }
     ],
     "mandatory": true,

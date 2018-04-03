@@ -13,15 +13,17 @@ sec_session_start();
 $logged = login_check($mysqli);
 
 
-//$_POST['data'] = "c7b1669601e976da5066f7e7d0ecdc4fb4c4019a.json:v-1.0.6-FR:a%3A4%3A%7Bs%3A9%3A%22firstname%22%3Bs%3A9%3A%22Dominique%22%3Bs%3A8%3A%22lastname%22%3Bs%3A6%3A%22Roduit%22%3Bs%3A7%3A%22cluster%22%3BN%3Bs%3A7%3A%22atelier%22%3BN%3B%7D";
+//$_POST['data'] = "android/fr/billaud_christian.json:v-1.0.6-FR:a%3A4%3A%7Bs%3A9%3A%22firstname%22%3Bs%3A9%3A%22Christian%22%3Bs%3A8%3A%22lastname%22%3Bs%3A7%3A%22Billaud%22%3Bs%3A7%3A%22cluster%22%3Bi%3A13%3Bs%3A7%3A%22atelier%22%3Bi%3A0%3B%7D";
+//$_POST['output'] = "db";
 
 if(isset($_POST['data']) && strlen($_POST['data']) > 5) {
    
     // Traitement des input ----------------
     $personnes = processPostData();
-    $typeScore = isset($_POST['typeScore']) ? $_POST['typeScore'] : "byQuestion";
+    $typeScore = isset($_POST['typeScore']) ? $_POST['typeScore'] : "byIndicator";
+    $output = isset($_POST['output']) ? $_POST['output'] : "print";
     // -------------------------------------
-
+    
     if(count($personnes) > 1) {
         $questionnaires = array();
         foreach($personnes as $person)
@@ -31,11 +33,13 @@ if(isset($_POST['data']) && strlen($_POST['data']) > 5) {
         $questionnaires = new Questionnaire($person['file'], $person['version'], $person['infos']);
     }
     
-    $scoreByQuestion = new ScoreWriter($typeScore, $questionnaires);
+    $scoreByQuestion = new ScoreWriter($typeScore, $questionnaires, $output);
     $scoreByQuestion->write();
     
-    echo $scoreByQuestion->getFilename();
-    
+    if($output != "db")
+        echo $scoreByQuestion->getFilename();
+    else
+        echo 'DB updated';
 } else {
     echo 'error';
 }
@@ -53,13 +57,6 @@ function processPostData() {
             $infos = array();
             if(count($info) >= 3) {
                 $infos = unserialize(urldecode($info[2]));
-               
-                /*
-                array(
-                    "lastname" => ucfirst($splitName[0]),
-                    "firstname" => ucfirst($splitName[1])  
-                );
-                */
             }
             
             $questionnairesInfos[] = array(

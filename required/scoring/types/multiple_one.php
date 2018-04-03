@@ -1,5 +1,5 @@
 <?php 
-function processMultipleOneSolution($answer, $scoringType, $scoring, $json, $resultsDefined = array()) {
+function processMultipleOneSolution($answer, $scoringType, $scoring, $json, $questId, $resultsDefined = array()) {
 	$score = -1;
 	$choices = array();
 	
@@ -13,6 +13,7 @@ function processMultipleOneSolution($answer, $scoringType, $scoring, $json, $res
 			}
 		}
 	}
+	
 	if(isset($choices[$answer])) {
 		$score = $choices[$answer];
 	}

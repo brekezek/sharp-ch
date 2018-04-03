@@ -4,5 +4,8 @@
     "mandatory": true,
     "scoring": "function",
     "scoring-type": "academic",
-    "scoring-function": "divide(x,10)"
+    "scoring-function": "divide(x,10)",
+    "indicateur": [
+        10
+    ]
 }

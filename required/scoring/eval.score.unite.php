@@ -3,6 +3,7 @@ function evalScoreInLive($aspect, $numQuest, $answer) {
     $fileToRead = "../".DIR_VERSIONS."/".$_COOKIE['version']."/".explode("_", $aspect)[0]."/".$aspect."/".$numQuest.".json";
 	$json = getJSONFromFile($fileToRead);
 
+	
 	$questionType = $json['question-type'];
 	$scoringType = isset($json['scoring-type']) ? $json['scoring-type'] : "-";
 	$scoring = isset($json['scoring']) ? $json['scoring'] : "-";
@@ -36,11 +37,12 @@ function evalScoreInLive($aspect, $numQuest, $answer) {
 		break;
 		
 		case "multiple_one_solution":
-			$score = processMultipleOneSolution($answer, $scoringType, $scoring, $json);
+		    $score = processMultipleOneSolution($answer, $scoringType, $scoring, $json, $questId);
 		break;
 		
 		case "binary_answer_with_comment":
 		case "binary_answer":
+		    
 			$score = processBinaryAnswer($answer, $scoringType, $scoring, $json, $questId, array(), $live);
 		break;
 		

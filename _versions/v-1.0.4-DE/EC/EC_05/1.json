@@ -39,7 +39,10 @@
             ],
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                13
+            ]
         },
         {
             "title": "Bemerkungen:",

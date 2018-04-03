@@ -374,6 +374,8 @@ if(isset($_GET['admin'])) {
             	    }, function(html) {
             	    	if(!input.is("[result-define]")) 
             	    		group.find('.score').html(html).show();
+        	    		if(html.trim() == "")
+            	    		group.find('.score').hide();
         		    });
 				} else {
 					group.find('.score').hide();

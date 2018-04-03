@@ -17,7 +17,10 @@
             "type": "toggle",
             "scoring": "by-value",
             "scoring-type": "academic",
-            "scoring2": "average"
+            "scoring2": "average",
+            "indicateur": [
+                5
+            ]
         }
     ],
     "scoring-type": "academic"

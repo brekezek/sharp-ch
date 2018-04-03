@@ -93,6 +93,8 @@ class QuestionnaireManager {
 	}
 	
 	public function collectAnswers() {
+	    if($this->readonly) return;
+	    
 		if(!$this->readonly && isset($_POST['answers'])) {
 		   // echo '<h1>Ecriture</h1>';
 			/*
@@ -114,6 +116,31 @@ class QuestionnaireManager {
 						unset($c);
 					}
 				}
+				
+				if(isset($_POST['answers']['ADM_01'])) {
+				    global $mysqli;
+				    
+				    if ($stmt = $mysqli->prepare("SELECT pid FROM questionnaires WHERE file LIKE ?")) {
+				        $filename = "%".basename($this->filename);
+				        $stmt->bind_param("s", $filename);
+				        $stmt->execute();
+				        $stmt->bind_result($pid);
+				        $stmt->fetch();
+				        
+				        if(!empty($pid)) {
+				            $lastname = strtolower(trim($this->optADM(2)));
+				            $firstname = strtolower(trim($this->optADM(3)));
+				            $region = $this->optADM(9);
+				            $commune = $this->optADM(10);
+				            
+                            $stmt = null;	
+				            if ($stmt = $mysqli->prepare("UPDATE participants SET firstname=?, lastname=?, region=?, commune=? WHERE pid=?")) {
+				                $stmt->bind_param("sssss", $firstname, $lastname, $region, $commune, $pid);
+				                $stmt->execute();
+				            } 
+				        }
+				    }
+				}
 			} else {
 				$handle = fopen($filepath, "w");
 				$_POST['answers']['meta'] = array(
@@ -122,8 +149,51 @@ class QuestionnaireManager {
     				'creation-date' =>  time(),
     				'client-ip'     =>  getClientIP()
 				);
+				
+				
+				if(isset($_POST['answers']['ADM_01'])) {
+				    global $mysqli;
+				    
+				    $collecte_par = $this->optADM(1);
+				    $lastname = $this->optADM(2);
+				    $firstname = $this->optADM(3);
+				    $region = $this->optADM(9);
+				    $commune = $this->optADM(10);
+				    $creation_date = date('Y-m-d H:i:s');
+				    
+				    if ($stmt = $mysqli->prepare("SELECT pid FROM participants WHERE (firstname=? AND lastname=?) OR (lastname=? AND firstname=?)")) {
+				        $firstname = strtolower(trim($firstname));
+				        $lastname = strtolower(trim($lastname));
+				        
+				        $stmt->bind_param("ssss", $firstname, $lastname, $firstname, $lastname);
+				        $stmt->execute();
+				        $stmt->bind_result($pid);
+				        $stmt->fetch();
+				        
+				        $queryParticipant = "INSERT INTO participants (firstname, lastname, region, commune) VALUES (?,?,?,?)";
+				        if(!empty($pid)) {
+				            $queryParticipant = "UPDATE participants SET firstname=?, lastname=?, region=?, commune=?) VALUES (?,?,?,?)";
+				        }
+				        if ($stmt = $mysqli->prepare($queryParticipant)) {
+				            $stmt->bind_param("ssss", $firstname, $lastname, $region, $commune);
+				            $stmt->execute();
+				            $pid = $stmt->insert_id;
+				        }
+				        
+				        if(!empty($pid))
+				            $_POST['answers']['meta']['pid'] = $pid;
+				            
+				            if ($stmt = $mysqli->prepare("INSERT INTO questionnaires (pid, collecte_par, version, creation_date, file) VALUES (?,?,?,?,?)")) {
+				                $stmt->bind_param("sssss", $pid, $collecte_par, $this->version, $creation_date, $this->filename);
+				                $stmt->execute();
+				            }
+				    }
+				}
+				
+				
 				$toEncode = $_POST['answers'];
 			}
+			
 			
 			$json = json_encode($toEncode, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
 			
@@ -156,6 +226,12 @@ class QuestionnaireManager {
 	
 	public function setReadOnly($readonly) {
 	    $this->readonly = $readonly;
+	}
+	
+	private function optADM($index) {
+	    if(isset($_POST['answers']['ADM_01'][$index]['answer']))
+	        return $_POST['answers']['ADM_01'][$index]['answer'];
+	    return null;
 	}
 	
 	private function addAspect($aspect) {

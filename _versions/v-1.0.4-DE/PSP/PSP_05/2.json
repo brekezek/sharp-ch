@@ -32,6 +32,9 @@
                 {
                     "5-+": 10
                 }
+            ],
+            "indicateur": [
+                4
             ]
         },
         {
@@ -47,6 +50,9 @@
                 {
                     "2-+": 10
                 }
+            ],
+            "indicateur": [
+                5
             ]
         },
         {
@@ -54,7 +60,10 @@
             "type": "binary",
             "scoring": "by-value",
             "scoring2": "average",
-            "col-based-on": 0
+            "col-based-on": 0,
+            "indicateur": [
+                8
+            ]
         }
     ],
     "scoring-type": "academic"

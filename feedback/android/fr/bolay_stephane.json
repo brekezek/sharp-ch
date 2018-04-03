@@ -1,0 +1,3554 @@
+{
+ "ADM_01": {
+  "1": {
+   "answer": "helene"
+  },
+  "2": {
+   "answer": "Bolay"
+  },
+  "3": {
+   "answer": "stéphane"
+  },
+  "4": {
+   "answer": "helene domicile 25"
+  },
+  "5": {
+   "answer": "Chef de l'exploitation"
+  },
+  "6": {
+   "answer": ""
+  },
+  "7": {
+   "answer": ""
+  },
+  "8": {
+   "answer": ""
+  },
+  "9": {
+   "answer": ""
+  },
+  "10": {
+   "answer": "pampigny"
+  },
+  "11": {
+   "answer": ""
+  },
+  "12": {
+   "answer": ""
+  },
+  "13": {
+   "answer": "14.12"
+  },
+  "14": {
+   "answer": "Homme"
+  },
+  "15": {
+   "answer": "51"
+  },
+  "16": {
+   "answer": "Mixte"
+  },
+  "17": {
+   "answer": "Exploitation conventionnelle"
+  },
+  "18": {
+   "answer": "31-50 ha"
+  }
+ },
+ "PSP_02": {
+  "1": {
+   "0": [
+    {
+     "answer": true
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": true
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": true
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": true
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "4": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "5": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "6": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "7": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "8": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "9": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "10": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "11": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ]
+  },
+  "2": {
+   "0": [
+    {
+     "answer": true
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": true
+    }
+   ]
+  },
+  "3": {
+   "answer": "Beaucoup"
+  },
+  "4": {
+   "answer": "Beaucoup"
+  }
+ },
+ "PSP_01": {
+  "1": {
+   "0": [
+    {
+     "answer": "1"
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": "1"
+    },
+    {
+     "answer": "1"
+    },
+    {
+     "answer": "1"
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": "1"
+    }
+   ],
+   "1": [
+    {
+     "answer": "1"
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": "1"
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "2": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "3": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "4": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "5": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    }
+   ]
+  },
+  "2": {
+   "answer": "Entre 51h et 70h\/semaine"
+  },
+  "3": {
+   "answer": "Non-applicable"
+  },
+  "4": {
+   "answer": "Oui, il a pu choisir librement"
+  },
+  "5": {
+   "0": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "1": [
+    {
+     "answer": true
+    },
+    {
+     "answer": "coup de mains sur la ferme"
+    }
+   ]
+  },
+  "6": {
+   "answer": "Beaucoup"
+  },
+  "7": {
+   "answer": "Elevée"
+  }
+ },
+ "PSP_04": {
+  "1": {
+   "answer": "Oui"
+  },
+  "2": {
+   "0": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "3": [
+    {
+     "answer": true
+    },
+    {
+     "answer": "1"
+    }
+   ],
+   "4": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "5": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "6": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "7": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "8": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "9": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "10": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "11": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "12": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "13": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "14": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "15": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "16": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "17": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "18": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "19": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "20": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "21": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "22": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "23": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "24": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "25": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "26": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "27": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "28": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "29": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "30": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "31": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "32": [
+    {
+     "answer": true
+    },
+    {
+     "answer": ""
+    }
+   ]
+  },
+  "3": {
+   "answer": "Oui",
+   "comment": ""
+  },
+  "4": {
+   "0": [
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    }
+   ],
+   "3": [
+    {
+     "answer": true
+    }
+   ]
+  },
+  "5": {
+   "answer": "Complètement"
+  },
+  "6": {
+   "answer": "Nulle"
+  }
+ },
+ "PSP_05": {
+  "1": {
+   "answer": "Oui"
+  },
+  "2": {
+   "0": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": "28"
+    },
+    {
+     "answer": "1"
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    }
+   ],
+   "2": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "3": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "4": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "5": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "6": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "7": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ]
+  },
+  "3": {
+   "answer": "Complètement"
+  },
+  "4": {
+   "answer": "Aucune"
+  }
+ },
+ "PSP_07": {
+  "1": {
+   "0": [
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": true
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    }
+   ],
+   "4": [
+    {
+     "answer": false
+    }
+   ],
+   "5": [
+    {
+     "answer": false
+    }
+   ],
+   "6": [
+    {
+     "answer": false
+    }
+   ],
+   "7": [
+    {
+     "answer": false
+    }
+   ]
+  },
+  "2": {
+   "answer": "3"
+  },
+  "3": {
+   "answer": ""
+  },
+  "4": {},
+  "5": {
+   "answer": "0%"
+  },
+  "6": {
+   "answer": "Non"
+  },
+  "7": {
+   "answer": "Complètement"
+  },
+  "8": {
+   "answer": "Très élevée"
+  }
+ },
+ "PSP_03": {
+  "1": {},
+  "2": {
+   "0": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "1": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "2": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "3": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    }
+   ]
+  },
+  "3": {},
+  "4": {}
+ },
+ "PSP_08": {
+  "1": {
+   "0": [
+    {},
+    {}
+   ],
+   "1": [
+    {
+     "answer": "Oui"
+    },
+    {}
+   ],
+   "2": [
+    {},
+    {}
+   ],
+   "3": [
+    {},
+    {}
+   ],
+   "4": [
+    {},
+    {}
+   ],
+   "5": [
+    {},
+    {}
+   ],
+   "6": [
+    {},
+    {
+     "answer": "Oui"
+    }
+   ],
+   "7": [
+    {},
+    {}
+   ]
+  },
+  "2": {
+   "answer": "Complètement"
+  },
+  "3": {
+   "answer": "Faible"
+  },
+  "4": {
+   "answer": "Complètement"
+  },
+  "5": {
+   "answer": "Aucune"
+  }
+ },
+ "PSP_09": {
+  "1": {
+   "answer": "Non"
+  },
+  "2": {
+   "answer": ""
+  },
+  "3": {
+   "answer": ""
+  },
+  "4": {
+   "answer": ""
+  },
+  "5": {},
+  "6": {
+   "answer": "Non"
+  },
+  "7": {
+   "answer": ""
+  },
+  "8": {
+   "answer": "Non"
+  },
+  "9": {
+   "answer": ""
+  },
+  "10": {
+   "answer": ""
+  },
+  "11": {
+   "answer": ""
+  },
+  "12": {
+   "answer": "Oui"
+  },
+  "13": {
+   "answer": "Non"
+  },
+  "14": {
+   "answer": "Beaucoup"
+  },
+  "15": {
+   "answer": "Elevée"
+  }
+ },
+ "PSP_10": {
+  "1": {},
+  "2": {
+   "answer": ""
+  },
+  "3": {},
+  "4": {
+   "answer": []
+  },
+  "5": {},
+  "6": {
+   "answer": ""
+  },
+  "7": {
+   "answer": []
+  },
+  "8": {},
+  "9": {}
+ },
+ "PSP_11": {
+  "1": {
+   "answer": "Oui"
+  },
+  "2": {
+   "answer": [
+    "Prédateurs\/Animaux nuisibles"
+   ]
+  },
+  "3": {
+   "0": [
+    {
+     "answer": true
+    },
+    {
+     "answer": "parcage mobile des cultures avec de l'électrique"
+    }
+   ],
+   "1": [
+    {
+     "answer": true
+    },
+    {
+     "answer": "assurance"
+    }
+   ]
+  },
+  "4": {
+   "answer": "Non"
+  },
+  "5": {
+   "answer": []
+  },
+  "6": {
+   "0": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ]
+  },
+  "7": {
+   "answer": "Beaucoup"
+  },
+  "8": {
+   "answer": "Un peu"
+  }
+ },
+ "PSP_12": {
+  "1": {
+   "0": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "1": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "2": [
+    {
+     "answer": "Non"
+    }
+   ],
+   "3": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "4": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "5": [
+    {
+     "answer": "Pas applicable"
+    }
+   ],
+   "6": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "7": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "8": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "9": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "10": [
+    {}
+   ]
+  },
+  "2": {
+   "answer": "Beaucoup"
+  },
+  "3": {
+   "answer": "Beaucoup"
+  }
+ },
+ "PSP_13": {
+  "1": {
+   "0": [
+    {
+     "answer": true
+    },
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    }
+   ],
+   "2": [
+    {
+     "answer": true
+    },
+    {
+     "answer": false
+    }
+   ],
+   "3": [
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    }
+   ],
+   "4": [
+    {
+     "answer": true
+    },
+    {
+     "answer": false
+    }
+   ],
+   "5": [
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    }
+   ],
+   "6": [
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    }
+   ],
+   "7": [
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    }
+   ],
+   "8": [
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    }
+   ],
+   "9": [
+    {
+     "answer": true
+    },
+    {
+     "answer": false
+    }
+   ],
+   "10": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ]
+  },
+  "2": {
+   "answer": "Complètement"
+  },
+  "3": {
+   "answer": "Beaucoup"
+  }
+ },
+ "PSP_14": {
+  "1": {
+   "answer": "Oui"
+  },
+  "2": {
+   "answer": "Oui"
+  },
+  "3": {
+   "answer": [
+    "Plus grande variabilité des précipitations",
+    "Augmentation de la température",
+    "Retard à l'arrivée du printemps",
+    "Arrivée du printemps précoce",
+    "Sécheresse inhabituelle"
+   ]
+  },
+  "4": {
+   "answer": "très peu avec mon système, augmenter la surface fourragère pour garantir un stock suffisant de fourrages grossiers"
+  },
+  "5": {
+   "answer": "Non"
+  },
+  "6": {
+   "answer": "Oui"
+  },
+  "7": {
+   "answer": "oui fiables"
+  },
+  "8": {
+   "answer": "Oui"
+  },
+  "9": {
+   "0": [
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": true
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    }
+   ],
+   "4": [
+    {
+     "answer": false
+    }
+   ],
+   "5": [
+    {
+     "answer": true
+    }
+   ],
+   "6": [
+    {
+     "answer": true
+    }
+   ],
+   "7": [
+    {
+     "answer": false
+    }
+   ],
+   "8": [
+    {
+     "answer": false
+    }
+   ]
+  },
+  "10": {
+   "answer": "Non"
+  },
+  "11": {
+   "answer": "Oui"
+  },
+  "12": {
+   "answer": "Deux sources"
+  },
+  "13": {
+   "answer": "Beaucoup"
+  },
+  "14": {
+   "answer": "Elevée"
+  }
+ },
+ "PSP_15": {
+  "1": {
+   "answer": "Oui"
+  },
+  "2": {
+   "answer": "1"
+  },
+  "3": {
+   "answer": "Beaucoup"
+  },
+  "4": {
+   "answer": "Elevée"
+  }
+ },
+ "PSP_16": {
+  "1": {
+   "answer": "Oui"
+  },
+  "2": {
+   "0": [
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": true
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    }
+   ],
+   "4": [
+    {
+     "answer": true
+    }
+   ],
+   "5": [
+    {
+     "answer": true
+    }
+   ],
+   "6": [
+    {
+     "answer": false
+    }
+   ],
+   "7": [
+    {
+     "answer": false
+    }
+   ],
+   "8": [
+    {
+     "answer": false
+    }
+   ],
+   "9": [
+    {
+     "answer": false
+    }
+   ],
+   "10": [
+    {
+     "answer": false
+    }
+   ]
+  },
+  "3": {
+   "answer": "Beaucoup"
+  },
+  "4": {
+   "answer": "Elevée"
+  }
+ },
+ "PSP_17": {
+  "1": {
+   "0": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    }
+   ],
+   "2": [
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    }
+   ]
+  },
+  "2": {
+   "answer": "Quelquefois"
+  },
+  "3": {
+   "answer": [
+    null,
+    "Gants",
+    "Masque"
+   ]
+  },
+  "4": {
+   "answer": [
+    "Donnés à des collecteurs"
+   ]
+  },
+  "5": {
+   "answer": "Beaucoup"
+  },
+  "6": {
+   "answer": "Elevée"
+  }
+ },
+ "PSP_18": {
+  "1": {},
+  "2": {
+   "answer": ""
+  },
+  "3": {},
+  "4": {},
+  "5": {}
+ },
+ "GOV_01": {
+  "1": {
+   "answer": "Je ne sais pas"
+  },
+  "2": {
+   "0": [
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    }
+   ]
+  },
+  "3": {
+   "answer": "Non, elles ne sont pas flexibles"
+  },
+  "4": {
+   "answer": "on est bridé on ne nous laisse pas produire à l'avance"
+  },
+  "5": {
+   "answer": "Oui"
+  },
+  "6": {
+   "answer": "Un peu"
+  },
+  "7": {
+   "answer": "Elevée"
+  }
+ },
+ "ENV_01": {
+  "1": {
+   "0": [
+    {
+     "answer": "Réseau d'irrigation"
+    },
+    {
+     "answer": "Pas de changement"
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "1": [
+    {},
+    {},
+    {
+     "answer": ""
+    }
+   ],
+   "2": [
+    {},
+    {},
+    {
+     "answer": ""
+    }
+   ],
+   "3": [
+    {},
+    {},
+    {
+     "answer": ""
+    }
+   ],
+   "4": [
+    {},
+    {},
+    {
+     "answer": ""
+    }
+   ]
+  },
+  "2": {
+   "answer": "Complètement"
+  },
+  "3": {
+   "answer": "Très"
+  }
+ },
+ "ENV_02": {
+  "1": {
+   "answer": []
+  },
+  "2": {},
+  "3": {}
+ },
+ "ENV_03": {
+  "1": {
+   "0": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "4": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "5": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ]
+  },
+  "2": {
+   "answer": "Complètement"
+  },
+  "3": {
+   "answer": "Complètement"
+  },
+  "4": {
+   "answer": "Complètement"
+  },
+  "5": {
+   "answer": "Très élevée"
+  }
+ },
+ "ENV_04": {
+  "1": {
+   "0": [
+    {
+     "answer": "27"
+    },
+    {
+     "answer": "8"
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "1": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "2": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": ""
+    }
+   ]
+  },
+  "2": {
+   "answer": "35"
+  },
+  "3": {
+   "answer": "3"
+  },
+  "4": {
+   "answer": "Complètement"
+  },
+  "5": {
+   "answer": "Elevée"
+  }
+ },
+ "ENV_05": {
+  "1": {
+   "answer": "2"
+  },
+  "2": {
+   "answer": [
+    "Sableux?",
+    "Limoneux?",
+    "Argileux?"
+   ]
+  },
+  "3": {
+   "answer": "Moyenne"
+  },
+  "4": {
+   "answer": "Oui"
+  },
+  "5": {
+   "answer": "Beaucoup"
+  },
+  "6": {
+   "answer": "Beaucoup"
+  },
+  "7": {
+   "answer": "Non"
+  },
+  "8": {
+   "answer": ""
+  },
+  "9": {
+   "answer": "Non"
+  },
+  "10": {
+   "answer": "Pas applicable"
+  }
+ },
+ "ENV_06": {
+  "1": {
+   "0": [
+    {
+     "answer": true
+    },
+    {
+     "answer": "chaux ajouter dans le lisier et apporté en purinant "
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "2": [
+    {
+     "answer": true
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "4": [
+    {
+     "answer": true
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "5": [
+    {
+     "answer": true
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "6": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "7": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "8": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "9": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "10": [
+    {
+     "answer": true
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "11": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "12": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "13": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "14": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "15": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    }
+   ]
+  },
+  "2": {
+   "answer": "Beaucoup"
+  },
+  "3": {
+   "answer": "Elevée"
+  }
+ },
+ "ENV_07": {
+  "1": {
+   "answer": "Oui chaque année"
+  },
+  "2": {
+   "answer": "trèfle"
+  },
+  "3": {
+   "answer": "Complètement"
+  },
+  "4": {
+   "answer": "Elevée"
+  }
+ },
+ "ENV_08": {
+  "1": {
+   "answer": "7% ou + mais moins de 15%"
+  },
+  "2": {
+   "answer": "Pas du tout"
+  },
+  "3": {
+   "answer": "Pas du tout"
+  }
+ },
+ "ENV_09": {
+  "1": {
+   "0": [
+    {
+     "answer": false
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "4": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "5": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "6": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "7": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "8": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "9": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "10": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "11": [
+    {
+     "answer": true
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": true
+    }
+   ],
+   "12": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "13": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ],
+   "14": [
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": false
+    }
+   ],
+   "15": [
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    }
+   ]
+  },
+  "2": {
+   "answer": "Tout ou la plupart de l'énergie dépend d'acteurs externes (0-20% viennent de votre propre exploitation)"
+  },
+  "3": {
+   "answer": "Complètement"
+  },
+  "4": {
+   "answer": "Très élevée"
+  }
+ },
+ "ENV_10": {
+  "1": {
+   "answer": "Oui"
+  },
+  "2": {
+   "0": [
+    {
+     "answer": true
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": true
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    }
+   ]
+  },
+  "3": {
+   "answer": "Fermé"
+  },
+  "4": {
+   "answer": "Ouvert"
+  },
+  "5": {
+   "answer": "Non"
+  },
+  "6": {},
+  "7": {
+   "answer": "Moyennement"
+  },
+  "8": {
+   "answer": "Elevée"
+  }
+ },
+ "ENV_11": {
+  "1": {
+   "answer": "Oui"
+  },
+  "2": {
+   "answer": "Oui"
+  },
+  "3": {
+   "0": [
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    }
+   ]
+  },
+  "4": {
+   "answer": "Beaucoup"
+  },
+  "5": {
+   "answer": "Beaucoup"
+  },
+  "6": {
+   "0": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": true
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": true
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    }
+   ]
+  },
+  "7": {
+   "answer": "Oui"
+  },
+  "8": {
+   "answer": "Oui"
+  },
+  "9": {
+   "0": [
+    {
+     "answer": true
+    }
+   ],
+   "1": [
+    {
+     "answer": true
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    }
+   ],
+   "4": [
+    {
+     "answer": false
+    }
+   ],
+   "5": [
+    {
+     "answer": false
+    }
+   ]
+  },
+  "10": {
+   "answer": "Beaucoup"
+  },
+  "11": {
+   "answer": "Très élevée"
+  }
+ },
+ "ENV_12": {
+  "1": {
+   "0": [
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    }
+   ],
+   "4": [
+    {
+     "answer": false
+    }
+   ],
+   "5": [
+    {
+     "answer": true
+    }
+   ],
+   "6": [
+    {
+     "answer": true
+    }
+   ],
+   "7": [
+    {
+     "answer": true
+    }
+   ],
+   "8": [
+    {
+     "answer": false
+    }
+   ],
+   "9": [
+    {
+     "answer": false
+    }
+   ]
+  },
+  "2": {
+   "answer": "5"
+  },
+  "3": {
+   "answer": "Non"
+  },
+  "4": {
+   "answer": "Beaucoup"
+  },
+  "5": {
+   "answer": "Un peu"
+  }
+ },
+ "SOC_01": {
+  "1": {
+   "answer": "Oui"
+  },
+  "2": {
+   "0": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "1": [
+    {
+     "answer": true
+    },
+    {
+     "answer": "Assez actif"
+    },
+    {
+     "answer": "Deux fois par année ou moins"
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "3": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "4": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "5": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "6": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "7": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "8": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "9": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "10": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "11": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "12": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "13": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "14": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "15": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "16": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "17": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "18": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "19": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "20": [
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ]
+  },
+  "3": {
+   "0": [
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": true
+    }
+   ],
+   "3": [
+    {
+     "answer": true
+    }
+   ],
+   "4": [
+    {
+     "answer": true
+    }
+   ],
+   "5": [
+    {
+     "answer": true
+    }
+   ],
+   "6": [
+    {
+     "answer": true
+    }
+   ],
+   "7": [
+    {
+     "answer": false
+    }
+   ]
+  },
+  "4": {
+   "answer": "Non"
+  },
+  "5": {
+   "answer": ""
+  },
+  "6": {
+   "answer": "Un peu"
+  },
+  "7": {
+   "answer": "Pas du tout"
+  },
+  "8": {
+   "answer": "Beaucoup"
+  },
+  "9": {
+   "answer": "Elevée"
+  }
+ },
+ "SOC_02": {
+  "1": {
+   "answer": "Oui"
+  },
+  "2": {
+   "answer": "Complètement"
+  },
+  "3": {
+   "answer": "Elevée"
+  }
+ },
+ "SOC_03": {
+  "1": {
+   "0": [
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": true
+    }
+   ],
+   "3": [
+    {
+     "answer": true
+    }
+   ],
+   "4": [
+    {
+     "answer": false
+    }
+   ],
+   "5": [
+    {
+     "answer": true
+    }
+   ],
+   "6": [
+    {
+     "answer": true
+    }
+   ],
+   "7": [
+    {
+     "answer": false
+    }
+   ],
+   "8": [
+    {
+     "answer": true
+    }
+   ],
+   "9": [
+    {
+     "answer": true
+    }
+   ],
+   "10": [
+    {
+     "answer": false
+    }
+   ]
+  },
+  "2": {
+   "answer": "Non"
+  },
+  "3": {
+   "answer": ""
+  },
+  "4": {
+   "answer": "Beaucoup"
+  },
+  "5": {
+   "answer": "Oui"
+  },
+  "6": {
+   "answer": "Beaucoup"
+  },
+  "7": {
+   "answer": "Moyennement"
+  }
+ },
+ "SOC_04": {
+  "1": {
+   "answer": "Oui et ils sont de bonne qualité"
+  },
+  "2": {
+   "answer": "Complètement"
+  },
+  "3": {
+   "answer": "Très élevée"
+  }
+ },
+ "SOC_05": {
+  "1": {
+   "answer": "Oui"
+  },
+  "2": {
+   "answer": "Oui"
+  },
+  "3": {
+   "0": [
+    {
+     "answer": true
+    }
+   ],
+   "1": [
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": false
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    }
+   ]
+  },
+  "4": {
+   "0": [
+    {
+     "answer": true
+    }
+   ],
+   "1": [
+    {
+     "answer": true
+    }
+   ],
+   "2": [
+    {
+     "answer": true
+    }
+   ],
+   "3": [
+    {
+     "answer": false
+    }
+   ],
+   "4": [
+    {
+     "answer": false
+    }
+   ]
+  },
+  "5": {
+   "answer": "Beaucoup"
+  },
+  "6": {
+   "answer": "Elevée"
+  }
+ },
+ "SOC_06": {
+  "1": {
+   "answer": "Rarement"
+  },
+  "2": {
+   "answer": "Oui"
+  },
+  "3": {
+   "answer": "Non"
+  },
+  "4": {
+   "answer": "Moyennement"
+  },
+  "5": {
+   "answer": "Elevée"
+  }
+ },
+ "EC_09": {
+  "1": {
+   "0": [
+    {
+     "answer": "2"
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "1": [
+    {
+     "answer": "4"
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "2": [
+    {},
+    {
+     "answer": ""
+    }
+   ],
+   "3": [
+    {
+     "answer": "1"
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "4": [
+    {
+     "answer": "3"
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "5": [
+    {},
+    {
+     "answer": ""
+    }
+   ]
+  },
+  "2": {
+   "answer": "Beaucoup"
+  },
+  "3": {
+   "answer": "Elevée"
+  }
+ },
+ "EC_08": {
+  "1": {
+   "0": [
+    {
+     "answer": "cultures"
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    }
+   ],
+   "1": [
+    {
+     "answer": "bétail"
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": "épisothie"
+    },
+    {
+     "answer": false
+    }
+   ],
+   "2": [
+    {
+     "answer": "bâtiment"
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": true
+    }
+   ],
+   "3": [
+    {
+     "answer": "machines"
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": "vol,accident"
+    },
+    {
+     "answer": true
+    }
+   ],
+   "4": [
+    {
+     "answer": "collectif agricole"
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": "accident"
+    },
+    {
+     "answer": false
+    }
+   ],
+   "5": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    }
+   ],
+   "6": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    }
+   ],
+   "7": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    }
+   ],
+   "8": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    }
+   ],
+   "9": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    }
+   ]
+  },
+  "2": {
+   "answer": "Beaucoup"
+  },
+  "3": {
+   "answer": "Très élevée"
+  }
+ },
+ "EC_11": {
+  "1": {
+   "answer": "3"
+  },
+  "2": {
+   "0": [
+    {
+     "answer": "Production agricoles"
+    }
+   ],
+   "1": [
+    {
+     "answer": "Revenu externe à l'exploitation"
+    }
+   ],
+   "2": [
+    {}
+   ]
+  },
+  "3": {
+   "answer": "Profit stable"
+  },
+  "4": {
+   "answer": "40"
+  },
+  "5": {
+   "answer": "Non"
+  },
+  "6": {
+   "answer": "Beaucoup"
+  },
+  "7": {
+   "answer": "Elevée"
+  }
+ },
+ "EC_12": {
+  "1": {
+   "answer": "Oui, toute l'année"
+  },
+  "2": {
+   "answer": "Oui"
+  },
+  "3": {
+   "answer": "Beaucoup"
+  },
+  "4": {
+   "answer": "Un peu"
+  }
+ },
+ "EC_14": {
+  "1": {
+   "answer": "Oui"
+  },
+  "2": {
+   "answer": [
+    "Banque",
+    "Investissements\/placements financiers"
+   ]
+  },
+  "3": {
+   "answer": "Beaucoup"
+  },
+  "4": {
+   "answer": "Beaucoup"
+  }
+ },
+ "EC_01": {
+  "1": {
+   "answer": "Moins de 45% de fonds propres"
+  },
+  "2": {
+   "answer": "Beaucoup"
+  },
+  "3": {
+   "answer": "Moyennement"
+  }
+ },
+ "EC_15": {
+  "1": {
+   "answer": "Oui, j'ai une grande 'marge de manoeuvre'"
+  },
+  "2": {
+   "answer": "Non"
+  },
+  "3": {
+   "answer": "Beaucoup"
+  },
+  "4": {
+   "answer": "Beaucoup"
+  }
+ },
+ "EC_10": {
+  "1": {
+   "0": [
+    {
+     "answer": "matériel agricole"
+    }
+   ],
+   "1": [
+    {
+     "answer": "énergie pour chauffage\/éclairage\/machines"
+    }
+   ],
+   "2": [
+    {
+     "answer": "intérêts d'emprunts bancaires"
+    }
+   ],
+   "3": [
+    {
+     "answer": "assurances"
+    }
+   ],
+   "4": [
+    {
+     "answer": "pesticides"
+    }
+   ]
+  },
+  "2": {
+   "answer": "Non"
+  },
+  "3": {
+   "answer": "Non"
+  },
+  "4": {
+   "answer": "Beaucoup"
+  },
+  "5": {
+   "answer": "Beaucoup"
+  }
+ },
+ "EC_13": {
+  "1": {
+   "0": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "1": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "2": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "3": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "4": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "5": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "6": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "7": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "8": [
+    {}
+   ]
+  },
+  "2": {
+   "answer": "75"
+  },
+  "3": {
+   "answer": "Beaucoup"
+  },
+  "4": {
+   "answer": "Beaucoup"
+  }
+ },
+ "EC_07": {
+  "1": {
+   "0": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "1": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "2": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "3": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "4": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "5": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "6": [
+    {
+     "answer": "Oui"
+    }
+   ],
+   "7": [
+    {
+     "answer": "Non"
+    }
+   ],
+   "8": [
+    {
+     "answer": "Non"
+    }
+   ],
+   "9": [
+    {}
+   ]
+  },
+  "2": {
+   "answer": "Beaucoup"
+  },
+  "3": {
+   "answer": "Beaucoup"
+  }
+ },
+ "EC_06": {
+  "1": {
+   "answer": "Quelques fois "
+  },
+  "2": {
+   "answer": "Moyennement"
+  },
+  "3": {
+   "answer": "Moyennement"
+  }
+ },
+ "EC_03": {
+  "1": {
+   "0": [
+    {
+     "answer": "Non"
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "1": [
+    {
+     "answer": "Non"
+    },
+    {
+     "answer": ""
+    }
+   ],
+   "2": [
+    {
+     "answer": "Non"
+    },
+    {
+     "answer": ""
+    }
+   ]
+  },
+  "2": {
+   "answer": [
+    "Je suis satisfait"
+   ]
+  },
+  "3": {
+   "answer": "Beaucoup"
+  },
+  "4": {
+   "answer": "Beaucoup"
+  }
+ },
+ "EC_04": {
+  "1": {
+   "0": [
+    {
+     "answer": "lait"
+    },
+    {
+     "answer": true
+    },
+    {
+     "answer": "Je suis satisfait"
+    },
+    {
+     "answer": "Souvent"
+    },
+    {
+     "answer": true
+    }
+   ],
+   "1": [
+    {
+     "answer": "vente de bétail vivant"
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": "Je suis satisfait"
+    },
+    {
+     "answer": "Jamais"
+    },
+    {
+     "answer": true
+    }
+   ],
+   "2": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {},
+    {},
+    {
+     "answer": false
+    }
+   ],
+   "3": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {},
+    {},
+    {
+     "answer": false
+    }
+   ],
+   "4": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {},
+    {},
+    {
+     "answer": false
+    }
+   ],
+   "5": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {},
+    {},
+    {
+     "answer": false
+    }
+   ]
+  },
+  "2": {
+   "answer": "Beaucoup"
+  },
+  "3": {
+   "answer": "Beaucoup"
+  }
+ },
+ "EC_02": {
+  "1": {},
+  "2": {
+   "0": [
+    {
+     "answer": "lait"
+    },
+    {
+     "answer": false
+    },
+    {
+     "answer": "Chaque semaine"
+    },
+    {
+     "answer": "Non"
+    }
+   ],
+   "1": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "2": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "3": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "4": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ],
+   "5": [
+    {
+     "answer": ""
+    },
+    {
+     "answer": false
+    },
+    {},
+    {}
+   ]
+  },
+  "3": {
+   "answer": "0"
+  },
+  "4": {
+   "answer": "Complètement"
+  },
+  "5": {
+   "answer": "Très"
+  }
+ },
+ "EC_16": {
+  "1": {
+   "0": [
+    {
+     "answer": "lait"
+    },
+    {
+     "answer": "Stable"
+    },
+    {
+     "answer": "false"
+    }
+   ],
+   "1": [
+    {
+     "answer": "vente de bétail"
+    },
+    {
+     "answer": "Imprévisible"
+    },
+    {
+     "answer": "true"
+    }
+   ],
+   "2": [
+    {
+     "answer": ""
+    },
+    {},
+    {
+     "answer": "false"
+    }
+   ],
+   "3": [
+    {
+     "answer": ""
+    },
+    {},
+    {
+     "answer": "false"
+    }
+   ],
+   "4": [
+    {
+     "answer": ""
+    },
+    {},
+    {
+     "answer": "false"
+    }
+   ],
+   "5": [
+    {
+     "answer": ""
+    },
+    {},
+    {
+     "answer": "false"
+    }
+   ]
+  },
+  "2": {
+   "answer": "Beaucoup"
+  },
+  "3": {
+   "answer": "Beaucoup"
+  }
+ },
+ "filename": "uuid_b41d5803-20b6-458d-9fb0-fc8254787ac3_answer_32.json"
+}

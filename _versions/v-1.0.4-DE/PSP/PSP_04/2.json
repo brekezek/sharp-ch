@@ -55,7 +55,10 @@
                     "6-+": 10
                 }
             ],
-            "result-define": "PSP_04.2.col0"
+            "result-define": "PSP_04.2.col0",
+            "indicateur": [
+                4
+            ]
         },
         {
             "title": "Wie viele Sorten bauen Sie an?",
@@ -70,6 +73,9 @@
                 {
                     "2-+": 10
                 }
+            ],
+            "indicateur": [
+                4
             ]
         }
     ],

@@ -21,13 +21,22 @@ if(!$logged) {
         $answer = !is_array($_POST['answer']) ? trim($_POST['answer']) : $_POST['answer'];
         $aspectId = $_POST['aspectId'];
         
-        $questId = $aspectId.".".$numQuest;
-        
-        $scoreParts = evalScoreInLive($aspectId, $numQuest, $answer);
-        //echo $questId." : ".$answer;
-        //print_r($scoreParts);
-        
-        echo '<small>Score :</small> <span class="badge '.($scoreParts['score'] < 0 ? "badge-secondary" : "badge-success").' p-1">'.($scoreParts['score'] < 0 ? "ignoré" : $scoreParts['score']).'</span>';
+        if(!empty($answer) && $answer != "-") {
+            $questId = $aspectId.".".$numQuest;
+            
+            /*
+            $questionnaire = new Questionnaire($_COOKIE['filename'], $_COOKIE['version'], array());
+            $questionnaire->feedLive($aspectId, $numQuest, $answer); 
+            $scoreParts = $questionnaire->evalScoreForQuestion($aspectId, $numQuest);
+            */
+            
+            //$score = ($score < 0) ? " " : str_replace(".", ",", round($score, 2));
+            $scoreParts = evalScoreInLive($aspectId, $numQuest, $answer);
+            //echo $questId." : ".$answer;
+            //print_r($scoreParts);
+    
+            echo '<small>Score :</small> <span class="badge '.($scoreParts['score'] < 0 ? "badge-secondary" : "badge-success").' p-1">'.($scoreParts['score'] < 0 ? "ignoré" : $scoreParts['score']).'</span>';
+        }
     }
 }
 ?>

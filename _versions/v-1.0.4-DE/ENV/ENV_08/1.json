@@ -17,5 +17,11 @@
     ],
     "mandatory": "true",
     "scoring": "by-value",
-    "scoring-type": "academic"
+    "scoring-type": "academic",
+    "indicateur": [
+        2,
+        4,
+        7,
+        12
+    ]
 }

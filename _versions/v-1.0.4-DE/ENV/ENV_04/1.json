@@ -11,7 +11,10 @@
             "title": "Grundstücke in eigenem Besitz (ha)",
             "type": "integer",
             "scoring": "pending",
-            "result-define": "ENV_04.1"
+            "result-define": "ENV_04.1",
+            "indicateur": [
+                10
+            ]
         },
         {
             "title": "Grundstücke unter festem schriftlichen Pachtvertrag (ha)",

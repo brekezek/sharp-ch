@@ -45,5 +45,8 @@
             "type": "binary"
         }
     ],
-    "scoring-type": "academic"
+    "scoring-type": "academic",
+    "indicateur": [
+        12
+    ]
 }
