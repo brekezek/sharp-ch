@@ -11,6 +11,10 @@ if(!$logged) {
     header('Location: required/logout.php');
 }
 
+if(isset($_SESSION['resultsDefined'])) {
+    unset($_SESSION['resultsDefined']);
+}
+
 $idxPage = 1;
 if(isset($_GET['page'])) {
     $idxPage = intval($_GET['page']);
@@ -37,25 +41,69 @@ $pages = array(
 	<!-- Custom -->
 	<link rel="stylesheet" href="css/style.css">
 	
+	<style>
+	main {
+	   margin-left:220px;
+	   width:100%
+	}
+	.sidebar {
+	   width: 220px;
+	   max-width: 220px;
+	}
+	.sidebar-sticky {
+	   margin-top:55px;
+	}
+	@media (max-width: 768px) { 
+	   main {
+	       margin-left: 0;
+	   }
+	   nav.navbar {
+	       background: black!important;
+	   }
+	   .sidebar {
+	       position: relative;
+	       width: 100%;
+	       max-width: none;
+	   }
+	   .sidebar-sticky {
+	       position: relative;
+	       height: auto;
+	       margin-top:0;
+	       top:0;
+	   }
+	}
+	</style>
+	
 	<title>SHARP-CH</title>
 	<link rel="shortcut icon" href="img/favicon.png">
 </head>
 <body>
 	
 	<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <div class="navbar-brand col-sm-3 col-md-2 mr-0">SHARP-CH <span class="badge badge-danger">admin</span></div>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Recherche" id="mainSearch">
-      <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-          <a class="nav-link" href="required/logout.php">Déconnexion</a>
-        </li>
-      </ul>
+        <?php 
+        $name = $_SESSION['name'];
+        if(strlen($name) > 18) $name = substr($name, 0, 17)."..";
+        ?>
+        
+        <div class="navbar-brand col-sm-3 col-md-2 mr-0" style="width:220px; max-width:220px; flex:none">
+       		<?= $name ?> <span class="badge badge-danger">admin</span>
+        </div>
+        
+        <!-- <input class="form-control form-control-dark w-100 d-none" type="text" placeholder="Recherche" id="mainSearch"> -->
+        
+        <div class="w-100 text-left ml-2">
+        	<a href="index.php" class="btn btn-outline-light btn-sm"><span class="oi oi-home mr-1"></span> Accueil</a>
+        </div>
+        
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+              <a class="nav-link" href="required/logout.php">Déconnexion</a>
+            </li>
+        </ul>
     </nav>
     
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky" style="margin-top:55px">
+    <nav class="col-md-2 d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link <?= $idxPage == 1 ? "active" : "" ?>" href="?page=1">
@@ -63,12 +111,7 @@ $pages = array(
                    Questionnaires récoltés <span class="sr-only">(current)</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link <?= $idxPage == 2 ? "active" : "" ?>" href="?page=2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-                  Editer un questionnaire
-                </a>
-              </li>
+              
            
               <li class="nav-item d-none">
                 <a class="nav-link <?= $idxPage == 3 ? "active" : "" ?>" href="?page=3">
@@ -101,17 +144,28 @@ $pages = array(
                   Participants
                 </a>
               </li>
+              
+              <li class="nav-item">
+                <a class="nav-link <?= $idxPage == 2 ? "active" : "" ?>" href="?page=2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                  Modifier un aspect
+                </a>
+              </li>
+              
             </ul>
           </div>
         </nav>
-
+        
+    <div class="container-fluid">
+      <div class="row">
+        
 		<!-- Bootstrap & JQuery -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     	<script src="js/cookie.js"></script>
     	
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 <?php if(!$pages[$idxPage]["padding"]) { ?>pt-0 px-0<?php } else { ?>pt-3 px-3<?php }?>">
+        <main role="main" class="<?php if(!$pages[$idxPage]["padding"]) { ?>pt-0 px-0<?php } else { ?>pt-3 px-3<?php }?>">
     		<?php
     		if(isset($pages[$idxPage]['page']) && file_exists("pages/admin/".$pages[$idxPage]['page'])) {
     		    include_once("pages/admin/".$pages[$idxPage]['page']);

@@ -11,6 +11,7 @@ class Text extends Question {
 			parent::getLabel().
 			'<textarea data-adaptheight
                  '.($this->readonly ? "readonly" : "").' 
+                 '.parent::scoredAttr().' 
 				 name="'.$this->inputName.'" 
 				 id="'.$this->uid.'" 
 				 placeholder="'.$this->placeholder.'" 

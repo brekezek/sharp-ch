@@ -1,0 +1,3556 @@
+{
+    "PSP_01": {
+        "1": [
+            [
+                {
+                    "answer": 1
+                },
+                {
+                    "answer": true
+                },
+                {
+                    "answer": 1
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "2": {
+            "answer": "Weniger als 40h/Woche"
+        },
+        "3": {
+            "answer": "Nicht anwendbar"
+        },
+        "4": {
+            "answer": "Er/Sie konnte sich nicht frei entscheiden, aber ist glücklich mit dem Beruf."
+        },
+        "5": [
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "6": {
+            "answer": "Ziemlich"
+        },
+        "7": {
+            "answer": "Sehr"
+        }
+    },
+    "PSP_04": {
+        "1": {
+            "answer": "Ja"
+        },
+        "2": [
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "3": {
+            "answer": "Ja",
+            "comment": ""
+        },
+        "4": [
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "5": {
+            "answer": "Vollständig"
+        },
+        "6": {
+            "answer": "Sehr"
+        }
+    },
+    "PSP_05": {
+        "1": {
+            "answer": "Ja"
+        },
+        "2": [
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": 15
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "3": [],
+        "4": []
+    },
+    "PSP_07": {
+        "1": [
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "2": {
+            "answer": ""
+        },
+        "3": {
+            "answer": ""
+        },
+        "4": [],
+        "5": [],
+        "6": [],
+        "7": [],
+        "8": []
+    },
+    "PSP_03": {
+        "1": {
+            "answer": "Nein"
+        },
+        "2": [
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "3": [],
+        "4": []
+    },
+    "PSP_08": {
+        "1": [
+            [
+                [],
+                []
+            ],
+            [
+                [],
+                []
+            ],
+            [
+                [],
+                []
+            ],
+            [
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": "Ja"
+                },
+                []
+            ],
+            [
+                [],
+                []
+            ],
+            [
+                [],
+                []
+            ],
+            [
+                [],
+                []
+            ]
+        ],
+        "2": {
+            "answer": "Beinahe völlig"
+        },
+        "3": {
+            "answer": "Sehr"
+        },
+        "4": [],
+        "5": []
+    },
+    "PSP_09": {
+        "1": {
+            "answer": "Ja"
+        },
+        "2": {
+            "answer": "getestete sorten was hier in die gegend passr"
+        },
+        "3": {
+            "answer": ""
+        },
+        "4": {
+            "answer": ""
+        },
+        "5": {
+            "answer": "Ja"
+        },
+        "6": {
+            "answer": "Ja"
+        },
+        "7": {
+            "answer": "im forst ja und in der lw nicht so"
+        },
+        "8": {
+            "answer": "Nein"
+        },
+        "9": {
+            "answer": ""
+        },
+        "10": {
+            "answer": ""
+        },
+        "11": {
+            "answer": ""
+        },
+        "12": [],
+        "13": [],
+        "14": {
+            "answer": "Vollständig"
+        },
+        "15": {
+            "answer": "Überhaupt nicht"
+        }
+    },
+    "PSP_10": {
+        "1": [],
+        "2": {
+            "answer": ""
+        },
+        "3": {
+            "answer": "Nein"
+        },
+        "4": {
+            "answer": [
+                "Lebensmittel (Menschen)"
+            ]
+        },
+        "5": {
+            "answer": "21-40 %"
+        },
+        "6": {
+            "answer": "57 bàume"
+        },
+        "7": {
+            "answer": []
+        },
+        "8": {
+            "answer": "Mittelmäßig"
+        },
+        "9": {
+            "answer": "Sehr"
+        }
+    },
+    "PSP_11": {
+        "1": {
+            "answer": "Nein"
+        },
+        "2": {
+            "answer": []
+        },
+        "3": [
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "4": {
+            "answer": "Ja"
+        },
+        "5": {
+            "answer": []
+        },
+        "6": [
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": "man muss sich abfinden"
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "7": {
+            "answer": "Überhaupt nicht"
+        },
+        "8": {
+            "answer": "Vollständig"
+        }
+    },
+    "PSP_12": {
+        "1": [
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Nein"
+                }
+            ],
+            [
+                []
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Nicht anwendbar"
+                }
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Nicht anwendbar"
+                }
+            ],
+            [
+                []
+            ]
+        ],
+        "2": {
+            "answer": "Ein wenig"
+        },
+        "3": {
+            "answer": "Sehr"
+        }
+    },
+    "PSP_13": {
+        "1": [
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "2": {
+            "answer": "Vollständig"
+        },
+        "3": {
+            "answer": "Sehr"
+        }
+    },
+    "PSP_14": {
+        "1": {
+            "answer": "Ja"
+        },
+        "2": {
+            "answer": "Ja"
+        },
+        "3": {
+            "answer": [
+                "Vermehrter Regenfall",
+                "Mehr Variabilität des Niederschlags",
+                "Höhere Temperaturen"
+            ]
+        },
+        "4": {
+            "answer": "heftiger ns, làngere trockenheit"
+        },
+        "5": {
+            "answer": "Ja"
+        },
+        "6": {
+            "answer": "Ja"
+        },
+        "7": {
+            "answer": "in der regel"
+        },
+        "8": {
+            "answer": "Ja"
+        },
+        "9": [
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "10": {
+            "answer": "Ja"
+        },
+        "11": {
+            "answer": "Nein"
+        },
+        "12": {
+            "answer": "Zwei Quellen"
+        },
+        "13": {
+            "answer": "Vollständig"
+        },
+        "14": {
+            "answer": "Ziemlich"
+        }
+    },
+    "PSP_15": {
+        "1": [],
+        "2": {
+            "answer": ""
+        },
+        "3": [],
+        "4": []
+    },
+    "PSP_16": {
+        "1": {
+            "answer": "Nein"
+        },
+        "2": [
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "3": [],
+        "4": {
+            "answer": "Mittelmäßig"
+        }
+    },
+    "PSP_17": {
+        "1": [
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "2": {
+            "answer": "Immer"
+        },
+        "3": {
+            "answer": [
+                "Augenschutz",
+                "Handschuhe",
+                "Maske",
+                "Jacke"
+            ]
+        },
+        "4": {
+            "answer": [
+                "Rücknahmestation (z.B. Pamira)"
+            ]
+        },
+        "5": {
+            "answer": "Beinahe völlig"
+        },
+        "6": {
+            "answer": "Ein wenig "
+        }
+    },
+    "PSP_18": {
+        "1": {
+            "answer": "Nein",
+            "comment": ""
+        },
+        "2": {
+            "answer": ""
+        },
+        "3": {
+            "answer": "Nein"
+        },
+        "4": {
+            "answer": "Überhaupt nicht"
+        },
+        "5": {
+            "answer": "Überhaupt nicht"
+        }
+    },
+    "GOV_01": {
+        "1": {
+            "answer": "Ja"
+        },
+        "2": [
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "3": {
+            "answer": "Ja, sie sind flexibel genug."
+        },
+        "4": {
+            "answer": ""
+        },
+        "5": {
+            "answer": "Nein"
+        },
+        "6": {
+            "answer": "Mittelmäßig"
+        },
+        "7": {
+            "answer": "Ziemlich"
+        }
+    },
+    "ENV_01": {
+        "1": [
+            [
+                [],
+                [],
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                [],
+                [],
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                [],
+                [],
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                [],
+                [],
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                [],
+                [],
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "2": {
+            "answer": "Vollständig"
+        },
+        "3": {
+            "answer": "Sehr"
+        }
+    },
+    "ENV_02": {
+        "1": {
+            "answer": []
+        },
+        "2": [],
+        "3": {
+            "answer": "Überhaupt nicht"
+        }
+    },
+    "ENV_03": {
+        "1": [
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "2": {
+            "answer": "Vollständig"
+        },
+        "3": {
+            "answer": "Vollständig"
+        },
+        "4": {
+            "answer": "Vollständig"
+        },
+        "5": {
+            "answer": "Sehr"
+        }
+    },
+    "ENV_04": {
+        "1": [
+            [
+                {
+                    "answer": 7
+                },
+                {
+                    "answer": 5
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "2": {
+            "answer": "12,5"
+        },
+        "3": {
+            "answer": ""
+        },
+        "4": {
+            "answer": "Mittelmäßig"
+        },
+        "5": {
+            "answer": "Ziemlich"
+        }
+    },
+    "ENV_05": {
+        "1": {
+            "answer": 3
+        },
+        "2": {
+            "answer": [
+                "Sandig",
+                "Tonig",
+                "Steinig"
+            ]
+        },
+        "3": {
+            "answer": "Mittelmäßig"
+        },
+        "4": {
+            "answer": "Ja"
+        },
+        "5": {
+            "answer": "Mittelmäßig"
+        },
+        "6": {
+            "answer": "Mittelmäßig"
+        },
+        "7": {
+            "answer": "Nein"
+        },
+        "8": {
+            "answer": ""
+        },
+        "9": {
+            "answer": "Nein"
+        },
+        "10": {
+            "answer": "Nicht anwendbar"
+        }
+    },
+    "ENV_06": {
+        "1": [
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": "bei der begr7nung"
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": "erntereste"
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "2": {
+            "answer": "Mittelmäßig"
+        },
+        "3": {
+            "answer": "Ziemlich"
+        }
+    },
+    "ENV_07": {
+        "1": {
+            "answer": "Nie"
+        },
+        "2": {
+            "answer": "haben grùnland"
+        },
+        "3": [],
+        "4": {
+            "answer": "Überhaupt nicht"
+        }
+    },
+    "ENV_08": {
+        "1": {
+            "answer": "Überhaupt nicht"
+        },
+        "2": [],
+        "3": []
+    },
+    "ENV_09": {
+        "1": [
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": true
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "2": {
+            "answer": "Die gesamte oder die meiste Energie kommt von externen Akteuren, 0-20% stammen aus dem eigenen Betrieb."
+        },
+        "3": {
+            "answer": "Vollständig"
+        },
+        "4": {
+            "answer": "Sehr"
+        }
+    },
+    "ENV_10": {
+        "1": {
+            "answer": "Ja"
+        },
+        "2": [
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "3": {
+            "answer": "Nicht anwendbar"
+        },
+        "4": {
+            "answer": "Nicht anwendbar"
+        },
+        "5": {
+            "answer": "Nein"
+        },
+        "6": {
+            "answer": "Nein"
+        },
+        "7": {
+            "answer": "Beinahe völlig"
+        },
+        "8": {
+            "answer": "Sehr"
+        }
+    },
+    "ENV_11": {
+        "1": {
+            "answer": "Ja"
+        },
+        "2": {
+            "answer": "Ja"
+        },
+        "3": [
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "4": {
+            "answer": "Beinahe völlig"
+        },
+        "5": {
+            "answer": "Ziemlich"
+        },
+        "6": [
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "7": {
+            "answer": "Ja"
+        },
+        "8": {
+            "answer": "Ja"
+        },
+        "9": [
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "10": {
+            "answer": "Beinahe völlig"
+        },
+        "11": {
+            "answer": "Ziemlich"
+        }
+    },
+    "ENV_12": {
+        "1": [
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "2": {
+            "answer": "nein"
+        },
+        "3": {
+            "answer": "Neinn"
+        },
+        "4": {
+            "answer": "Ziemlich"
+        },
+        "5": {
+            "answer": "Sehr"
+        }
+    },
+    "SOC_01": {
+        "1": {
+            "answer": "Ja"
+        },
+        "2": [
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": "Ziemlich aktiv"
+                },
+                {
+                    "answer": "Zweimal im Jahr oder weniger"
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": "Ziemlich aktiv"
+                },
+                {
+                    "answer": "Nie"
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": false
+                },
+                [],
+                []
+            ]
+        ],
+        "3": [
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "4": {
+            "answer": "Nein"
+        },
+        "5": {
+            "answer": ""
+        },
+        "6": {
+            "answer": "Überhaupt nicht"
+        },
+        "7": {
+            "answer": "Überhaupt nicht"
+        },
+        "8": {
+            "answer": "Überhaupt nicht"
+        },
+        "9": {
+            "answer": "Ein wenig"
+        }
+    },
+    "SOC_02": {
+        "1": {
+            "answer": "Ja"
+        },
+        "2": {
+            "answer": "Vollständig"
+        },
+        "3": {
+            "answer": "Sehr"
+        }
+    },
+    "SOC_03": {
+        "1": [
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "2": {
+            "answer": "Ja"
+        },
+        "3": {
+            "answer": "stopp von viehhaltung"
+        },
+        "4": {
+            "answer": "Vollständig"
+        },
+        "5": [],
+        "6": {
+            "answer": "Sehr"
+        },
+        "7": {
+            "answer": "Vollständig"
+        }
+    },
+    "SOC_04": {
+        "1": [],
+        "2": [],
+        "3": []
+    },
+    "SOC_05": {
+        "1": {
+            "answer": "Einigermaßen"
+        },
+        "2": {
+            "answer": "Nein"
+        },
+        "3": [
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "4": [
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "5": {
+            "answer": "Mittelmäßig"
+        },
+        "6": {
+            "answer": "Mittelmäßig "
+        }
+    },
+    "SOC_06": {
+        "1": {
+            "answer": "Nicht anwendbar"
+        },
+        "2": {
+            "answer": "Nein"
+        },
+        "3": {
+            "answer": "Nein"
+        },
+        "4": {
+            "answer": "Überhaupt nicht"
+        },
+        "5": {
+            "answer": "Überhaupt nicht"
+        }
+    },
+    "EC_09": {
+        "1": [
+            [
+                {
+                    "answer": 1
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                [],
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                [],
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "2": {
+            "answer": "Vollständig"
+        },
+        "3": {
+            "answer": "Sehr"
+        }
+    },
+    "EC_08": {
+        "1": [
+            [
+                {
+                    "answer": "pflanzen"
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": "hagel, gewitter"
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": "maschinen"
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": "gebàude"
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": true
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "2": {
+            "answer": "Mittelmäßig"
+        },
+        "3": {
+            "answer": "Ziemlich"
+        }
+    },
+    "EC_11": {
+        "1": {
+            "answer": 2
+        },
+        "2": [
+            [
+                {
+                    "answer": "Nicht landwirtschaftliche Tätigkeiten"
+                }
+            ],
+            [
+                {
+                    "answer": "Landwirtschaftliche Produktion"
+                }
+            ],
+            [
+                []
+            ]
+        ],
+        "3": {
+            "answer": "Stabiles Defizit"
+        },
+        "4": {
+            "answer": "es kommt drauf an"
+        },
+        "5": {
+            "answer": "Nein"
+        },
+        "6": {
+            "answer": "Beinahe völlig"
+        },
+        "7": {
+            "answer": "Sehr"
+        }
+    },
+    "EC_12": {
+        "1": [],
+        "2": [],
+        "3": {
+            "answer": "Vollständig"
+        },
+        "4": {
+            "answer": "Sehr"
+        }
+    },
+    "EC_14": {
+        "1": {
+            "answer": "Nein"
+        },
+        "2": {
+            "answer": [
+                " auf der BBank"
+            ]
+        },
+        "3": {
+            "answer": "Mittelmäßig"
+        },
+        "4": {
+            "answer": "Mittelmäßig"
+        }
+    },
+    "EC_01": {
+        "1": {
+            "answer": "Mehr als 55% Eigenkapital"
+        },
+        "2": {
+            "answer": "Vollständig"
+        },
+        "3": {
+            "answer": "Ziemlich"
+        }
+    },
+    "EC_15": {
+        "1": [],
+        "2": {
+            "answer": "Ja"
+        },
+        "3": {
+            "answer": "Vollständig"
+        },
+        "4": {
+            "answer": "Sehr"
+        }
+    },
+    "EC_10": {
+        "1": [
+            [
+                {
+                    "answer": "Neue Gebäude"
+                }
+            ],
+            [
+                []
+            ],
+            [
+                []
+            ],
+            [
+                []
+            ],
+            [
+                []
+            ]
+        ],
+        "2": {
+            "answer": "Nein"
+        },
+        "3": [],
+        "4": {
+            "answer": "Beinahe völlig"
+        },
+        "5": {
+            "answer": "Sehr"
+        }
+    },
+    "EC_13": {
+        "1": [
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                []
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Nicht anwendbar"
+                }
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                []
+            ]
+        ],
+        "2": {
+            "answer": "saatgut darf man nicht vermehren"
+        },
+        "3": {
+            "answer": "Vollständig"
+        },
+        "4": {
+            "answer": "Sehr"
+        }
+    },
+    "EC_07": {
+        "1": [
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Nein"
+                }
+            ],
+            [
+                {
+                    "answer": "Nein"
+                }
+            ],
+            [
+                {
+                    "answer": "Nein"
+                }
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Ja"
+                }
+            ],
+            [
+                {
+                    "answer": "Nein"
+                }
+            ],
+            [
+                {
+                    "answer": "Nein"
+                }
+            ],
+            [
+                []
+            ]
+        ],
+        "2": {
+            "answer": "Vollständig"
+        },
+        "3": {
+            "answer": "Mittelmäßig"
+        }
+    },
+    "EC_06": {
+        "1": {
+            "answer": "Manchmal"
+        },
+        "2": {
+            "answer": "Vollständig"
+        },
+        "3": {
+            "answer": "Sehr"
+        }
+    },
+    "EC_03": {
+        "1": [
+            [
+                {
+                    "answer": "Nein"
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": "Ja"
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                [],
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "2": {
+            "answer": [
+                "Eine Mischung von beidem"
+            ]
+        },
+        "3": {
+            "answer": "Mittelmäßig"
+        },
+        "4": {
+            "answer": "Ziemlich"
+        }
+    },
+    "EC_04": {
+        "1": [
+            [
+                {
+                    "answer": "obst"
+                },
+                {
+                    "answer": true
+                },
+                {
+                    "answer": "Ich bin zufrieden"
+                },
+                {
+                    "answer": "Nie"
+                },
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": "mais"
+                },
+                {
+                    "answer": true
+                },
+                {
+                    "answer": "Meine Flexibilität ist eingeschränkt"
+                },
+                [],
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": "getreide"
+                },
+                {
+                    "answer": true
+                },
+                {
+                    "answer": "Meine Flexibilität ist eingeschränkt"
+                },
+                [],
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                [],
+                [],
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                [],
+                [],
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                {
+                    "answer": false
+                },
+                [],
+                [],
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "2": {
+            "answer": "Überhaupt nicht"
+        },
+        "3": {
+            "answer": "Überhaupt nicht"
+        }
+    },
+    "EC_02": {
+        "1": {
+            "answer": "Nein"
+        },
+        "2": [
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                []
+            ]
+        ],
+        "3": {
+            "answer": ""
+        },
+        "4": [],
+        "5": []
+    },
+    "EC_05": {
+        "1": [
+            [
+                {
+                    "answer": "obst"
+                },
+                {
+                    "answer": "Unberechenbar"
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": "mais"
+                },
+                {
+                    "answer": "Unberechenbar"
+                },
+                {
+                    "answer": "man kann zufrieden sein"
+                }
+            ],
+            [
+                {
+                    "answer": "getreide"
+                },
+                {
+                    "answer": "Unberechenbar"
+                },
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                {
+                    "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                {
+                    "answer": ""
+                }
+            ]
+        ],
+        "2": {
+            "answer": "Mittelmäßig"
+        },
+        "3": {
+            "answer": "Sehr"
+        }
+    },
+    "EC_16": {
+        "1": [
+            [
+                {
+                    "answer": "obst"
+                },
+                {
+                    "answer": "Landwirtschaftliche Genossenschaft"
+                },
+                {
+                    "answer": true
+                },
+                [],
+                {
+                    "answer": "Ich"
+                },
+                [],
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                {
+                    "answer": false
+                },
+                [],
+                [],
+                [],
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                {
+                    "answer": false
+                },
+                [],
+                [],
+                [],
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                {
+                    "answer": false
+                },
+                [],
+                [],
+                [],
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                {
+                    "answer": false
+                },
+                [],
+                [],
+                [],
+                [],
+                []
+            ],
+            [
+                {
+                    "answer": ""
+                },
+                [],
+                {
+                    "answer": false
+                },
+                [],
+                [],
+                [],
+                [],
+                []
+            ]
+        ],
+        "2": {
+            "answer": "Nicht genug"
+        },
+        "3": {
+            "answer": "Vollständig"
+        },
+        "4": {
+            "answer": "Sehr"
+        }
+    },
+    "ADM_01": {
+        "1": {
+            "answer": "adelaide"
+        },
+        "2": {
+            "answer": "abberger"
+        },
+        "3": {
+            "answer": "hubert"
+        },
+        "4": {
+            "answer": 1.8
+        },
+        "5": {
+            "answer": "Betriebsleiter*in"
+        },
+        "6": {
+            "answer": ""
+        },
+        "7": {
+            "answer": "deutschland"
+        },
+        "8": {
+            "answer": "bawu"
+        },
+        "9": {
+            "answer": "bodenseekreis"
+        },
+        "10": {
+            "answer": "heiligenberg"
+        },
+        "11": {
+            "answer": ""
+        },
+        "12": {
+            "answer": ""
+        },
+        "13": {
+            "answer": 2.02
+        },
+        "14": {
+            "answer": "Mann"
+        },
+        "15": {
+            "answer": 57
+        },
+        "16": {
+            "answer": "Pflanzenproduktion"
+        },
+        "17": {
+            "answer": "Konventionell"
+        },
+        "18": {
+            "answer": "11-30 ha"
+        }
+    },
+    "PSP_02": {
+        "1": [
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": true
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                },
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "2": [
+            [
+                {
+                    "answer": true
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ],
+            [
+                {
+                    "answer": false
+                }
+            ]
+        ],
+        "3": {
+            "answer": "Ein wenig"
+        },
+        "4": {
+            "answer": "Sehr"
+        }
+    },
+    "meta": {
+        "version": "v-1.0.4-DE",
+        "filename": "uuid_2a452b48-4448-4df1-b9e9-21b34314a319_answer_18.json"
+    }
+}

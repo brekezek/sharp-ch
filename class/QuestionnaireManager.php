@@ -25,6 +25,11 @@ class QuestionnaireManager {
 		return self::$_instance;
 	}
 	
+	public function refreshContent() {
+	    $this->aspects = array();
+	    $this->parseVersion();
+	}
+	
 	public function next() {
 		$this->currentIndex++;
 	}
@@ -89,6 +94,7 @@ class QuestionnaireManager {
 	
 	public function collectAnswers() {
 		if(!$this->readonly && isset($_POST['answers'])) {
+		   // echo '<h1>Ecriture</h1>';
 			/*
 			echo '<pre>';
 			print_r($_POST['answers']);

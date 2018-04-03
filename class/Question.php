@@ -2,6 +2,7 @@
 require_once("InterfaceQuestion.php");
 
 abstract class Question implements iQuestion {
+    protected $jsonQuestion;
 	protected $index;
 	protected $type;
 	protected $title;
@@ -18,16 +19,20 @@ abstract class Question implements iQuestion {
 	protected $all_visible;
 	protected $readonly;
 	protected $isInTable;
+	protected $scored;
 	
 	function __construct($index, $json) {
 		$this->index = $index;
 		
+		$this->jsonQuestion = $json;
 		$this->type = $json['question-type'];
 		$this->title = $json['title'];
 		$this->mandatory = isset($json['mandatory']) ? $json['mandatory'] : false;
 		$this->hidden = isset($json['hidden']) ? $json['hidden'] : false;
 		$this->placeholder = isset($json['placeholder']) ? $json['placeholder'] : "";
 		$this->all_visible = isset($json['all_visible']) ? $json['all_visible'] : false;
+		
+		$this->scored = isset($json['scoring']) && $json['scoring'] != "-";
 		
 		$this->uid = $this->type."_".uniqid();
 		$this->isInTable = false;
@@ -60,6 +65,24 @@ abstract class Question implements iQuestion {
 	
 	protected function isMandatory() {
 		return ($this->mandatory == true || $this->mandatory == 1 || $this->mandatory == "true");
+	}
+	
+	protected function scoredAttr() {
+	    if($this->scored) {
+	        $attr = 'scored="true"';
+	        if($this->isInTable) {
+	            $attr .= ' isInTable="true"';
+	        }
+	        if(isset($this->jsonQuestion['result-required'])) {
+	            $attr .= ' result-required="'.$this->jsonQuestion['result-required'].'"';
+	        }
+	        if(isset($this->jsonQuestion['result-define'])) {
+	            $attr .= ' result-define="'.$this->jsonQuestion['result-define'].'"';
+	        }
+	        return $attr." ";
+	    } else {
+	        return '';
+	    }
 	}
 	
 	protected function getTitle() {
@@ -124,7 +147,7 @@ abstract class Question implements iQuestion {
 	}
 	
 	protected function startWrapper() {
-	    return $this->isInTable ? '' : '<div class="form-group">';
+	    return $this->isInTable ? '' : '<div class="form-group" numQuest="'.$this->index.'">';
 	}
 	
 	protected function endWrapper() {

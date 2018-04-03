@@ -5,13 +5,11 @@ if(isset($_COOKIE['version'])) {
 		    
 			$questManager = QuestionnaireManager::getInstance($_COOKIE['version']);
 			$questManager->setReadOnly($readonly);
-			
+			$questManager->collectAnswers();
 			$questManager->goToAspect($_COOKIE['indexAspect']);
 			
 			$nbAspects = $questManager->getNumberAspects();
 			$currentIndex = $questManager->getCurrentIndex();
-			
-			$questManager->collectAnswers();
 			
 			if(!isset($_REQUEST['end'])) {?>
 				<div id="quest-progress-wrapper" style="top: <?= $readonly ? "64px" : "56px" ?>;">
@@ -28,6 +26,13 @@ if(isset($_COOKIE['version'])) {
 				
 				<div id="questionnaire" class="container" >
 					<?php
+					if(isset($_COOKIE['score-live']) && $_COOKIE['score-live'] == "true") {
+					    if(!isset($_SESSION['resultsDefined'])) {
+					       $_SESSION['resultsDefined'] = serialize(array());
+					    }
+					    //$questManager->refreshContent();   					   
+					}
+
 					$questManager->draw();
 					$debug = false;
 					if($debug) {
@@ -46,6 +51,15 @@ if(isset($_COOKIE['version'])) {
 				
 				
 				<div class="modal-backdrop fade show" style="top:56px; display: none"></div>
+				
+				<br>
+				
+				<?php if($logged) {?>
+				<div class="fixed-bottom bg-light border-top border-right p-2" style="left:0; width: 110px" id="score-live">
+					<a class="btn btn-secondary text-white w-100" id="enabled-live-score">Live score</a>
+				</div>
+				<?php } ?>
+				
 				<?php 
 			} else {
 				include_once('pages/end_quest.php'); 

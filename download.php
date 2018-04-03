@@ -29,6 +29,7 @@ switch($ext) {
 	case 'zip': $mime = 'application/zip'; break;
 	case 'jpeg':
 	case 'jpg': $mime = 'image/jpg'; break;
+	case 'csv': $mime = 'text/csv'; break;
 	default: exit();
 }
 

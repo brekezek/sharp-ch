@@ -3,7 +3,7 @@ require_once('const.php');
 
 $lang = "fr";
 if(isset($_COOKIE['lang'])) {
-	if(file_exists(DIR_STR."/lang.".$_COOKIE['lang'].".json")) {
+    if(file_exists(getLanguageFile($_COOKIE['lang']))) {
 		$lang = $_COOKIE['lang'];
 	}
 }
@@ -12,30 +12,62 @@ $json_lang = file_get_contents(getLanguageFile($lang));
 $t = json_decode($json_lang, true);
 
 function getLanguageFile($lang) {
-	return DIR_STR."/lang.".$lang.".json";
+    return getAbsolutePath().DIR_STR."/lang.".$lang.".json";
+}
+
+function getAbsolutePath() {
+    $absolutePath = $_SERVER['DOCUMENT_ROOT']."/";
+    $part2 = str_replace($_SERVER['DOCUMENT_ROOT'], "", $_SERVER['SCRIPT_FILENAME']);
+    $explode = explode("/", $part2);
+    if(isset($explode[1])) {
+        $absolutePath .= $explode[1]."/";
+    }
+    return $absolutePath;
 }
 
 function getVersions() {
 	$listVersions = array();
-	foreach(scandir(DIR_VERSIONS, 1) as $file) {
-		if ($file != "." && $file != ".." && is_dir(DIR_VERSIONS.'/'.$file)) {
-			$split = explode("-", $file);
-			$version = $split[1];
-			$lang = $split[2];
-			$scored = isset($split[3]) ? $split[3] : "";
-			
-			if(!isset($listVersions[$lang])) {
-				$listVersions[$lang] = array();
-			}
-			
-			$listVersions[$lang][] = array(
-				"file" => $file,
-				"version" => $version,
-				"scored" => $scored
-			);
+	foreach(getVersionsFolders() as $file) {
+		$split = explode("-", $file);
+		$version = $split[1];
+		$lang = $split[2];
+		$scored = isset($split[3]) ? $split[3] : "";
+		
+		if(!isset($listVersions[$lang])) {
+			$listVersions[$lang] = array();
 		}
+		
+		$listVersions[$lang][] = array(
+			"file" => $file,
+			"version" => $version,
+			"scored" => $scored
+		);	
 	}
 	return $listVersions; //json_encode($listVersions, true);
+}
+
+function getVersionsFolders() {
+    $listVersions = array();
+    foreach(scandir(getAbsolutePath().DIR_VERSIONS, 1) as $file) {
+        if ($file != "." && $file != ".." && is_dir(getAbsolutePath().DIR_VERSIONS.'/'.$file)) {
+            $listVersions[] = $file;
+        }
+    }
+    return $listVersions;
+}
+
+function getFileVersion($json) {
+    if(isset($json['meta']) && isset($json['meta']['version'])) {
+        if(in_array($json['meta']['version'], getVersionsFolders())) {
+            return $json['meta']['version'];
+        }
+    } 
+    
+    if(isset($json['version'])) {
+        return $json['version'];
+    }
+    
+    return null;
 }
 
 function getVersionText($v) {
@@ -111,5 +143,10 @@ function getClientIP() {
     return $ip;
 }
 
-
+function remAccent($arg) {
+    return str_replace(
+        array('ç', 'é','ë','è','ö','ü','ä','ù','ô','/','¹'),
+        array('c', 'e','e','e','o','u','ae','u','o','-',"1"),
+        $arg);
+}
 ?>

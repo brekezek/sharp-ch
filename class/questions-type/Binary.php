@@ -27,6 +27,7 @@ class Binary extends Question {
 				
 				$checked = array("","");
 				
+				// echo $this->getAnswer();
 				if($this->getAnswer() == $choice) {
 					$checked = $tab;
 				} 
@@ -40,11 +41,11 @@ class Binary extends Question {
 				if(count($this->choices) == 2 && strlen(implode('', $this->choices)) <= 2*3) {
 				    $value = 1 - $i;
 				}
-				
+		
 				$html .=
 				'<label class="btn btn-secondary '.$checked[1].' '.$withComment.'">'.
 					'<input index="'.$i.'" type="radio" id="'.$id.'" name="'.$this->inputName.'"
-                    '.($this->readonly ? "disabled" : "").' 
+                    '.($this->readonly ? "disabled" : "").' '.parent::scoredAttr().' 
 					value="'.$value.'" autocomplete="off" '.$checked[0].' '.(parent::isMandatory() ? "required" : "").'> '.$choice.
 				'</label>';
 				/*
@@ -69,8 +70,8 @@ class Binary extends Question {
 	
 	public function getAnswer() {
 	    $answer = parent::getAnswer();
-	    if(is_bool($answer)) {
-	        if($answer === true)
+	    if(is_bool($answer) || is_numeric($answer)) {
+	        if($answer == true)
 	            return $this->choices[0];
 	        else 
 	            return $this->choices[1];

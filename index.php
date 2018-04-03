@@ -1,14 +1,21 @@
-<!DOCTYPE html>
-<?php 
+<?php
+include_once 'required/securite.fct.php';
+sec_session_start();
+
 $reset = false;
 $debug = false;
 require_once('required/common.php');
+include_once 'required/db_connect.php';
+
 includeDependencies();
+
+$logged = login_check($mysqli);
 
 if(isset($_GET['admin'])) {
     header('Location: admin.php');
 }
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -39,7 +46,13 @@ if(isset($_GET['admin'])) {
 	<?php
 	if(isset($_COOKIE['indexAspect'])) {
 		include_once('pages/questionnaire.php');
-	} else {?>
+	} else {
+	    if($logged) {
+	        if(isset($_SESSION['resultsDefined'])) {
+	          unset($_SESSION['resultsDefined']);  
+	        }
+	    }
+	    ?>
 		<div class="jumbotron">
 			<div class="container">
 			  <div class="text-center">
@@ -237,11 +250,21 @@ if(isset($_GET['admin'])) {
 		});
 
 		$('#edit').click(function(){
-			deleteCookie('readonly');
+			setCookie("readonly", "false", <?= LIFE_COOKIE_QUEST_PENDING ?>);
 			document.location = '?edit';
 		});
+		$('#switch-readonly').click(function(){
+			$("#questionnaire form").attr("action","?readonly").find('[required]').removeAttr("required");
+			$('#questionnaire #submitHidden').trigger("click");
+		});
 
-
+		<?php 
+		if(isset($_GET['readonly'])) {?>
+    		setCookie("readonly", "true", <?= LIFE_COOKIE_QUEST_PENDING ?>);
+    		document.location='?read-only';
+		<?php
+		}
+		?>
 
 		function displayRowCells(elm) {
 			var display = true;
@@ -266,7 +289,99 @@ if(isset($_GET['admin'])) {
 	        var diff = parseInt($(this).height(),10) - $(this).outerHeight();
 		    $(this).css("overflow-y","hidden").height(0).height(Math.max(22, this.scrollHeight + diff)+"px");
 		}).find( 'textarea' ).change();
-    
+
+
+		<?php if($logged) {?>
+		if(getCookie("score-live") == "true") {
+			$('#enabled-live-score').addClass("btn-success");
+			$('[scored]:not([isInTable])').each(function(){
+				processScore($(this));
+			});
+		}
+		
+		$('#enabled-live-score').click(function(){
+			$(this).toggleClass("btn-success");
+			if($(this).hasClass("btn-success")) {
+				setCookie("score-live", "true", 1);
+				if($('.score-live').length > 0) {
+					$('.score-live').show();
+				} else {
+    				$('[scored]:not([isInTable])').each(function(){
+    					processScore($(this));
+    				});
+				}
+			} else {
+				deleteCookie("score-live");
+			}
+			$('.score-live').toggle($(this).hasClass("btn-success"));
+		});
+
+		/*
+		$('#refresh-scores').click(function(){
+	    	$("#questionnaire form").attr("action", "?refreshContent").find('[required]').removeAttr("required");
+			$('#questionnaire #submitHidden').trigger("click");
+	    });
+		*/
+		
+		$('[scored]:not([isInTable])').change(function(){
+    	    processScore($(this));
+		});
+
+		function processScore(input) {
+			if(input.is('[result-define]')) {
+				var group = input.parents(".form-group:first");
+				
+				$.post('pages/getScores.live.php', {
+	    	    	aspectId : $('#aspect-header').attr("data-aspect-id"),
+					numQuest: group.attr("numQuest"),
+					answer: input.val()
+	    	    }, function(html) {
+	        	    input = $('[scored][result-required="'+input.attr("result-define")+'"]:checked');
+
+	        	    if(!input.is('[type="radio"]') || (input.is('[type="radio"]') && input.is(":checked")) ) {
+		    	    	getScore(input);
+		        	}
+	        	});
+			} else {
+				getScore(input);
+			}
+		}
+
+		function getScore(input) {
+			if(getCookie("score-live") == "true") {
+        	    var group = input.parents(".form-group:first");
+				var value = input.val();
+
+				if(input.is("[multiple]") && value == "")
+					value = " ";
+
+				if(input.is('[type="radio"]') && !input.is(":checked"))
+					value = "";
+				
+				if(value != "") {
+            	    if(!input.is("[result-define]")) {
+                	    if(group.find('.score').length == 0) {
+                	    	group.append('<div class="score score-live py-0 pb-1 px-2 border mt-1 rounded bg-white"><img src="img/loader-score.svg"> Chargement du score...</div>');
+                	    } else {
+							group.find('.score').html('<img src="img/loader-score.svg"> Chargement du score...');
+                	    }
+            	    }
+            	 	
+        	    	$.post('pages/getScores.live.php', {
+            	    	aspectId : $('#aspect-header').attr("data-aspect-id"),
+    					numQuest: group.attr("numQuest"),
+    					answer: value
+            	    }, function(html) {
+            	    	if(!input.is("[result-define]")) 
+            	    		group.find('.score').html(html).show();
+        		    });
+				} else {
+					group.find('.score').hide();
+				}
+    	    }
+		}
+	    <?php } ?>
+
 		
 		<?php } else { ?>
 		deleteCookie('readonly');

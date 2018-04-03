@@ -30,7 +30,7 @@ class Table extends Question {
 		//print_r($this->jsonAnswer);
 		
 		$html =
-		'<div class="form-group table-responsive">';
+		'<div class="form-group table-responsive" numQuest="'.$this->index.'">';
 			
 	    $uniq_data_type = '';
 		if(count($this->columns) == 1) {

@@ -71,7 +71,7 @@ class Aspect {
 	
 	private function drawHeader($currentIndex, $nbAspects) {
 		$html = 
-		'<div class="aspect-header '.$this->color->getClass().' rounded container d-flex justify-content-start align-items-center">'.
+		'<div id="aspect-header" data-aspect-id="'.$this->id.'" class="aspect-header '.$this->color->getClass().' rounded container d-flex justify-content-start align-items-center">'.
 			'<div class="px-1 font-weight-bold text-center" style="min-width:78px;">';
 		         if(file_exists($this->imgFile)) {
 			         $html .= '<div class=""><img src="'.$this->imgFile.'" style="max-height:44px; max-width: 125px;"></div>';

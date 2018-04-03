@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark justify-content-between">
 	
 	<div class="navbar-brand">
-		<?php if($readonly) {?>
+		<?php if($readonly || $logged) {?>
 		<a href="admin.php?page=1" id="back" class="btn btn-outline-secondary mr-1">
 			<span class="oi oi-chevron-left"></span>
 		</a>
@@ -31,6 +31,13 @@
 				<a href="?quit" id="quit" class="dropdown-item"><?= $t['quit_questionnaire'] ?></a>
 			</div>	
 		</div>
+		
+		<?php if(isset($_COOKIE['indexAspect'], $_COOKIE['readonly']) && $_COOKIE['readonly'] == "false") { ?>
+		<button id="switch-readonly" class="btn btn-primary" type="button">
+			<span class="oi oi-lock-locked mr-1"></span> Read-Only
+		</button>
+		<?php }?>
+		
 		<?php } else { ?>
 		<button id="edit" class="btn btn-primary" type="button">
 			<span class="oi oi-pencil mr-1"></span> Editer
@@ -64,7 +71,7 @@
 				$i = 0;
 				$versionsByLang = getVersions();
 				foreach($versionsByLang as $lang => $versions) {
-					echo '<h6 class="text-center">'.$lang.'</h6>';
+					echo '<h6 class="d-flex align-items-center justify-content-start p-1 bg-light mb-0"><img src="img/'.strtolower($lang).'.png" class="mr-2"> '.$lang.' </h6>';
 					foreach($versions as $v) {
 						$version = getVersionText($v); ?>
 						<a version="<?= $v['file'] ?>" lang="<?= $lang ?>" class="dropdown-item <?php if(isset($_COOKIE['version']) && $_COOKIE['version'] == $v['file']) {?>active<?php } ?>" href="#">
