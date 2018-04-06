@@ -18,45 +18,50 @@
 	
 	
 	<?php 
-	if ($stmt = $mysqli->prepare("SELECT qid, firstname, lastname FROM questionnaires q LEFT JOIN participants p ON p.pid = q.pid WHERE file LIKE ?")) {
+	if ($stmt = $mysqli->prepare("SELECT qid, firstname, lastname, atelier, cluster FROM questionnaires q LEFT JOIN participants p ON p.pid = q.pid WHERE file LIKE ?")) {
         $filename = "%".basename($_COOKIE['filename']);
         $stmt->bind_param("s", $filename);
         $stmt->execute();
-        $stmt->bind_result($qid, $firstname, $lastname);
+        $stmt->bind_result($qid, $firstname, $lastname, $atelier, $cluster);
         $stmt->fetch();
         $stmt->free_result();
         $data = $_COOKIE['filename'].":".$_COOKIE['version'].":".urlencode(serialize(array()));
         
-        $queryAtelier = "
-        SELECT aspectId, avg(score) as scoreAtelier FROM scores s
-        LEFT JOIN label_aspects a ON a.aid=s.aid
-        WHERE type='resilience' AND a.aspectId LIKE 'PSP_%' AND 
-        s.qid IN (
-            SELECT qid FROM questionnaires q LEFT JOIN participants p ON p.pid=q.pid
-            WHERE atelier=(SELECT atelier FROM participants p INNER JOIN questionnaires q ON q.pid=p.pid WHERE qid=".$qid." LIMIT 1)
-        )
-        GROUP BY s.aid
-        ORDER BY s.aid ASC";
         $scoresAtelierByAspect = array();
-        foreach($mysqli->query($queryAtelier) as $row) {
-            $scoresAtelierByAspect[$row['aspectId']] = round($row['scoreAtelier'],2);
+        if($atelier !== null) {
+            $queryAtelier = "
+            SELECT aspectId, avg(score) as scoreAtelier FROM scores s
+            LEFT JOIN label_aspects a ON a.aid=s.aid
+            WHERE type='resilience' AND a.aspectId LIKE 'PSP_%' AND 
+            s.qid IN (
+                SELECT qid FROM questionnaires q LEFT JOIN participants p ON p.pid=q.pid
+                WHERE atelier=(SELECT atelier FROM participants p INNER JOIN questionnaires q ON q.pid=p.pid WHERE qid=".$qid." LIMIT 1)
+            )
+            GROUP BY s.aid
+            ORDER BY s.aid ASC";
+            
+            foreach($mysqli->query($queryAtelier) as $row) {
+                $scoresAtelierByAspect[$row['aspectId']] = round($row['scoreAtelier'],2);
+            }
         }
         
-        $queryCluster = "
-        SELECT aspectId, avg(score) as scoreCluster FROM scores s
-        LEFT JOIN label_aspects a ON a.aid=s.aid
-        WHERE type='resilience' AND a.aspectId LIKE 'PSP_%' AND
-        s.qid IN (
-            SELECT qid FROM questionnaires q LEFT JOIN participants p ON p.pid=q.pid
-            WHERE cluster=(SELECT cluster FROM participants p INNER JOIN questionnaires q ON q.pid=p.pid WHERE qid=".$qid." LIMIT 1)
-        )
-        GROUP BY s.aid
-        ORDER BY s.aid ASC";
         $scoresClusterByAspect = array();
-        foreach($mysqli->query($queryCluster) as $row) {
-            $scoresClusterByAspect[$row['aspectId']] = round($row['scoreCluster'],2);
+        if($cluster !== null) {
+            $queryCluster = "
+            SELECT aspectId, avg(score) as scoreCluster FROM scores s
+            LEFT JOIN label_aspects a ON a.aid=s.aid
+            WHERE type='resilience' AND a.aspectId LIKE 'PSP_%' AND
+            s.qid IN (
+                SELECT qid FROM questionnaires q LEFT JOIN participants p ON p.pid=q.pid
+                WHERE cluster=(SELECT cluster FROM participants p INNER JOIN questionnaires q ON q.pid=p.pid WHERE qid=".$qid." LIMIT 1)
+            )
+            GROUP BY s.aid
+            ORDER BY s.aid ASC";
+            
+            foreach($mysqli->query($queryCluster) as $row) {
+                $scoresClusterByAspect[$row['aspectId']] = round($row['scoreCluster'],2);
+            }
         }
-         
         
         $labelsStr = $dataChart = $atelierData = $clusterData = "";
         $query = "SELECT aspectId, label, score FROM scores s LEFT JOIN label_aspects a ON a.aid=s.aid WHERE s.qid=".$qid." AND type='resilience' AND a.aspectId LIKE 'PSP_%' ORDER BY score ASC, aspectId ASC";
@@ -65,8 +70,10 @@
             
             if(trim($row['score']) != "") {
                 $labelsStr .= $row['label'].";";
-                $atelierData .= $scoresAtelierByAspect[$row['aspectId']].";";
-                $clusterData .= $scoresClusterByAspect[$row['aspectId']].";";
+                if(isset($scoresAtelierByAspect[$row['aspectId']])) {
+                    $atelierData .= $scoresAtelierByAspect[$row['aspectId']].";";
+                    $clusterData .= $scoresClusterByAspect[$row['aspectId']].";";
+                }
             }
             
             if($row['score'] != "")
@@ -75,18 +82,21 @@
         
         $results->data_seek(0);
         foreach($results as $row) {
-            if(trim($row['score']) == null) {
+            if(trim($row['score']) === null) {
                 $labelsStr .= $row['label'].";";
-                $atelierData .= $scoresAtelierByAspect[$row['aspectId']].";";
-                $clusterData .= $scoresClusterByAspect[$row['aspectId']].";";
+                if(isset($scoresAtelierByAspect[$row['aspectId']])) {
+                    $atelierData .= $scoresAtelierByAspect[$row['aspectId']].";";
+                    $clusterData .= $scoresClusterByAspect[$row['aspectId']].";";
+                }
             }
         }
         $labelsStr = substr($labelsStr, 0, -1);
         $dataChart = substr($dataChart, 0, -1);
-        $atelierData = substr($atelierData, 0, -1);
-        $clusterData = substr($clusterData, 0, -1);
         
-        if(!empty($qid)) { ?>
+        $atelierData = ($atelier !== null) ? substr($atelierData, 0, -1) : "";
+        $clusterData = ($cluster !== null) ? substr($clusterData, 0, -1) : "";
+        
+        if($qid !== null) { ?>
         	<h1 class="display-4 border-bottom text-capitalize" id="title"><?= ucfirst($firstname)." ".ucfirst($lastname) ?></h1>
         	
         	<h3 class="my-3">Scores de résilience par aspects</h3>
@@ -136,8 +146,8 @@
 				var dataVals = "<?= $dataChart ?>".split(";");
 				for(i in dataVals) { dataVals[i] = +dataVals[i]; } 
 				var labelsVals = "<?= $labelsStr ?>".split(";");
-				var dataAtelier = "<?= $atelierData ?>".split(";");
-				var dataCluster = "<?= $clusterData ?>".split(";");
+				var dataAtelier = <?php if($atelier !== null) { ?>"<?= $atelierData ?>".split(";")<?php } else {?>[]<?php }?>;
+				var dataCluster = <?php if($cluster !== null) { ?>"<?= $clusterData ?>".split(";")<?php } else {?>[]<?php }?>;
 				
 				var ctx = document.getElementById("myChart").getContext('2d');
 			    var myChart = new Chart(ctx, {
