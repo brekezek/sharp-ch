@@ -2,6 +2,8 @@
 function processTextAnswer($answer, $scoringType, $scoring, $json, $questId, $resultsDefined = array(), $live = false) {
 	$score = -1;
 	
+	if(trim($answer) == "") return $score;
+	
 	if($live) {
 	    $resultsDefined = getResultDefined();
 	}

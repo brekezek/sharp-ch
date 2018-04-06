@@ -109,7 +109,7 @@ class Aspect {
 	    
 	    global $t;
 		$html = '
-		<div data-index="'.$this->index.'" class="card text-center rounded m-2 cat-hover cat-border-'.$this->color->getColorName().' '.($this->index == $this->currentIndex ? "cat-active" : "").'" style="width: 12.7%; max-width: 160px; min-width:140px; max-height: 180px">
+		<div data-toggle="tooltip" data-placement="top" title="'.$this->subtitle.'" data-index="'.$this->index.'" class="card text-center rounded m-2 cat-hover cat-border-'.$this->color->getColorName().' '.($this->index == $this->currentIndex ? "cat-active" : "").'" style="width: 12.7%; max-width: 160px; min-width:140px; max-height: 180px">
 		  <div class="card-header d-flex p-1 '.$this->color->getClass().'">';
             
 			$html .= '<div style="text-align:left; width:100%; padding-left:6px">'.$this->index.'</div>';

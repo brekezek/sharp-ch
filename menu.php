@@ -44,7 +44,7 @@
 		</button>
 		<?php } ?>
 		
-		<?php if(!isset($_REQUEST['end'])) {?>
+		<?php if(!isset($_COOKIE['scores-display']) && !isset($_REQUEST['end'])) {?>
 		<button id="show-aspects" class="btn btn-primary" type="button">
 			<span class="oi oi-grid-three-up"></span>
 		</button>
@@ -62,6 +62,7 @@
 			<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 		  </li>
 		  
+		  <?php if(!isset($_COOKIE['scores-display'])) { ?>
 		  <li class="nav-item dropdown">
 			<a class="btn btn-primary btn-md dropdown-toggle" href="#" id="dropdown-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<?= isset($_COOKIE['version']) ? $_COOKIE['version'] : $t['choose_version'] ?>
@@ -86,13 +87,27 @@
 			  }?>
 			</div>
 		  </li>
+		  <?php } ?>
 		</ul>
 	
 	   
+	   <?php if(!isset($_COOKIE['scores-display'])) { ?>
 		<button id="new-quest" class="d-none btn btn-light" type="submit">
 			<span class="oi oi-plus pr-1"></span>
 			<?= $t['new_questionnaire']?>
 		</button>
+		<?php } else { ?>
+		
+		
+		<button id="" class="btn btn-light px-3 mr-1" type="submit">
+			<span class="oi oi-info"></span>
+		</button>
+		
+		<button id="finishScoreDisplay" class="btn btn-outline-light" type="submit">
+			<?= $t['finish']?>
+			<span class="oi oi-chevron-right pl-1"></span>
+		</button>
+		<?php } ?>
 		
 	</div>
 	<?php } ?>

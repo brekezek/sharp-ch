@@ -42,6 +42,8 @@ if(isset($_GET['admin'])) {
 	include_once('menu.php');
 	?>
 	
+	<?php if(isset($_COOKIE['scores-display'])) include_once('js_dependencies.php'); ?>
+	
 	<div id="content" class="position-relative" style="margin-top: 56px;">
 	<?php
 	if(isset($_COOKIE['indexAspect'])) {
@@ -52,7 +54,10 @@ if(isset($_GET['admin'])) {
 	          unset($_SESSION['resultsDefined']);  
 	        }
 	    }
-	    ?>
+	    
+	    if(isset($_COOKIE['scores-display'])) {
+	       include_once('pages/end_quest.php');  
+	    } else {?>
 		<div class="jumbotron">
 			<div class="container">
 			  <div class="text-center">
@@ -71,17 +76,16 @@ if(isset($_GET['admin'])) {
 			  </p>
 			</div>
 		</div>
-	<?php 
+		<?php 
+	    }
 	}
 	?>
 	</div>
 	
+	
 	<!-- Bootstrap & JQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<script src="js/cookie.js"></script>
-
+	<?php if(!isset($_COOKIE['scores-display'])) include_once('js_dependencies.php'); ?>
+	
 	
 	<script>
 	$(function(){
@@ -91,10 +95,22 @@ if(isset($_GET['admin'])) {
 			deleteCookie("indexAspect");
 			deleteCookie("version");
 			deleteCookie('readonly');
+			deleteCookie("lang");
+			deleteCookie("score-live");
+			deleteCookie("scores-display");
+			deleteCookie("filename");
 		<?php }
 		
-		if(isset($_REQUEST['end'])) {?>
+		if(isset($endQuestionnaire) && $endQuestionnaire === true) {?>
 			deleteCookie("indexAspect");
+			setCookie("scores-display", "true", 1);
+		<?php } ?>
+
+		<?php if(isset($_COOKIE['scores-display'])) {?>
+    		$('#finishScoreDisplay').click(function(){
+    			deleteCookie("scores-display");
+    			document.location = '?success';
+    		});
 		<?php } ?>
 		
 		<?php if(isset($_COOKIE['indexAspect'])) {?>
@@ -290,7 +306,8 @@ if(isset($_GET['admin'])) {
 		    $(this).css("overflow-y","hidden").height(0).height(Math.max(22, this.scrollHeight + diff)+"px");
 		}).find( 'textarea' ).change();
 
-
+		$('[data-toggle="tooltip"]').tooltip();
+		
 		<?php if($logged) {?>
 		if(getCookie("score-live") == "true") {
 			$('#enabled-live-score').addClass("btn-success");

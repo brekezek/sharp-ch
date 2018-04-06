@@ -11,7 +11,10 @@ if(isset($_COOKIE['version'])) {
 			$nbAspects = $questManager->getNumberAspects();
 			$currentIndex = $questManager->getCurrentIndex();
 			
-			if(!isset($_REQUEST['end'])) {?>
+			if(isset($_REQUEST['end']) && $currentIndex == $nbAspects) {
+			     $endQuestionnaire = true;
+			     include_once('pages/end_quest.php');
+			} else {?>
 				<div id="quest-progress-wrapper" style="top: <?= $logged ? "64px" : "56px" ?>;">
 					<div id="quest-progress" class="w-100 d-flex justify-space-between">
 						<?php for($i = 1; $i <= $nbAspects; $i++) {?>
@@ -61,9 +64,7 @@ if(isset($_COOKIE['version'])) {
 				<?php } ?>
 				
 				<?php 
-			} else {
-				include_once('pages/end_quest.php'); 
-			}
+			} 
 		} else {?>
 			<div class="alert alert-danger mt-3" role="alert"><?= $t['quest_version_not_exist'] ?></div>
 		<?php }

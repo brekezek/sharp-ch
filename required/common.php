@@ -15,16 +15,6 @@ function getLanguageFile($lang) {
     return getAbsolutePath().DIR_STR."/lang.".$lang.".json";
 }
 
-function getAbsolutePath() {
-    $absolutePath = $_SERVER['DOCUMENT_ROOT']."/";
-    $part2 = str_replace($_SERVER['DOCUMENT_ROOT'], "", $_SERVER['SCRIPT_FILENAME']);
-    $explode = explode("/", $part2);
-    if(isset($explode[1])) {
-        $absolutePath .= $explode[1]."/";
-    }
-    return $absolutePath;
-}
-
 function getVersions() {
 	$listVersions = array();
 	foreach(getVersionsFolders() as $file) {
@@ -149,4 +139,3 @@ function remAccent($arg) {
         array('c', 'e','e','e','o','u','ae','u','o','-',"1"),
         $arg);
 }
-?>

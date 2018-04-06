@@ -92,33 +92,51 @@ class Questionnaire {
         global $mysqli;
         
         $filename = "%".basename($this->getFilename());
-        $qid = null;
+      
         if ($stmt = $mysqli->prepare("SELECT qid FROM questionnaires WHERE file LIKE ? LIMIT 1")) {
             $stmt->bind_param("s", $filename);
             $stmt->execute();
             $stmt->bind_result($qid);
             $stmt->fetch();
+            $stmt->free_result();
             return $qid; 
-        }  
+        } else {
+            print_r($mysqli->error);
+        }
+        
     }
     
-    public function writeDB($typeScore, $bufferStr) {
+    public function writeDB($typeScore, $bufferData) {
         global $mysqli;
-        
-        $fieldTypeScore = "scoresByQuestion";
-        if($typeScore == "byAspect") $fieldTypeScore = "scoresByAspect";
-        if($typeScore == "byIndicator") $fieldTypeScore = "scoresByIndicator";
         
         $qid = $this->getDBId();
         if (!empty($qid)) {
             
-            if ($stmt = $mysqli->prepare("UPDATE questionnaires SET ".$fieldTypeScore."=? WHERE qid=?")) {
-                $stmt->bind_param("ss", $bufferStr, $qid);
-                $stmt->execute();
-                return true;
-            }  
+            // Supprimer tous les scores de cette personne, avant de les réécrires
+            $mysqli->query("DELETE FROM scores WHERE qid=".$qid." AND type='".$typeScore."'");
+
+            $strValues = "";
+            $aspectsList = $this->getAspectsDB();
+            foreach($bufferData as $aspect => $score) {
+                $aid = $aspectsList[$aspect];
+                if(trim($score) == "") $score = "NULL";
+                $strValues .= "(".$qid.", ".$aid.", '".$typeScore."', ".$score."), ";
+            }
+            $strValues = substr($strValues, 0, -2);
+            
+            return $mysqli->query("INSERT INTO scores (qid, aid, type, score) VALUES ".$strValues);
+            
         }
         return false;
+    }
+    
+    public function getAspectsDB() {
+        global $mysqli;
+        $assoc = array();
+        foreach($mysqli->query("SELECT aspectId, aid FROM label_aspects") as $row) {
+            $assoc[$row['aspectId']] = $row['aid'];
+        }
+        return $assoc;
     }
     
     public function evalScoreForQuestion($aspectId, $numQuest) {
@@ -136,9 +154,11 @@ class Questionnaire {
         $fileToRead = getAbsolutePath().DIR_VERSIONS."/".$this->getVersion()."/".explode("_", $aspectId)[0]."/".$aspectId."/".$numQuest.".json";
         $json = getJSONFromFile($fileToRead);
         
+        $questId = $aspectId.".".$numQuest;
         $questionType = $json['question-type'];
         $scoringType = isset($json['scoring-type']) ? $json['scoring-type'] : "-";
         $scoring = isset($json['scoring']) ? $json['scoring'] : "-";
+       
         
         if((!isset($json['scoring']) && $questionType != "table") ) {
             return array(
@@ -149,8 +169,6 @@ class Questionnaire {
             );
         }
         
-        $questId = $aspectId.".".$numQuest;
-
         if(isset($json['result-define'])) {
             $newTab = array();
             foreach($answer as $answ) {
@@ -163,45 +181,36 @@ class Questionnaire {
         $indicators = array();
         $score = -1;
         switch($questionType) {
-            case "text": break;
+            case "text": // -------------------------------------------------
+                break;
             
-            // ------------------------------------------
-            
-            case "text_answer":
+            case "text_answer": // ------------------------------------------
                 if(isset($answer['answer']))
                     $score = processTextAnswer($answer['answer'], $scoringType, $scoring, $json, $questId, $resultsDefined);
                     break;
                     
-                    // ------------------------------------------
-                    
-            case "multiple_multiple_solution":
+            case "multiple_multiple_solution": // -----------------------------
                 if(isset($answer['answer']))
                     $score = processMultipleMultipleAnswer($answer['answer'], $scoringType, $scoring, $json, $resultsDefined);
                     break;
                     
-                    // ------------------------------------------
-                    
-            case "multiple_one_solution":
+            case "multiple_one_solution": // ----------------------------------
                 if(isset($answer['answer'])) {
                     $score = processMultipleOneSolution($answer['answer'], $scoringType, $scoring, $json, $questId, $resultsDefined);
                 }
                 break;
                 
-                // ------------------------------------------
-                
             case "binary_answer_with_comment":
-            case "binary_answer":
+            case "binary_answer": // ------------------------------------------
                 if(isset($answer['answer']))
                     $score = processBinaryAnswer($answer['answer'], $scoringType, $scoring, $json, $questId, $resultsDefined);
                     break;
                     
-                    // ------------------------------------------
-            case "integer_answer":
+            case "integer_answer": // ------------------------------------------
                 $score = processIntegerAnswer($answer['answer'], $scoringType, $scoring, $json, $resultsDefined);
                 break;
                 
-                // ------------------------------------------
-            case "table":
+            case "table": // ---------------------------------------------------
                 
                 if(isset($json['scoring']) && $scoring == "special") {
                     $score = processTableSpecial($answer, $scoringType, $scoring, $json, $questId, $resultsDefined);

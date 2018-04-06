@@ -13,6 +13,7 @@ function processTableToggle($answers, $indexCol, $scoring, $jsonCol, $questId, $
 		$score = evalScoringGrid($nbChecked, $jsonCol['scoring-grid']);
 			
 	}
+	
 	if($scoring == "by-value") {
 		if(isset($jsonCol['scoring-grid'])) {
 			$answerIdx = 0;
@@ -29,7 +30,6 @@ function processTableToggle($answers, $indexCol, $scoring, $jsonCol, $questId, $
 				}
 			}
 		} else {
-			$score = 0;
 			$i = 0;
 			foreach($answers as $answer) {
 				if(trim($answer[$indexCol]['answer'] == "1")) {
@@ -37,6 +37,7 @@ function processTableToggle($answers, $indexCol, $scoring, $jsonCol, $questId, $
 				}
 				$i++;
 			}
+			if($score != -1) $score += 1;
 			if($score > 10) $score /= $i;
 		}
 		

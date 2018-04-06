@@ -130,7 +130,7 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
 		foreach($repondants[$lastHash] as $key => $info) {
 			echo '<th>'.$key.'</th>';
 		}*/
-		$colsHead = array("", "Prénom", "Nom", "Village", "Collecté par", "Création", "Version", "");
+		$colsHead = array("", "Prénom", "Nom", "Village", "Collecté par", "Atelier", "Cluster", "Création", "Version", "");
 		foreach($colsHead as $head) {
 		    echo '<th>'.$head.'</th>';
 		}
@@ -164,6 +164,23 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
                     "atelier" => $row['atelier']
                 )));
                 
+                /*
+                $data = $row['file'].":".$row['version'].":".urlencode(serialize(array()));
+                ?>
+                <script>
+                $(function(){
+                    $.post('pages/generateScores.php', {
+        				data:"<?= $data ?>",
+        				typeScore: "resilience",
+        				output:"db"
+    				}, function(resp) {
+        				
+    				});	
+                });
+                </script>
+                <?php 
+                */
+                
                 echo '<tr
                         data-file="'.$row['file'].'"
                         data-name="'.$name.'"
@@ -175,6 +192,8 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
                 echo '<td class="align-middle text-capitalize font-weight-bold">'.$row['lastname'].'</td>';
                 echo '<td class="align-middle text-capitalize">'.$row['commune'].'</td>';
                 echo '<td class="align-middle text-capitalize">'.$row['collecte_par'].'</td>';
+                echo '<td class="align-middle text-center">'.$row['atelier'].'</td>';
+                echo '<td class="align-middle text-center">'.$row['cluster'].'</td>';
                 echo '<td class="align-middle text-center">'.date("d.m.Y", strtotime($row['creation_date'])).'</td>';
                 echo '<td class="align-middle text-center">'.$row['version'].'</td>';
 
@@ -239,7 +258,8 @@ echo '</table>';
 		var itemsScore = [
 			{text:"Par Question", action:"byQuestion"},
 			{text:"Par Aspect", action:"byAspect"},
-			{text:"Par Indicateur", action:"byIndicator"}
+			{text:"Par Indicateur", action:"byIndicator"},
+			{text:"Resilience", action:"resilience"}
 		];
 		
 		$('table#repondants').selectableRows()
@@ -259,7 +279,7 @@ echo '</table>';
 			});
 			files = files.substring(0, files.length-1);
 			//$('input[type="search"]').val(files);
-			
+
 			$.post('pages/generateScores.php', {
     				data:files,
     				typeScore:$(this).attr("data-action"),
@@ -272,7 +292,6 @@ echo '</table>';
 					alert(resp);
 				}
 			});	
-			
 			
 		})
 		.addButton("Télécharger", "download", "primary", "cloud-download", function(){
@@ -325,19 +344,15 @@ echo '</table>';
 		$('body').on('click', '#actions .dropdown-item[data-action="score"]', function(){
 			var row = $(this).parents("tr");
 			var fileURL = row.attr("data-file");
-
+			var version = row.attr("data-version");
+			
 			$.get("<?= DIR_ANSWERS ?>/"+fileURL)
 		    .done(function() { 
-			    /*
-				$.post('pages/generateScore.byAspect.php',
-				{
-					data: fileURL+":"+row.attr("data-version")
-				},
-				function(html){
-					alert(html);
-				});
-				*/
-				alert("Bientot disponible");
+			    deleteCookie("indexAspect");
+			    setCookie("filename", fileURL, 1);
+			    setCookie("version", version, 1);
+			    setCookie("scores-display", "true", 1);
+				document.location = 'index.php?score';
 		    }).fail(function() { 
 		        alert("le fichier de questionnaire n'existe pas");
 		    });
