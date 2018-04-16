@@ -13,7 +13,7 @@ include_once("login.redirect.php");
 
 
 <div class="d-none justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-	<h1 class="h2">Liste des questionnaires</h1>
+	<h1 class="h2"><?= $t['list-questionnaires']?></h1>
 </div>
 
 
@@ -88,8 +88,11 @@ if ($stmt = $mysqli->prepare("SELECT firstname, lastname, region, commune, clust
 <script>
 	$(document).ready(function() {
 		$('#repondants').dataTable( {
-			"pagingType": "full_numbers",
-			"columnDefs": [
+			language: {
+		        url: '//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'
+		    },
+			pagingType: "full_numbers",
+			columnDefs: [
 			    { "orderable": false, "searchable": false, "targets": 0 }
 			]
 		});

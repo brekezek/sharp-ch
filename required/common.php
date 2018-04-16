@@ -15,6 +15,45 @@ function getLanguageFile($lang) {
     return getAbsolutePath().DIR_STR."/lang.".$lang.".json";
 }
 
+
+function getLang() {
+    $lang = "fr";
+    if(isset($_COOKIE['lang'])) {
+        $lang = $_COOKIE['lang'];
+    }
+    return $lang;
+}
+
+function getLanguageList() {
+    $langs = array();
+    foreach(scanAllDir(getAbsolutePath()."str") as $filename) {
+        $split = explode(".", $filename);
+        if(isset($split[1]) && $split[1] != "fr") {
+            $langs[] = $split[1];
+        }
+    }
+    array_unshift($langs, "fr");
+    return $langs;
+}
+
+function getQuestionnaireSections($version, $excludeList=array()) {
+    $orderedAspectsList = array();
+    $pathVersion = getAbsolutePath().DIR_VERSIONS."/".$version;
+    $packages = getJSONFromFile($pathVersion."/_meta_package.json")['order'];
+    $sections = array();
+    foreach($packages as $package) {
+        $pathPackage = $pathVersion."/".$package;
+        $categories = getJSONFromFile($pathPackage."/_meta_category.json");
+        if(!in_array($package, $excludeList)) {
+            $sections[$package] = array(
+                "title" => $categories['title'],
+                "color" => $categories['color']
+            );
+        }
+    }
+    return $sections;
+}
+
 function getVersions() {
 	$listVersions = array();
 	foreach(getVersionsFolders() as $file) {

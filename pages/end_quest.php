@@ -1,3 +1,29 @@
+<?php 
+if(isset($_COOKIE['filename'])) {
+    $filename = $_COOKIE['filename'];
+}
+if(isset($_COOKIE['version'])) {
+    $version = $_COOKIE['version'];
+}
+
+if(isset($_GET['score'], $_GET['setData'])) {
+    $data = unserialize(urldecode(base64_decode($_GET['setData'])));
+    $filename = $data['filename'];
+    $version = $data['version'];
+}
+?>
+
+<script>
+function invokeScoreGeneration(callback) {
+	<?php $data = $filename.":".$version.":".urlencode(serialize(array())); ?>
+	$.post('pages/generateScores.php', {
+		data:"<?= $data ?>",
+		typeScore: "resilience",
+		output:"db"
+	}, callback);	
+}
+</script>
+	
 <div class="container">
 	<div class="d-flex" style="opacity:0">-</div>
 	
@@ -9,153 +35,227 @@
 		<p><?= $t['txt2_end_quest'] ?></p>
 		<p><a class="btn btn-success btn-lg" href="?score" role="button"><?= $t['display_my_score'] ?> »</a></p>
 	</div>
+	<script>
+    $(function(){
+    	invokeScoreGeneration(function(resp) {});
+    });
+    </script>
 	<?php } else {?>
 	
 	<script src="js/Chart.min.js"></script>
 	<script src="js/chartjs-plugin-datalabels.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
 	
-	
+	<style>
+	.chart-legend ul { margin-bottom: 5px; }
+	.chart-legend li {
+	   display: inline-block;
+	   margin-right: 10px;
+	}
+	.chart-legend li span{
+        display: inline-block;
+        width: 12px;
+        border-radius: 20px;
+        height: 12px;
+        margin-right: 5px;
+    }
+	</style>
 	
 	
 	<?php 
-	if ($stmt = $mysqli->prepare("SELECT qid, firstname, lastname, atelier, cluster FROM questionnaires q LEFT JOIN participants p ON p.pid = q.pid WHERE file LIKE ?")) {
-        $filename = "%".basename($_COOKIE['filename']);
+	$qid = null;
+	$name = "";
+	
+	if ($stmt = $mysqli->prepare(
+	    "SELECT qid, firstname, lastname, atelier, cluster FROM questionnaires q
+        LEFT JOIN participants p ON p.pid = q.pid
+        WHERE file LIKE ?")) {
+        
+        $filename = "%".basename($filename);
         $stmt->bind_param("s", $filename);
         $stmt->execute();
         $stmt->bind_result($qid, $firstname, $lastname, $atelier, $cluster);
         $stmt->fetch();
         $stmt->free_result();
-        $data = $_COOKIE['filename'].":".$_COOKIE['version'].":".urlencode(serialize(array()));
+        $stmt->close();
         
-        $scoresAtelierByAspect = array();
-        if($atelier !== null) {
-            $queryAtelier = "
-            SELECT aspectId, avg(score) as scoreAtelier FROM scores s
-            LEFT JOIN label_aspects a ON a.aid=s.aid
-            WHERE type='resilience' AND a.aspectId LIKE 'PSP_%' AND 
-            s.qid IN (
-                SELECT qid FROM questionnaires q LEFT JOIN participants p ON p.pid=q.pid
-                WHERE atelier=(SELECT atelier FROM participants p INNER JOIN questionnaires q ON q.pid=p.pid WHERE qid=".$qid." LIMIT 1)
-            )
-            GROUP BY s.aid
-            ORDER BY s.aid ASC";
+        $sections = getQuestionnaireSections($version, array("ADM"));
+        
+        $dataForChart = array("qid" => $qid, "atelier" => $atelier, "cluster" => $cluster);
+        $dataChart = array();
+        $dataSectionPDF = array();
+
+        if($qid !== null) {
             
-            foreach($mysqli->query($queryAtelier) as $row) {
-                $scoresAtelierByAspect[$row['aspectId']] = round($row['scoreAtelier'],2);
-            }
-        }
-        
-        $scoresClusterByAspect = array();
-        if($cluster !== null) {
-            $queryCluster = "
-            SELECT aspectId, avg(score) as scoreCluster FROM scores s
-            LEFT JOIN label_aspects a ON a.aid=s.aid
-            WHERE type='resilience' AND a.aspectId LIKE 'PSP_%' AND
-            s.qid IN (
-                SELECT qid FROM questionnaires q LEFT JOIN participants p ON p.pid=q.pid
-                WHERE cluster=(SELECT cluster FROM participants p INNER JOIN questionnaires q ON q.pid=p.pid WHERE qid=".$qid." LIMIT 1)
-            )
-            GROUP BY s.aid
-            ORDER BY s.aid ASC";
+            $scores = $mysqli->query("SELECT sid FROM scores WHERE qid=".$qid);
+            $haveScores = $scores->num_rows;
             
-            foreach($mysqli->query($queryCluster) as $row) {
-                $scoresClusterByAspect[$row['aspectId']] = round($row['scoreCluster'],2);
-            }
-        }
-        
-        $labelsStr = $dataChart = $atelierData = $clusterData = "";
-        $query = "SELECT aspectId, label, score FROM scores s LEFT JOIN label_aspects a ON a.aid=s.aid WHERE s.qid=".$qid." AND type='resilience' AND a.aspectId LIKE 'PSP_%' ORDER BY score ASC, aspectId ASC";
-        $results = $mysqli->query($query);
-        foreach($results as $row) {
-            
-            if(trim($row['score']) != "") {
-                $labelsStr .= $row['label'].";";
-                if(isset($scoresAtelierByAspect[$row['aspectId']])) {
-                    $atelierData .= $scoresAtelierByAspect[$row['aspectId']].";";
-                    $clusterData .= $scoresClusterByAspect[$row['aspectId']].";";
-                }
-            }
-            
-            if($row['score'] != "")
-                $dataChart .= round($row["score"], 1).";";
-        }
-        
-        $results->data_seek(0);
-        foreach($results as $row) {
-            if(trim($row['score']) === null) {
-                $labelsStr .= $row['label'].";";
-                if(isset($scoresAtelierByAspect[$row['aspectId']])) {
-                    $atelierData .= $scoresAtelierByAspect[$row['aspectId']].";";
-                    $clusterData .= $scoresClusterByAspect[$row['aspectId']].";";
-                }
-            }
-        }
-        $labelsStr = substr($labelsStr, 0, -1);
-        $dataChart = substr($dataChart, 0, -1);
-        
-        $atelierData = ($atelier !== null) ? substr($atelierData, 0, -1) : "";
-        $clusterData = ($cluster !== null) ? substr($clusterData, 0, -1) : "";
-        
-        if($qid !== null) { ?>
-        	<h1 class="display-4 border-bottom text-capitalize" id="title"><?= ucfirst($firstname)." ".ucfirst($lastname) ?></h1>
+            $name = ucfirst($firstname)." ".ucfirst($lastname);
+            ?>
+        	<h1 class="display-4 border-bottom text-capitalize mb-4" id="title"><?= $name ?></h1>
         	
-        	<h3 class="my-3">Scores de résilience par aspects</h3>
+        	<h4 class="my-3">
+        	<?= $t['score_resilience_par_aspect']?>, 
+        	<div class="d-inline text-muted lead"><?= $t['comparaison_score_avg_canton']?></div>
+        	</h4>
         	
-        	<div class="lead">
-        	Section <b>Systèmes de Production et Pratiques</b> en comparaison avec les scores moyens du canton
-        	</div>
-        	<br>
-        	<div id="js-legend" class="chart-legend"></div>
-        	<canvas id="myChart" height="130px" style="margin-left:-25px"></canvas>
-        	<br>
         	
-        	<style>
-        	.chart-legend ul { margin-bottom: 5px; }
-        	.chart-legend li {
-        	   display: inline-block;
-        	   margin-right: 10px;
-        	}
-        	.chart-legend li span{
-                display: inline-block;
-                width: 12px;
-                border-radius: 20px;
-                height: 12px;
-                margin-right: 5px;
-            }
-        	</style>
- 
+        	<?php 
+        	$labelsStr = "";
+        	$objectsCharData = array();
+        	foreach($sections as $section => $infoSection) {
+        	    $sectionColor = new Color($infoSection['color']);
+        	    
+        	    $objectsCharData[$section] = new ChartData($dataForChart, $section);
+        	    $dataChart[$section] = $objectsCharData[$section]->getValues();
+        	    
+        	    $labelsStr .= $dataChart[$section]['labels'];
+        	    
+                $dataChart[$section]['colors'] = array(
+                    "personnal" => $sectionColor->getRGBA(),
+                    "label_text" => $sectionColor->getTextColor()
+                );
+            	?>
+            	<div class="pb-4 border-bottom">
+                	<div class="lead p-2 px-3 rounded mb-3 <?= $sectionColor->getClass() ?>">
+                	<?= $infoSection['title'] ?>
+                	</div>
+        			<div class="chart-wrapper">
+        				<?php
+        				if($haveScores == 0) {
+        				    echo '<div class="text-center"><img src="img/loader-56.svg"></div>';
+        				} else {
+            				if($objectsCharData[$section]->hasScores() == false) {?>
+            					<div class="alert alert-warning"><?= $t['not-enough-data-display-chart']?></div>
+            				<?php } else { ?>
+                            	<div class="chart-legend"></div>
+                            	<canvas id="chart_<?= $section ?>" data-section="<?= $section?>" height="130px" style="margin-left:-25px"></canvas>
+                        	<?php } 
+        				}?>
+                	</div>
+    			</div>
+        	<?php }
+        	?>
+        	
+        	<div class="my-5">
+            	<h4 class="my-2 mb-3">
+            	<?= $t['resilience_importance_par_section']?>
+            	</h4>
+            	
+            	<table class="table table-sm table-striped">
+            	<thead>
+            		<tr>
+            			<th></th>
+            			<th class="align-middle text-center"><?= $t['conduite-exploitation']?></th>
+            			<th class="align-middle text-center"><?= $t['resilience']?></th>
+            			<th class="align-middle text-center"><?= $t['importance']?></th>
+            		</tr>
+            	</thead>
+            	<tbody>
+            	<?php 
+            	foreach($sections as $section => $infoSection) {
+            	    $values = $objectsCharData[$section]->getValues(); ?>
+            	<tr>
+            		<td><?= $infoSection['title'] ?></td>
+            		<td class="align-middle text-center"><?= round($values['conduiteExploitation'],1)?></td>
+            		<td class="align-middle text-center"><?= round($values['avgPersonnalResilience'],1) ?></td>
+            		<td class="align-middle text-center"><?= round($values['importance'],1) ?></td>
+            	</tr>
+            	<?php } ?>
+            	</tbody>
+            	</table>
+ 			</div>
+ 		
             <script>
 			$(function(){
-				var typesScores = ["byQuestion", "byAspect", "byIndicator"];
-				var completed = 0;
-				
-				
-				$.post('pages/generateScores.php', {
-    				data:"<?= $data ?>",
-    				typeScore: "resilience",
-    				output:"db"
-				}, function(resp) {
-    				completed++;
-    				generateChart();
-				});	
-				
-			});
-				
+				$('#finishScoreDisplay').click(function(){
+	    			deleteCookie("scores-display");
+	    			document.location = '?success';
+	    		});
 
-			function generateChart() {
-				var dataVals = "<?= $dataChart ?>".split(";");
-				for(i in dataVals) { dataVals[i] = +dataVals[i]; } 
-				var labelsVals = "<?= $labelsStr ?>".split(";");
-				var dataAtelier = <?php if($atelier !== null) { ?>"<?= $atelierData ?>".split(";")<?php } else {?>[]<?php }?>;
-				var dataCluster = <?php if($cluster !== null) { ?>"<?= $clusterData ?>".split(";")<?php } else {?>[]<?php }?>;
+	    		<?php if(trim($labelsStr) == "" && !isset($_GET['refresh'])) {?>
 				
-				var ctx = document.getElementById("myChart").getContext('2d');
-			    var myChart = new Chart(ctx, {
+	    		invokeScoreGeneration(function(resp) {
+	    			document.location = '?<?= $_SERVER['QUERY_STRING'] ?>';
+			    });
+	    		<?php } else {?>
+					startChartGeneration();
+	    		<?php } ?>
+	    		
+			});
+
+			function startChartGeneration() {
+				<?php $json = base64_encode(json_encode($dataChart, JSON_FORCE_OBJECT)); ?>
+				var obj = jQuery.parseJSON ( atob('<?php echo $json; ?>') );
+				
+				var sections = "<?= implode(";", array_keys($sections)) ?>".split(";");
+				for(i in sections) {
+					if($('#chart_'+sections[i]).length > 0) {
+						generateChart(sections[i], obj[sections[i]]);
+					}
+				}	
+			}
+				
+			
+			function generateChart(sectionName, json) {
+				var backgroundColor = 'white';
+				Chart.plugins.register({
+				    beforeDraw: function(c) {
+				        var ctx = c.chart.ctx;
+				        ctx.fillStyle = backgroundColor;
+				        ctx.fillRect(0, 0, c.chart.width, c.chart.height);
+				    }
+				});
+				
+				var ctx = document.getElementById("chart_"+sectionName).getContext('2d');
+				var data = getGraphJSONData(json);
+			    myChart = new Chart(ctx, data);
+
+			    
+			    $('#chart_'+sectionName).parents(".chart-wrapper").find('.chart-legend').html(myChart.generateLegend());
+			}
+
+
+			var graphsB64 = "";
+			var idSectionsStr = "";
+			function enableSave(id) {
+				var canvas = $('canvas#'+id);
+				var b64Text = canvas.get(0).toDataURL();
+				
+				idSectionsStr += id.replace("chart_","")+",";
+				graphsB64 += b64Text.replace('data:image/png;base64,', '')+",";
+				
+				if($('canvas:last').attr("id") == id) {
+					$('#save').fadeIn("fast");
+					$.post('pages/chartsToPDF.php',
+					{ b64: graphsB64, idSections:idSectionsStr, person:"<?= $name ?>", sections:"<?= urlencode(serialize($sections)) ?>" },
+					function(filename) {
+						
+						$('#save').removeAttr("disabled").html($('#save').attr("data-text-oncomplete")).click(function() {
+							document.location = 'download.php?file='+filename;
+	    				});
+				    	
+				    });	
+				}
+			}
+
+			function getGraphJSONData(obj) {
+				
+				var labelsVals = obj.labels == false ? "" : obj.labels.split(";");
+				
+				var dataVals = obj.personnal == false ? "" : obj.personnal.split(";");
+				for(i in dataVals) { dataVals[i] = +dataVals[i]; } 
+				
+				var dataAtelier = obj.atelier == "" ? [] : obj.atelier.split(";");
+				var dataCluster = obj.cluster == "" ? [] : obj.cluster.split(";");
+				
+				return {
 			        type: 'bar',
 			        data: {
+			        	hoverBorderColor: "orange",
 			            labels: labelsVals,
 			            datasets: [{
-			                label: "Score moyen atelier",
+			                label: "<?= $t['score_moyen_atelier']?>",
 			                type: "line",
 			                pointBackgroundColor: '#f1c40f',
 			                backgroundColor: '#f1c40f',
@@ -168,10 +268,10 @@
 								display: false
 							}
 			            }, {
-			                label: "Score moyen cluster",
+			                label: "<?= $t['score_moyen_cluster']?>",
 			                type: "line",
-			                pointBackgroundColor: '#c0392b',
-			                backgroundColor: '#c0392b',
+			                pointBackgroundColor: '#8e44ad',
+			                backgroundColor: '#8e44ad',
 			                data: dataCluster,
 			                fill: false,
 			                showLine: false,
@@ -181,9 +281,9 @@
 								display: false
 							}
 			            }, {
-			                label: 'Score obtenu',
+			                label: '<?= $t['mon_score_obtenu']?>',
 			                data: dataVals,
-			                backgroundColor: 'rgba(189, 195, 199,0.9)',
+			                backgroundColor: obj.colors.personnal,
 			                datalabels: {
 								align: 'top',
 								anchor: 'center'
@@ -191,10 +291,21 @@
 			            }] 
 			        },
 			        options: {
-			        	legend: { display: false },
+			        	animation : {
+			        		onComplete(e) {
+		        		      this.options.animation.onComplete = null; //disable after first render to avoid firing each time we hover
+		        		      //console.log(e);
+		        		      
+		        		      enableSave(e.chart.canvas.id);
+		        		      //this.initExport();
+		        		   }
+			            },
+			        	legend: {
+			        		display: false
+			            },
 			        	plugins: {
 							datalabels: {
-								color: 'black',
+								color: obj.colors.label_text,
 								font: {
 									weight: 'bold',
 									family: 'Roboto',
@@ -206,32 +317,41 @@
 			                yAxes: [{
 				                scaleLabel: {
 									display: true,
-									labelString:'Score obtenu'
+									labelString:'<?= $t['score_obtenu']?>'
 				                },
 			                    ticks: {
-			                        beginAtZero:true
+			                        beginAtZero:true,
+			                        min:0,
+			                        max:10,
+			                        fontColor: "#000"
 			                    }
 			                }],
 			                xAxes: [{
 			                    ticks: {
-			                        autoSkip: false
+			                        autoSkip: false,
+			                        fontColor: "#000"
 			                    }
 			                }]
 			            }
 			        }
-			    });
-
-			    document.getElementById('js-legend').innerHTML = myChart.generateLegend();
+			    };
 			}
             </script>
             <?php 
         } else {
-            echo '<div class="alert alert-danger">Ce questionnaire n\'est pas enregistré dans notre base de données.</div>';   
+            echo '<div class="alert alert-danger">'.$t['quest-not-existing'].'</div>';   
         }
 	}
+}
     ?>
-	
-  
-	<?php } ?>
+    
+    <script>
+	$(function(){
+		$('#infosScores').click(function(){
+			alert("pas encore implémenté");
+		});
+	});
+    </script>
+
 	
 </div>

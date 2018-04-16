@@ -161,32 +161,34 @@ class QuestionnaireManager {
 				    $commune = $this->optADM(10);
 				    $creation_date = date('Y-m-d H:i:s');
 				    
-				    if ($stmt = $mysqli->prepare("SELECT pid FROM participants WHERE (firstname=? AND lastname=?) OR (lastname=? AND firstname=?)")) {
-				        $firstname = strtolower(trim($firstname));
-				        $lastname = strtolower(trim($lastname));
-				        
-				        $stmt->bind_param("ssss", $firstname, $lastname, $firstname, $lastname);
-				        $stmt->execute();
-				        $stmt->bind_result($pid);
-				        $stmt->fetch();
-				        
-				        $queryParticipant = "INSERT INTO participants (firstname, lastname, region, commune) VALUES (?,?,?,?)";
-				        if(!empty($pid)) {
-				            $queryParticipant = "UPDATE participants SET firstname=?, lastname=?, region=?, commune=?) VALUES (?,?,?,?)";
-				        }
-				        if ($stmt = $mysqli->prepare($queryParticipant)) {
-				            $stmt->bind_param("ssss", $firstname, $lastname, $region, $commune);
-				            $stmt->execute();
-				            $pid = $stmt->insert_id;
-				        }
-				        
-				        if(!empty($pid))
-				            $_POST['answers']['meta']['pid'] = $pid;
-				            
-				            if ($stmt = $mysqli->prepare("INSERT INTO questionnaires (pid, collecte_par, version, creation_date, file) VALUES (?,?,?,?,?)")) {
-				                $stmt->bind_param("sssss", $pid, $collecte_par, $this->version, $creation_date, $this->filename);
-				                $stmt->execute();
-				            }
+				    if(!empty(trim($firstname)) && !empty(trim($lastname))) {
+    				    if ($stmt = $mysqli->prepare("SELECT pid FROM participants WHERE (firstname=? AND lastname=?) OR (lastname=? AND firstname=?)")) {
+    				        $firstname = strtolower(trim($firstname));
+    				        $lastname = strtolower(trim($lastname));
+    				        
+    				        $stmt->bind_param("ssss", $firstname, $lastname, $firstname, $lastname);
+    				        $stmt->execute();
+    				        $stmt->bind_result($pid);
+    				        $stmt->fetch();
+    				        
+    				        $queryParticipant = "INSERT INTO participants (firstname, lastname, region, commune) VALUES (?,?,?,?)";
+    				        if(!empty($pid)) {
+    				            $queryParticipant = "UPDATE participants SET firstname=?, lastname=?, region=?, commune=?) VALUES (?,?,?,?)";
+    				        }
+    				        if ($stmt = $mysqli->prepare($queryParticipant)) {
+    				            $stmt->bind_param("ssss", $firstname, $lastname, $region, $commune);
+    				            $stmt->execute();
+    				            $pid = $stmt->insert_id;
+    				        }
+    				        
+    				        if(!empty($pid))
+    				            $_POST['answers']['meta']['pid'] = $pid;
+    				            
+    				            if ($stmt = $mysqli->prepare("INSERT INTO questionnaires (pid, collecte_par, version, creation_date, file) VALUES (?,?,?,?,?)")) {
+    				                $stmt->bind_param("sssss", $pid, $collecte_par, $this->version, $creation_date, $this->filename);
+    				                $stmt->execute();
+    				            }
+    				    }
 				    }
 				}
 				

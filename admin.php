@@ -52,7 +52,7 @@ if(login_check($mysqli)) {
         
         <?php
         //print_r($_COOKIE);
-        if(isset($_GET['logout'])) { success("Déconnecté"); }
+        if(isset($_GET['logout'])) { success($t['deconnecte']); }
         if(isset($_GET['err'])) {
             $txt = "";
             $err = filter_input(INPUT_GET, 'err', $filter = FILTER_SANITIZE_STRING);
@@ -71,19 +71,19 @@ if(login_check($mysqli)) {
 
         <h1 class="h3 mb-3 font-weight-normal"></h1>
         
-        <label for="inputEmail" class="sr-only">Adresse e-mail</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Adresse e-mail" required autofocus name="email">
+        <label for="inputEmail" class="sr-only"><?= $t['email']?></label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="<?= $t['email']?>" required autofocus name="email">
         
-        <label for="inputPassword" class="sr-only">Mot de passe</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required name="password">
+        <label for="inputPassword" class="sr-only"><?= $t['password']?></label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="<?= $t['password']?>" required name="password">
         
         <div class="checkbox mb-3">
         <label>
-    		<input type="checkbox" name="remember" value="1" checked> Se rappeler de moi
+    		<input type="checkbox" name="remember" value="1" checked> <?= $t['remember-me']?>
         </label>
         </div>
         
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"><?= $t['connexion']?></button>
         <p class="mt-5 mb-3 text-muted">© 2018</p>
     </form>
 

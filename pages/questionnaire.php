@@ -3,6 +3,8 @@ if(isset($_COOKIE['version'])) {
 	if(isset($_COOKIE['filename'])) {
 		if(file_exists(DIR_VERSIONS."/".$_COOKIE['version'])) {
 		    
+		    $filepath = getAbsolutePath().DIR_ANSWERS."/".$_COOKIE['filename'];
+		    
 			$questManager = QuestionnaireManager::getInstance($_COOKIE['version']);
 			$questManager->setReadOnly($readonly);
 			$questManager->collectAnswers();
@@ -12,8 +14,20 @@ if(isset($_COOKIE['version'])) {
 			$currentIndex = $questManager->getCurrentIndex();
 			
 			if(isset($_REQUEST['end']) && $currentIndex == $nbAspects) {
-			     $endQuestionnaire = true;
-			     include_once('pages/end_quest.php');
+			     
+			     if(file_exists($filepath) && filesize($filepath) < MIN_FEEDBACK_FILE_SIZE) {
+			         //unlink($filepath);
+			         ?>
+			         <script>
+					 deleteCookie("indexAspect");
+					 deleteCookie("filename");
+					 document.location = '?home';
+			         </script>
+			         <?php 
+			     } else {
+			         $endQuestionnaire = true;
+			         include_once('pages/end_quest.php');
+			     }
 			} else {?>
 				<div id="quest-progress-wrapper" style="top: <?= $logged ? "64px" : "56px" ?>;">
 					<div id="quest-progress" class="w-100 d-flex justify-space-between">
@@ -25,15 +39,14 @@ if(isset($_COOKIE['version'])) {
 					</div>
 				</div>
 				
-				<div class="d-flex" style="opacity:0">-</div>
+				<div class="d-flex" style="opacity:0; height:35px">-</div>
 				
 				<div id="questionnaire" class="container" >
 					<?php
 					if(isset($_COOKIE['score-live']) && $_COOKIE['score-live'] == "true") {
 					    if(!isset($_SESSION['resultsDefined'])) {
 					       $_SESSION['resultsDefined'] = serialize(array());
-					    }
-					    //$questManager->refreshContent();   					   
+					    }  					   
 					}
 
 					$questManager->draw();

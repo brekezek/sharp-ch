@@ -27,11 +27,12 @@ if(isset($_GET['admin'])) {
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<link href="open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
 	
 	<!-- Custom -->
 	<link rel="stylesheet" href="css/style.css">
+	<script src="js/cookie.js"></script>
 	
 	<title>SHARP-CH</title>
 	<link rel="shortcut icon" href="img/favicon.png">
@@ -39,56 +40,164 @@ if(isset($_GET['admin'])) {
 <body>
 	
 	<?php
+	$newQuests = array();
+	if(!isset($_COOKIE['questsList'])) {
+	    foreach(scanAllDir(DIR_ANSWERS) as $file) {
+	        $explodedFile = explode("/", $file);
+	        if(count($explodedFile) == 1) {
+	            $json = getJSONFromFile(DIR_ANSWERS."/".$file);
+	            if(isset($json['meta']['client-ip']) && $json['meta']['client-ip'] == getClientIP()) {
+	                if(isset($json['ADM_01'])) {
+	                    
+	                    $filename = $json['meta']['filename'];
+	                    $version = $json['meta']['version'];
+	                    $firstname = $json['ADM_01'][2]['answer'];
+	                    $lastname = $json['ADM_01'][3]['answer'];
+	                    
+	                    if(!empty(trim($firstname).trim($lastname))) {
+	                        $newQuests[] = array(
+	                            "filename" => $filename,
+	                            "version" => $version
+	                        );
+	                    }
+	                }
+	            }
+	        }
+	    }
+	}
+	?>
+
+	<?php
+	$displayScorePage = isset($_COOKIE['scores-display']) || isset($_GET['score'], $_GET['setData']);
+	
 	include_once('menu.php');
 	?>
 	
-	<?php if(isset($_COOKIE['scores-display'])) include_once('js_dependencies.php'); ?>
+	<?php if($displayScorePage) include_once('js_dependencies.php'); ?>
 	
 	<div id="content" class="position-relative" style="margin-top: 56px;">
 	<?php
-	if(isset($_COOKIE['indexAspect'])) {
-		include_once('pages/questionnaire.php');
+	if($displayScorePage) {
+	    include_once('pages/end_quest.php');  
 	} else {
-	    if($logged) {
-	        if(isset($_SESSION['resultsDefined'])) {
-	          unset($_SESSION['resultsDefined']);  
-	        }
-	    }
-	    
-	    if(isset($_COOKIE['scores-display'])) {
-	       include_once('pages/end_quest.php');  
-	    } else {?>
-		<div class="jumbotron">
-			<div class="container">
-			  <div class="text-center">
-    			  <img src="img/logo_round.jpg" class="mb-3" width="220">
-    			  <h1 class="display-4 d-none"><?= $t['welcome_msg_h1'] ?> <span class="badge badge-light">CH</span></h1>
-    			  <p class="lead"><?= $t['sharp_meaning'] ?></p>
-		  	  </div>
-			  <hr class="my-4">
-			  <p><?= $t['msg1_welcome'] ?></p>
-			  <hr class="my-4">
-			  <p class="text-center">
-			  	<a class="btn btn-primary btn-lg start-new-quest d-none" href="#" role="button">
-			  		<?= $t['new_questionnaire']?>
-			  		<span class="oi oi-media-play ml-1"></span>
-			  	</a>
-			  </p>
-			</div>
-		</div>
-		<?php 
-	    }
+    	if(isset($_COOKIE['indexAspect'])) {
+    		include_once('pages/questionnaire.php');
+    	} else {
+    	    if($logged) {
+    	        if(isset($_SESSION['resultsDefined'])) {
+    	          unset($_SESSION['resultsDefined']);  
+    	        }
+    	    }
+            ?>
+            
+    		<div class="jumbotron mb-0">
+    			<div class="container" id="main">
+    				<?php
+    				if(isset($_COOKIE['questsList'])) {
+    				    $json = json_decode($_COOKIE['questsList'], true);
+
+    				    $rows = array();
+    				    $stmt = $mysqli->prepare(
+				            "SELECT file, version, creation_date, firstname, lastname, region, commune FROM questionnaires q
+                             LEFT JOIN participants p ON p.pid=q.pid
+                             WHERE file=? AND version=? LIMIT 1"
+				        );
+    				    foreach($json['list'] as $item) {
+    				        if(isset($item['filename'], $item['version']) && file_exists(DIR_ANSWERS."/".$item['filename'])) {
+    				            $stmt->bind_param("ss", $item['filename'], $item['version']);
+    				            $stmt->execute();
+    				            $result = $stmt->get_result();
+    				            while ($row = $result->fetch_assoc()) {
+    				                $rows[strtotime($row['creation_date'])] = $row;
+    				            }
+    				        }
+    				    }
+    				    $stmt->close();
+    				    ksort($rows);
+    				    $rows = array_reverse($rows);
+    				}
+    				
+    				if(!isset($_COOKIE['questsList']) || (isset($_COOKIE['questsList']) && count($rows) == 0)) { ?>
+                        <div class="text-center">
+                          <img id="logo" src="img/logo_round_<?= getLang() ?>.jpg" class="mb-3" width="220">
+                          <h1 class="display-4 d-none"><?= $t['welcome_msg_h1'] ?> <span class="badge badge-light text-uppercase"><?= getLang() ?></span></h1>
+                          <p class="lead"><?= $t['sharp_meaning'] ?></p>
+                        </div>
+                        
+                        <hr class="my-4">
+                        <p><?= $t['msg1_welcome'] ?></p>
+                        <hr class="my-4">
+                        
+                        <p class="text-center">
+                        	<a class="btn btn-primary btn-lg start-new-quest d-none" href="#" role="button">
+                        		<?= $t['new_questionnaire']?>
+                          		<span class="oi oi-media-play ml-1"></span>
+                          	</a>
+                    	</p>
+                    <?php
+                    } else {?>
+        			  
+    			  		<div class="d-flex align-items-center" style="justify-content:space-evenly">
+                          <img id="logo" src="img/logo_round_<?= getLang() ?>.jpg" class="mb-3" width="150px" height="150px">
+                          <div class="ml-4">
+                              <p class="lead font-weight-bold"><?= $t['sharp_meaning'] ?></p>
+                              <p class="text-justify"><?= $t['msg1_welcome'] ?></p>
+                          </div>
+                        </div>
+                        
+                        <hr class="my-3">
+						
+						<h5 class="mb-3 text-center"><?= $t['your-questionnaires']?></h5>
+						<div id="list-quest">
+            			<?php 
+            		    foreach($rows as $row) {
+    			            $firstname = empty($row['firstname']) ? "" : ucfirst($row['firstname']);
+    			            $lastname = empty($row['lastname']) ? "" : ucfirst($row['lastname']);
+    			            $name = $firstname." ".$lastname;
+    			            if(empty(trim($name))) $name = '<span class="text-muted">Sans nom</span>';
+    			            
+    			            $setData = base64_encode(urlencode(serialize(array(
+    			                "filename" => $row['file'],
+    			                "version" => $row['version']
+    			            ))));
+    			            ?>
+    			            
+        			     	<div class="card rounded mb-1 quest-item" data-filename="<?= $row['file'] ?>" data-version="<?= $row['version'] ?>" data-setData="<?= $setData ?>">
+                              <div class="card-body d-flex align-items-center py-2 pr-2">
+                                 <div class="mr-auto" style="cursor:default">
+                                     <b class="name" style="cursor:pointer"><?= $name ?></b> · 
+                                     <span class="text-muted"><?= date("d.m.Y, H:m", strtotime($row['creation_date'])) ?></span>
+                                 </div>
+                                 <div>
+                                 	<div class="btn btn-success btn-sm" data-action="scores" data-toggle="tooltip" data-placement="top" title="<?= $t['graphiques-scores']?>"><span class="oi oi-pie-chart"></span></div>
+                                 	<div class="btn btn-primary btn-sm" data-action="edit" data-toggle="tooltip" data-placement="top" title="<?= $t['display-questionnaire']?>"><span class="oi oi-chevron-right"></span></div>
+                                 </div>
+                              </div>
+                            </div>
+                            
+    			     	 <?php   
+            			 } ?>
+            			 </div>
+            		<?php 
+        			} ?>
+        			</div>
+        			
+        			<div id="pre-quest-instructions" class="container" style="display:none"></div>
+    		</div>
+		<?php
+    	}
 	}
 	?>
 	</div>
 	
 	
 	<!-- Bootstrap & JQuery -->
-	<?php if(!isset($_COOKIE['scores-display'])) include_once('js_dependencies.php'); ?>
+	<?php if(!$displayScorePage) include_once('js_dependencies.php'); ?>
 	
 	
 	<script>
 	$(function(){
+		
 		<?php if($reset) { ?>
 			deleteCookie('device-opt');
 			deleteCookie('cookie_avert');
@@ -99,6 +208,8 @@ if(isset($_GET['admin'])) {
 			deleteCookie("score-live");
 			deleteCookie("scores-display");
 			deleteCookie("filename");
+			deleteCookie("expirationQuest");
+			deleteCookie('questsList');
 		<?php }
 		
 		if(isset($endQuestionnaire) && $endQuestionnaire === true) {?>
@@ -106,16 +217,12 @@ if(isset($_GET['admin'])) {
 			setCookie("scores-display", "true", 1);
 		<?php } ?>
 
-		<?php if(isset($_COOKIE['scores-display'])) {?>
-    		$('#finishScoreDisplay').click(function(){
-    			deleteCookie("scores-display");
-    			document.location = '?success';
-    		});
-		<?php } ?>
 		
 		<?php if(isset($_COOKIE['indexAspect'])) {?>
 		function goToAspect(index) {
-			setCookie("indexAspect", index, <?= LIFE_COOKIE_QUEST_PENDING ?>);
+			var lifeCookie = getCookie('expirationQuest');
+			if(lifeCookie == "") lifeCookie = <?= LIFE_COOKIE_QUEST_PENDING ?>;
+			setCookie("indexAspect", index, lifeCookie);
 			//alert("index="+index);
 			//alert("indexAspect="+getCookie("indexAspect"));
 		}
@@ -305,8 +412,6 @@ if(isset($_GET['admin'])) {
 	        var diff = parseInt($(this).height(),10) - $(this).outerHeight();
 		    $(this).css("overflow-y","hidden").height(0).height(Math.max(22, this.scrollHeight + diff)+"px");
 		}).find( 'textarea' ).change();
-
-		$('[data-toggle="tooltip"]').tooltip();
 		
 		<?php if($logged) {?>
 		if(getCookie("score-live") == "true") {
@@ -333,12 +438,6 @@ if(isset($_GET['admin'])) {
 			$('.score-live').toggle($(this).hasClass("btn-success"));
 		});
 
-		/*
-		$('#refresh-scores').click(function(){
-	    	$("#questionnaire form").attr("action", "?refreshContent").find('[required]').removeAttr("required");
-			$('#questionnaire #submitHidden').trigger("click");
-	    });
-		*/
 		
 		$('[scored]:not([isInTable])').change(function(){
     	    processScore($(this));
@@ -449,27 +548,133 @@ if(isset($_GET['admin'])) {
 				document.location = '';
 			}
 		});
-		
+
 		$('#new-quest, .start-new-quest').click(function(){
-			var version = getCookie("version");
-			if(version == "") {
-				alert("<?= $t['alert_choose_quest_version'] ?>");
+			var button = $('#new-quest, .start-new-quest');
+			var initHTML = button.html();
+			
+			if(!button.is("[ready]")){
+    			button.hide();
+    			$('#dropdown-version').hide();
+    			$.post('pages/instructions.php', {}, function(html) {
+        			$('#main.container').fadeOut("fast", function(){
+        				$('#pre-quest-instructions.container').html(html).fadeIn("fast", function(){
+        					button.attr("ready","ready").before('<div style="display:none" id="cancel-quest" class="btn btn-info mr-1"><?= $t['cancel']?> <span class="oi oi-x ml-1"></span></div>');
+        					button.removeClass("btn-light").addClass("btn-success").html('<?= $t['start']?> <span class="oi oi-power-standby ml-1"></span>').fadeIn();
+        					$('#cancel-quest').fadeIn();
+        					$('#navbarHome').on('click', '#cancel-quest', function(){
+            					$(this).remove();
+            					button.hide();
+        						$('#pre-quest-instructions.container').fadeOut("fast", function(){
+        		    				$('#main.container').fadeIn("fast", function(){
+    									button.removeAttr("ready").removeClass("btn-success").addClass("btn-light").html(initHTML).fadeIn();
+    									$('#dropdown-version').fadeIn();
+        		    				});
+        						});
+        					});
+        				});
+        			});
+    			});
 			} else {
-				
-				$.post('functions/getUniqueName.php', {}, function(html){
-					var json = JSON.parse(html);
-					if(json.filename != "error") {
-						setCookie("filename", json.filename, <?= LIFE_COOKIE_QUEST_PENDING ?>);
-						setCookie("indexAspect", "1", <?= LIFE_COOKIE_QUEST_PENDING ?>);
-						document.location = '?start';
-					} else {
-						alert("Erreur : le nom de fichier unique n'a pas pu �tre distribu�. R�essayez et si le probl�me persiste, veuillez nous le signaler.");
-					}
+				var version = getCookie("version");
+				if(version == "") {
+					alert("<?= $t['alert_choose_quest_version'] ?>");
+				} else {
+					initHTML = button.html();
+					button.html('<?= $t['loading']?> <img src="img/loader-score.svg">');
+					$.post('functions/getUniqueName.php', {}, function(html){
+						var json = JSON.parse(html);
+						if(json.filename != "error") {
+							setCookie("filename", json.filename, <?= LIFE_COOKIE_QUEST_PENDING ?>);
+							setCookie("indexAspect", "1", <?= LIFE_COOKIE_QUEST_PENDING ?>);
+							setCookie("expirationQuest", <?= time() + 60*60*24*LIFE_COOKIE_QUEST_PENDING ?>, <?= LIFE_COOKIE_QUEST_PENDING ?>);
+
+							if(getCookie('questsList') == "") {
+								var jsonObj = {
+										"list":[
+											{
+												"filename": json.filename,
+												"version": version
+											}
+										],
+										"expiry": <?= (time() + 60*60*24*LIFE_COOKIE_LIST_QUESTS) ?>
+								};
+								
+							} else {
+								var jsonObj = JSON.parse(getCookie('questsList'));
+								jsonObj['list'].push({"filename":json.filename,"version":version});
+							}
+							setCookie('questsList', JSON.stringify(jsonObj), <?= LIFE_COOKIE_LIST_QUESTS ?>);
+
+							document.location = '?start';
+						} else {
+							alert("<?= $t['error_get_unique_name']?>");
+						}
+						//button.html(initHTML);
+					});
 					
-				});
-				
+				}
 			}
 		});
+		
+
+		$('#list-quest .quest-item div[data-action="edit"], #list-quest .quest-item .name').click(function(){
+			var parent = $(this).parents(".quest-item");
+			var filename = parent.attr("data-filename");
+			var version = parent.attr("data-version");
+
+			$.get("<?= DIR_ANSWERS ?>/"+filename).done(function() { 
+    			deleteCookie("expirationQuest");
+    			setCookie("filename", filename, <?= LIFE_COOKIE_QUEST_PENDING ?>);
+    			setCookie("version", version, <?= LIFE_COOKIE_VERSION ?>);
+    			setCookie("indexAspect", "1", <?= LIFE_COOKIE_QUEST_PENDING ?>);
+    			setCookie("readonly", "true", <?= LIFE_COOKIE_QUEST_PENDING ?>);
+    			document.location = '?review';
+		    }).fail(function() { 
+		        alert("le fichier de questionnaire n'existe pas");
+		    });
+		});
+		$('#list-quest .quest-item div[data-action="scores"]').click(function(){
+			var parent = $(this).parents(".quest-item");
+			var setData = parent.attr("data-setData");
+			var filename = parent.attr("data-filename");
+			
+			$.get("<?= DIR_ANSWERS ?>/"+filename).done(function() { 
+				document.location = 'index.php?score&setData='+setData;
+		    }).fail(function() { 
+		        alert("le fichier de questionnaire n'existe pas");
+		    });
+		});
+
+		<?php
+		if(count($newQuests) > 0) {
+    		foreach($newQuests as $quest) {?>
+    		if(getCookie('questsList') == "") {
+				var jsonObj = {
+						"list":[
+							{
+								"filename": "<?= $quest['filename']?>",
+								"version": "<?= $quest['version']?>"
+							}
+						],
+						"expiry": <?= (time() + 60*60*24*LIFE_COOKIE_LIST_QUESTS) ?>
+				};
+				
+			} else {
+				var jsonObj = JSON.parse(getCookie('questsList'));
+				jsonObj['list'].push({"filename":"<?= $quest['filename']?>","version":"<?= $quest['version']?>"});
+			}
+			setCookie('questsList', JSON.stringify(jsonObj), <?= LIFE_COOKIE_LIST_QUESTS ?>);   
+    		<?php 
+    		} ?>
+
+			document.location = '?restart';
+        <?php 
+		}
+		?>
+
+		$('#dropdown-version').dropdown();
+		$('#dropdown-version').tooltip();
 		
 		if(getCookie("cookie_avert") == "") { // si le cookie n'existe pas
 			var banner_text = '<div class="d-inline"><?= $t['cookies_message'] ?> <button class="btn btn-info btn-gradient btn-sm" onclick="window.open(\'https://cookiesandyou.com/\', \'_blank\')" id="info-cookie">Plus d\'infos</button></div> <button class="btn btn-success btn-gradient btn-sm" id="accept-cookie">Ok</button>';
@@ -494,6 +699,9 @@ if(isset($_GET['admin'])) {
 		} else {
 			$('#device-not-optimized').addClass("d-none");
 		}	
+
+		$('[data-toggle="tooltip"]').tooltip();
+
 	});
 	</script>
 	

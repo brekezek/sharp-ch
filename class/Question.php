@@ -64,6 +64,9 @@ abstract class Question implements iQuestion {
 	}
 	
 	protected function isMandatory() {
+	    if($this->aspectId != "ADM_01") 
+	        return false;
+	    
 		return ($this->mandatory == true || $this->mandatory == 1 || $this->mandatory == "true");
 	}
 	

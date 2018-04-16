@@ -25,6 +25,7 @@ class ScoreWriter {
             switch($typeScore) {
                 case "byAspect": $filename = "scoresByAspect"; break;
                 case "byIndicator": $filename = "scoresByIndicator"; break;
+                case "resilience": $filename = "resilience"; break;
                 default: $filename = "scoresByQuestion"; break;
             }
         } else {

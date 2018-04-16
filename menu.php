@@ -2,28 +2,39 @@
 
 <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark justify-content-between">
 	
-	<div class="navbar-brand">
+	<div class="navbar-brand mr-0">
+		
+		
+		<img src="img/logo_menu.jpg" width="80px"> <span class="badge badge-danger text-uppercase"><?= getLang() == "fr" ? "CH" : getLang() ?></span>
+		
 		<?php if($readonly || $logged) {?>
-		<a href="admin.php?page=1" id="back" class="btn btn-outline-secondary mr-1">
-			<span class="oi oi-chevron-left"></span>
+		<a href="admin.php?page=1" id="back" class="btn btn-secondary ml-2">
+			<span class="oi oi-spreadsheet mr-1"></span> Admin
 		</a>
 		<?php } ?>
-		
-		SHARP <span class="badge badge-danger">CH</span>
 	</div>
   	
 	<?php if(isset($_COOKIE['indexAspect'])) {?>
 	<div class="text-light" >
 		<?php if($readonly) {
-		    echo '<span class="oi oi-eye mr-1"></span> <span id="name-ro">Read-Only</span>';
+		    echo '<span class="oi oi-eye mr-1"></span> <span id="name-ro">'.$t['read-only'].'</span>';
 		} else {
-		    echo $_COOKIE['version'];
+		    if(isset($_COOKIE['expirationQuest'])) {
+    		    $expirationQuest = $_COOKIE['expirationQuest'];
+                $time = ($expirationQuest - time());
+                $days = floor($time / (3600*24));
+                $hours = floor(($time - $days*24*3600) / 3600);
+                $min = floor(($time - $days*24*3600 - $hours*3600) /  60);
+                echo '<div class="time-left" data-toggle="tooltip" data-placement="bottom" title="'.$t['quest-time-left'].'"><span class="oi oi-clock mr-1"></span> <b>'.$t['restant'].'</b>: '.$days." ".$t['jours'].", ".$hours."h".$min.'</div>';
+		    } else {
+		        echo $_COOKIE['version'];   
+		    }
 		}?>
 	</div>
 	
 	<div>
-		<?php if(!$readonly) {?>
-		<div class="dropdown d-inline mr-2">
+		<?php if(isset($_COOKIE['readonly'])) { ?>
+		<div class="dropdown d-inline">
 			<button id="others" class="btn btn-secondary dropdown-toggle" id="dropd-settings" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<span class="oi oi-cog"></span>
 			</button>
@@ -31,25 +42,29 @@
 				<a href="?quit" id="quit" class="dropdown-item"><?= $t['quit_questionnaire'] ?></a>
 			</div>	
 		</div>
-		
-		<?php if(isset($_COOKIE['indexAspect'], $_COOKIE['readonly']) && $_COOKIE['readonly'] == "false") { ?>
-		<button id="switch-readonly" class="btn btn-primary" type="button">
-			<span class="oi oi-lock-locked mr-1"></span> Read-Only
-		</button>
 		<?php }?>
 		
+		<?php if(!$readonly) {?>
+		
+    		<?php if(isset($_COOKIE['indexAspect'], $_COOKIE['readonly']) && $_COOKIE['readonly'] == "false") { ?>
+    		<button id="switch-readonly" class="btn btn-primary" type="button">
+    			<span class="oi oi-lock-locked mr-1"></span> <?= $t['read-only'] ?>
+    		</button>
+    		<?php }?>
+    		
 		<?php } else { ?>
-		<button id="edit" class="btn btn-primary" type="button">
-			<span class="oi oi-pencil mr-1"></span> Editer
-		</button>
+    		<button id="edit" class="btn btn-primary" type="button">
+    			<span class="oi oi-pencil mr-1"></span> <?= $t['edit'] ?>
+    		</button>
 		<?php } ?>
 		
-		<?php if(!isset($_COOKIE['scores-display']) && !isset($_REQUEST['end'])) {?>
+		<?php if(!$displayScorePage && !isset($_REQUEST['end'])) {?>
 		<button id="show-aspects" class="btn btn-primary" type="button">
 			<span class="oi oi-grid-three-up"></span>
 		</button>
 		<?php }?>
 	</div>
+	
 	<?php } else {?>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHome" aria-controls="navbarHome" aria-expanded="false">
 		<span class="navbar-toggler-icon"></span>
@@ -57,15 +72,13 @@
 	
 	<div class="collapse navbar-collapse" id="navbarHome">
 	
-		<ul class="navbar-nav mr-auto">
-		  <li class="nav-item active d-none">
-			<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-		  </li>
-		  
-		  <?php if(!isset($_COOKIE['scores-display'])) { ?>
+		<div class="mr-auto"></div>
+		
+		<ul class="navbar-nav mr-2">
+		  <?php if(!$displayScorePage) { ?>
 		  <li class="nav-item dropdown">
-			<a class="btn btn-primary btn-md dropdown-toggle" href="#" id="dropdown-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<?= isset($_COOKIE['version']) ? $_COOKIE['version'] : $t['choose_version'] ?>
+			<a class="btn btn-primary btn-md dropdown-toggle" href="#" id="dropdown-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="left" title="<?= $t['choose_version']?>">
+				<span class="oi oi-cog mr-1"></span> <?= isset($_COOKIE['version']) ? $_COOKIE['version'] : $t['choose_version'] ?>
 			</a>
 			<div class="dropdown-menu" id="version" aria-labelledby="dropdown-version">
 				<?php
@@ -89,24 +102,25 @@
 		  </li>
 		  <?php } ?>
 		</ul>
-	
-	   
-	   <?php if(!isset($_COOKIE['scores-display'])) { ?>
-		<button id="new-quest" class="d-none btn btn-light" type="submit">
-			<span class="oi oi-plus pr-1"></span>
-			<?= $t['new_questionnaire']?>
-		</button>
+
+	   <?php if(!$displayScorePage) { ?>
+    		<button id="new-quest" class="d-none btn btn-light" type="submit">
+    			<?= $t['new_questionnaire']?>
+    			<span class="oi oi-caret-right ml-1"></span>
+    		</button>
 		<?php } else { ?>
-		
-		
-		<button id="" class="btn btn-light px-3 mr-1" type="submit">
-			<span class="oi oi-info"></span>
-		</button>
-		
-		<button id="finishScoreDisplay" class="btn btn-outline-light" type="submit">
-			<?= $t['finish']?>
-			<span class="oi oi-chevron-right pl-1"></span>
-		</button>
+			<button id="save" class="btn btn-success px-3 mr-1" style="display:none" type="submit" data-text-oncomplete="<?= $t['save_graphs']?> <span class='oi oi-cloud-download ml-1'></span>" disabled>
+    			<?= $t['generation']?> PDF <img src="img/loader-score.svg">
+    		</button>
+    		
+    		<button id="infosScores" class="btn btn-light px-3 mr-1 d-none" type="submit">
+    			<span class="oi oi-info"></span>
+    		</button>
+    		
+    		<button id="finishScoreDisplay" class="btn btn-outline-light" type="submit">
+    			<?= $t['finish']?>
+    			<span class="oi oi-chevron-right pl-1"></span>
+    		</button>
 		<?php } ?>
 		
 	</div>
