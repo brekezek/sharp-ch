@@ -87,5 +87,10 @@
     "comparaison_score_avg_canton": "en comparaison avec les scores moyens du canton",
     "jours": "jours",
     "selected": "sélectionnés",
-    "sharp_meaning": "Évaluation et renforcement de la résilience des systèmes agricoles"
+    "sharp_meaning": "Évaluation et renforcement de la résilience des systèmes agricoles",
+    "confirm-deletion":"Confirmez-vous la suppression ?",
+    "confirmation":"Confirmation",
+    "close":"Fermer",
+    "confirm":"Confirmer",
+    "delete-participants-also":"Supprimer également les participants liés aux questionnaires"
 }

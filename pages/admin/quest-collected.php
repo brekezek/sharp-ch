@@ -228,6 +228,30 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
 echo '</table>';
 ?>
 <br>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><?= $t['confirmation']?></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center"><?= $t['confirm-deletion']?></p>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="deleteParticipants">
+            <label class="form-check-label" for="deleteParticipants"><?= $t['delete-participants-also']?></label>
+      	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= $t['close']?></button>
+        <button type="button" class="btn btn-primary" id="submit"><?= $t['confirm']?></button>
+      </div>
+    </div>
+  </div>
+</div>
 		
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
@@ -272,7 +296,32 @@ echo '</table>';
 		
 		$('table#repondants').selectableRows()
 		.addButton("<?= $t['delete']?>", "delete", "danger", "x", function(){
-			alert("Implémenté bientot");
+			if($('#repondants tbody tr.active').length > 5) {
+				alert("Pour des raisons de sécurité, vous ne pouvez pas supprimer plus de 5 éléments à la fois");
+			} else {
+    			var modal = $('#exampleModalCenter');
+    			modal.modal();
+    			modal.find('#submit').removeAttr("disabled").bind("click", function(){
+    				modal.find('#submit').attr("disabled","disabled");	
+    				
+    				var files = "";
+    				$('#repondants tbody tr.active').each(function(){
+    					files += $(this).attr("data-file")+",";
+    				});
+    				files = files.substring(0, files.length-1);
+    				
+    				$.post('pages/delete.php', {
+    					data:files,
+    					deleteParticipant:$('input[type="checkbox"]#deleteParticipants').is(":checked"),
+    					actionId:"delete-files"
+    				}, function(html){
+    					modal.find('#submit').unbind("click");
+    					$('#repondants tbody tr.active').remove();
+    				});
+    				
+    				modal.modal('hide');
+    			});
+			}
 		})
 		.addDropdown("<?= $t['generate-score-R']?>", "scores", itemsScore, "success", "bar-chart", function(){
 			var selectedRows = $('#repondants tbody tr.active');
@@ -289,10 +338,10 @@ echo '</table>';
 			//$('input[type="search"]').val(files);
 
 			$.post('pages/generateScores.php', {
-    				data:files,
-    				typeScore:$(this).attr("data-action"),
-    				output:"csv"
-				}, function(resp) {
+				data:files,
+				typeScore:$(this).attr("data-action"),
+				output:"csv"
+			}, function(resp) {
 				button.removeAttr("disabled").find("span.text").html(initBtText);
 				if(resp != "error") {
 					document.location = 'download.php?file=<?= DIR_ANSWERS ?>/scores/'+resp;

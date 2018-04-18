@@ -24,8 +24,9 @@ function optInfoAdm($json, $index) {
     remAccent(trim($json['ADM_01'][$index]['answer'])) : "";
 }
 
-if ($stmt = $mysqli->prepare("SELECT firstname, lastname, region, commune, cluster, atelier, qid FROM participants p
+if ($stmt = $mysqli->prepare("SELECT p.pid, firstname, lastname, region, commune, cluster, atelier, qid FROM participants p
                                 LEFT JOIN questionnaires q ON q.pid = p.pid
+                                GROUP BY p.pid 
                                 ORDER BY lastname ASC, firstname ASC")) {
     $stmt->execute();    
     $result = $stmt->get_result();
@@ -48,11 +49,13 @@ if ($stmt = $mysqli->prepare("SELECT firstname, lastname, region, commune, clust
     while ($row = $result->fetch_assoc()) {
         ++$i;
         
+        echo '<tr class="';
+        if(empty($row['qid'])) echo 'bg-secondary text-white';
+        echo '" data-pid="'.$row['pid'].'">';
+        
         if(empty($row['qid'])) {
-            echo '<tr class="bg-secondary text-white">';
             echo '<td class="text-capitalize"><span class="oi oi-link-broken"></span></td>';
         } else {
-            echo '<tr>';
             echo '<td class="text-capitalize">'.$i.'</td>';
         }
         
@@ -79,6 +82,26 @@ if ($stmt = $mysqli->prepare("SELECT firstname, lastname, region, commune, clust
 ?>
 
 <br>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"><?= $t['confirmation']?></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center"><?= $t['confirm-deletion']?></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?= $t['close']?></button>
+        <button type="button" class="btn btn-primary" id="submit"><?= $t['confirm']?></button>
+      </div>
+    </div>
+  </div>
+</div>
 		
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script  src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
@@ -98,10 +121,34 @@ if ($stmt = $mysqli->prepare("SELECT firstname, lastname, region, commune, clust
 		});
 
 		$('table#repondants').selectableRows()
-		.addButton("Supprimer", "delete", "danger", "x", function(){
-			alert("Implémenté bientot");
+		.addButton("<?= $t['delete']?>", "delete", "danger", "x", function(){
+			if($('#repondants tbody tr.active').length > 5) {
+				alert("Pour des raisons de sécurité, vous ne pouvez pas supprimer plus de 5 éléments à la fois");
+			} else {
+    			var modal = $('#exampleModalCenter');
+    			modal.modal();
+    			modal.find('#submit').removeAttr("disabled").bind("click", function(){
+    				modal.find('#submit').attr("disabled","disabled");	
+    				
+    				var data = "";
+    				$('#repondants tbody tr.active').each(function(){
+    					data += $(this).attr("data-pid")+",";
+    				});
+    				data = data.substring(0, data.length-1);
+    				
+    				$.post('pages/delete.php', {
+    					data:data,
+    					actionId:"participants"
+    				}, function(html){
+    					modal.find('#submit').unbind("click");
+    					$('#repondants tbody tr.active').remove();
+    				});
+    				
+    				modal.modal('hide');
+    			});
+			}
 		})
-		.addButton("Editer", "edit", "primary", "pencil", function(){
+		.addButton("<?= $t['edit'] ?>", "edit", "primary", "pencil", function(){
 			alert("Implémenté bientot");
 		})
 		.addButton("Générer lien", "link", "info", "link-intact", function(){

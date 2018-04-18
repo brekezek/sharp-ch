@@ -557,8 +557,8 @@ if(isset($_GET['admin'])) {
     			button.hide();
     			$('#dropdown-version').hide();
     			$.post('pages/instructions.php', {}, function(html) {
-        			$('#main.container').fadeOut("fast", function(){
-        				$('#pre-quest-instructions.container').html(html).fadeIn("fast", function(){
+        			$('#main.container').slideUp("fast", function(){
+        				$('#pre-quest-instructions.container').html(html).slideDown("fast", function(){
         					button.attr("ready","ready").before('<div style="display:none" id="cancel-quest" class="btn btn-info mr-1"><?= $t['cancel']?> <span class="oi oi-x ml-1"></span></div>');
         					button.removeClass("btn-light").addClass("btn-success").html('<?= $t['start']?> <span class="oi oi-power-standby ml-1"></span>').fadeIn();
         					$('#cancel-quest').fadeIn();
@@ -567,7 +567,7 @@ if(isset($_GET['admin'])) {
             					button.hide();
         						$('#pre-quest-instructions.container').fadeOut("fast", function(){
         		    				$('#main.container').fadeIn("fast", function(){
-    									button.removeAttr("ready").removeClass("btn-success").addClass("btn-light").html(initHTML).fadeIn();
+    									button.removeAttr("ready").removeClass("btn-success").html(initHTML).fadeIn();
     									$('#dropdown-version').fadeIn();
         		    				});
         						});
