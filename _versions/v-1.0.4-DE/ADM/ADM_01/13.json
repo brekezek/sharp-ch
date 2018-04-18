@@ -1,5 +1,6 @@
 {
     "question-type": "text",
+	"input-type":"date",
     "title": "Beginn der Datenerfassung",
     "mandatory": true
 }

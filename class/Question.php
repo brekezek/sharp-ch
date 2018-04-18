@@ -20,6 +20,7 @@ abstract class Question implements iQuestion {
 	protected $readonly;
 	protected $isInTable;
 	protected $scored;
+	protected $inputType;
 	
 	function __construct($index, $json) {
 		$this->index = $index;
@@ -31,6 +32,7 @@ abstract class Question implements iQuestion {
 		$this->hidden = isset($json['hidden']) ? $json['hidden'] : false;
 		$this->placeholder = isset($json['placeholder']) ? $json['placeholder'] : "";
 		$this->all_visible = isset($json['all_visible']) ? $json['all_visible'] : false;
+		$this->inputType = isset($json['input-type']) ? $json['input-type'] : null;
 		
 		$this->scored = isset($json['scoring']) && $json['scoring'] != "-";
 		
@@ -159,6 +161,7 @@ abstract class Question implements iQuestion {
 	
 }
 /*
+input-type
 question-type
 scoring-type
 scoring

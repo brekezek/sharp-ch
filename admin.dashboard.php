@@ -20,10 +20,17 @@ if(isset($_GET['page'])) {
     $idxPage = intval($_GET['page']);
 }
 $pages = array(
-    1 => array("page" => "quest-collected.php", "padding" => false),
-    6 => array("page" => "participants.php", "padding" => false),
-    5 => array("page" => "translations.php", "padding" => false)
+    1 => array("page" => "quest-collected.php", "padding" => false, "title" => $t['quest-collected']),
+    6 => array("page" => "participants.php", "padding" => false, "title" => $t['participants']),
+    5 => array("page" => "translations.php", "padding" => false, "title" => $t['translations'])
 );
+
+function getInfoPage($idx) {
+    global $idxPage, $pages;
+    if(isset($pages[$idx]['title']))
+        return $pages[$idx]['title'];
+    return null;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +82,7 @@ $pages = array(
 	}
 	</style>
 	
-	<title>SHARP-CH</title>
+	<title>SHARP - <?= getInfoPage($idxPage) ?></title>
 	<link rel="shortcut icon" href="img/favicon.png">
 </head>
 <body>
@@ -109,7 +116,7 @@ $pages = array(
               <li class="nav-item">
                 <a class="nav-link <?= $idxPage == 1 ? "active" : "" ?>" href="?page=1">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                   <?= $t['quest-collected'] ?> <span class="sr-only">(current)</span>
+                   <?= getInfoPage(1) ?> <span class="sr-only">(current)</span>
                 </a>
               </li>
               
@@ -142,7 +149,7 @@ $pages = array(
               <li class="nav-item">
                 <a class="nav-link <?= $idxPage == 6 ? "active" : "" ?>" href="?page=6">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                  <?= $t['participants'] ?>
+                  <?= getInfoPage(6) ?>
                 </a>
               </li>
               
@@ -156,7 +163,7 @@ $pages = array(
               <li class="nav-item">
                 <a class="nav-link <?= $idxPage == 5 ? "active" : "" ?>" href="?page=5">
                   <svg class="feather" height="24" viewBox="0 0 48 48" width="24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M0 0h48v48h-48z" fill="none"/><path d="M25.74 30.15l-5.08-5.02.06-.06c3.48-3.88 5.96-8.34 7.42-13.06h5.86v-4.01h-14v-4h-4v4h-14v3.98h22.34c-1.35 3.86-3.46 7.52-6.34 10.72-1.86-2.07-3.4-4.32-4.62-6.7h-4c1.46 3.26 3.46 6.34 5.96 9.12l-10.17 10.05 2.83 2.83 10-10 6.22 6.22 1.52-4.07zm11.26-10.15h-4l-9 24h4l2.25-6h9.5l2.25 6h4l-9-24zm-5.25 14l3.25-8.67 3.25 8.67h-6.5z"/></svg>
-                  <?= $t['translations']?>
+                  <?= getInfoPage(5)?>
                 </a>
               </li>
               

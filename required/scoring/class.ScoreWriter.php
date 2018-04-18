@@ -13,12 +13,20 @@ class ScoreWriter {
         if(!in_array($output, array("csv", "print", "db"))){
             throw new Exception("Ce type de sortie n'est pas prévu par l'application.");
         }
-        if(!in_array($typeScore, array("byQuestion", "byAspect", "byIndicator", "resilience"))){
+        if(!in_array($typeScore, array("byQuestion", "byAspect", "byIndicator", "resilience", "db_all"))){
             throw new Exception("Le type de score donné n'est pas reconnu.");
+        }
+        if($typeScore == "db_all" && $output != "db") {
+            throw new Exception("Le type db_all n'est possible qu'avec la db en sortie");
         }
         
         $this->bufferStr = "";
         $this->bufferData = array();
+        if($typeScore == "db_all") {
+            $this->bufferData['resilience'] = array();
+            $this->bufferData['importance'] = array();
+            $this->bufferData['academic'] = array();
+        }
         $this->output = $output;
         
         if(is_array($questionnaires)) {
@@ -75,6 +83,15 @@ class ScoreWriter {
             case "resilience":
                 foreach($this->questionnaires as $quest)
                     $this->writeResilience($quest);
+            break;
+            
+            case "db_all":
+                if($this->output == "db") {
+                    foreach($this->questionnaires as $quest) {
+                        $this->writeByAspect($quest);
+                        $this->writeResilience($quest);
+                    }
+                }
             break;
         }
         
@@ -188,7 +205,8 @@ class ScoreWriter {
                 if(in_array($this->output, array("csv", "print"))) {
                     $this->bufferStr .= (($questionnaire->needFixEC_16() && $aspectId == "EC_16") ? "EC_05" : $aspectId).";".$scoresResilience.";".$this->getAdditionnalInfos($questionnaire)."\n";
                 } else {
-                    $this->bufferData[(($questionnaire->needFixEC_16() && $aspectId == "EC_16") ? "EC_05" : $aspectId)] = $scoresResilience;
+                    $aspectLabel = (($questionnaire->needFixEC_16() && $aspectId == "EC_16") ? "EC_05" : $aspectId);
+                    $this->bufferData['resilience'][$aspectLabel] = $scoresResilience;
                 }
                 
                 
@@ -229,10 +247,10 @@ class ScoreWriter {
                         $this->bufferStr .= $section.";".(($questionnaire->needFixEC_16() && $aspectId == "EC_16") ? "EC_05" : $aspectId).";".$typeScore.";".$score.";".$this->getAdditionnalInfos($questionnaire)."\n";
                     } else {
                         $aspectLabel = (($questionnaire->needFixEC_16() && $aspectId == "EC_16") ? "EC_05" : $aspectId);
-                        if(!isset($this->bufferData[$aspectLabel])) {
-                            $this->bufferData[$aspectLabel] = array();
+                        if(!isset($this->bufferData[$typeScore])) {
+                            $this->bufferData[$typeScore] = array();
                         }
-                        $this->bufferData[$aspectLabel][$typeScore] = $score;
+                        $this->bufferData[$typeScore][$aspectLabel] = $score;
                     }
                 }
                 

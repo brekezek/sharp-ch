@@ -8,8 +8,8 @@ function processMultipleOneSolution($answer, $scoringType, $scoring, $json, $que
 	
 	foreach($json['choices'] as $choice) {
 		if(is_array($choice)) {
-			foreach($choice as $texte => $score) {
-				$choices[$texte] = $score;
+			foreach($choice as $texte => $scoreVal) {
+				$choices[$texte] = $scoreVal;
 			}
 		}
 	}

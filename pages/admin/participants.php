@@ -36,8 +36,7 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, firstname, lastname, region, commune
     echo '<thead>';
     echo '<tr>';
     echo '<th>#</th>';
-    foreach($row as $key => $info) {
-        if(in_array($key, array("pid", "qid"))) continue;
+    foreach(array($t['firstname'], $t['lastname'], $t['region'], $t['village'], $t['cluster'], $t['atelier']) as $key) {
         echo '<th class="text-capitalize">'.$key.'</th>';
     }
     echo '</tr>';
@@ -112,7 +111,7 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, firstname, lastname, region, commune
 	$(document).ready(function() {
 		$('#repondants').dataTable( {
 			language: {
-		        url: '//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'
+		        url: '//cdn.datatables.net/plug-ins/1.10.16/i18n/<?= strtolower(getLang()) == "de" ? "German" : "French" ?>.json'
 		    },
 			pagingType: "full_numbers",
 			columnDefs: [
@@ -123,7 +122,7 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, firstname, lastname, region, commune
 		$('table#repondants').selectableRows()
 		.addButton("<?= $t['delete']?>", "delete", "danger", "x", function(){
 			if($('#repondants tbody tr.active').length > 5) {
-				alert("Pour des raisons de sécurité, vous ne pouvez pas supprimer plus de 5 éléments à la fois");
+				alert("<?= $t['security-message-1']?>");
 			} else {
     			var modal = $('#exampleModalCenter');
     			modal.modal();

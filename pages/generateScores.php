@@ -18,9 +18,9 @@ if(!isset($included)) {
 }
 
 /*
-$_POST['data']      = "android/de/abberger_hubert.json:v-1.0.4-DE:a%3A4%3A%7Bs%3A9%3A%22firstname%22%3Bs%3A6%3A%22Hubert%22%3Bs%3A8%3A%22lastname%22%3Bs%3A8%3A%22Abberger%22%3Bs%3A7%3A%22cluster%22%3BN%3Bs%3A7%3A%22atelier%22%3BN%3B%7D";
-$_POST['typeScore'] = "resilience";
-$_POST['output']    = "db";
+$_POST['data']      = "jan_dominique.json:v-1.0.6-FR:a%3A4%3A%7Bs%3A9%3A%22firstname%22%3Bs%3A9%3A%22Dominique%22%3Bs%3A8%3A%22lastname%22%3Bs%3A3%3A%22Jan%22%3Bs%3A7%3A%22cluster%22%3BN%3Bs%3A7%3A%22atelier%22%3BN%3B%7D";
+$_POST['typeScore'] = "byQuestion";
+$_POST['output']    = "print";
 */
 
 if(isset($_POST['data']) && strlen($_POST['data']) > 5) {

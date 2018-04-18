@@ -14,7 +14,8 @@
 	"columns": [
 		{
 			"title":"Description",
-			"type":"text"
+			"type":"text",
+			"autofill":"EC_04.1.0"
 		},
 		{
 			"title":"Décrivez le prix de ce produit (au cours des 3 dernières années)",

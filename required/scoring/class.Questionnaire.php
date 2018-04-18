@@ -111,16 +111,24 @@ class Questionnaire {
         
         $qid = $this->getDBId();
         if (!empty($qid)) {
-            
             // Supprimer tous les scores de cette personne, avant de les réécrires
-            $mysqli->query("DELETE FROM scores WHERE qid=".$qid." AND type='".$typeScore."'");
-
+            if($stmt = $mysqli->prepare("DELETE FROM scores WHERE qid=?")) {
+                $stmt->bind_param("i", $qid);
+                $stmt->execute();
+                $stmt->close();
+            }
+    
+            $typesWanted = array("resilience", "academic", "importance");
             $strValues = "";
             $aspectsList = $this->getAspectsDB();
-            foreach($bufferData as $aspect => $score) {
-                $aid = $aspectsList[$aspect];
-                if(trim($score) == "") $score = "NULL";
-                $strValues .= "(".$qid.", ".$aid.", '".$typeScore."', ".$score."), ";
+            foreach($bufferData as $typeScore => $scoresByAspects) {
+                if(in_array($typeScore, $typesWanted)) {
+                    foreach($scoresByAspects as $aspect => $score) {
+                        $aid = $aspectsList[$aspect];
+                        if(trim($score) == "") $score = "NULL";
+                        $strValues .= "(".$qid.", ".$aid.", '".$typeScore."', ".$score."), ";
+                    }
+                }
             }
             $strValues = substr($strValues, 0, -2);
             

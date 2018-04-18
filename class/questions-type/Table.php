@@ -3,6 +3,7 @@ class Table extends Question {
 	protected $rows;
 	protected $columns;
 	private $equivQuestionType;
+	private $dependencesAnswers = array();
 	
 	function __construct($index, $json) {
 		parent::__construct($index, $json);
@@ -18,9 +19,7 @@ class Table extends Question {
 			"text" => "text_answer",
 			"choice" => "multiple_one_solution",
 			"choice_multiple" => "multiple_multiple_solution"
-		);
-		
-		
+		);	
 	}
 	
 	function draw() {
@@ -50,6 +49,7 @@ class Table extends Question {
 		  <tbody>';
 			
 		  $indexRow = 0;
+		  $dependenceInRow = array();
 		  foreach($this->rows as $row) {
 		        $row_brut = $row;
 				$row = str_replace(OTHER_INPUT_TAG, '', $row);
@@ -67,7 +67,32 @@ class Table extends Question {
 							$json['choices'] = array($t['yes'], $t['no']);
 						}
 						
-						$displayCell = $this->all_visible || count($this->columns) == 1 || $indexCol == 0;
+						// La colonne requière des données supplémentaires
+						$autoFillAnswer = null;
+						if(isset($col['autofill']) && !$this->readonly) {
+                            $partsAutofill = explode(".", $col['autofill']);
+                            $aspectId = $partsAutofill[0];
+                            $questNum = $partsAutofill[1];
+                            $colIndex = -1;
+                            if(isset($partsAutofill[2])) $colIndex = $partsAutofill[2];
+                            
+                            if(!isset($this->dependencesAnswers[$indexCol])) {
+                                $this->dependencesAnswers[$indexCol] = getJSONFromFile(getAbsolutePath().DIR_ANSWERS."/".$_COOKIE['filename']);
+                            }
+                            
+                            if(isset($this->dependencesAnswers[$indexCol][$aspectId][$questNum])) {
+                                $toExplore = $this->dependencesAnswers[$indexCol][$aspectId][$questNum];
+                                if(is_array($toExplore)) {
+                                    if(isset($toExplore[$indexRow][$colIndex]) && trim($toExplore[$indexRow][$colIndex]['answer']) != "") { 
+                                        $autoFillAnswer = $toExplore[$indexRow][$colIndex];
+                                        $dependenceInRow[$indexRow] = $indexRow;
+                                    }   
+                                }
+                            }
+						}
+						
+
+						$displayCell = $this->all_visible || count($this->columns) == 1 || $indexCol == 0 || (in_array($indexRow, $dependenceInRow) && !$this->readonly);
 						$triggerDisplay = !$this->all_visible && $indexCol == 0 && count($this->columns) > 1;
 						
 						$questFactory = new QuestionFactory($this->index, $json);
@@ -79,11 +104,18 @@ class Table extends Question {
 							$questionObj->setAspectId($this->aspectId);
 							$questionObj->setReadOnly($this->readonly);
 							
+							
+							
 							if(isset($this->jsonAnswer[$indexRow])) {    
 							    if(isset($this->jsonAnswer[$indexRow][$indexCol])) {
 							       $questionObj->setJSONAnswer($this->jsonAnswer[$indexRow][$indexCol]);
 							    }
 							} 
+							
+							if(isset($autoFillAnswer) && $autoFillAnswer != null && trim($this->jsonAnswer[$indexRow][$indexCol]['answer']) == "" && !$this->readonly) {
+							    $questionObj->setJSONAnswer($autoFillAnswer);
+							}
+							
 							
 							if(!$displayCell) {
 							    if(isset($this->jsonAnswer[$indexRow][0]['answer'])) {

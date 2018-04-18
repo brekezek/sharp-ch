@@ -18,9 +18,9 @@ function invokeScoreGeneration(callback) {
 	<?php $data = $filename.":".$version.":".urlencode(serialize(array())); ?>
 	$.post('pages/generateScores.php', {
 		data:"<?= $data ?>",
-		typeScore: "resilience",
+		typeScore: "db_all",
 		output:"db"
-	}, callback);	
+	}, callback);
 }
 </script>
 	
@@ -153,8 +153,11 @@ function invokeScoreGeneration(callback) {
             	</thead>
             	<tbody>
             	<?php 
+            	$totalOtherThanResilience = -1;
             	foreach($sections as $section => $infoSection) {
-            	    $values = $objectsCharData[$section]->getValues(); ?>
+            	    $values = $objectsCharData[$section]->getValues();
+            	    $totalOtherThanResilience += $values['conduiteExploitation'] + $values['importance'];
+            	    ?>
             	<tr>
             		<td><?= $infoSection['title'] ?></td>
             		<td class="align-middle text-center"><?= round($values['conduiteExploitation'],1)?></td>
@@ -173,12 +176,12 @@ function invokeScoreGeneration(callback) {
 	    			document.location = '?success';
 	    		});
 
-	    		<?php if(trim($labelsStr) == "" && !isset($_GET['refresh'])) {?>
-				
+	    		<?php if(($totalOtherThanResilience <= 0 || trim($labelsStr) == "") && !isset($_GET['refresh']) ) {?>
 	    		invokeScoreGeneration(function(resp) {
-	    			document.location = '?<?= $_SERVER['QUERY_STRING'] ?>';
+	    			document.location = '?<?= $_SERVER['QUERY_STRING'] ?>&refresh';
 			    });
 	    		<?php } else {?>
+	    			invokeScoreGeneration(function(resp) {});
 					startChartGeneration();
 	    		<?php } ?>
 	    		
@@ -248,47 +251,58 @@ function invokeScoreGeneration(callback) {
 				
 				var dataAtelier = obj.atelier == "" ? [] : obj.atelier.split(";");
 				var dataCluster = obj.cluster == "" ? [] : obj.cluster.split(";");
+
+				var datasetsArray = [];
+				if(dataAtelier.length > 0) {
+    				datasetsArray.push({
+    	                label: "<?= $t['score_moyen_atelier']?>",
+    	                type: "line",
+    	                pointBackgroundColor: '#f1c40f',
+    	                backgroundColor: '#f1c40f',
+    	                data: dataAtelier,
+    	                fill: false,
+    	                showLine: false,
+    	                pointRadius: 4,
+    	                hitRadius:3,
+    	                datalabels: {
+    						display: false
+    					}
+    	            });
+				}
+
+				if(dataCluster.length > 0) {
+					datasetsArray.push({
+		                label: "<?= $t['score_moyen_cluster']?>",
+		                type: "line",
+		                pointBackgroundColor: '#8e44ad',
+		                backgroundColor: '#8e44ad',
+		                data: dataCluster,
+		                fill: false,
+		                showLine: false,
+		                pointRadius: 5,
+		                hitRadius:3,
+		                datalabels: {
+							display: false
+						}
+		            });
+				}
+
+				datasetsArray.push({
+	                label: '<?= $t['mon_score_obtenu']?>',
+	                data: dataVals,
+	                backgroundColor: obj.colors.personnal,
+	                datalabels: {
+						align: 'top',
+						anchor: 'center'
+					}
+	            });
 				
 				return {
 			        type: 'bar',
 			        data: {
 			        	hoverBorderColor: "orange",
 			            labels: labelsVals,
-			            datasets: [{
-			                label: "<?= $t['score_moyen_atelier']?>",
-			                type: "line",
-			                pointBackgroundColor: '#f1c40f',
-			                backgroundColor: '#f1c40f',
-			                data: dataAtelier,
-			                fill: false,
-			                showLine: false,
-			                pointRadius: 4,
-			                hitRadius:3,
-			                datalabels: {
-								display: false
-							}
-			            }, {
-			                label: "<?= $t['score_moyen_cluster']?>",
-			                type: "line",
-			                pointBackgroundColor: '#8e44ad',
-			                backgroundColor: '#8e44ad',
-			                data: dataCluster,
-			                fill: false,
-			                showLine: false,
-			                pointRadius: 5,
-			                hitRadius:3,
-			                datalabels: {
-								display: false
-							}
-			            }, {
-			                label: '<?= $t['mon_score_obtenu']?>',
-			                data: dataVals,
-			                backgroundColor: obj.colors.personnal,
-			                datalabels: {
-								align: 'top',
-								anchor: 'center'
-							}
-			            }] 
+			            datasets: datasetsArray
 			        },
 			        options: {
 			        	animation : {

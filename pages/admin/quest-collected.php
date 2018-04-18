@@ -130,7 +130,7 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
 		foreach($repondants[$lastHash] as $key => $info) {
 			echo '<th>'.$key.'</th>';
 		}*/
-		$colsHead = array("", "Prénom", "Nom", "Village", "Collecté par", "Atelier", "Cluster", "Création", "Version", "");
+		$colsHead = array("", $t['firstname'], $t['lastname'], $t['village'], $t['collected_by'], $t['atelier'], $t['cluster'], $t['creation'], $t['version'], "");
 		foreach($colsHead as $head) {
 		    echo '<th>'.$head.'</th>';
 		}
@@ -274,7 +274,7 @@ echo '</table>';
 		$.fn.dataTable.moment('DD.MM.YY');
 		$('#repondants').dataTable({
 			language: {
-		        url: '//cdn.datatables.net/plug-ins/1.10.16/i18n/French.json'
+		        url: '//cdn.datatables.net/plug-ins/1.10.16/i18n/<?= strtolower(getLang()) == "de" ? "German" : "French" ?>.json'
 		    },
 			pagingType: "full_numbers",
 			order: [[ 7, "desc" ]],
@@ -297,7 +297,7 @@ echo '</table>';
 		$('table#repondants').selectableRows()
 		.addButton("<?= $t['delete']?>", "delete", "danger", "x", function(){
 			if($('#repondants tbody tr.active').length > 5) {
-				alert("Pour des raisons de sécurité, vous ne pouvez pas supprimer plus de 5 éléments à la fois");
+				alert("<?= $t['security-message-1']?>");
 			} else {
     			var modal = $('#exampleModalCenter');
     			modal.modal();
@@ -336,7 +336,7 @@ echo '</table>';
 			});
 			files = files.substring(0, files.length-1);
 			//$('input[type="search"]').val(files);
-
+			
 			$.post('pages/generateScores.php', {
 				data:files,
 				typeScore:$(this).attr("data-action"),
@@ -349,6 +349,7 @@ echo '</table>';
 					alert(resp);
 				}
 			});	
+			
 			
 		})
 		.addButton("<?= $t['download']?>", "download", "primary", "cloud-download", function(){

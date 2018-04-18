@@ -20,7 +20,9 @@ function processTableSpecial($answers, $scoringType, $scoring, $json, $questId, 
 		foreach($answers as $answer) {
 			$str1 = "0"; $str2 = "0";
 			if(trim($answer[0]["answer"]) == "1") $str1 = "1";
-			if(trim($answer[1]["answer"]) == "1") $str2 = "1";
+			if($str1 == "1" && isset($answer[1])) {
+			     if(trim($answer[1]["answer"]) == "1") $str2 = "1";
+			}
 			$str = $str1 . $str2;
 			$score += $json['scoring-grid'][$str];
 		}

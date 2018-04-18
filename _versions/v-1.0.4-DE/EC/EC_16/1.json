@@ -12,7 +12,8 @@
     "columns": [
         {
             "title": "Beschreibung",
-            "type": "text"
+            "type": "text",
+			"autofill":"EC_04.1.0"
         },
         {
             "title": "Wie vermarkten Sie diese?",

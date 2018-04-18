@@ -1,5 +1,6 @@
 {
 	"question-type":"text",
+	"input-type":"date",
 	"title":"Collecte de données commencée le",
 	"mandatory":true
 }

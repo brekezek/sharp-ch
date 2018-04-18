@@ -196,7 +196,6 @@ class QuestionnaireManager {
 				$toEncode = $_POST['answers'];
 			}
 			
-			
 			$json = json_encode($toEncode, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
 			
 			if(is_array($toEncode)) {

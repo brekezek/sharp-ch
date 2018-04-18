@@ -46,34 +46,42 @@ class ChartData {
         $this->valuesStr['labels'] = $this->valuesStr['personnal'] = $this->valuesStr['atelier'] = $this->valuesStr['cluster'] = "";
         
         $query =
-        "SELECT aspectId, ".$labelField.", score FROM scores s
+        "SELECT aspectId, ".$labelField.", score, type FROM scores s
         LEFT JOIN label_aspects a ON a.aid=s.aid
-        WHERE s.qid=".$this->qid." AND type='resilience' AND a.aspectId LIKE '".$this->section."_%'
+        WHERE s.qid=".$this->qid." AND a.aspectId LIKE '".$this->section."_%'
         ORDER BY score ASC, aspectId ASC";
         
         $results = $mysqli->query($query);
         
         $this->hasNoScore = $results->num_rows;
         
-        $sumResilience = 0;
-        $nbDefined = 0;
+        $sum = array("resilience" => 0, "importance" => 0, "academic" => 0);
+        $nbDefined = array("resilience" => 0, "importance" => 0, "academic" => 0);
+        
         
         /* On doit ajouter les données en deux étapes sinon elles ne sont pas dans l'ordre!
          * donc on ne peut pas sortir les données pour l'atelier et le cluster de la condition
          * sinon on perd l'ordre */
         foreach($results as $row) {
             if(trim($row['score']) != "") {
-                $this->valuesStr['labels'] .= $row[$labelField].";";
-                if(isset($this->scoresAtelierByAspect[$row['aspectId']])) {
-                    $this->valuesStr['atelier'] .= $this->scoresAtelierByAspect[$row['aspectId']].";";
-                    $this->valuesStr['cluster'] .= $this->scoresClusterByAspect[$row['aspectId']].";";
+                if($row['type'] == "resilience") {
+                    $this->valuesStr['labels'] .= $row[$labelField].";";
+                    if(isset($this->scoresAtelierByAspect[$row['aspectId']])) {
+                        $this->valuesStr['atelier'] .= $this->scoresAtelierByAspect[$row['aspectId']].";";
+                        $this->valuesStr['cluster'] .= $this->scoresClusterByAspect[$row['aspectId']].";";
+                    }
                 }
             }
             
             if($row['score'] != "") {
-                $sumResilience += round($row["score"], 1);
-                $nbDefined++;
-                $this->valuesStr['personnal'] .= round($row["score"], 1).";";
+                if(in_array($row['type'], array_keys($sum))) {
+                    $sum[$row['type']] += round($row["score"], 1);
+                    $nbDefined[$row['type']]++;
+                }
+                
+                if($row['type'] == "resilience") {
+                    $this->valuesStr['personnal'] .= round($row["score"], 1).";";
+                }
             }
         }
         
@@ -82,10 +90,12 @@ class ChartData {
         $results->data_seek(0);
         foreach($results as $row) {
             if($row['score'] === null) {
-                $this->valuesStr['labels'] .= $row[$labelField].";";
-                if(isset($this->scoresAtelierByAspect[$row['aspectId']])) {
-                    $this->valuesStr['atelier'] .= $this->scoresAtelierByAspect[$row['aspectId']].";";
-                    $this->valuesStr['cluster'] .= $this->scoresClusterByAspect[$row['aspectId']].";";
+                if($row['type'] == "resilience") {
+                    $this->valuesStr['labels'] .= $row[$labelField].";";
+                    if(isset($this->scoresAtelierByAspect[$row['aspectId']])) {
+                        $this->valuesStr['atelier'] .= $this->scoresAtelierByAspect[$row['aspectId']].";";
+                        $this->valuesStr['cluster'] .= $this->scoresClusterByAspect[$row['aspectId']].";";
+                    }
                 }
             }
         }
@@ -95,9 +105,9 @@ class ChartData {
         
         $this->valuesStr['atelier'] = ($this->atelier !== null) ? substr($this->valuesStr['atelier'], 0, -1) : "";
         $this->valuesStr['cluster'] = ($this->cluster !== null) ? substr($this->valuesStr['cluster'], 0, -1) : "";
-        $this->valuesStr['avgPersonnalResilience'] = ($nbDefined != 0) ? ($sumResilience / $nbDefined) : 0;
-        $this->valuesStr['importance'] = "-";
-        $this->valuesStr['conduiteExploitation'] = "-";
+        $this->valuesStr['avgPersonnalResilience'] = ($nbDefined['resilience'] != 0) ? ($sum['resilience'] / $nbDefined['resilience']) : 0;
+        $this->valuesStr['importance'] = ($nbDefined['importance'] != 0) ? ($sum['importance'] / $nbDefined['importance']) : 0;
+        $this->valuesStr['conduiteExploitation'] = ($nbDefined['academic'] != 0) ? ($sum['academic'] / $nbDefined['academic']) : 0;
     }
     
     function getValues() {
