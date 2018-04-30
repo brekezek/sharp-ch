@@ -5,7 +5,9 @@ $lang = "fr";
 if(isset($_COOKIE['lang'])) {
     if(file_exists(getLanguageFile($_COOKIE['lang']))) {
 		$lang = $_COOKIE['lang'];
-	}
+    } else {
+        $_COOKIE['lang'] = "fr";
+    }
 }
 
 $json_lang = file_get_contents(getLanguageFile($lang));
@@ -106,6 +108,9 @@ function getVersionText($v) {
 }
 
 function getJSONFromFile($filepath) {
+    if(!file_exists($filepath))
+        return array();
+    
 	$file = file_get_contents($filepath);
 	return json_decode($file, true);
 }

@@ -2,20 +2,20 @@
 class ChartData {
     private $section;
     private $qid;
-    private $atelier = null;
+    private $rid = null;
     private $cluster = null;
-    private $scoresAtelierByAspect;
+    private $scoresRegionByAspect;
     private $scoresClusterByAspect;
     private $valuesStr;
     private $hasNoScore;
     
     public function __construct($data, $section) {
         $this->section = $section;
-        $this->qid = $data['qid'];
-        $this->atelier = $data['atelier'];
-        $this->cluster = $data['cluster'];
+        $this->qid = $data['qid']; // id du questionnaire
+        $this->rid = $data['rid']; // id de la region
+        $this->cluster = $data['cluster']; // id du cluster
         
-        $this->scoresAtelierByAspect = array();
+        $this->scoresRegionByAspect = array();
         $this->scoresClusterByAspect = array();
         $this->valuesStr = array();
         
@@ -26,9 +26,9 @@ class ChartData {
     private function getData() {
         global $mysqli;
         
-        if($this->atelier !== null) {
-            foreach($mysqli->query($this->getQuery("atelier")) as $row) {
-                $this->scoresAtelierByAspect[$row['aspectId']] = round($row['scoreAtelier'],2);
+        if($this->rid !== null) {
+            foreach($mysqli->query($this->getQuery("rid")) as $row) {
+                $this->scoresRegionByAspect[$row['aspectId']] = round($row['scoreRegion'],2);
             }
         }
         if($this->cluster !== null) {
@@ -43,7 +43,7 @@ class ChartData {
         
         $labelField = "label_".getLang();
         
-        $this->valuesStr['labels'] = $this->valuesStr['personnal'] = $this->valuesStr['atelier'] = $this->valuesStr['cluster'] = "";
+        $this->valuesStr['labels'] = $this->valuesStr['personnal'] = $this->valuesStr['rid'] = $this->valuesStr['cluster'] = "";
         
         $query =
         "SELECT aspectId, ".$labelField.", score, type FROM scores s
@@ -60,14 +60,14 @@ class ChartData {
         
         
         /* On doit ajouter les données en deux étapes sinon elles ne sont pas dans l'ordre!
-         * donc on ne peut pas sortir les données pour l'atelier et le cluster de la condition
+         * donc on ne peut pas sortir les données pour l'rid et le cluster de la condition
          * sinon on perd l'ordre */
         foreach($results as $row) {
             if(trim($row['score']) != "") {
                 if($row['type'] == "resilience") {
                     $this->valuesStr['labels'] .= $row[$labelField].";";
-                    if(isset($this->scoresAtelierByAspect[$row['aspectId']])) {
-                        $this->valuesStr['atelier'] .= $this->scoresAtelierByAspect[$row['aspectId']].";";
+                    if(isset($this->scoresRegionByAspect[$row['aspectId']])) {
+                        $this->valuesStr['rid'] .= $this->scoresRegionByAspect[$row['aspectId']].";";
                         $this->valuesStr['cluster'] .= $this->scoresClusterByAspect[$row['aspectId']].";";
                     }
                 }
@@ -86,14 +86,14 @@ class ChartData {
         }
         
         /* On ajoute les données pour les aspects qui n'ont aucun scores personnels (données pas complétées),
-         * mais qui ont quand meme des données pour l'atelier et le cluster */
+         * mais qui ont quand meme des données pour l'rid et le cluster */
         $results->data_seek(0);
         foreach($results as $row) {
             if($row['score'] === null) {
                 if($row['type'] == "resilience") {
                     $this->valuesStr['labels'] .= $row[$labelField].";";
-                    if(isset($this->scoresAtelierByAspect[$row['aspectId']])) {
-                        $this->valuesStr['atelier'] .= $this->scoresAtelierByAspect[$row['aspectId']].";";
+                    if(isset($this->scoresRegionByAspect[$row['aspectId']])) {
+                        $this->valuesStr['rid'] .= $this->scoresRegionByAspect[$row['aspectId']].";";
                         $this->valuesStr['cluster'] .= $this->scoresClusterByAspect[$row['aspectId']].";";
                     }
                 }
@@ -103,7 +103,7 @@ class ChartData {
         $this->valuesStr['labels'] = substr($this->valuesStr['labels'], 0, -1);
         $this->valuesStr['personnal'] = substr($this->valuesStr['personnal'], 0, -1);
         
-        $this->valuesStr['atelier'] = ($this->atelier !== null) ? substr($this->valuesStr['atelier'], 0, -1) : "";
+        $this->valuesStr['rid'] = ($this->rid !== null) ? substr($this->valuesStr['rid'], 0, -1) : "";
         $this->valuesStr['cluster'] = ($this->cluster !== null) ? substr($this->valuesStr['cluster'], 0, -1) : "";
         $this->valuesStr['avgPersonnalResilience'] = ($nbDefined['resilience'] != 0) ? ($sum['resilience'] / $nbDefined['resilience']) : 0;
         $this->valuesStr['importance'] = ($nbDefined['importance'] != 0) ? ($sum['importance'] / $nbDefined['importance']) : 0;
@@ -119,9 +119,9 @@ class ChartData {
     }
     
     private function getQuery($type) {
-        if($type == "atelier") {
-            $fieldScore = "scoreAtelier";
-            $fieldCustom = "atelier";
+        if($type == "rid") {
+            $fieldScore = "scoreRegion";
+            $fieldCustom = "rid";
         } else {
             $fieldScore = "scoreCluster";
             $fieldCustom = "cluster";

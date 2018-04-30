@@ -85,7 +85,7 @@
     "instruct-content3": "Gehen Sie zurück und navigieren Sie zwischen den Fragebögen wann immer Sie wollen.<br>Alles wird automatisch gespeichert.",
     "instruct-content4": "Sobald Sie Ihren Fragebogen ausgefüllt haben, haben Sie Zugriff auf Ihre Punktzahl in Form von Diagrammen und Tabellen.<br>Sie können das Ergebnis auch als PDF speichern oder diese Ergebnisse online abrufen, wann immer Sie möchten.",
     "your-questionnaires": "Ihre Fragebögen",
-    "instruct-content1": "Sie haben keine Zeit, heute alles zu füllen oder nach einer Weile müde zu werden? <br> Schließen Sie einfach Ihren Browser. Wenn Sie zurückkommen, wird Ihr Fragebogen so sein, wie Sie ihn verlassen haben!",
+    "instruct-content1": "Sie haben keine Zeit, heute alles zu füllen oder nach einer Weile müde zu werden? <br>Schließen Sie einfach Ihren Browser. Wenn Sie zurückkommen, wird Ihr Fragebogen so sein, wie Sie ihn verlassen haben!",
     "text-app": "Texte der App",
     "text-charts": "Titel der Aspekte in den Graphen",
     "confirmation": "Bestätigung",
@@ -94,7 +94,7 @@
     "close": "Schließen",
     "delete-participants-also": "Löschen Sie auch Teilnehmer in Bezug auf die Fragebögen",
     "security-message-1": "Aus Sicherheitsgründen können Sie nicht mehr als 5 Elemente gleichzeitig löschen",
-    "atelier": "Workshop",
+    "atelier": "Geographisches Gebiet",
     "cluster": "Art der Produktion",
     "collected_by": "Gesammelt von",
     "creation": "Schaffung",
@@ -102,5 +102,14 @@
     "firstname": "Vorname",
     "version": "Version",
     "village": "Dorf",
-    "region": "Region"
+    "region": "Region",
+    "aspect": "Aspekt",
+    "error": "Error",
+    "question": "Frage",
+    "section": "Sektion",
+    "alert-edit-aspect-2": "Sie sollten Ihr JSON überprüfen, da es so aussieht, als wäre es nicht gültig.",
+    "message-edit-aspect-part-2": "Sie müssen keine Angst haben, einen Fehler zu machen </ b>. Wenn Sie JSON hinzufügen, das nicht korrekt ist, werden Sie benachrichtigt und Ihre Änderungen werden nicht gespeichert. Wenn Sie in der Liste der anzuzeigenden Aspekte einen Aspekt hinzufügen, der nicht vorhanden ist, wird eine Fehlermeldung angezeigt, und Ihre Änderungen werden nicht gespeichert.",
+    "alert-edit-aspect-1": "Sie können keine Abschnittsnamen oder Aspekte eingeben, die nicht existieren!<br>Ihre Änderungen wurden abgebrochen, um Ihre Dateien nicht zu beschädigen und Fehler zu verursachen.",
+    "message-edit-aspect-part-1": "Sie können von dieser Seite <b> alles verändern, was den Fragebogen ausmacht </ b>: Der Titel der Abschnitte, Aspekte, Fragen, Sie können auch die Bewertungen der Fragen ändern, entscheiden, ob eine Frage obligatorisch ausgefüllt werden muss oder nicht , etc ...",
+    "bySection": "Nach Sektion"
 }

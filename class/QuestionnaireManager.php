@@ -173,7 +173,7 @@ class QuestionnaireManager {
     				        
     				        $queryParticipant = "INSERT INTO participants (firstname, lastname, region, commune) VALUES (?,?,?,?)";
     				        if(!empty($pid)) {
-    				            $queryParticipant = "UPDATE participants SET firstname=?, lastname=?, region=?, commune=?) VALUES (?,?,?,?)";
+    				            $queryParticipant = "UPDATE participants SET firstname=?, lastname=?, commune=?) VALUES (?,?,?,?)";
     				        }
     				        if ($stmt = $mysqli->prepare($queryParticipant)) {
     				            $stmt->bind_param("ssss", $firstname, $lastname, $region, $commune);

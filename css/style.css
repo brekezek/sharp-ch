@@ -126,6 +126,21 @@
 	background: rgba(255,255,255,0.1);
 }
 
+table.dataTable tbody tr.selected {
+    background-color: #B0BED9;
+}
+.dropdown-item {
+	cursor: pointer;
+}
+#dropdown-lang.dropdown-toggle::after {
+	vertical-align: 0.115em;
+	color:#ccc;
+}
+#lang .dropdown-item.active,
+#lang .dropdown-item:active {
+  background-color: #e9ecef;
+}
+
 #device-not-optimized {
 	display: none;
 }

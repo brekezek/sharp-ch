@@ -1,5 +1,5 @@
 {
-	"question-type":"text",
-	"title":"Données collectées par:",
-	"mandatory":true
+    "question-type": "text",
+    "title": "Données collectées par:",
+    "mandatory": true
 }

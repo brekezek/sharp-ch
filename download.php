@@ -6,9 +6,6 @@ includeDependencies();
 
 sec_session_start();
 
-if(!login_check($mysqli)) {
-    header('Location: admin.php');
-}
 
 // grab the requested file's name
 $file_name = $_GET['file'];

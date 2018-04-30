@@ -44,7 +44,8 @@ function invokeScoreGeneration(callback) {
 	
 	<script src="js/Chart.min.js"></script>
 	<script src="js/chartjs-plugin-datalabels.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script>
+	<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script> 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min.js"></script> -->
 	
 	<style>
 	.chart-legend ul { margin-bottom: 5px; }
@@ -67,21 +68,21 @@ function invokeScoreGeneration(callback) {
 	$name = "";
 	
 	if ($stmt = $mysqli->prepare(
-	    "SELECT qid, firstname, lastname, atelier, cluster FROM questionnaires q
+	    "SELECT qid, firstname, lastname, rid, cluster FROM questionnaires q
         LEFT JOIN participants p ON p.pid = q.pid
         WHERE file LIKE ?")) {
         
         $filename = "%".basename($filename);
         $stmt->bind_param("s", $filename);
         $stmt->execute();
-        $stmt->bind_result($qid, $firstname, $lastname, $atelier, $cluster);
+        $stmt->bind_result($qid, $firstname, $lastname, $rid, $cluster);
         $stmt->fetch();
         $stmt->free_result();
         $stmt->close();
         
         $sections = getQuestionnaireSections($version, array("ADM"));
         
-        $dataForChart = array("qid" => $qid, "atelier" => $atelier, "cluster" => $cluster);
+        $dataForChart = array("qid" => $qid, "rid" => $rid, "cluster" => $cluster);
         $dataChart = array();
         $dataSectionPDF = array();
 
@@ -98,8 +99,7 @@ function invokeScoreGeneration(callback) {
         	<?= $t['score_resilience_par_aspect']?>, 
         	<div class="d-inline text-muted lead"><?= $t['comparaison_score_avg_canton']?></div>
         	</h4>
-        	
-        	
+
         	<?php 
         	$labelsStr = "";
         	$objectsCharData = array();
@@ -130,6 +130,11 @@ function invokeScoreGeneration(callback) {
             				<?php } else { ?>
                             	<div class="chart-legend"></div>
                             	<canvas id="chart_<?= $section ?>" data-section="<?= $section?>" height="130px" style="margin-left:-25px"></canvas>
+                            	 
+                            	<div style="position:absolute; top:-50000px">
+                                  <canvas id="hidden_chart_<?= $section ?>" data-section="<?= $section?>" width="1200" height="650"></canvas>
+                                </div>
+                                
                         	<?php } 
         				}?>
                 	</div>
@@ -171,6 +176,7 @@ function invokeScoreGeneration(callback) {
  		
             <script>
 			$(function(){
+				
 				$('#finishScoreDisplay').click(function(){
 	    			deleteCookie("scores-display");
 	    			document.location = '?success';
@@ -184,7 +190,7 @@ function invokeScoreGeneration(callback) {
 	    			invokeScoreGeneration(function(resp) {});
 					startChartGeneration();
 	    		<?php } ?>
-	    		
+
 			});
 
 			function startChartGeneration() {
@@ -210,11 +216,19 @@ function invokeScoreGeneration(callback) {
 				    }
 				});
 				
+
+				// Canvas affiché
 				var ctx = document.getElementById("chart_"+sectionName).getContext('2d');
 				var data = getGraphJSONData(json);
 			    myChart = new Chart(ctx, data);
 
 			    
+				// Canvas caché, pour la generation de PDF
+			    var ctxHidden = document.getElementById('hidden_chart_'+sectionName).getContext('2d');
+			    //Chart.defaults.global.defaultFontSize = 13;
+			    var canvasForPDF = new Chart(ctxHidden, data);
+				
+		    
 			    $('#chart_'+sectionName).parents(".chart-wrapper").find('.chart-legend').html(myChart.generateLegend());
 			}
 
@@ -225,7 +239,7 @@ function invokeScoreGeneration(callback) {
 				var canvas = $('canvas#'+id);
 				var b64Text = canvas.get(0).toDataURL();
 				
-				idSectionsStr += id.replace("chart_","")+",";
+				idSectionsStr += id.replace("hidden_chart_","")+",";
 				graphsB64 += b64Text.replace('data:image/png;base64,', '')+",";
 				
 				if($('canvas:last').attr("id") == id) {
@@ -241,25 +255,32 @@ function invokeScoreGeneration(callback) {
 				    });	
 				}
 			}
+			
+		
 
 			function getGraphJSONData(obj) {
 				
-				var labelsVals = obj.labels == false ? "" : obj.labels.split(";");
-				
-				var dataVals = obj.personnal == false ? "" : obj.personnal.split(";");
+				var labelsVals = obj.labels === false ? "" : obj.labels.split(";");
+
+				var dataVals = obj.personnal === false ? "" : obj.personnal.split(";");
 				for(i in dataVals) { dataVals[i] = +dataVals[i]; } 
 				
-				var dataAtelier = obj.atelier == "" ? [] : obj.atelier.split(";");
+				var dataRegion = obj.rid == "" ? [] : obj.rid.split(";");
 				var dataCluster = obj.cluster == "" ? [] : obj.cluster.split(";");
 
+				console.log(labelsVals);
+				console.log(dataVals);
+
+				var colorScore = obj.colors.label_text;
+
 				var datasetsArray = [];
-				if(dataAtelier.length > 0) {
+				if(dataRegion.length > 0) {
     				datasetsArray.push({
     	                label: "<?= $t['score_moyen_atelier']?>",
     	                type: "line",
     	                pointBackgroundColor: '#f1c40f',
     	                backgroundColor: '#f1c40f',
-    	                data: dataAtelier,
+    	                data: dataRegion,
     	                fill: false,
     	                showLine: false,
     	                pointRadius: 4,
@@ -304,13 +325,15 @@ function invokeScoreGeneration(callback) {
 			            labels: labelsVals,
 			            datasets: datasetsArray
 			        },
+			        devicePixelRatio: 5*window.devicePixelRatio,
 			        options: {
 			        	animation : {
 			        		onComplete(e) {
 		        		      this.options.animation.onComplete = null; //disable after first render to avoid firing each time we hover
 		        		      //console.log(e);
-		        		      
-		        		      enableSave(e.chart.canvas.id);
+		        		      if(e.chart.canvas.id.indexOf("hidden") > -1) {
+		        		      	enableSave(e.chart.canvas.id);
+		        		      }
 		        		      //this.initExport();
 		        		   }
 			            },
@@ -319,11 +342,15 @@ function invokeScoreGeneration(callback) {
 			            },
 			        	plugins: {
 							datalabels: {
-								color: obj.colors.label_text,
+								color: function(context) {
+								    var index = context.dataIndex;
+								    var value = context.dataset.data[index];
+								    return value < 2 ? "black" : colorScore;
+								},
 								font: {
 									weight: 'bold',
 									family: 'Roboto',
-									size: 11
+									size: 14
 								}
 							}
 						},

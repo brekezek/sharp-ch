@@ -31,6 +31,7 @@ if(isset($_POST['data']) && strlen($_POST['data']) > 5) {
     $output = isset($_POST['output']) ? $_POST['output'] : "print";
     // -------------------------------------
     
+    
     if(count($personnes) > 1) {
         $questionnaires = array();
         foreach($personnes as $person)
@@ -40,10 +41,12 @@ if(isset($_POST['data']) && strlen($_POST['data']) > 5) {
         $questionnaires = new Questionnaire($person['file'], $person['version'], $person['infos']);
     }
     
+    
     //$questionnaires->getAspectsDB();
     
     $scoreByQuestion = new ScoreWriter($typeScore, $questionnaires, $output);
     $scoreByQuestion->write();
+    
     
     if($output == "csv")
         echo $scoreByQuestion->getFilename();

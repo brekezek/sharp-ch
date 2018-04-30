@@ -97,7 +97,7 @@ if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections
                 $color = $currentSection['color']->getRGBRaw();
                 $this->SetTextColor($color['r'], $color['g'], $color['b']);
     
-                $this->Cell(0,32, $currentSection['title'],0,2,'C');
+                $this->Cell(0,24, $currentSection['title'],0,2,'C');
                 $this->Ln(20);
             }
         }
@@ -144,15 +144,53 @@ if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections
                 $this->AddPage();
                 
                 //$pic = 'data://text/plain;base64,'.$infos['b64'];
-                $this->Image($infos['file'], $x = 8, $y = 50, 0, 121, 'png');
+                $this->SetY(36);
+                $this->centreImage($infos['file']);
             }
+        }
+        
+        const DPI = 150;
+        const MM_IN_INCH = 25.4;
+        const A4_HEIGHT = 297;
+        const A4_WIDTH = 210;
+        // tweak these values (in pixels)
+        const MAX_WIDTH = 1650;
+        const MAX_HEIGHT = 1150;
+        function pixelsToMM($val) {
+            return $val * self::MM_IN_INCH / self::DPI;
+        }
+        function resizeToFit($imgFilename) {
+            list($width, $height) = getimagesize($imgFilename);
+            $widthScale = self::MAX_WIDTH / $width;
+            $heightScale = self::MAX_HEIGHT / $height;
+            $scale = min($widthScale, $heightScale);
+            return array(
+                round($this->pixelsToMM($scale * $width)),
+                round($this->pixelsToMM($scale * $height))
+            );
+        }
+        function centreImage($img) {
+            list($width, $height) = $this->resizeToFit($img);
+            // you will probably want to swap the width/height
+            // around depending on the page's orientation
+            $this->Image(
+                $img, (self::A4_HEIGHT - $width) / 2,
+                $this->GetY(), // (self::A4_WIDTH - $height) / 2,
+                $width,
+                $height,
+                "png"
+                );
         }
     }
     
     
     $pdf = new PDF($sections, $person);
     $pdf->drawContent();
-    $filename = DIR_TEMP."/".$pdf->getTitle().".pdf";
+    
+    $filename = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $pdf->getTitle());
+    $filename = mb_ereg_replace("([\.]{2,})", '', $filename);
+    $filename = DIR_TEMP."/".$filename.".pdf";
+
     $pdf->Output($debug ? "I" : "F", "../".$filename, true);
     
     foreach($sections as $sectionId => $infos) {

@@ -13,7 +13,7 @@ class ScoreWriter {
         if(!in_array($output, array("csv", "print", "db"))){
             throw new Exception("Ce type de sortie n'est pas prévu par l'application.");
         }
-        if(!in_array($typeScore, array("byQuestion", "byAspect", "byIndicator", "resilience", "db_all"))){
+        if(!in_array($typeScore, array("byQuestion", "byAspect", "bySection", "byIndicator", "resilience", "db_all"))){
             throw new Exception("Le type de score donné n'est pas reconnu.");
         }
         if($typeScore == "db_all" && $output != "db") {
@@ -32,6 +32,7 @@ class ScoreWriter {
         if(is_array($questionnaires)) {
             switch($typeScore) {
                 case "byAspect": $filename = "scoresByAspect"; break;
+                case "bySection": $filename = "scoresBySection"; break;
                 case "byIndicator": $filename = "scoresByIndicator"; break;
                 case "resilience": $filename = "resilience"; break;
                 default: $filename = "scoresByQuestion"; break;
@@ -71,7 +72,15 @@ class ScoreWriter {
                 foreach($this->questionnaires as $quest)
                     $this->writeByAspect($quest);
                 break;
-                
+            
+            case "bySection":
+                if($this->output == "csv")
+                    fwrite($this->fp, "id_section;score;nom;prenom;idinit;atelier;cluster\n");
+                    
+                foreach($this->questionnaires as $quest)
+                    $this->writeBySection($quest);
+                break;
+                            
             case "byIndicator":
                 if($this->output == "csv") 
                     fwrite($this->fp, "indicator;score;nom;prenom;idinit;atelier;cluster\n");
@@ -259,6 +268,76 @@ class ScoreWriter {
         
         $this->writeDB($questionnaire);
     } // end function
+    
+    
+    
+  
+    function writeBySection($questionnaire) {
+        
+        $answers = $questionnaire->getAnswers();
+        $scoresBySection = array();
+        $sectionsHashmap = array();
+        
+        foreach(getAspectsList($questionnaire->getVersion()) as $aspectId) {
+            // Ignore les tags qui ne sont pas des aspects, et les aspects non scorés
+            if(in_array($aspectId, $questionnaire->getTagsToIgnore())) continue;
+            // Ignore EC_05 si le EC_05 est contenu dans EC_16 à cause d'un problème
+            if($questionnaire->needFixEC_16() && $aspectId == "EC_05") continue;
+           
+            $sectionId = explode("_", $aspectId)[0];
+            
+            $sectionsHashmap[$sectionId] = 1;
+           
+            if(isset($answers[$aspectId])) {
+                $jsonAspect = $answers[$aspectId];
+                
+                $scores = $this->getArrayScoresByType($questionnaire, $aspectId, $jsonAspect);
+                
+                
+                if(!isset($scoresBySection[$sectionId])) {
+                    $scoresBySection[$sectionId] = array();
+                }
+                
+                // Tri des scores dans un tableau section => array(score1, score2, ...)
+                foreach($scores as $typeScore => $score) {
+                    if($score >= 0) {
+                        $scoresBySection[$sectionId][] = $score;
+                    }
+                }
+                
+            } // end if
+        } // end version
+        
+        $sectionsList = array_keys($sectionsHashmap);
+        
+        // Moyenne du tableau des scores pour chaque section, pour avoir la moyenne par section
+        foreach($scoresBySection as $section => $scoresArray) {
+            $sumScores = array_sum($scoresArray);
+            $nbScores = count($scoresArray);
+            
+            $scoresBySection[$section] = ($nbScores > 0) ? $this->formatScore($sumScores / $nbScores) : -1;
+        }
+        
+        foreach($sectionsList as $section) {
+            if(!isset($scoresBySection[$section])) {
+                $scoresBySection[$section] = -1;
+            }
+        }
+        
+        foreach($scoresBySection as $section => $score) {
+            if(in_array($this->output, array("csv", "print"))) {
+                $score = ($score < 0) ? " " : $score;
+                $this->bufferStr .= $section.";".$score.";".$this->getAdditionnalInfos($questionnaire)."\n";
+            } else {
+                
+                //$this->bufferData[$typeScore][$aspectLabel] = $score;
+            }
+        }
+        
+        $this->writeDB($questionnaire);
+    } // end function
+    
+    
     
     function getArrayScoresByType($questionnaire, $aspectId, $jsonAspect) {
         $scores     = array("academic" => -1, "adequacy" => -1, "importance" => -1);

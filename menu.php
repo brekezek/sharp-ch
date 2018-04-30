@@ -7,11 +7,28 @@
 		
 		<img src="img/logo_menu.jpg" width="80px"> <span class="badge badge-danger text-uppercase"><?= getLang() == "fr" ? "CH" : getLang() ?></span>
 		
-		<?php if($readonly || $logged) {?>
-		<a href="admin.php?page=1" id="back" class="btn btn-secondary ml-2">
-			<span class="oi oi-spreadsheet mr-1"></span> Admin
-		</a>
-		<?php } ?>
+		<div class="d-inline-flex">
+    		<?php if($readonly || $logged) {?>
+    		<a href="admin.php?page=1" id="back" class="btn btn-secondary ml-2">
+    			<span class="oi oi-spreadsheet mr-1"></span> Admin
+    		</a>
+    		<?php } ?>
+    		
+    		<?php if(!isset($_COOKIE['indexAspect']) && !$displayScorePage) { ?>
+            <div class="nav-item dropdown ml-2" data-toggle="hover">
+                <div class="btn btn-dark btn-md dropdown-toggle" id="dropdown-lang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="vertical-align:baseline">
+                	 <img src="img/<?= getLang() ?>.png">
+                </div>
+                <div class="dropdown-menu" id="lang" aria-labelledby="dropdown-lang" style="min-width:0; padding:2px 0">
+                	<?php foreach(getLanguageList() as $lang) {?>
+                	<div lang="<?= $lang ?>" class="dropdown-item <?php if(isset($_COOKIE['lang']) && $_COOKIE['lang'] == $lang) {?>active<?php } ?>">
+						<img src="img/<?= $lang ?>.png">
+					</div>
+					<?php } ?>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
 	</div>
   	
 	<?php if(isset($_COOKIE['indexAspect'])) {?>
@@ -74,10 +91,10 @@
 	
 		<div class="mr-auto"></div>
 		
-		<ul class="navbar-nav mr-2">
+		<div class="navbar-nav mr-2">
 		  <?php if(!$displayScorePage) { ?>
-		  <li class="nav-item dropdown">
-			<a class="btn btn-primary btn-md dropdown-toggle" href="#" id="dropdown-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="left" title="<?= $t['choose_version']?>">
+		  <div class="nav-item dropdown">
+			<a class="btn btn-primary btn-md dropdown-toggle" href="#" id="dropdown-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<span class="oi oi-cog mr-1"></span> <?= isset($_COOKIE['version']) ? $_COOKIE['version'] : $t['choose_version'] ?>
 			</a>
 			<div class="dropdown-menu" id="version" aria-labelledby="dropdown-version">
@@ -99,9 +116,9 @@
 					$i++;
 			  }?>
 			</div>
-		  </li>
+		  </div>
 		  <?php } ?>
-		</ul>
+		</div>
 
 	   <?php if(!$displayScorePage) { ?>
     		<button id="new-quest" class="d-none btn btn-light" type="submit">

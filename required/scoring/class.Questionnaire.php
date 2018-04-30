@@ -12,6 +12,7 @@ class Questionnaire {
         $this->filepath = getAbsolutePath().DIR_ANSWERS."/".$filename;
         $this->filename = $filename;
         $this->json = getJSONFromFile($this->filepath);
+       
         $this->setPersonInfos($infosPerson);
         $this->setVersion($version);
     }

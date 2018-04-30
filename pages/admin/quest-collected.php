@@ -122,7 +122,7 @@ foreach($repondants as $hash => $infos)
 </div>
 
 <?php 
-echo '<table id="repondants" class="table table-striped table-hover display table-sm" data-page-length="11">';
+echo '<table id="repondants" class="table table-striped table-hover display table-sm" data-page-length="11" style="border-collapse:collapse!important">';
 	echo '<thead>';
 		echo '<tr>';
 		/*
@@ -140,8 +140,9 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
 	echo '<tbody>';
 		$i = 0; 
 		if ($stmt = $mysqli->prepare(
-		    "SELECT collecte_par, firstname, lastname, commune, creation_date, version, cluster, atelier, file, COUNT(q.pid) as nbQuest FROM questionnaires q
+		    "SELECT collecte_par, firstname, lastname, commune, creation_date, version, cluster, p.rid, file, rlabel, COUNT(q.pid) as nbQuest FROM questionnaires q
             LEFT JOIN participants p ON q.pid = p.pid
+            LEFT JOIN regions re ON re.rid=p.rid
             GROUP BY q.pid 
             ORDER BY lastname ASC, firstname ASC")) {
                 
@@ -161,7 +162,7 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
                     "firstname" => ucfirst($row['firstname']),
                     "lastname" => ucfirst($row['lastname']),
                     "cluster" => $row['cluster'],
-                    "atelier" => $row['atelier']
+                    "atelier" => $row['rid']
                 )));
                 
                 /*
@@ -192,7 +193,7 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
                 echo '<td class="align-middle text-capitalize font-weight-bold">'.$row['lastname'].'</td>';
                 echo '<td class="align-middle text-capitalize">'.$row['commune'].'</td>';
                 echo '<td class="align-middle text-capitalize">'.$row['collecte_par'].'</td>';
-                echo '<td class="align-middle text-center">'.$row['atelier'].'</td>';
+                echo '<td class="align-middle text-center">'.$row['rlabel'].'</td>';
                 echo '<td class="align-middle text-center">'.$row['cluster'].'</td>';
                 echo '<td class="align-middle text-center">'.date("d.m.y", strtotime($row['creation_date'])).'</td>';
                 echo '<td class="align-middle text-center">'.$row['version'].'</td>';
@@ -272,104 +273,109 @@ echo '</table>';
 		}
 
 		$.fn.dataTable.moment('DD.MM.YY');
-		$('#repondants').dataTable({
-			language: {
-		        url: '//cdn.datatables.net/plug-ins/1.10.16/i18n/<?= strtolower(getLang()) == "de" ? "German" : "French" ?>.json'
-		    },
-			pagingType: "full_numbers",
-			order: [[ 7, "desc" ]],
-			columnDefs: [
-			    { orderable: false, searchable: false, targets: [0,<?= (count($colsHead)-1) ?>] }
-			]
-		});
-		
-		$('body').tooltip({
-		    selector: '[data-toggle=tooltip]'
-		});
-		
+
 		var itemsScore = [
 			{text:"<?= $t['byQuestion']?>", action:"byQuestion"},
 			{text:"<?= $t['byAspect']?>", action:"byAspect"},
+			{text:"<?= $t['bySection'] ?>", action:"bySection"},
 			{text:"<?= $t['byIndicator']?>", action:"byIndicator"},
 			{text:"<?= $t['resilience']?>", action:"resilience"}
 		];
 		
-		$('table#repondants').selectableRows()
-		.addButton("<?= $t['delete']?>", "delete", "danger", "x", function(){
-			if($('#repondants tbody tr.active').length > 5) {
-				alert("<?= $t['security-message-1']?>");
-			} else {
-    			var modal = $('#exampleModalCenter');
-    			modal.modal();
-    			modal.find('#submit').removeAttr("disabled").bind("click", function(){
-    				modal.find('#submit').attr("disabled","disabled");	
-    				
-    				var files = "";
-    				$('#repondants tbody tr.active').each(function(){
-    					files += $(this).attr("data-file")+",";
-    				});
-    				files = files.substring(0, files.length-1);
-    				
-    				$.post('pages/delete.php', {
-    					data:files,
-    					deleteParticipant:$('input[type="checkbox"]#deleteParticipants').is(":checked"),
-    					actionId:"delete-files"
-    				}, function(html){
-    					modal.find('#submit').unbind("click");
-    					$('#repondants tbody tr.active').remove();
-    				});
-    				
-    				modal.modal('hide');
-    			});
+		$('#repondants').dataTable({
+			<?php if(getLang() != "en") { ?>
+			language: {
+		        url: '//cdn.datatables.net/plug-ins/1.10.16/i18n/<?= strtolower(getLang()) == "de" ? "German" : "French" ?>.json'
+		    },
+		    <?php } ?>
+			pagingType: "full_numbers",
+			order: [[ 7, "desc" ]],
+			columnDefs: [
+			    { orderable: false, searchable: false, targets: [0,<?= (count($colsHead)-1) ?>] }
+			],
+			initComplete: function(){
+				$('table#repondants').selectableRows()
+				.addButton("<?= $t['delete']?>", "delete", "danger", "x", function(){
+					if($('#repondants tbody tr.active').length > 5) {
+						alert("<?= $t['security-message-1']?>");
+					} else {
+		    			var modal = $('#exampleModalCenter');
+		    			modal.modal();
+		    			modal.find('#submit').removeAttr("disabled").bind("click", function(){
+		    				modal.find('#submit').attr("disabled","disabled");	
+		    				
+		    				var files = "";
+		    				$('#repondants tbody tr.active').each(function(){
+		    					files += $(this).attr("data-file")+",";
+		    				});
+		    				files = files.substring(0, files.length-1);
+		    				
+		    				$.post('pages/delete.php', {
+		    					data:files,
+		    					deleteParticipant:$('input[type="checkbox"]#deleteParticipants').is(":checked"),
+		    					actionId:"delete-files"
+		    				}, function(html){
+		    					modal.find('#submit').unbind("click");
+		    					$('#repondants tbody tr.active').remove();
+		    				});
+		    				
+		    				modal.modal('hide');
+		    			});
+					}
+				})
+				.addDropdown("<?= $t['generate-score-R']?>", "scores", itemsScore, "success", "bar-chart", function(){
+					var selectedRows = $('#repondants tbody tr.active');
+					var button = $(this).parents(".dropdown").find("button");
+					var initBtText = button.find("span.text").html();
+					
+					button.attr("disabled","disabled").find("span.text").html('<?= $t['generation']?> <img src="img/loader-score.svg">');
+					
+					var files = "";
+					selectedRows.each(function(){
+						files += $(this).attr("data-file")+":"+$(this).attr("data-version")+":"+$(this).attr("data-infos")+",";
+					});
+					files = files.substring(0, files.length-1);
+					//$('input[type="search"]').val(files);
+					
+					$.post('pages/generateScores.php', {
+						data:files,
+						typeScore:$(this).attr("data-action"),
+						output:"csv"
+					}, function(resp) {
+						button.removeAttr("disabled").find("span.text").html(initBtText);
+						if(resp != "error" && resp.length > 2 && resp.length < 200) {
+							document.location = 'download.php?file=<?= DIR_ANSWERS ?>/scores/'+resp;
+						} else {
+							alert(resp);
+						}
+					});	
+					
+					
+				})
+				.addButton("<?= $t['download']?>", "download", "primary", "cloud-download", function(){
+					var selectedRows = $('#repondants tr.active');
+					if(selectedRows.length == 1) {
+						document.location = 'download.php?file=<?= DIR_ANSWERS ?>/'+selectedRows.attr("data-file")+"&name="+selectedRows.attr("data-name");
+					} else {
+						$(this).attr("disabled","disabled").find("span.text").text("<?= $t['generation']?>...");
+		    			var files = "";
+		    			selectedRows.each(function(){
+		    				files += $(this).attr("data-file")+":"+$(this).attr("data-name")+",";
+		    			});
+		    			$.post('pages/admin/download.questionnaires.php', { f:files }, function(resp) {
+		    				$('#tools #download').removeAttr("disabled").find("span.text").text("<?= $t['generation']?>");
+							if(resp == "ok") 
+		    					document.location = 'download.php?file=pages/admin/questionnaires.zip';
+							else
+								alert(resp);
+		    			});
+					}
+				});
 			}
-		})
-		.addDropdown("<?= $t['generate-score-R']?>", "scores", itemsScore, "success", "bar-chart", function(){
-			var selectedRows = $('#repondants tbody tr.active');
-			var button = $(this).parents(".dropdown").find("button");
-			var initBtText = button.find("span.text").html();
-			
-			button.attr("disabled","disabled").find("span.text").html('<?= $t['generation']?> <img src="img/loader-score.svg">');
-			
-			var files = "";
-			selectedRows.each(function(){
-				files += $(this).attr("data-file")+":"+$(this).attr("data-version")+":"+$(this).attr("data-infos")+",";
-			});
-			files = files.substring(0, files.length-1);
-			//$('input[type="search"]').val(files);
-			
-			$.post('pages/generateScores.php', {
-				data:files,
-				typeScore:$(this).attr("data-action"),
-				output:"csv"
-			}, function(resp) {
-				button.removeAttr("disabled").find("span.text").html(initBtText);
-				if(resp != "error") {
-					document.location = 'download.php?file=<?= DIR_ANSWERS ?>/scores/'+resp;
-				} else {
-					alert(resp);
-				}
-			});	
-			
-			
-		})
-		.addButton("<?= $t['download']?>", "download", "primary", "cloud-download", function(){
-			var selectedRows = $('#repondants tr.active');
-			if(selectedRows.length == 1) {
-				document.location = 'download.php?file=<?= DIR_ANSWERS ?>/'+selectedRows.attr("data-file")+"&name="+selectedRows.attr("data-name");
-			} else {
-				$(this).attr("disabled","disabled").find("span.text").text("<?= $t['generation']?>...");
-    			var files = "";
-    			selectedRows.each(function(){
-    				files += $(this).attr("data-file")+":"+$(this).attr("data-name")+",";
-    			});
-    			$.post('pages/admin/download.questionnaires.php', { f:files }, function(resp) {
-    				$('#tools #download').removeAttr("disabled").find("span.text").text("<?= $t['generation']?>");
-					if(resp == "ok") 
-    					document.location = 'download.php?file=pages/admin/questionnaires.zip';
-					else
-						alert(resp);
-    			});
-			}
+		});
+		
+		$('body').tooltip({
+		    selector: '[data-toggle=tooltip]'
 		});
 		
 		$('body').on('click', '#actions .dropdown-item[data-action="reviewFile"]', function(){

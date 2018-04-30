@@ -15,6 +15,10 @@ function isGerman($germanInfos, $questionnairePath) {
 
 	$categories = getJSONFromFile($questionnairePath);
 
+	if(is_array($categories) && count($categories) == 0) {
+	    return false;
+	}
+	    
 	$germanQuestionNb = 0;
 	$questInSetChoiceConsidered = 0;
 	foreach($categories as $cat => $questions) {

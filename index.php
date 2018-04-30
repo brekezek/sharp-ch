@@ -23,11 +23,11 @@ if(isset($_GET['admin'])) {
 	<meta name="author" content="Dominique Roduit">
 	<meta name="description" content="">
 
-	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<!-- Fonts 
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
 	
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link href="open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
 	
 	<!-- Custom -->
@@ -119,7 +119,7 @@ if(isset($_GET['admin'])) {
     				
     				if(!isset($_COOKIE['questsList']) || (isset($_COOKIE['questsList']) && count($rows) == 0)) { ?>
                         <div class="text-center">
-                          <img id="logo" src="img/logo_round_<?= getLang() ?>.jpg" class="mb-3" width="220">
+                          <img id="logo" src="img/logo_round_<?= getLang() ?>.jpg" class="mb-3" width="220" style="min-width: 220px">
                           <h1 class="display-4 d-none"><?= $t['welcome_msg_h1'] ?> <span class="badge badge-light text-uppercase"><?= getLang() ?></span></h1>
                           <p class="lead"><?= $t['sharp_meaning'] ?></p>
                         </div>
@@ -138,7 +138,7 @@ if(isset($_GET['admin'])) {
                     } else {?>
         			  
     			  		<div class="d-flex align-items-center" style="justify-content:space-evenly">
-                          <img id="logo" src="img/logo_round_<?= getLang() ?>.jpg" class="mb-3" width="150px" height="150px">
+                          <img id="logo" src="img/logo_round_<?= getLang() ?>.jpg" class="mb-3" width="150px" height="150px" style="min-width:150px; min-height:150px;">
                           <div class="ml-4">
                               <p class="lead font-weight-bold"><?= $t['sharp_meaning'] ?></p>
                               <p class="text-justify"><?= $t['msg1_welcome'] ?></p>
@@ -549,6 +549,25 @@ if(isset($_GET['admin'])) {
 			}
 		});
 
+		$('.dropdown[data-toggle="hover"]').hover(function() {
+		  $(this).find('.dropdown-menu').stop(true, true).delay(80).fadeIn(100);
+		  $(this).find(".dropdown-toggle").addClass("active");
+		}, function() {
+		  $(this).find('.dropdown-menu').stop(true, true).delay(80).fadeOut(100);
+		  $(this).find(".dropdown-toggle").removeClass("active");
+		});
+
+		$('#lang.dropdown-menu .dropdown-item').click(function(){
+			var previousLang = "";
+			if(getCookie("lang") != "") {
+				previousLang = getCookie("lang");
+			}
+			setCookie("lang", $(this).attr("lang").toLowerCase(), 365*3);
+			if(previousLang != "" && $(this).attr("lang") != previousLang) {
+				document.location = '';
+			}
+		});
+		
 		$('#new-quest, .start-new-quest').click(function(){
 			var button = $('#new-quest, .start-new-quest');
 			var initHTML = button.html();
@@ -567,7 +586,8 @@ if(isset($_GET['admin'])) {
             					button.hide();
         						$('#pre-quest-instructions.container').fadeOut("fast", function(){
         		    				$('#main.container').fadeIn("fast", function(){
-    									button.removeAttr("ready").removeClass("btn-success").html(initHTML).fadeIn();
+    									button.removeAttr("ready").removeClass("btn-success").addClass("btn-light").html(initHTML).fadeIn();
+    									$('.start-new-quest').removeClass("btn-light").addClass("btn-primary");
     									$('#dropdown-version').fadeIn();
         		    				});
         						});

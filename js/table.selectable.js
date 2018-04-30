@@ -1,10 +1,11 @@
 (function($) {
-	$.fn.selectableRows = function(){
-		$('main').prepend('<div class="bg-secondary text-white p-2" id="tools" style="display:none">'+
+	$.fn.selectableRows = function(visible){
+		
+		$('main').prepend('<div class="bg-secondary text-white p-2" id="tools" style="display:'+(visible == "show" ? "block" : "none")+'">'+
 				'<div class="d-flex justify-content-between align-items-center">'+
 				'<div>'+
 		    		'<span id="nb-selected" class="badge badge-light px-3 mr-1" style="padding: .25rem .5rem; font-size:1.1em"><span>0</span> sélectionnés</span>'+
-		    		'<button id="unselect" class="btn btn-light btn-sm" style="padding: .25rem .5rem; vertical-align:baseline; line-height:1">Désélectionner</button>'+ 
+		    		'<button id="unselect" class="btn btn-light btn-sm" style="display:none; padding: .25rem .5rem; vertical-align:baseline; line-height:1">Désélectionner</button>'+ 
 		    	'</div>'+
 		    	
 		    	'<div id="buttons">'+
@@ -13,36 +14,42 @@
 			'</div>'+
 		'</div>');
 		
-		$('select[name="repondants_length"]').append('<option value="2000">Tous</option>');
-		$('#repondants_length').append('<div class="btn btn-light btn-sm ml-2" style="vertical-align:top" id="selectAll">Sélectionner tout</div>');
-		
-		$('body').on('click', '#repondants tbody tr', function(e){
+		$('#repondants tbody').on( 'click', 'tr', function(e) {
 			if($(e.target).is('td')) {
 				$(this).toggleClass("active bg-dark").find('td').toggleClass('text-white');
-
-				var nbSelected = $('#repondants tr.active').length;
-				$('#tools').toggle(nbSelected > 0);
-				$('#nb-selected span, [data-track-row]').text(nbSelected);
+				toggleButtons();
 			}
-		});
+	    });
+		
 		
 		$('#tools #unselect').click(function(){
 			$('#repondants tr.active').removeClass("active bg-dark").find("td").removeClass("text-white");
-			$('#tools').toggle($('#repondants tr.active').length > 0);
+			if(visible != "show") { $('#tools').toggle($('#repondants tr.active').length > 0); }
+			toggleButtons();
 		});
 		
 		$('body').on('click', '#selectAll', function(){
 			$('#repondants tbody tr').addClass("active bg-dark").find("td").addClass("text-white");
-			var nbSelected = $('#repondants tr.active').length;
-			$('#tools').toggle(nbSelected > 0);
-			$('#nb-selected span, [data-track-row]').text(nbSelected);
+			toggleButtons();
 		});
+	
+		$('select[name="repondants_length"]').append('<option value="5000">Tous</option>');
+		$('#repondants_length').append('<div class="btn btn-light btn-sm ml-2" style="vertical-align:top; font-size:12px; margin-top:2px" id="selectAll">Sélectionner tout</div>');
+		$('#repondants_wrapper .row:nth-child(1)').addClass("bg-secondary border-top");
+		
+		function toggleButtons() {
+			var nbSelected = $('#repondants tr.active').length;
+			if(visible != "show") { $('#tools').toggle(nbSelected > 0); }
+			$('main #tools #buttons .btn, #unselect').toggle(nbSelected > 0);
+			$('#nb-selected span, [data-track-row]').text(nbSelected);
+			$('main #tools #buttons #edit').toggle(nbSelected == 1);
+		}
 		
 		return this;
 	};
 	
 	$.fn.addButton = function(text, id, style, icon, event){
-		$('main #tools #buttons').prepend('<a class="btn btn-'+style+' btn-sm mr-1" id="'+id+'"><span class="oi oi-'+icon+' mr-1"></span> <span class="text">'+text+'</span> <span data-track-row class="badge badge-light ml-1">0</span></a>');
+		$('main #tools #buttons').prepend('<a class="btn btn-'+style+' btn-sm mr-1" id="'+id+'" style="display:none"><span class="oi oi-'+icon+' mr-1"></span> <span class="text">'+text+'</span> <span data-track-row class="badge badge-light ml-1">0</span></a>');
 		$('body').on('click', '#'+id, event);
 		return this;
 	};

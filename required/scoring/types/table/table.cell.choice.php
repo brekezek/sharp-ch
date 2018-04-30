@@ -36,6 +36,8 @@ function processTableChoice($answers, $indexCol, $scoring, $jsonCol, $questId, $
 		}
 		$score = evalScoringGrid($nbEntries, $jsonCol['scoring-grid']);
 	}
+	
+	
 	if($scoring == "by-value") {
 		$nbScored = 0;
 		$OuiNonProcess = false;
@@ -50,11 +52,15 @@ function processTableChoice($answers, $indexCol, $scoring, $jsonCol, $questId, $
 		
 		foreach($answers as $answer) {
 			if(isset($answer[$indexCol]['answer'])) {
-				$answ = trim($answer[$indexCol]['answer']);
+			    
+				$answ = $answer[$indexCol]['answer'];
+				if(!is_array($answ)) {
+				    $answ = array($answ);
+				}
 				foreach($jsonCol['choices'] as $choice) {
 					if(is_array($choice)) {
 						foreach($choice as $text => $s) {
-							if($text == $answ) {
+							if(in_array($text, $answ)) {
 								if($score <= 0) $score = 0;
 								$score += $s;
 								$nbScored++;
@@ -66,11 +72,11 @@ function processTableChoice($answers, $indexCol, $scoring, $jsonCol, $questId, $
 				}
 				
 				if($OuiNonProcess) {
-					if($answ == $jsonCol['choices'][0]) {
+					if(in_array($jsonCol['choices'][0], $answ)) {
 						if($score <= 0) $score = 0;
 						$score += 10;
 						$nbScored++;
-					} else if(trim($answ) == $jsonCol['choices'][1]) {
+					} else if(in_array($jsonCol['choices'][1], $answ)) {
 						$nbScored++;
 					}
 				}
@@ -80,6 +86,7 @@ function processTableChoice($answers, $indexCol, $scoring, $jsonCol, $questId, $
 		if($nbEntriesSet > 0)  $score /= $nbEntriesSet;
 		else if($nbScored > 0)	$score /= $nbScored;
 	}
+	
 	
 	if($scoring == "special") {
 		if($questId == "EC_10.1") { // rang donn� � l'item education
