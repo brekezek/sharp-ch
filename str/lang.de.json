@@ -29,7 +29,7 @@
     "no": "Nein",
     "active": "Aktuell",
     "quit": "Beenden",
-    "score_moyen_atelier": "Durchschnittlicher Workshop-Score",
+    "score_moyen_atelier": "Durchschnittlicher in Ihrer Region-Score",
     "score_moyen_cluster": "Durchschnittlicher Art der Produktion-Score",
     "mon_score_obtenu": "Meine Punktzahl",
     "score_obtenu": "Ergebnis erhalten",
@@ -111,5 +111,7 @@
     "message-edit-aspect-part-2": "Sie müssen keine Angst haben, einen Fehler zu machen </ b>. Wenn Sie JSON hinzufügen, das nicht korrekt ist, werden Sie benachrichtigt und Ihre Änderungen werden nicht gespeichert. Wenn Sie in der Liste der anzuzeigenden Aspekte einen Aspekt hinzufügen, der nicht vorhanden ist, wird eine Fehlermeldung angezeigt, und Ihre Änderungen werden nicht gespeichert.",
     "alert-edit-aspect-1": "Sie können keine Abschnittsnamen oder Aspekte eingeben, die nicht existieren!<br>Ihre Änderungen wurden abgebrochen, um Ihre Dateien nicht zu beschädigen und Fehler zu verursachen.",
     "message-edit-aspect-part-1": "Sie können von dieser Seite <b> alles verändern, was den Fragebogen ausmacht </ b>: Der Titel der Abschnitte, Aspekte, Fragen, Sie können auch die Bewertungen der Fragen ändern, entscheiden, ob eine Frage obligatorisch ausgefüllt werden muss oder nicht , etc ...",
-    "bySection": "Nach Sektion"
+    "bySection": "Nach Sektion",
+    "indicators": "Indikatoren",
+    "scores_by_indicators": "Ergebnis nach Indikatoren"
 }

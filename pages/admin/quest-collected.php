@@ -140,7 +140,7 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
 	echo '<tbody>';
 		$i = 0; 
 		if ($stmt = $mysqli->prepare(
-		    "SELECT collecte_par, firstname, lastname, commune, creation_date, version, cluster, p.rid, file, rlabel, COUNT(q.pid) as nbQuest FROM questionnaires q
+		    "SELECT collecte_par, firstname, lastname, commune, creation_date, version, cluster, p.rid, file, rlabel_".getLang().", COUNT(q.pid) as nbQuest FROM questionnaires q
             LEFT JOIN participants p ON q.pid = p.pid
             LEFT JOIN regions re ON re.rid=p.rid
             GROUP BY q.pid 
@@ -172,7 +172,7 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
                 $(function(){
                     $.post('pages/generateScores.php', {
         				data:"<?= $data ?>",
-        				typeScore: "resilience",
+        				typeScore: "db_all",
         				output:"db"
     				}, function(resp) {
         				
@@ -193,7 +193,7 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
                 echo '<td class="align-middle text-capitalize font-weight-bold">'.$row['lastname'].'</td>';
                 echo '<td class="align-middle text-capitalize">'.$row['commune'].'</td>';
                 echo '<td class="align-middle text-capitalize">'.$row['collecte_par'].'</td>';
-                echo '<td class="align-middle text-center">'.$row['rlabel'].'</td>';
+                echo '<td class="align-middle text-center">'.$row['rlabel_'.getLang()].'</td>';
                 echo '<td class="align-middle text-center">'.$row['cluster'].'</td>';
                 echo '<td class="align-middle text-center">'.date("d.m.y", strtotime($row['creation_date'])).'</td>';
                 echo '<td class="align-middle text-center">'.$row['version'].'</td>';

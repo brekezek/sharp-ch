@@ -101,33 +101,14 @@ function invokeScoreGeneration(callback) {
         	</h4>
 
         	<?php 
+        	$labelsStr = "";
         	$objectsCharData = array();
-        	$maxLabelLength = array();
-        	$nbLabels = array();
         	foreach($sections as $section => $infoSection) {
-        	    if(!isset($maxLabelLength[$section])) {
-        	        $maxLabelLength[$section] = -1;
-        	    }
-        	    if(!isset($nbLabels[$section])) {
-        	        $nbLabels[$section] = 0;
-        	    }
+        	    $sectionColor = new Color($infoSection['color']);
         	    
         	    $objectsCharData[$section] = new ChartData($dataForChart, $section);
         	    $dataChart[$section] = $objectsCharData[$section]->getValues();
         	    
-        	    foreach(explode(";", $dataChart[$section]['labels']) as $label) {
-        	        $nbLabels[$section]++;
-            	    $lengthCurrentLabel = strlen($label);
-            	    if($lengthCurrentLabel > $maxLabelLength[$section]) {
-            	       $maxLabelLength[$section] = $lengthCurrentLabel;  
-            	    }
-        	    }
-        	}
-        	
-        	$labelsStr = "";
-        	foreach($sections as $section => $infoSection) {
-        	    $sectionColor = new Color($infoSection['color']);
-
         	    $labelsStr .= $dataChart[$section]['labels'];
         	    
                 $dataChart[$section]['colors'] = array(
@@ -148,7 +129,7 @@ function invokeScoreGeneration(callback) {
             					<div class="alert alert-warning"><?= $t['not-enough-data-display-chart']?></div>
             				<?php } else { ?>
                             	<div class="chart-legend"></div>
-                            	<canvas id="chart_<?= $section ?>" data-section="<?= $section?>" height="<?= floor(80 + $nbLabels[$section]*1.2 + $maxLabelLength[$section]*1.2) ?>px" style="margin-left:-25px"></canvas>
+                            	<canvas id="chart_<?= $section ?>" data-section="<?= $section?>" height="130px" style="margin-left:-25px"></canvas>
                             	 
                             	<div style="position:absolute; top:-50000px">
                                   <canvas id="hidden_chart_<?= $section ?>" data-section="<?= $section?>" width="1200" height="650"></canvas>
@@ -160,45 +141,6 @@ function invokeScoreGeneration(callback) {
     			</div>
         	<?php }
         	?>
-        	
-        	
-        	
-        	<h4 class="my-3 mt-5">
-            	<?= $t['scores_by_indicators']?>, 
-            	<div class="d-inline text-muted lead"><?= $t['comparaison_score_avg_canton']?></div>
-        	</h4>
-        	<div class="pb-4 border-bottom">
-    			<div class="chart-wrapper">
-    				<?php
-    				if($haveScores == 0) {
-    				    echo '<div class="text-center"><img src="img/loader-56.svg"></div>';
-    				} else {
-    				    $sections['byIndicator'] = array("title" => $t['scores_by_indicators'], "color" => "blue");
-    				    $section = "byIndicator";
-    				    $objectsCharData[$section] = new ChartData($dataForChart, $section);
-    				    $dataChart[$section] = $objectsCharData[$section]->getValues();
-    				    $dataChart[$section]['colors'] = array(
-    				        "personnal" => "#fad390",
-    				        "label_text" => "#664600"
-    				    );
-    				    
-        				if($objectsCharData[$section]->hasScores() == false) {?>
-        					<div class="alert alert-warning"><?= $t['not-enough-data-display-chart']?></div>
-        				<?php } else { ?>
-                        	<div class="chart-legend"></div>
-                        	<canvas id="chart_<?= $section ?>" data-section="<?= $section?>" height="140px" style="margin-left:-25px"></canvas>
-                        	 
-                        	<div style="position:absolute; top:-50000px">
-                              <canvas id="hidden_chart_<?= $section ?>" data-section="<?= $section?>" width="1200" height="650"></canvas>
-                            </div>
-                            
-                    	<?php } 
-    				}?>
-            	</div>
-			</div>
-        	
-        	
-        	
         	
         	<div class="my-5">
             	<h4 class="my-2 mb-3">
@@ -218,7 +160,6 @@ function invokeScoreGeneration(callback) {
             	<?php 
             	$totalOtherThanResilience = -1;
             	foreach($sections as $section => $infoSection) {
-            	    if($section == "byIndicator") continue;
             	    $values = $objectsCharData[$section]->getValues();
             	    $totalOtherThanResilience += $values['conduiteExploitation'] + $values['importance'];
             	    ?>

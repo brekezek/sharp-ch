@@ -93,10 +93,12 @@ if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections
                 
     
                 $this->SetFont('Arial','B', 22);
-                
-                $color = $currentSection['color']->getRGBRaw();
-                $this->SetTextColor($color['r'], $color['g'], $color['b']);
-    
+                if($sectionIds[$this->PageNo()-2] == "byIndicator") {
+                    $this->SetTextColor(102, 70, 0);
+                } else {
+                    $color = $currentSection['color']->getRGBRaw();
+                    $this->SetTextColor($color['r'], $color['g'], $color['b']);
+                }
                 $this->Cell(0,24, $currentSection['title'],0,2,'C');
                 $this->Ln(20);
             }

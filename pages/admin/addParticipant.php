@@ -26,20 +26,20 @@ if($logged) {
                     $hashSet[$set[0]] = $set[1];
                 }
                 
-                $bindParamType = "ssssiis";
+                $bindParamType = "sssiis";
                 if(isset($_POST['pid'])) {
                     $pid = intval($_POST['pid']);
-                    $query = "UPDATE participants SET firstname=?, lastname=?, region=?, commune=?, cluster=?, rid=?, email=? WHERE pid=?";
+                    $query = "UPDATE participants SET firstname=?, lastname=?, commune=?, cluster=?, rid=?, email=? WHERE pid=?";
                     $bindParamType .= "i";
                 } else {
-                    $query = "INSERT INTO participants (firstname, lastname, region, commune, cluster, rid, email) VALUES(?,?,?,?,?,?,?)";
+                    $query = "INSERT INTO participants (firstname, lastname, commune, cluster, rid, email) VALUES(?,?,?,?,?,?)";
                 }
                 
                 if($stmt = $mysqli->prepare($query)) {
                     if(isset($_POST['pid'])) {
-                        $stmt->bind_param($bindParamType, $hashSet['firstname'], $hashSet['lastname'], $hashSet['region'], $hashSet['commune'], $hashSet['cluster'], $hashSet['rid'], $hashSet['email'], $pid);
+                        $stmt->bind_param($bindParamType, $hashSet['firstname'], $hashSet['lastname'], $hashSet['commune'], $hashSet['psid'], $hashSet['rid'], $hashSet['email'], $pid);
                     } else {
-                        $stmt->bind_param($bindParamType, $hashSet['firstname'], $hashSet['lastname'], $hashSet['region'], $hashSet['commune'], $hashSet['cluster'], $hashSet['rid'], $hashSet['email']);
+                        $stmt->bind_param($bindParamType, $hashSet['firstname'], $hashSet['lastname'],  $hashSet['commune'], $hashSet['psid'], $hashSet['rid'], $hashSet['email']);
                     }
                     $stmt->execute();
                 }
@@ -53,10 +53,9 @@ if($logged) {
                 
                 $firstname = $row['firstname'];
                 $lastname = $row['lastname'];
-                $region = $row['region'];
+                $region = $row['rid'];
                 $village = $row['commune'];
                 $cluster = $row['cluster'];
-                $atelier = $row['rid'];
                 $email = $row['email'];
             }
             ?>
@@ -77,48 +76,55 @@ if($logged) {
                 </div>
               
             	<div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label"><?= $t['region']?></label>
-                	        <input type="text" class="form-control text-capitalize" name="region" value="<?= $region ?>">
-                        </div>
-                    </div>
-                    
-                    <div class="col">
+            		<div class="col">
                         <div class="form-group">
                     	    <label for="recipient-name" class="col-form-label"><?= $t['village']?></label>
                         	<input type="text" class="form-control text-capitalize" name="commune" value="<?= $village ?>">
                         </div>
                     </div>
+                    
+                    <div class="col">
+                        <div class="form-group">
+                       	 	<label for="email" class="col-form-label"><?= $t['email']?></label>
+                        	<input type="text" class="form-control" name="email" value="<?= $email ?>">
+                        </div>
+                   </div>
             	</div>
             	
             	<div class="row">
                     <div class="col">
                         <div class="form-group">
                        	 	<label for="recipient-name" class="col-form-label"><?= $t['cluster']?></label>
-                        	<input type="number" class="form-control" name="cluster" value="<?= $cluster ?>">
+                           	<div class="d-flex align-items-center">
+                           	 	<select class="form-control" name="psid">
+                           	 		<option value="">-</option>
+                           	 		<?php foreach($mysqli->query("SELECT psid, pslabel_".getLang()." FROM prod_systems ORDER BY psid") as $row) { ?>
+                           	 		<option value="<?= $row['psid']?>" <?php if($cluster == $row['psid']) { echo 'selected'; } ?>><?= $row['pslabel_'.getLang()]." (".$row['psid'].")"?></option>
+                           	 		<?php } ?>
+                           	 	</select>
+                           	 	<a href="?page=5&tab=prod_systems" class="btn btn-secondary text-white btn-sm ml-1"><span class="oi oi-plus small"></span></a>
+                       	 	</div>
                         </div>
                    </div>
                    
                    <div class="col">
-                        <div class="form-group">
+                        <div class="form-group ">
                         	<label for="recipient-name" class="col-form-label"><?= $t['atelier']?></label>
-                        	<input type="number" class="form-control" name="rid" value="<?= $atelier ?>">
+                        	<div class="d-flex align-items-center">
+                            	<select class="form-control" name="rid">
+                            		<option value="">-</option>
+                           	 		<?php foreach($mysqli->query("SELECT rid, rlabel_".getLang()." FROM regions ORDER BY rid") as $row) { ?>
+                           	 		<option value="<?= $row['rid']?>" <?php if($region == $row['rid']) { echo 'selected'; } ?>><?= $row['rlabel_'.getLang()]." (".$row['rid'].")"?></option>
+                           	 		<?php } ?>
+                           	 	</select>
+                           	 	<a href="?page=5&tab=regions" class="btn btn-secondary text-white btn-sm ml-1"><span class="oi oi-plus small"></span></a>
+                       	 	</div>
                         </div>
               		</div>
             	</div>
             	
             	
-            	<div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                       	 	<label for="recipient-name" class="col-form-label"><?= $t['email']?></label>
-                        	<input type="text" class="form-control" name="email" value="<?= $email ?>">
-                        </div>
-                   </div>
-                   
-                   
-            	</div>
+
             	<input type="submit" value="" style="opacity:0; overflow:hidden; width:0px; height:0px; position:absolute">
             </form>
          <?php

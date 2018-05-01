@@ -24,7 +24,7 @@ function optInfoAdm($json, $index) {
     remAccent(trim($json['ADM_01'][$index]['answer'])) : "";
 }
 
-if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, pslabel_".getLang().", rlabel FROM participants p
+if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, pslabel_".getLang().", rlabel_".getLang()." FROM participants p
                                 LEFT JOIN questionnaires q ON q.pid = p.pid
                                 LEFT JOIN prod_systems ps ON ps.psid = cluster
                                 LEFT JOIN regions re ON re.rid = p.rid
@@ -66,6 +66,9 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, p
         $j = 0;
         foreach($row as $key => $info) {
             if(in_array($key, array("pid", "qid"))) continue;
+            if(substr($key, 0, strlen("pslabel_")) == "pslabel_") { $key = "psid"; }
+            if(substr($key, 0, strlen("rlabel_")) == "rlabel_") $key = "rid";
+            
             echo '<td data-'.$key.' class="text-capitalize '.($j >= 4 ? "text-center" : "").'">'.$info.'</td>';
             $j++;
         }
@@ -215,14 +218,22 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, p
 			var values = "";
 			var valuesDefined = 0;
 			var htmlNewRow = "<td></td>";
-			modal.find(".modal-body input").each(function(){
-				if($(this).val().trim().length > 0) valuesDefined++;
-				values += $(this).attr("name")+"->"+$(this).val()+"#";
-				if(type == "edit") { $('#repondants tbody tr[data-pid="'+pid+'"] td[data-'+$(this).attr("name")+']').html($(this).val()); }
-				else {
-					if($('#repondants tbody tr:first-child td[data-'+$(this).attr("name")+']').length > 0) {
-						htmlNewRow += '<td data-'+$(this).attr("name")+'>'+$(this).val()+'</td>';
-					}
+			modal.find(".modal-body").find('input, select, textarea').each(function(){
+				if($(this).attr("name") != "undefined") {
+    				var val = $(this).val();
+    				if($(this).is("select")) {
+						val = $(this).find('option[value="'+val+'"]').html();
+    				}
+    				
+    				if($(this).val().trim().length > 0) valuesDefined++;
+    				values += $(this).attr("name")+"->"+$(this).val()+"#";
+    				if(type == "edit") {
+    					$('#repondants tbody tr[data-pid="'+pid+'"] td[data-'+$(this).attr("name")+']').html(val);
+    				} else {
+    					if($('#repondants tbody tr:first-child td[data-'+$(this).attr("name")+']').length > 0) {
+    						htmlNewRow += '<td data-'+$(this).attr("name")+'>'+val+'</td>';
+    					}
+    				}
 				}
 			});
 			values = values.substring(0, values.length-1);

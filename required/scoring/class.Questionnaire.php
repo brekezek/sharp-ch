@@ -119,13 +119,13 @@ class Questionnaire {
                 $stmt->close();
             }
     
-            $typesWanted = array("resilience", "academic", "importance");
+            $typesWanted = array("resilience", "academic", "importance", "indicator");
             $strValues = "";
             $aspectsList = $this->getAspectsDB();
             foreach($bufferData as $typeScore => $scoresByAspects) {
                 if(in_array($typeScore, $typesWanted)) {
                     foreach($scoresByAspects as $aspect => $score) {
-                        $aid = $aspectsList[$aspect];
+                        $aid = $typeScore == "indicator" ? $aspect : $aspectsList[$aspect];
                         if(trim($score) == "") $score = "NULL";
                         $strValues .= "(".$qid.", ".$aid.", '".$typeScore."', ".$score."), ";
                     }

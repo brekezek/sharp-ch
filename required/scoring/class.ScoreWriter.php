@@ -26,6 +26,7 @@ class ScoreWriter {
             $this->bufferData['resilience'] = array();
             $this->bufferData['importance'] = array();
             $this->bufferData['academic'] = array();
+            $this->bufferData['indicator'] = array();
         }
         $this->output = $output;
         
@@ -99,6 +100,7 @@ class ScoreWriter {
                     foreach($this->questionnaires as $quest) {
                         $this->writeByAspect($quest);
                         $this->writeResilience($quest);
+                        $this->writeByIndicator($quest);
                     }
                 }
             break;
@@ -170,12 +172,12 @@ class ScoreWriter {
             if(in_array($this->output, array("csv", "print"))) {
                 $this->bufferStr .= $indic.";".$score.";".$this->getAdditionnalInfos($questionnaire)."\n";
             } else {
-                $this->bufferStr .= $indic.";".$score."\n";
+                $this->bufferData['indicator'][$indic] = $score;
             }
-            
+            /*
             if(!isset($scores[$indic])) {
                 //echo $scoresIndic['lastname']." ".$scoresIndic['firstname']." : indicateur ".$indic." - existe pas<br>";
-            }
+            }*/
         }
         
         $this->writeDB($questionnaire);

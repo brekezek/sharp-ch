@@ -80,7 +80,7 @@
     "region": "Region",
     "resilience": "Resilience",
     "score_moyen_cluster": "Average score for your production system",
-    "score_moyen_atelier": "Average workshop score",
+    "score_moyen_atelier": "Average score across your region",
     "score_obtenu": "Score obtained",
     "score_resilience_par_aspect": "Resilience scores by aspects",
     "remember-me": "Remember me",
@@ -111,5 +111,7 @@
     "jours": "days",
     "selected": "selected",
     "sharp_meaning": "Assessing and strengthening the resilience of farming systems",
-    "bySection": "By Section"
+    "bySection": "By Section",
+    "indicators": "Indicators",
+    "scores_by_indicators": "Scores by indicators"
 }
