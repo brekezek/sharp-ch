@@ -1,4 +1,8 @@
 {
-	"question-type":"text",
-	"title":"Latitude"
+    "question-type": "text",
+    "title": "Latitude",
+    "mandatory": "false",
+    "html-attr": {
+        "data-location": "latitude"
+    }
 }

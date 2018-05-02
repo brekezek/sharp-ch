@@ -21,6 +21,7 @@ abstract class Question implements iQuestion {
 	protected $isInTable;
 	protected $scored;
 	protected $inputType;
+	protected $htmlAttrs;
 	
 	function __construct($index, $json) {
 		$this->index = $index;
@@ -33,6 +34,7 @@ abstract class Question implements iQuestion {
 		$this->placeholder = isset($json['placeholder']) ? $json['placeholder'] : "";
 		$this->all_visible = isset($json['all_visible']) ? $json['all_visible'] : false;
 		$this->inputType = isset($json['input-type']) ? $json['input-type'] : null;
+		$this->htmlAttrs = isset($json['html-attr']) ? $json['html-attr'] : array();
 		
 		$this->scored = isset($json['scoring']) && $json['scoring'] != "-";
 		
@@ -118,6 +120,19 @@ abstract class Question implements iQuestion {
 		}
 	}
 	
+	protected function getAdditionnalHTMLAttributes() {
+	    $html = "";
+	    foreach($this->htmlAttrs as $attrName => $attrValue) {
+	        $html .= $attrName;
+	        if(!empty(trim($attrValue))) {
+	            if($this->inputType == "date" && $attrValue == "now") $attrValue = date('Y-m-d');
+	            $html.= '="'.$attrValue.'"';
+	        }
+	        $html .= ' ';
+	    }
+	    return $html;
+	}
+	
 	protected function getTextColor() {
 	    if($this->readonly) {
 	        if($this->getAnswer() == "")
@@ -177,6 +192,7 @@ hidden
 result-define
 placeholder
 all_visible
+html-attr
 
 ---- tables ----
 title

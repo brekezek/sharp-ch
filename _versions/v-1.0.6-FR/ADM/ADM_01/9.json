@@ -1,5 +1,8 @@
 {
-	"question-type":"text",
-	"title":"District/département",
-	"mandatory":true
+    "question-type": "text",
+    "title": "District/département",
+    "mandatory": true,
+    "html-attr": {
+        "data-location": "district"
+    }
 }

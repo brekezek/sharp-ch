@@ -13,8 +13,9 @@ class Text extends Question {
 		
 		$html.=	'<'.$inputType.' data-adaptheight
                  '.($this->readonly ? "readonly" : "").' 
-                 '.parent::scoredAttr().' 
-				 name="'.$this->inputName.'" 
+                 '.parent::scoredAttr(). 
+                 parent::getAdditionnalHTMLAttributes().
+				 ' name="'.$this->inputName.'" 
 				 id="'.$this->uid.'" 
 				 placeholder="'.$this->placeholder.'" 
 				 class="form-control w-100 rounded" 

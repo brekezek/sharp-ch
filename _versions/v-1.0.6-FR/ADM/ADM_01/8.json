@@ -1,5 +1,8 @@
 {
-	"question-type":"text",
-	"title":"Région/canton",
-	"mandatory":true
+    "question-type": "text",
+    "title": "Région/canton",
+    "mandatory": true,
+    "html-attr": {
+        "data-location": "region"
+    }
 }

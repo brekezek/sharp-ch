@@ -1,5 +1,10 @@
 {
-	"question-type":"text",
-	"title":"Pays",
-	"mandatory":true
+    "question-type": "text",
+    "input-type": "text",
+    "title": "Pays",
+    "mandatory": true,
+    "html-attr": {
+        "data-request-location": "",
+        "data-location": "country"
+    }
 }

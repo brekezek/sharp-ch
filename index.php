@@ -381,6 +381,108 @@ if(isset($_GET['admin'])) {
 			$('#questionnaire #submitHidden').trigger("click");
 		});
 
+		// Geolocalisation
+		// ----------------------------------------------------------------------
+		if($('input[data-request-location]').length > 0 && navigator.geolocation) {
+			if(getCookie("permission-location") == 'granted') {
+				navigator.geolocation.getCurrentPosition(showPosition, showError);
+				$('input[data-request-location]').attr("data-location-loaded", "loaded");
+			}
+			
+    		$('input[data-request-location]').focus(function(){
+    			var input = $(this);
+    			if(navigator.geolocation) {
+        			if(["","granted"].includes(getCookie("permission-location"))) {
+        				if(input.data("location-loaded") != "loaded" && input.val().length < 3) {
+        					if(getCookie("permission-location") == 'granted') {
+        						navigator.geolocation.getCurrentPosition(showPosition, showError);
+        					} else {
+            					var modal = $('#content #modal-quest');
+            					modal.modal({backdrop:'static'});
+            					modal.find('#submit').bind('click', function(){
+            					    navigator.geolocation.getCurrentPosition(showPosition, showError);
+            					}); 
+            					modal.find('#cancel').bind('click', function(){
+            						markLocationAsLoadedAndClose();
+            					});
+            					modal.on('hide.bs.modal', function (e) {
+            						modal.find('#submit,#cancel').unbind("click");
+            					});
+        					}
+        				}		
+        			}
+    			}
+    		});
+    		
+    		function showPosition(position) {
+    			setCookie("permission-location", "granted", 7);
+
+    			var lat = position.coords.latitude, longit = position.coords.longitude;
+    			$('[data-location="latitude"]').val(lat); 
+    			$('[data-location="longitude"]').val(longit); 
+
+    			$.ajax({ url:'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+longit+'&sensor=true&key=<?= API_KEY_GEOCODE?>',
+                     success: function(data){
+                         console.log(data);
+    	                 var country = "", region  = "", district = "", commune = "";
+    	                 var addr_components = data.results[0].address_components;
+    	                 for(comp of addr_components) {
+    						if(comp.types.includes("country")) {
+    							country = comp.long_name;
+    						}
+    						if(comp.types.includes("administrative_area_level_1")) {
+    							region = comp.long_name;
+    						}
+    						if(comp.types.includes("postal_town")) {
+    							district = comp.long_name;
+    						}
+    						if(district == "" && comp.types.includes("administrative_area_level_2")) {
+								district = comp.long_name;
+    						}
+    						if(comp.types.includes("locality")) {
+    							commune = comp.long_name;
+    						}
+    	                 }
+    
+    					 $('[data-location="country"]').val(country); 
+    					 $('[data-location="region"]').val(region); 
+    					 $('[data-location="district"]').val(district); 
+    					 $('[data-location="commune"]').val(commune); 
+                     }
+    			});
+    			
+    			markLocationAsLoadedAndClose();
+    		}
+    		function showError(error) {
+    			
+    		    switch(error.code) {
+    		        case error.PERMISSION_DENIED:
+    		        	locationErrorMessage('Vous avez refusé la geolocalisation pour ce site.');
+    		        	//setCookie("permission-location", "denied", 7);
+    		            break;
+    		        case error.POSITION_UNAVAILABLE:
+    		        	locationErrorMessage('Position non trouvée');
+    		            break;
+    		        case error.TIMEOUT: 
+    		        	locationErrorMessage('La demande pour accéder à votre position a expirée');
+    		            break;
+    		        case error.UNKNOWN_ERROR:
+    		        	locationErrorMessage('Une erreur inconnue s\'est produite');
+    		            break;
+    		    }
+    		}
+    		function markLocationAsLoadedAndClose() {
+    			$('input[data-request-location]').attr("data-location-loaded", "loaded");
+    			$('#content #modal-quest').modal("hide");
+    		}
+    		function locationErrorMessage(message) {
+    			$('#content #modal-quest .modal-body').html(message);
+            	$('#content #modal-quest #cancel').html("Ok");
+            	$('#content #modal-quest #submit').hide();
+    		}
+		}
+		// ----------------------------------------------------------------------
+
 		<?php 
 		if(isset($_GET['readonly'])) {?>
     		setCookie("readonly", "true", <?= LIFE_COOKIE_QUEST_PENDING ?>);
@@ -725,7 +827,7 @@ if(isset($_GET['admin'])) {
 	});
 	</script>
 	
-
+    <?php if(!isset($_COOKIE['indexAspect']) && !isset($_COOKIE['version'])) {?>
 	<div class="modal" id="modalVersions" data-backdrop="static" role="dialog">
 	  <div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
@@ -759,7 +861,9 @@ if(isset($_GET['admin'])) {
 		</div>
 	  </div>
 	</div>
+	<?php } ?>
 	
+	<?php if(!isset($_COOKIE['indexAspect'])) {?>
 	<div id="device-not-optimized" class="fixed-bottom w-100 mb-0 alert alert-warning justify-content-between align-items-end">
 		<div >
 			<h6><?= $t['opt_alert_h6']?>.</h6>
@@ -769,6 +873,6 @@ if(isset($_GET['admin'])) {
 			<button class="btn btn-success btn-gradient btn-sm" id="unset-device-message"><?= $t['understood']?></button>
 		</div>
 	</div>
-	
+	<?php } ?>
 </body>
 </html>

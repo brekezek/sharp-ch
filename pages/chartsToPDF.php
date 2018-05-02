@@ -10,9 +10,10 @@ if($debug) {
     $_POST['sections'] = 'a%3A5%3A%7Bs%3A3%3A%22PSP%22%3Ba%3A2%3A%7Bs%3A5%3A%22title%22%3Bs%3A35%3A%22Syst%C3%A8mes+de+production+et+pratique%22%3Bs%3A5%3A%22color%22%3Bs%3A4%3A%22grey%22%3B%7Ds%3A3%3A%22GOV%22%3Ba%3A2%3A%7Bs%3A5%3A%22title%22%3Bs%3A11%3A%22Gouvernance%22%3Bs%3A5%3A%22color%22%3Bs%3A6%3A%22orange%22%3B%7Ds%3A3%3A%22ENV%22%3Ba%3A2%3A%7Bs%3A5%3A%22title%22%3Bs%3A13%3A%22Environnement%22%3Bs%3A5%3A%22color%22%3Bs%3A5%3A%22green%22%3B%7Ds%3A3%3A%22SOC%22%3Ba%3A2%3A%7Bs%3A5%3A%22title%22%3Bs%3A6%3A%22Social%22%3Bs%3A5%3A%22color%22%3Bs%3A4%3A%22blue%22%3B%7Ds%3A2%3A%22EC%22%3Ba%3A2%3A%7Bs%3A5%3A%22title%22%3Bs%3A17%3A%22Volet+%C3%A9conomique%22%3Bs%3A5%3A%22color%22%3Bs%3A3%3A%22red%22%3B%7D%7D';
     $_POST['person'] = 'Jean-Daniel Gamma';
     $_POST['idSections'] = "PSP,GOV,ENV,SOC,EC,";
+    $_POST['tableResilience'] = 'a%3A5%3A%7Bi%3A0%3Ba%3A4%3A%7Bi%3A0%3Bs%3A35%3A%22Syst%C3%A8mes+de+production+et+pratique%22%3Bi%3A1%3Bd%3A3.600000000000000088817841970012523233890533447265625%3Bi%3A2%3Bd%3A4.70000000000000017763568394002504646778106689453125%3Bi%3A3%3Bd%3A6.9000000000000003552713678800500929355621337890625%3B%7Di%3A1%3Ba%3A4%3A%7Bi%3A0%3Bs%3A11%3A%22Gouvernance%22%3Bi%3A1%3Bd%3A10%3Bi%3A2%3Bd%3A7.5%3Bi%3A3%3Bd%3A10%3B%7Di%3A2%3Ba%3A4%3A%7Bi%3A0%3Bs%3A13%3A%22Environnement%22%3Bi%3A1%3Bd%3A5.5%3Bi%3A2%3Bd%3A6.4000000000000003552713678800500929355621337890625%3Bi%3A3%3Bd%3A8%3B%7Di%3A3%3Ba%3A4%3A%7Bi%3A0%3Bs%3A6%3A%22Social%22%3Bi%3A1%3Bd%3A5.4000000000000003552713678800500929355621337890625%3Bi%3A2%3Bd%3A5.70000000000000017763568394002504646778106689453125%3Bi%3A3%3Bd%3A6.5%3B%7Di%3A4%3Ba%3A4%3A%7Bi%3A0%3Bs%3A17%3A%22Volet+%C3%A9conomique%22%3Bi%3A1%3Bd%3A5.20000000000000017763568394002504646778106689453125%3Bi%3A2%3Bd%3A6.29999999999999982236431605997495353221893310546875%3Bi%3A3%3Bd%3A7.29999999999999982236431605997495353221893310546875%3B%7D%7D';
 }
 
-if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections'])) {
+if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections'], $_POST['tableResilience'])) {
     
     // --------------------------------------------
     if(substr(trim($_POST['b64']), -1) == ",") {
@@ -24,6 +25,7 @@ if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections
     $imgs = explode(",", $_POST['b64']);
     // -------------------------------------------
     
+    $tableResilienceData = unserialize(urldecode($_POST['tableResilience']));
     $sections = unserialize(urldecode($_POST['sections']));
     $sectionsId = explode(",", $_POST['idSections']);
     $person = $_POST['person'];
@@ -68,11 +70,14 @@ if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections
         
         private $sections;
         private $person;
+        private $fakeSections = array("byIndicator", "tableResilience");
+        private $tableResilienceData;
         
-        function __construct($sections, $person) {
+        function __construct($sections, $person, $tableResilienceData) {
             parent::__construct('L');
             
             $this->sections = $sections;
+            $this->tableResilienceData = $tableResilienceData;
             $this->person = $person;
             
             
@@ -93,8 +98,15 @@ if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections
                 
     
                 $this->SetFont('Arial','B', 22);
-                if($sectionIds[$this->PageNo()-2] == "byIndicator") {
-                    $this->SetTextColor(102, 70, 0);
+                if(in_array($sectionIds[$this->PageNo()-2], $this->fakeSections)) {
+                    switch($sectionIds[$this->PageNo()-2]) {
+                        case 'byIndicator':
+                            $this->SetTextColor(102, 70, 0);
+                            break;
+                        default:
+                            $this->SetTextColor(0, 0, 0);
+                    }
+                    
                 } else {
                     $color = $currentSection['color']->getRGBRaw();
                     $this->SetTextColor($color['r'], $color['g'], $color['b']);
@@ -149,6 +161,64 @@ if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections
                 $this->SetY(36);
                 $this->centreImage($infos['file']);
             }
+            
+            
+            // Tableau de résilience
+            global $t;
+            $this->sections["tableResilience"] = array("title" => $t['resilience_importance_par_section'], "color" => "blue");
+            $this->AddPage();
+            $this->CustomTable();
+
+        }
+        
+        function CustomTable() {
+            global $t;
+            
+            $data = $this->tableResilienceData;
+            
+            $wPixels = array(580, 357, 185, 195);
+            $xPos = ($this->GetPageWidth() - $this->pixelsToMM(array_sum($wPixels))) / 2;
+            $this->SetX($xPos);
+            
+            $w = array();
+            foreach($wPixels as $wP)
+                $w[] = round($this->pixelsToMM($wP));
+            
+            // Colors, line width and bold font
+            $this->SetFillColor(255,255,255);
+            $this->SetTextColor(0);
+            $this->SetDrawColor(222,226,230);
+            $this->SetLineWidth(.3);
+            $this->SetFont('','B');
+            
+            // Header
+            $header = array("",  utf8_decode($t['conduite-exploitation']), utf8_decode($t['resilience']), utf8_decode($t['importance']));
+            for($i=0; $i<count($header); $i++) {
+                $this->Cell($w[$i],10,$header[$i],'TB',0,'C',true);
+            }
+                
+            $this->Ln();
+            
+            // Color and font restoration
+            $this->SetFillColor(242, 242, 242);
+            $this->SetTextColor(0,0,0);
+            $this->SetFont('');
+            
+            // Data
+            $fill = true;
+            foreach($data as $row) {
+                $this->SetX($xPos);
+                $this->Cell($w[0],9,utf8_decode($row[0]),'T',0,'L',$fill);
+                $this->Cell($w[1],9,$row[1],'T',0,'C',$fill);
+                $this->Cell($w[2],9,$row[2],'T',0,'C',$fill);
+                $this->Cell($w[3],9,$row[3],'T',0,'C',$fill);
+                $this->Ln();
+                $fill = !$fill;
+            }
+            
+            // Closing line
+            $this->SetX($xPos);
+            $this->Cell(array_sum($w),0,'','T');
         }
         
         const DPI = 150;
@@ -186,7 +256,7 @@ if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections
     }
     
     
-    $pdf = new PDF($sections, $person);
+    $pdf = new PDF($sections, $person, $tableResilienceData);
     $pdf->drawContent();
     
     $filename = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $pdf->getTitle());

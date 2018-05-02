@@ -135,7 +135,7 @@ function invokeScoreGeneration(callback) {
                     "label_text" => $sectionColor->getTextColor()
                 );
             	?>
-            	<div class="pb-4 border-bottom">
+            	<div class="pb-4 mb-4">
                 	<div class="lead p-2 px-3 rounded mb-3 <?= $sectionColor->getClass() ?>">
                 	<?= $infoSection['title'] ?>
                 	</div>
@@ -161,7 +161,50 @@ function invokeScoreGeneration(callback) {
         	<?php }
         	?>
         	
+
+
         	
+        	<div class="my-4 border-top border-bottom py-5">
+            	<h4 class="my-2 mb-3">
+            	<?= $t['resilience_importance_par_section']?>
+            	</h4>
+            	
+            	<table class="table table-sm table-striped">
+            	<thead>
+            		<tr>
+            			<th></th>
+            			<th class="align-middle text-center"><?= $t['conduite-exploitation']?></th>
+            			<th class="align-middle text-center"><?= $t['resilience']?></th>
+            			<th class="align-middle text-center"><?= $t['importance']?></th>
+            		</tr>
+            	</thead>
+            	<tbody>
+            	<?php 
+            	$totalOtherThanResilience = -1;
+            	$tableResilienceForPDF = array();
+            	foreach($sections as $section => $infoSection) {
+            	    if($section == "byIndicator") continue;
+            	    $values = $objectsCharData[$section]->getValues();
+            	    
+            	    $totalOtherThanResilience += $values['conduiteExploitation'] + $values['importance'];
+            	    $conduiteExploitation = round($values['conduiteExploitation'],1);
+            	    $avgResilience = round($values['avgPersonnalResilience'],1);
+            	    $avgImportance = round($values['importance'],1);
+            	    
+            	    $tableResilienceForPDF[] = array($infoSection['title'], $conduiteExploitation, $avgResilience, $avgImportance);
+            	    ?>
+            	<tr>
+            		<td><?= $infoSection['title'] ?></td>
+            		<td class="align-middle text-center"><?= $conduiteExploitation?></td>
+            		<td class="align-middle text-center"><?= $avgResilience ?></td>
+            		<td class="align-middle text-center"><?= $avgImportance ?></td>
+            	</tr>
+            	<?php } ?>
+            	</tbody>
+            	</table>
+ 			</div>
+ 			
+ 			        	
         	
         	<h4 class="my-3 mt-5">
             	<?= $t['scores_by_indicators']?>, 
@@ -196,42 +239,6 @@ function invokeScoreGeneration(callback) {
     				}?>
             	</div>
 			</div>
-        	
-        	
-        	
-        	
-        	<div class="my-5">
-            	<h4 class="my-2 mb-3">
-            	<?= $t['resilience_importance_par_section']?>
-            	</h4>
-            	
-            	<table class="table table-sm table-striped">
-            	<thead>
-            		<tr>
-            			<th></th>
-            			<th class="align-middle text-center"><?= $t['conduite-exploitation']?></th>
-            			<th class="align-middle text-center"><?= $t['resilience']?></th>
-            			<th class="align-middle text-center"><?= $t['importance']?></th>
-            		</tr>
-            	</thead>
-            	<tbody>
-            	<?php 
-            	$totalOtherThanResilience = -1;
-            	foreach($sections as $section => $infoSection) {
-            	    if($section == "byIndicator") continue;
-            	    $values = $objectsCharData[$section]->getValues();
-            	    $totalOtherThanResilience += $values['conduiteExploitation'] + $values['importance'];
-            	    ?>
-            	<tr>
-            		<td><?= $infoSection['title'] ?></td>
-            		<td class="align-middle text-center"><?= round($values['conduiteExploitation'],1)?></td>
-            		<td class="align-middle text-center"><?= round($values['avgPersonnalResilience'],1) ?></td>
-            		<td class="align-middle text-center"><?= round($values['importance'],1) ?></td>
-            	</tr>
-            	<?php } ?>
-            	</tbody>
-            	</table>
- 			</div>
  		
             <script>
 			$(function(){
@@ -304,7 +311,13 @@ function invokeScoreGeneration(callback) {
 				if($('canvas:last').attr("id") == id) {
 					$('#save').fadeIn("fast");
 					$.post('pages/chartsToPDF.php',
-					{ b64: graphsB64, idSections:idSectionsStr, person:"<?= $name ?>", sections:"<?= urlencode(serialize($sections)) ?>" },
+					{
+						b64: graphsB64,
+						idSections:idSectionsStr,
+						person:"<?= $name ?>",
+						sections:"<?= urlencode(serialize($sections)) ?>", 
+						tableResilience: "<?= urlencode(serialize($tableResilienceForPDF)) ?>"
+					},
 					function(filename) {
 						
 						$('#save').removeAttr("disabled").html($('#save').attr("data-text-oncomplete")).click(function() {

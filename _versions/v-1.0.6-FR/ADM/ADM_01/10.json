@@ -1,5 +1,8 @@
 {
-	"question-type":"text",
-	"title":"Commune/village",
-	"mandatory":true
+    "question-type": "text",
+    "title": "Commune/village",
+    "mandatory": true,
+    "html-attr": {
+        "data-location": "commune"
+    }
 }

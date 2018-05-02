@@ -68,6 +68,24 @@ if(isset($_COOKIE['version'])) {
 				
 				<div class="modal-backdrop fade show" style="top:56px; display: none"></div>
 				
+				<div class="modal fade" id="modal-quest" tabindex="-1" role="dialog" aria-labelledby="Modal window" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><span class="oi oi-map-marker mr-1"></span> Geolocalisation</h5>
+                      </div>
+                      <div class="modal-body">
+                      Nous pouvons remplir les champs ci-dessous automatiquement, si vous acceptez d'autoriser la géolocalisation.
+                      Nous n'enregistrons aucune information et ne connaitrons pas votre position.
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancel" data-dismiss="modal">Je ne veux pas</button>
+                        <button type="button" class="btn btn-primary" id="submit">Activer</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+				
 				<br>
 				
 				<?php if($logged) {?>

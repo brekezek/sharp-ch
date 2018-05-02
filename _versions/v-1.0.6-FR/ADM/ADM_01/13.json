@@ -1,6 +1,10 @@
 {
-	"question-type":"text",
-	"input-type":"date",
-	"title":"Collecte de données commencée le",
-	"mandatory":true
+    "question-type": "text",
+    "input-type": "date",
+    "title": "Collecte de données commencée le",
+    "mandatory": true,
+    "html-attr": {
+        "min": "2017-11-18",
+        "max": "now"
+    }
 }
