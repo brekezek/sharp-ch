@@ -72,15 +72,14 @@ if(isset($_COOKIE['version'])) {
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><span class="oi oi-map-marker mr-1"></span> Geolocalisation</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><span class="oi oi-map-marker mr-1"></span> <?= $t['geolocation']?></h5>
                       </div>
                       <div class="modal-body">
-                      Nous pouvons remplir les champs ci-dessous automatiquement, si vous acceptez d'autoriser la géolocalisation.
-                      Nous n'enregistrons aucune information et ne connaitrons pas votre position.
+                      <?= $t['message-geolocation']?>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="cancel" data-dismiss="modal">Je ne veux pas</button>
-                        <button type="button" class="btn btn-primary" id="submit">Activer</button>
+                        <button type="button" class="btn btn-secondary" id="cancel" data-dismiss="modal"><?= $t['no_thanks']?></button>
+                        <button type="button" class="btn btn-primary" id="submit"><?= $t['enable']?></button>
                       </div>
                     </div>
                   </div>

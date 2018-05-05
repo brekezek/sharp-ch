@@ -154,7 +154,7 @@ if(isset($_GET['admin'])) {
     			            $firstname = empty($row['firstname']) ? "" : ucfirst($row['firstname']);
     			            $lastname = empty($row['lastname']) ? "" : ucfirst($row['lastname']);
     			            $name = $firstname." ".$lastname;
-    			            if(empty(trim($name))) $name = '<span class="text-muted">Sans nom</span>';
+    			            if(empty(trim($name))) $name = '<span class="text-muted">'.$t['noname'].'</span>';
     			            
     			            $setData = base64_encode(urlencode(serialize(array(
     			                "filename" => $row['file'],
@@ -457,17 +457,17 @@ if(isset($_GET['admin'])) {
     			
     		    switch(error.code) {
     		        case error.PERMISSION_DENIED:
-    		        	locationErrorMessage('Vous avez refusé la geolocalisation pour ce site.');
+    		        	locationErrorMessage('<?= $t['geolocation_denied'] ?>');
     		        	//setCookie("permission-location", "denied", 7);
     		            break;
     		        case error.POSITION_UNAVAILABLE:
-    		        	locationErrorMessage('Position non trouvée');
+    		        	locationErrorMessage('<?= $t['position_not_found'] ?>');
     		            break;
     		        case error.TIMEOUT: 
-    		        	locationErrorMessage('La demande pour accéder à votre position a expirée');
+    		        	locationErrorMessage('<?= $t['request_location_expired'] ?>');
     		            break;
     		        case error.UNKNOWN_ERROR:
-    		        	locationErrorMessage('Une erreur inconnue s\'est produite');
+    		        	locationErrorMessage("<? $t['unknown_error'] ?>");
     		            break;
     		    }
     		}

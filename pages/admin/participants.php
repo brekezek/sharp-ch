@@ -24,10 +24,16 @@ function optInfoAdm($json, $index) {
     remAccent(trim($json['ADM_01'][$index]['answer'])) : "";
 }
 
+$sqlCond = "p.deleted IS NULL OR p.deleted = 0";
+if(isset($_GET['display']) && $_GET['display'] == "archive") {
+    $sqlCond = "p.deleted = 1";
+}
+
 if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, pslabel_".getLang().", rlabel_".getLang()." FROM participants p
                                 LEFT JOIN questionnaires q ON q.pid = p.pid
                                 LEFT JOIN prod_systems ps ON ps.psid = cluster
                                 LEFT JOIN regions re ON re.rid = p.rid
+                                WHERE ".$sqlCond."
                                 GROUP BY p.pid 
                                 ORDER BY lastname ASC, firstname ASC")) {
     $stmt->execute();    
@@ -110,6 +116,12 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, p
 
 <script>
 	$(document).ready(function() {
+		<?php if(isset($_GET['display']) && $_GET['display'] == "archive") {?>
+		$('nav.navbar #buttons').append('<div class="d-flex align-items-center"><a href="?page=<?= $_GET['page'] ?>" class="btn btn-light btn-sm mr-3"><span class="oi oi-chevron-left mr-1"></span></a> <h5 class="text-white mb-0"><?= $t['corbeille']?></h5></div>');
+		<?php } else {?>
+		$('nav.navbar #buttons').append('<a href="?page=<?= $_GET['page'] ?>&display=archive" class="btn text-white btn-info btn-sm"><span class="oi oi-trash mr-1"></span> <?= $t['display_corbeille']?></a>');
+		<?php } ?>
+		
 		var table = $('#repondants').dataTable( {
 			<?php if(getLang() != "en") { ?>
 			language: {
@@ -129,13 +141,30 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, p
 				});
 				
 				$('table#repondants').selectableRows()
-				.addButton("<?= $t['delete']?>", "delete", "danger", "x", function(){
+				<?php if(isset($_GET['display']) && $_GET['display'] == "archive") {?>
+				.addButton("<?= $t['recover']?>", "recover", "info", "loop-circular", function(){
+					var files = "";
+    				$('#repondants tbody tr.active').each(function(){
+    					files += $(this).attr("data-pid")+",";
+    				});
+    				files = files.substring(0, files.length-1);
+    				
+    				$.post('pages/delete.php', {
+    					data:files,
+    					actionId:"participants",
+    					recover:1
+    				}, function(html){
+    					$('#repondants tbody tr.active').remove();
+    				});
+				})
+				<?php } ?>
+				.addButton("<?= isset($_GET['display']) && $_GET['display'] == "archive" ? $t['delete'] : $t['put_in_trash']?>", "delete", "danger", "x", function(){
 					if($('#repondants tbody tr.active').length > 5) {
 						alert("<?= $t['security-message-1']?>");
 					} else {
 		    			var modal = $('#exampleModalCenter');
 		    			modal.modal();
-		    			modal.find('.modal-body').html('<p class="text-center"><?= $t['confirm-deletion']?></p>');
+		    			modal.find('.modal-body').html('<p class="text-center"><?= $t[isset($_GET['display']) && $_GET['display'] == "archive" ? 'confirm-deletion' : 'trash-confirm-deletion']?></p>');
 		    			modal.find('.modal-title').html('<?= $t['confirmation']?>');
 		    			modal.find('.modal-footer [data-dismiss]').show().html("<?= $t['close']?>");
 		    			modal.find('button#submit').off("click").addClass("btn-primary").removeClass("btn-success").html("<?= $t['confirm']?>");
@@ -150,7 +179,8 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, p
 		    				
 		    				$.post('pages/delete.php', {
 		    					data:data,
-		    					actionId:"participants"
+		    					actionId:"participants",
+		    					definitive:"<?= isset($_GET['display']) && $_GET['display'] == "archive" ? "1": "0" ?>"
 		    				}, function(html){
 		    					modal.find('#submit').unbind("click");
 		    					$('#repondants tbody tr.active').remove();

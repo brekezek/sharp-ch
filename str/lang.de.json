@@ -113,5 +113,20 @@
     "message-edit-aspect-part-1": "Sie können von dieser Seite <b> alles verändern, was den Fragebogen ausmacht </ b>: Der Titel der Abschnitte, Aspekte, Fragen, Sie können auch die Bewertungen der Fragen ändern, entscheiden, ob eine Frage obligatorisch ausgefüllt werden muss oder nicht , etc ...",
     "bySection": "Nach Sektion",
     "indicators": "Indikatoren",
-    "scores_by_indicators": "Ergebnis nach Indikatoren"
+    "scores_by_indicators": "Ergebnis nach Indikatoren",
+    "enable": "Zulassen",
+    "trash-confirm-deletion": "Bestätigen Sie die Archivierung? (Wiederherstellbar)",
+    "trash-delete-participants-also": "Archivieren Sie auch die Teilnehmer zu den Fragebögen",
+    "filters": "Filtern",
+    "geolocation": "Geolokalisierung",
+    "request_location_expired": "Die Anfrage für den Zugriff auf Ihren Standort ist abgelaufen",
+    "no_thanks": "Nein Danke",
+    "message-geolocation": "Wir können die folgenden Felder automatisch ausfüllen, wenn Sie der Geolokalisierung zustimmen. Wir erfassen keine Informationen und werden Ihre Position nicht kennen.",
+    "put_in_trash": "In den Papierkorb legen",
+    "position_not_found": "Ort nicht gefunden",
+    "noname": "Namenlos",
+    "recover": "Genesen",
+    "all": "Alle",
+    "unknown_error": "Ein unbekannter Fehler ist aufgetreten",
+    "geolocation_denied": "Sie haben die Geolokalisierung für diese Website abgelehnt."
 }

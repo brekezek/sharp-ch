@@ -113,5 +113,20 @@
     "sharp_meaning": "Assessing and strengthening the resilience of farming systems",
     "bySection": "By Section",
     "indicators": "Indicators",
-    "scores_by_indicators": "Scores by indicators"
+    "scores_by_indicators": "Scores by indicators",
+    "enable": "Allow",
+    "trash-confirm-deletion": "Do you confirm archiving? (Recoverable)",
+    "trash-delete-participants-also": "Also archive participants related to the questionnaires",
+    "filters": "Filters",
+    "geolocation": "Geolocation",
+    "request_location_expired": "The request to access your location has expired",
+    "no_thanks": "No, thanks",
+    "message-geolocation": "We can fill in the fields below automatically, if you agree to allow geolocation. We do not record any information and will not know your position.",
+    "put_in_trash": "Place in trash",
+    "position_not_found": "Location not found",
+    "noname": "No name",
+    "recover": "Recover",
+    "all": "All",
+    "unknown_error": "An unknown error has occurred",
+    "geolocation_denied": "You have rejected geolocation for this site."
 }

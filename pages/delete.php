@@ -21,6 +21,12 @@ if($logged) {
         if(isset($_POST['deleteParticipant'])) {
             $deleteParticipant = $_POST['deleteParticipant'];
         }
+        $definitive = false;
+        if(isset($_POST['definitive']) && $_POST['definitive'] == 1) {
+            $definitive = true;
+        }
+        $deleteFlag = 1;
+        if(isset($_POST['recover'])) { $deleteFlag = 0; }
         // -------------------------------------
         
         if(is_array($data) && count($data) > 5) {
@@ -28,10 +34,15 @@ if($logged) {
             exit();
         }
         
-        if($actionId == "delete-files") {
+        if($actionId == "delete-files") { // Suppression d'un questionnaire et eventuellement du participant lié
             // Suppression des participants
             if($deleteParticipant == "true") {
-                if($stmtP = $mysqli->prepare("DELETE FROM participants WHERE pid=(SELECT pid FROM questionnaires WHERE file=? LIMIT 1)")) {
+               
+                $sql = "UPDATE participants SET deleted=".$deleteFlag." WHERE pid=(SELECT pid FROM questionnaires WHERE file=? LIMIT 1)";
+                if($definitive) {
+                    $sql = "DELETE FROM participants WHERE pid=(SELECT pid FROM questionnaires WHERE file=? LIMIT 1)";
+                }
+                if($stmtP = $mysqli->prepare($sql)) {
                     foreach($data as $file) {
                         $stmtP->bind_param("s", $file);
                         $stmtP->execute();
@@ -42,15 +53,21 @@ if($logged) {
             }
             
             // Suppression des questionnaires dans la db
-            if($stmt = $mysqli->prepare("DELETE FROM questionnaires WHERE file=?")) {
+            $sql = "UPDATE questionnaires SET deleted=".$deleteFlag." WHERE file=?";
+            if($definitive) {
+                $sql = "DELETE FROM questionnaires WHERE file=?";
+            }
+            if($stmt = $mysqli->prepare($sql)) {
                 foreach($data as $file) {
                     $stmt->bind_param("s", $file);
                     $stmt->execute();
                     
                     // Suppression physique des questionnaires
-                    $filepath = getAbsolutePath().DIR_ANSWERS."/".$file;
-                    if(file_exists($filepath)) {
-                        unlink($filepath);
+                    if($definitive) {
+                        $filepath = getAbsolutePath().DIR_ANSWERS."/".$file;
+                        if(file_exists($filepath)) {
+                            unlink($filepath);
+                        }
                     }
                 }
                 $stmt->close();
@@ -65,7 +82,11 @@ if($logged) {
         if($actionId == "participants") {
             $stmt = null;
             $qids = implode(",",$data);
-            if($stmt = $mysqli->prepare("DELETE FROM participants WHERE pid=?")) {
+            $sql = "UPDATE participants SET deleted=".$deleteFlag." WHERE pid=?";
+            if($definitive) {
+                $sql = "DELETE FROM participants WHERE pid=?";
+            }
+            if($stmt = $mysqli->prepare($sql)) {
                 foreach($data as $qid) {
                     $stmt->bind_param("i", $qid);
                     $stmt->execute();

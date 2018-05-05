@@ -2,90 +2,28 @@
 include_once("login.redirect.php");
 
 
+if(isset($_POST['filter'])) {
+    $query = "UPDATE users SET params=? WHERE uid=?";
+    $filters = serialize($_POST['filter']);
+    if(isset($_REQUEST['reset'])) {
+        $filters = NULL;
+    }
+    if($stmt = $mysqli->prepare($query)) {
+        $stmt->bind_param("si", $filters, $_SESSION['user_id']);
+        $stmt->execute();
+    }
+}
+
+$filters = null;
+foreach($mysqli->query("SELECT params FROM users WHERE uid=".$_SESSION['user_id']) as $row) {
+    $filters = $row['params'];
+}
+if($filters !== null) {
+    $filters = unserialize($filters);
+}
+
 $repondants = array();
 $hidden = array();
-
-
-
-/*
-foreach(scanAllDir(DIR_ANSWERS) as $quest) {
-    if(strstr($quest,".json") === false) continue;
-    
-    $scoringFile = file_get_contents(DIR_ANSWERS."/".$quest);
-	$json = json_decode($scoringFile, true);
-	
-	$infos = array();
-	
-	$infos['Collecté par'] = optInfoAdm($json, 1);
-	$infos['Prénom'] = optInfoAdm($json, 3);
-	$infos['Nom'] = optInfoAdm($json, 2);
-	//$infos['Commune'] = optInfoAdm($json, 9); 
-	$infos['Village'] = optInfoAdm($json, 10); 
-	//$infos['uid'] = optInfoAdm($json, 4); 
-	//$infos['Age'] = optInfoAdm($json, 15);
-	$infos['Création'] = date("d.m.y", isset($json['meta']) && isset($json['meta']['creation-date']) ? $json['meta']['creation-date'] :  filemtime(DIR_ANSWERS."/".$quest));
-	$infos['Version'] = isset($json['meta']) ? $json['meta']['version'] : "?";
-	//$infos['Download'] = '<a class="btn btn-success btn-sm" href="download.php?file='.DIR_ANSWERS."/".$quest.'">Down <span class="oi oi-cloud-download ml-1"></span></a>';
-	$infos['Consulter'] = '<a class="btn btn-primary text-white btn-sm reviewFile" data-file="'.$quest.'">Afficher <span class="oi oi-eye ml-1"></span></a>';
-	$infos['Score'] = '<a class="btn btn-success text-white btn-sm generateScore" data-file="'.$quest.'">Scores <span class="oi oi-bar-chart ml-1"></span></a>';
-    
-	$name = remAccent(mb_strtolower($infos["Nom"]."_".$infos["Prénom"]));
-	if(strlen($name) < 3)
-	    $name = "";
-	
-    /*
-    if(!isset($json['meta'])) {
-        $json['meta'] = array(
-            'version' => "v-1.0.4-DE",
-            "filename" => $json['filename']
-        );
-        if(isset($json['filename'])) {
-            unset($json['filename']);
-        }
-        
-        $handle = fopen(DIR_ANSWERS."/".$quest, "w+");
-        $json = json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_NUMERIC_CHECK);
-        fwrite($handle, $json);
-        fclose($handle);
-    }
-	*
-	    
-
-
-    
-
-	unset($json['filename']);
-	$fileContent = json_encode($json);
-	$hash = sha1($fileContent);
-	
-	$nbInfoFilled = 0;
-	foreach($infos as $key => $info) {
-		if($key == "filename" || $key == "creation_date") continue;
-		if(strlen(trim($info)) > 2) $nbInfoFilled++;
-	}
-	
-	if($nbInfoFilled > 0) {
-		$repondants[$hash] = $infos;
-		$hidden[$hash] = array(
-		    "file" => $quest,
-		    "name" => $name,
-		    "version" => $infos['Version']
-		);
-	}
-}
-
-function hash_str($str) {
-	$sel = 'asl!$Ds5Ll%w#ca*d?aS$';
-	for($i = 0; $i < 10; $i++) 
-		$hash = "1d!".strrev(sha1($sel.$str))."h";
-	return $hash;
-}
-
-function optInfoAdm($json, $index) {
-	return (isset($json['ADM_01'][$index]['answer'])) ?
-		remAccent(trim($json['ADM_01'][$index]['answer'])) : "";
-}
-*/
 ?>
 
 <style>
@@ -106,7 +44,6 @@ $lastHash = "";
 foreach($repondants as $hash => $infos)
 	$lastHash = $hash;
 ?>	
-
 <div class="bg-secondary text-white p-2" id="tools" style="display:none">
 	<div class="d-flex justify-content-between align-items-center">
 		<div>
@@ -120,6 +57,7 @@ foreach($repondants as $hash => $infos)
     	</div>
 	</div>
 </div>
+
 
 <?php 
 echo '<table id="repondants" class="table table-striped table-hover display table-sm" data-page-length="11" style="border-collapse:collapse!important">';
@@ -139,10 +77,30 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
 	
 	echo '<tbody>';
 		$i = 0; 
+		$sqlCond = " (q.deleted IS NULL OR q.deleted = 0) ";
+		if(isset($_GET['display']) && $_GET['display'] == "archive") {
+		    $sqlCond = "q.deleted = 1";
+		}
+		
+		if($filters !== null) {
+		    if(isset($filters['version']) && $filters['version'] != "all") {
+		      $sqlCond .= " AND version='".$filters['version']."' ";
+		    }
+		    if(isset($filters['collected_by']) && is_array($filters['collected_by']) && count($filters['collected_by']) > 0) {
+		        
+		        $sqlCond .= " AND (";
+		        foreach($filters['collected_by'] as $filter) {
+		          $sqlCond .= " collecte_par LIKE '".$filter."%' OR";
+		        }
+		        $sqlCond = substr($sqlCond, 0, -2).") ";
+		    }
+		}
+		
 		if ($stmt = $mysqli->prepare(
 		    "SELECT collecte_par, firstname, lastname, commune, creation_date, version, cluster, p.rid, file, rlabel_".getLang().", COUNT(q.pid) as nbQuest FROM questionnaires q
             LEFT JOIN participants p ON q.pid = p.pid
             LEFT JOIN regions re ON re.rid=p.rid
+            WHERE ".$sqlCond."
             GROUP BY q.pid 
             ORDER BY lastname ASC, firstname ASC")) {
                 
@@ -240,10 +198,10 @@ echo '</table>';
         </button>
       </div>
       <div class="modal-body">
-        <p class="text-center"><?= $t['confirm-deletion']?></p>
+        <p class="text-center"><?= $t[isset($_GET['display']) && $_GET['display'] == "archive" ? 'confirm-deletion' : 'trash-confirm-deletion']?></p>
         <div class="form-check">
             <input type="checkbox" class="form-check-input" id="deleteParticipants">
-            <label class="form-check-label" for="deleteParticipants"><?= $t['delete-participants-also']?></label>
+            <label class="form-check-label" for="deleteParticipants"><?= $t[isset($_GET['display']) && $_GET['display'] == "archive" ? 'delete-participants-also' : 'trash-delete-participants-also']?></label>
       	</div>
       </div>
       <div class="modal-footer">
@@ -272,6 +230,12 @@ echo '</table>';
 			deleteCookie('savedVersion');
 		}
 
+		<?php if(isset($_GET['display']) && $_GET['display'] == "archive") {?>
+		$('nav.navbar #buttons').append('<div class="d-flex align-items-center"><a href="?<?php if(isset($_GET['page'])) {?>page=<?php echo $_GET['page']; } ?>" class="btn btn-light btn-sm mr-3"><span class="oi oi-chevron-left mr-1"></span></a> <h5 class="text-white mb-0"><?= $t['corbeille']?></h5></div>');
+		<?php } else {?>
+		$('nav.navbar #buttons').append('<a href="?<?php if(isset($_GET['page'])) {?>page=<?php echo $_GET['page']."&"; } ?>display=archive" class="btn text-white btn-info btn-sm"><span class="oi oi-trash mr-1"></span> <?= $t['display_corbeille']?></a>');
+		<?php } ?>
+		
 		$.fn.dataTable.moment('DD.MM.YY');
 
 		var itemsScore = [
@@ -295,7 +259,26 @@ echo '</table>';
 			],
 			initComplete: function(){
 				$('table#repondants').selectableRows()
-				.addButton("<?= $t['delete']?>", "delete", "danger", "x", function(){
+				<?php if(isset($_GET['display']) && $_GET['display'] == "archive") {?>
+				.addButton("<?= $t['recover']?>", "recover", "info", "loop-circular", function(){
+					$('input[type="checkbox"]#deleteParticipants').attr("checked", "checked");	
+					var files = "";
+    				$('#repondants tbody tr.active').each(function(){
+    					files += $(this).attr("data-file")+",";
+    				});
+    				files = files.substring(0, files.length-1);
+    				
+    				$.post('pages/delete.php', {
+    					data:files,
+    					deleteParticipant:$('input[type="checkbox"]#deleteParticipants').is(":checked"),
+    					actionId:"delete-files",
+    					recover:1
+    				}, function(html){
+    					$('#repondants tbody tr.active').remove();
+    				});
+				})
+				<?php } ?>
+				.addButton("<?= isset($_GET['display']) && $_GET['display'] == "archive" ? $t['delete'] : $t['put_in_trash']?>", "delete", "danger", "trash", function(){
 					if($('#repondants tbody tr.active').length > 5) {
 						alert("<?= $t['security-message-1']?>");
 					} else {
@@ -313,7 +296,8 @@ echo '</table>';
 		    				$.post('pages/delete.php', {
 		    					data:files,
 		    					deleteParticipant:$('input[type="checkbox"]#deleteParticipants').is(":checked"),
-		    					actionId:"delete-files"
+		    					actionId:"delete-files",
+		    					definitive:"<?= isset($_GET['display']) && $_GET['display'] == "archive" ? "1": "0" ?>"
 		    				}, function(html){
 		    					modal.find('#submit').unbind("click");
 		    					$('#repondants tbody tr.active').remove();
@@ -371,11 +355,14 @@ echo '</table>';
 		    			});
 					}
 				});
+
+				
+				$('#repondants_filter').append('<div id="filters-toggle" data-toggle="popover" title="<?= $t['filters']?>" data-content="Bientot disponible" style="vertical-align:top; font-size:12px;" class="btn btn-primary ml-1"><span class="oi oi-sort-descending mr-1"></span> <?= $t['filters']?></div>');
+				$.post('pages/admin/quest.filters.php', {}, function(html){
+					$('#filters-toggle').attr("data-content", html);
+				});
+				$('[data-toggle="popover"]').popover({html:true});
 			}
-		});
-		
-		$('body').tooltip({
-		    selector: '[data-toggle=tooltip]'
 		});
 		
 		$('body').on('click', '#actions .dropdown-item[data-action="reviewFile"]', function(){

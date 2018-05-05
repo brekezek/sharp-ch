@@ -92,6 +92,9 @@ function invokeScoreGeneration(callback) {
             $haveScores = $scores->num_rows;
             
             $name = ucfirst($firstname)." ".ucfirst($lastname);
+            if(trim($name) == "") {
+                $name = '<span class="text-muted">'.$t['noname'].'</span>';   
+            }
             ?>
         	<h1 class="display-4 border-bottom text-capitalize mb-4" id="title"><?= $name ?></h1>
         	

@@ -43,7 +43,7 @@ function getInfoPage($idx) {
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link href="open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
 	<link href="css/dashboard.css" rel="stylesheet">
 	
@@ -95,13 +95,14 @@ function getInfoPage($idx) {
         ?>
         
         <div class="navbar-brand col-sm-3 col-md-2 mr-0" style="width:220px; max-width:220px; flex:none">
-       		<?= $name ?> <span class="badge badge-danger">admin</span>
+        	<a href="index.php" class="btn btn-outline-light btn-sm mr-1" data-toggle="tooltip" data-placement="right" title="<?= $t['accueil']?>"><span class="oi oi-home"></span></a>
+       		<?= $name ?> 
         </div>
         
         <!-- <input class="form-control form-control-dark w-100 d-none" type="text" placeholder="Recherche" id="mainSearch"> -->
         
-        <div class="w-100 text-left ml-2">
-        	<a href="index.php" class="btn btn-outline-light btn-sm"><span class="oi oi-home mr-1"></span> <?= $t['accueil'] ?></a>
+        <div class="w-100 text-left ml-2" id="buttons">
+        	
         </div>
         
         <ul class="navbar-nav px-3">
@@ -176,9 +177,9 @@ function getInfoPage($idx) {
       <div class="row">
         
 		<!-- Bootstrap & JQuery -->
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    	<script src="js/jquery.min.js"></script>
+    	<script src="js/popper.min.js"></script>
+    	<script src="js/bootstrap.min.js"></script>
     	<script src="js/cookie.js"></script>
     	
         <main role="main" class="<?php if(!$pages[$idxPage]["padding"]) { ?>pt-0 px-0<?php } else { ?>pt-3 px-3<?php }?>">
@@ -189,6 +190,14 @@ function getInfoPage($idx) {
     		<div class="alert alert-warning m-2">Cette page n'existe pas encore</div>
     		<?php } ?>
         </main>
+        
+        <script>
+		$(function(){
+			$('body').tooltip({
+			    selector: '[data-toggle=tooltip]'
+			});
+		});
+        </script>
         
       </div>
     </div>

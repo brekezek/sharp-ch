@@ -147,6 +147,11 @@ table.dataTable tbody tr.selected {
 
 .min-width-multiselect { min-width: 508px; }
 
+.popover {
+	max-width: 650px;
+	word-wrap:normal;
+}
+
 @media (pointer:coarse) { 
 	.pc_only { display:none!important; }
 	.min-width-multiselect { min-width: 165px; }
