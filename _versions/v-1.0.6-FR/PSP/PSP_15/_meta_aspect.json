@@ -1,5 +1,20 @@
 {
-	"title":"Pratiques de contrôle des maladies animales",
-	"id":"PSP_15",
-	"img":""
+    "title": "Pratiques de contrôle des maladies animales",
+    "id": "PSP_15",
+    "img": "",
+    "filters": [
+        {
+            "scope": "all",
+            "dependencies": [
+                {
+                    "lookAt": "PSP_05.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }

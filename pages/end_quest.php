@@ -23,24 +23,107 @@ function invokeScoreGeneration(callback) {
 	}, callback);
 }
 </script>
+
+<link rel="stylesheet" href="css/circle-chart.css">
 	
 <div class="container">
 	<div class="d-flex" style="opacity:0">-</div>
 	
-	<?php if(!isset($_GET['score'])) { ?>
-	<div class="alert alert-success mt-3 text-center" role="alert">
-		<h1 class="display-4"><?= $t['thank_you'] ?>!</h1>
-		<p class="lead"><?= $t['txt1_end_quest'] ?> !</p>
-		<hr class="my-4">
-		<p><?= $t['txt2_end_quest'] ?></p>
-		<p><a class="btn btn-success btn-lg" href="?score" role="button"><?= $t['display_my_score'] ?> »</a></p>
+	<?php if(!isset($_GET['score'])) {
+	
+	    
+	    $endingTime = $_COOKIE['expirationQuest'];
+	    $startingTime = $endingTime - LIFE_COOKIE_QUEST_PENDING*60*60*24;
+	    
+	    $timeUsed = time() - $startingTime;
+	    $timeLeft = $endingTime - time();
+	    
+	    function getFormattedTime($time) {
+	        global $t;
+	        $days = floor($time / (3600*24));
+	        $hours = floor(($time - $days*24*3600) / 3600);
+	        $min = floor(($time - $days*24*3600 - $hours*3600) /  60);
+	        
+	        // $hours = 24*$days + $hours;
+	        $timeF = array();
+	        $jour = $t['jours'];
+	        if($days <= 1) $jour = substr($jour, 0, -1);
+	        $timeF['jours'] = ($days > 0)  ? sprintf("%02d %s ",$days, $jour) : "";
+	        $timeF['hours'] = sprintf("%02d%s%02d", $hours, "h", $min);
+	        return $timeF;
+	    }
+	    
+	    function drawCircleChart($color, $time, $label) {
+	        global $endingTime, $startingTime;
+	        $percentage = ($time / ($endingTime - $startingTime)) * 100;
+	        ?>
+            <div class="text-center">
+                <div class="single-chart">
+                    <svg viewbox="0 0 36 36" class="circular-chart <?= $color ?>">
+                      <path class="circle-bg"
+                        d="M18 2.0845
+                          a 15.9155 15.9155 0 0 1 0 31.831
+                          a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                      <path class="circle"
+                        stroke-dasharray="<?= $percentage ?>, 100"
+                        d="M18 2.0845
+                          a 15.9155 15.9155 0 0 1 0 31.831
+                          a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                      <?php $timeF = getFormattedTime($time); ?>
+                      <text x="18" y="<?= empty($timeF['jours']) ? "20.35" : "16.5" ?>" class="days"><?= $timeF['jours'] ?></text>
+                      <text x="18" y="<?= empty($timeF['jours']) ? "20.35" : "22.65" ?>" class="<?= empty($timeF['jours']) ? "days" : "hours" ?>"><?= $timeF['hours'] ?></text>
+                    </svg>
+                </div>
+                
+                <div class="lead">
+            	<?= $label ?>
+            	</div>
+        	</div>
+            <?php 
+        }
+       ?>
+	
+	<div class="d-flex justify-content-center align-items-center">
+		
+		<?php if(isset($_COOKIE['expirationQuest'])) {?>
+    		<div class="mr-4 border-right" style="min-width: 250px;">
+            	<?php drawCircleChart("blue", $timeUsed, $t['time-used']); ?>
+            	<hr class="my-4">
+            	<?php drawCircleChart("orange", $timeLeft, $t['time-left']); ?>
+        	</div>
+    	<?php } ?>
+    	
+    	<div class="">
+        	<div class="my-3 text-justify">
+        		<h1 class="display-4"><?= $t['thank_you'] ?>!</h1>
+        		<p class="lead"><?= $t['txt1_end_quest'] ?> !</p>	
+        		<div class="border-top border-bottom py-3 d-flex align-items-center justify-content-center">
+        			<div class="oi oi-bar-chart text-center display-4 mx-2 mr-4" style="min-width: 64px; color: #7f8c8d"></div>
+        			<div><?= $t['txt2_end_quest'] ?></div>
+        		</div>
+        		
+        		<div class="border-bottom py-3 d-flex align-items-center justify-content-center">
+        			<div class="oi oi-print text-center display-4 mx-2 mr-4" style="min-width: 64px; color: #7f8c8d"></div>
+        			<div><?= $t['txt_print_end_quest'] ?></div>
+        		</div>
+        	</div>
+        	
+        	
+        	<p class="text-center"><a class="btn btn-dark btn-lg" href="scores" role="button"><?= $t['display_my_score'] ?> <span class="oi oi-pie-chart ml-1"></span></a></p>
+		</div>
 	</div>
+	
 	<script>
     $(function(){
+        $('#finishScoreDisplay').remove();
     	invokeScoreGeneration(function(resp) {});
     });
     </script>
-	<?php } else {?>
+	
+	<?php
+	} else {?>
 	
 	<script src="js/Chart.min.js"></script>
 	<script src="js/chartjs-plugin-datalabels.min.js"></script>
@@ -62,7 +145,6 @@ function invokeScoreGeneration(callback) {
     }
 	</style>
 	
-	
 	<?php 
 	$qid = null;
 	$name = "";
@@ -72,8 +154,8 @@ function invokeScoreGeneration(callback) {
         LEFT JOIN participants p ON p.pid = q.pid
         WHERE file LIKE ?")) {
         
-        $filename = "%".basename($filename);
-        $stmt->bind_param("s", $filename);
+        $filenameBN = "%".basename($filename);
+        $stmt->bind_param("s", $filenameBN);
         $stmt->execute();
         $stmt->bind_result($qid, $firstname, $lastname, $rid, $cluster);
         $stmt->fetch();
@@ -248,12 +330,12 @@ function invokeScoreGeneration(callback) {
 				
 				$('#finishScoreDisplay').click(function(){
 	    			deleteCookie("scores-display");
-	    			document.location = '?success';
+	    			document.location = 'home';
 	    		});
 
 	    		<?php if(($totalOtherThanResilience <= 0 || trim($labelsStr) == "") && !isset($_GET['refresh']) ) {?>
 	    		invokeScoreGeneration(function(resp) {
-	    			document.location = '?<?= $_SERVER['QUERY_STRING'] ?>&refresh';
+	    			document.location = 'scores<?= (isset($_GET['setData']) ? "/data/".$_GET['setData'] : "") ?>/refresh';
 			    });
 	    		<?php } else {?>
 	    			invokeScoreGeneration(function(resp) {});
@@ -317,6 +399,8 @@ function invokeScoreGeneration(callback) {
 					{
 						b64: graphsB64,
 						idSections:idSectionsStr,
+						filename: "<?= $filename ?>",
+						version: "<?= $version ?>",
 						person:"<?= $name ?>",
 						sections:"<?= urlencode(serialize($sections)) ?>", 
 						tableResilience: "<?= urlencode(serialize($tableResilienceForPDF)) ?>"

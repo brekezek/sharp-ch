@@ -8,11 +8,11 @@ includeDependencies();
 sec_session_start();
 
 if(login_check($mysqli)) {
-    $uri = "";
-    if(!is_array($_SERVER['QUERY_STRING'])) {
-        $uri = "?".$_SERVER['QUERY_STRING'];
+    $url = "admin/dashboard";
+    if(substr($_SERVER['REQUEST_URI'], -1) == "/") {
+        $url = "dashboard";
     }
-    header('Location: admin.dashboard.php'.$uri);
+    header('Location: '.$url);
 } else {
 
     function alert($txt) {
@@ -29,11 +29,10 @@ if(login_check($mysqli)) {
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Dominique Roduit">
 
-	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<?php if(!is_array($_SERVER['QUERY_STRING'])) {?><base href="<?= ($_SERVER['SERVER_NAME'] == "localhost") ? "/sharp-site/" : getBase() ?>"><?php } ?>
 	
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link href="open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
 	<link href="css/signin.css" rel="stylesheet">
 	
@@ -57,13 +56,13 @@ if(login_check($mysqli)) {
             $txt = "";
             $err = filter_input(INPUT_GET, 'err', $filter = FILTER_SANITIZE_STRING);
             switch($err) {
-                case 1: $txt = "N'a pas pu initier une session sécurisée (ini_set)"; break;
-                case 2: $txt = "Requête invalide"; break;
-                case 3: $txt = "Mot de passe erroné"; break;
-                case 4: $txt = "Mot de passe faux 5x de suite. Vérouillé pour 10 minutes"; break;
-                case 5: $txt = "L'utilisateur n'existe pas"; break;
-                case 6: $txt = ""; break;
-                case 7: $txt = "E-mail malformé"; break;
+                case 1: $txt = $t['login-err-1']; break;
+                case 2: $txt = $t['login-err-2']; break;
+                case 3: $txt = $t['login-err-3']; break;
+                case 4: $txt = $t['login-err-4']; break;
+                case 5: $txt = $t['login-err-5']; break;
+                case 6: $txt = "error: code 6"; break;
+                case 7: $txt = $t['login-err-7']; break;
             }
             if($txt != "") alert($txt);
         }
@@ -88,9 +87,9 @@ if(login_check($mysqli)) {
     </form>
 
 	<!-- Bootstrap & JQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/cookie.js"></script>
 	
 	

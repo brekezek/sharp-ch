@@ -28,7 +28,7 @@ class Radio extends Question {
 		
 		$html .=
 		'<div class="custom-control custom-radio custom-control-inline mr-0">'.
-			'<input type="radio" id="'.$this->uid.'" name="radio_'.$this->inputName.'" '.parent::scoredAttr().' 
+		'<input type="radio" id="'.$this->uid.'" name="radio_'.$this->inputName.'" '.parent::scoredAttr().' '.parent::getAdditionnalHTMLAttributes().' 
                 value="'.$this->value.'" class="custom-control-input" '.($this->isTrue(parent::getAnswer()) ? "checked" : "").' 
                 '.($this->readonly ? "disabled" : "").'>'.
 			'<label type="radio" class="custom-control-label" for="'.$this->uid.'"></label>'.

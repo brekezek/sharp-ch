@@ -22,6 +22,7 @@ abstract class Question implements iQuestion {
 	protected $scored;
 	protected $inputType;
 	protected $htmlAttrs;
+	protected $enabled;
 	
 	function __construct($index, $json) {
 		$this->index = $index;
@@ -41,6 +42,7 @@ abstract class Question implements iQuestion {
 		$this->uid = $this->type."_".uniqid();
 		$this->isInTable = false;
 		$this->readonly = false;
+		$this->enabled = true;
 	}
 	
 	public function setAspectId($id) {
@@ -65,6 +67,10 @@ abstract class Question implements iQuestion {
 		if(isset($json['answer'])) {
 			$this->answer = $json['answer'];
 		}
+	}
+	
+	public function setDisabled() {
+	    $this->enabled = false;
 	}
 	
 	protected function isMandatory() {
@@ -122,6 +128,9 @@ abstract class Question implements iQuestion {
 	
 	protected function getAdditionnalHTMLAttributes() {
 	    $html = "";
+	    if(!$this->enabled) {
+	        $html .= 'disabled="disabled" ';
+	    }
 	    foreach($this->htmlAttrs as $attrName => $attrValue) {
 	        $html .= $attrName;
 	        if(!empty(trim($attrValue))) {
@@ -167,7 +176,8 @@ abstract class Question implements iQuestion {
 	}
 	
 	protected function startWrapper() {
-	    return $this->isInTable ? '' : '<div class="form-group" numQuest="'.$this->index.'">';
+	    $htmlOutOfTable = '<div class="form-group '.($this->enabled ? '' : "filtered").'" numQuest="'.$this->index.'">';
+	    return $this->isInTable ? '' : $htmlOutOfTable;
 	}
 	
 	protected function endWrapper() {

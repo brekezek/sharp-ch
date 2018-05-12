@@ -1,5 +1,20 @@
 {
-	"title":"Utilisation de pesticides chimiques",
-	"id":"PSP_17",
-	"img":""
+    "title": "Utilisation de pesticides chimiques",
+    "id": "PSP_17",
+    "img": "",
+    "filters": [
+        {
+            "scope": "all",
+            "dependencies": [
+                {
+                    "lookAt": "ADM_01.17",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 0
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }

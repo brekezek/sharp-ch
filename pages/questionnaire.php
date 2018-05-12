@@ -7,7 +7,6 @@ if(isset($_COOKIE['version'])) {
 		    
 			$questManager = QuestionnaireManager::getInstance($_COOKIE['version']);
 			$questManager->setReadOnly($readonly);
-			$questManager->collectAnswers();
 			$questManager->goToAspect($_COOKIE['indexAspect']);
 			
 			$nbAspects = $questManager->getNumberAspects();

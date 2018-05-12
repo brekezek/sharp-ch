@@ -24,8 +24,9 @@ class MultipleOne extends Question {
 		parent::startWrapper().
 			parent::getLabel().
 			'<select 
-                 '.parent::scoredAttr().' 
-                 '.($this->readonly ? "disabled" : "").' 
+                 '.parent::scoredAttr().' '.
+                 parent::getAdditionnalHTMLAttributes().
+                 ($this->readonly ? "disabled" : "").' 
                  style="'.parent::getTextColor().'" 
 				 '.($this->isMultiple ? ' multiple size="'.(count($this->choices)).'" ' : "").
 				 'name="'.$this->inputName.'" 

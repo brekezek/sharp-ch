@@ -15,6 +15,8 @@ class QuestionnaireManager {
 		$this->currentIndex = 1;
 		$this->filename = $_COOKIE['filename'];
 		$this->readonly = false;
+		
+		$this->collectAnswers();
 		$this->parseVersion();
 	}
 	
@@ -260,9 +262,10 @@ class QuestionnaireManager {
 				$color = new Color($categories['color']);
 				$id = $aspectMeta['id'];
 				$subtitle = $aspectMeta['title'];
-				$img = $aspectMeta['img'];
-	
-				$aspect = new Aspect($id, $title, $color, $subtitle, $this->getNumberAspects()+1);
+				//$img = $aspectMeta['img'];
+	            $filters = isset($aspectMeta['filters']) ? $aspectMeta['filters'] : null;
+				
+				$aspect = new Aspect($id, $title, $color, $subtitle, $this->getNumberAspects()+1, $filters);
 				if(isset($jsonAnswers[$id]))
 					$aspect->setJSONAnswers($jsonAnswers[$id]);
 			

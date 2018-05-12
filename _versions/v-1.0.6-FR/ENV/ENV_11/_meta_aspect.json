@@ -1,5 +1,26 @@
 {
-	"title":"Engrais",
-	"id":"ENV_11",
-	"img":""
+    "title": "Engrais",
+    "id": "ENV_11",
+    "img": "",
+    "filters": [
+        {
+            "scope": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "ADM_01.17",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 0
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }

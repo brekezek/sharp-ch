@@ -1,5 +1,39 @@
 {
-	"title":"Sources de semences",
-	"id":"PSP_08",
-	"img":""
+    "title": "Sources de semences",
+    "id": "PSP_08",
+    "img": "",
+    "filters": [
+        {
+            "scope": [
+                2,
+                3
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "PSP_04.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    },
+                    "action": "hide"
+                }
+            ]
+        },
+        {
+            "scope": [
+                4,
+                5
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "PSP_05.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }

@@ -29,8 +29,8 @@ if($logged) {
         if(isset($_POST['recover'])) { $deleteFlag = 0; }
         // -------------------------------------
         
-        if(is_array($data) && count($data) > 5) {
-            echo 'Interdiction de supprimer plus plus de 5 éléments à la fois';
+        if(is_array($data) && count($data) > 5 && $deleteFlag == 1) {
+            echo 'Interdiction de supprimer plus de 5 éléments à la fois';
             exit();
         }
         

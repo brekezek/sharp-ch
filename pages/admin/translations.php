@@ -95,31 +95,31 @@ if(isset($_POST['langue'], $_POST['key'], $_POST['value'], $_POST['type'])) {
 ?>
 <ul class="nav nav-tabs mt-1 mx-1">
   <li class="nav-item">
-    <a class="nav-link <?php if(!isset($_GET['tab'])) {?>active<?php }?>" href="?page=<?= $_GET['page']?>">
+    <a class="nav-link <?php if(!isset($_GET['tab'])) {?>active<?php }?>" href="admin/dashboard/<?= $_GET['page']?>">
     	<span class="oi oi-text mr-1"></span> 
     	<?= $t['text-app']?>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link <?php if(isset($_GET['tab']) && $_GET['tab'] == "aspects") {?>active<?php }?>" href="?page=<?= $_GET['page']?>&tab=aspects">
+    <a class="nav-link <?php if(isset($_GET['tab']) && $_GET['tab'] == "aspects") {?>active<?php }?>" href="admin/dashboard/<?= $_GET['page']?>/aspects">
     	<span class="oi oi-pie-chart mr-1"></span>
     	<?= $t['text-charts']?>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link <?php if(isset($_GET['tab']) && $_GET['tab'] == "prod_systems") {?>active<?php }?>" href="?page=<?= $_GET['page']?>&tab=prod_systems">
+    <a class="nav-link <?php if(isset($_GET['tab']) && $_GET['tab'] == "prod_systems") {?>active<?php }?>" href="admin/dashboard/<?= $_GET['page']?>/prod_systems">
     	<span class="oi oi-list mr-1"></span>
     	<?= $t['cluster']?>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link <?php if(isset($_GET['tab']) && $_GET['tab'] == "regions") {?>active<?php }?>" href="?page=<?= $_GET['page']?>&tab=regions">
+    <a class="nav-link <?php if(isset($_GET['tab']) && $_GET['tab'] == "regions") {?>active<?php }?>" href="admin/dashboard/<?= $_GET['page']?>/regions">
     	<span class="oi oi-map-marker mr-1"></span>
     	<?= $t['atelier']?>
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link <?php if(isset($_GET['tab']) && $_GET['tab'] == "indicators") {?>active<?php }?>" href="?page=<?= $_GET['page']?>&tab=indicators">
+    <a class="nav-link <?php if(isset($_GET['tab']) && $_GET['tab'] == "indicators") {?>active<?php }?>" href="admin/dashboard/<?= $_GET['page']?>/indicators">
     	<span class="oi oi-tags mr-1"></span>
     	<?= $t['indicators']?>
     </a>

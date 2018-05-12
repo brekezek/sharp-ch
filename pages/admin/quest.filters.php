@@ -27,10 +27,10 @@ if($filters !== null) {
     </div>
     
     <div class="form-group">
-        <label for="filtercollected_by"style="max-width: 200px; width:200px"><?= $t['collected_by']?></label>
+        <label for="filtercollected_by"style="max-width: 400px; width:400px"><?= $t['filters_collected_by']?>:</label>
         	<?php 
         	$persons = array();
-        	foreach($mysqli->query("SELECT collecte_par FROM questionnaires GROUP BY collecte_par") as $row) {
+        	foreach($mysqli->query("SELECT collecte_par FROM questionnaires WHERE deleted IS NULL OR deleted=0 GROUP BY collecte_par") as $row) {
         	    $name = mb_strtolower(preg_replace("/[^a-zA-Z]+/", "", $row['collecte_par']));
         	    $shortName = substr($name,0,3);
         	    if(!isset($persons[$shortName]) || strlen($persons[$shortName]) > $name) {
@@ -40,7 +40,7 @@ if($filters !== null) {
         	?>
             <select name="filter[collected_by][]" class="form-control" id="filtercollected_by" multiple>
             	<?php
-            	foreach($mysqli->query("SELECT SUBSTR(collecte_par,1,3) as person, COUNT(collecte_par) as num FROM questionnaires GROUP BY person ORDER BY person ASC") as $row) {
+            	foreach($mysqli->query("SELECT SUBSTR(collecte_par,1,3) as person, COUNT(collecte_par) as num FROM questionnaires WHERE deleted IS NULL OR deleted=0 GROUP BY person ORDER BY person ASC") as $row) {
             	    $personName = $row['person'];
             	    $shortName = $row['person'];
             	    if(trim($personName) != "") {
@@ -48,7 +48,7 @@ if($filters !== null) {
                 	        $personName = $persons[mb_strtolower($row['person'])];
                 	    }
                 	    ?>
-                    	<option value="<?= $shortName ?>" <?php if($filters === null || !isset($filters['collected_by']) || (isset($filters['collected_by']) && in_array($shortName, $filters['collected_by']))) {?>selected<?php } ?>><?= $personName." (".$row['num'].")" ?></option>
+                    	<option value="<?= $shortName ?>" <?php if(isset($filters['collected_by']) && in_array($shortName, $filters['collected_by'])) {?>selected<?php } ?>><?= $personName." (".$row['num'].")" ?></option>
                 	<?php }
             	    } ?>
             </select>

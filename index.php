@@ -14,6 +14,7 @@ $logged = login_check($mysqli);
 if(isset($_GET['admin'])) {
     header('Location: admin.php');
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +24,8 @@ if(isset($_GET['admin'])) {
 	<meta name="author" content="Dominique Roduit">
 	<meta name="description" content="">
 
+	<base href="<?= ($_SERVER['SERVER_NAME'] == "localhost") ? "/sharp-site/" : getBase() ?>">
+	
 	<!-- Fonts 
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
 	
@@ -150,6 +153,10 @@ if(isset($_GET['admin'])) {
 						<h5 class="mb-3 text-center"><?= $t['your-questionnaires']?></h5>
 						<div id="list-quest">
             			<?php 
+            			$langByVersion = array();
+            			foreach(getVersions() as $lang => $info) {
+            			    $langByVersion[$info[0]['file']] = mb_strtolower($lang);   
+            			}
             		    foreach($rows as $row) {
     			            $firstname = empty($row['firstname']) ? "" : ucfirst($row['firstname']);
     			            $lastname = empty($row['lastname']) ? "" : ucfirst($row['lastname']);
@@ -165,6 +172,7 @@ if(isset($_GET['admin'])) {
         			     	<div class="card rounded mb-1 quest-item" data-filename="<?= $row['file'] ?>" data-version="<?= $row['version'] ?>" data-setData="<?= $setData ?>">
                               <div class="card-body d-flex align-items-center py-2 pr-2">
                                  <div class="mr-auto" style="cursor:default">
+                                 	 <img data-toggle="tooltip" data-placement="top" title="<?= $row['version']?>" src="img/<?= $langByVersion[$row['version']] ?>.png" class="mr-1" style="margin-bottom:3px">
                                      <b class="name" style="cursor:pointer"><?= $name ?></b> · 
                                      <span class="text-muted"><?= date("d.m.Y, H:m", strtotime($row['creation_date'])) ?></span>
                                  </div>
@@ -226,6 +234,8 @@ if(isset($_GET['admin'])) {
 			//alert("index="+index);
 			//alert("indexAspect="+getCookie("indexAspect"));
 		}
+
+		$('#questionnaire .form-group.filtered').remove();
 		
 		$('a#quit').click(function(e){
 			deleteCookie("indexAspect");
@@ -762,7 +772,7 @@ if(isset($_GET['admin'])) {
 			var filename = parent.attr("data-filename");
 			
 			$.get("<?= DIR_ANSWERS ?>/"+filename).done(function() { 
-				document.location = 'index.php?score&setData='+setData;
+				document.location = 'scores/data/'+setData;
 		    }).fail(function() { 
 		        alert("le fichier de questionnaire n'existe pas");
 		    });

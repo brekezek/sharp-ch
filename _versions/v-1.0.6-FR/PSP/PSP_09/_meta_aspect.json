@@ -1,5 +1,48 @@
 {
-	"title":"Utilisation de variétés et races adaptées au contexte",
-	"id":"PSP_09",
-	"img":""
+    "title": "Utilisation de variétés et races adaptées au contexte",
+    "id": "PSP_09",
+    "img": "",
+    "filters": [
+        {
+            "scope": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "PSP_04.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    },
+                    "action": "hide"
+                }
+            ]
+        },
+        {
+            "scope": [
+                8,
+                9,
+                10,
+                11,
+                12,
+                13
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "PSP_05.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }

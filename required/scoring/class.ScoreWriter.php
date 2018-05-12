@@ -60,7 +60,7 @@ class ScoreWriter {
         switch($this->typeScore) {
             case "byQuestion":
                 if($this->output == "csv")
-                    fwrite($this->fp, "id_section;id_aspect;num_question;type_score;score;nom;prenom;idinit;atelier;cluster\n");
+                    fwrite($this->fp, "id_section;id_aspect;num_question;type_score;score;".$this->getAdditionnalHeader()."\n");
             
                 foreach($this->questionnaires as $quest)
                     $this->writeByQuestion($quest);
@@ -68,7 +68,7 @@ class ScoreWriter {
                 
             case "byAspect":
                 if($this->output == "csv")
-                    fwrite($this->fp, "id_section;id_aspect;type_score;score;nom;prenom;idinit;atelier;cluster\n");
+                    fwrite($this->fp, "id_section;id_aspect;type_score;score;".$this->getAdditionnalHeader()."\n");
                 
                 foreach($this->questionnaires as $quest)
                     $this->writeByAspect($quest);
@@ -76,7 +76,7 @@ class ScoreWriter {
             
             case "bySection":
                 if($this->output == "csv")
-                    fwrite($this->fp, "id_section;score;nom;prenom;idinit;atelier;cluster\n");
+                    fwrite($this->fp, "id_section;score;".$this->getAdditionnalHeader()."\n");
                     
                 foreach($this->questionnaires as $quest)
                     $this->writeBySection($quest);
@@ -84,16 +84,19 @@ class ScoreWriter {
                             
             case "byIndicator":
                 if($this->output == "csv") 
-                    fwrite($this->fp, "indicator;score;nom;prenom;idinit;atelier;cluster\n");
+                    fwrite($this->fp, "indicator;score;".$this->getAdditionnalHeader()."\n");
                 
                 foreach($this->questionnaires as $quest)
                     $this->writeByIndicator($quest);
                 break;
             
             case "resilience":
+                if($this->output == "csv")
+                    fwrite($this->fp, "id_aspect;score;".$this->getAdditionnalHeader()."\n");
+                    
                 foreach($this->questionnaires as $quest)
                     $this->writeResilience($quest);
-            break;
+                break;
             
             case "db_all":
                 if($this->output == "db") {
@@ -235,29 +238,27 @@ class ScoreWriter {
             // Ignore les tags qui ne sont pas des aspects, et les aspects non scorés
             if(in_array($aspectId, $questionnaire->getTagsToIgnore())) continue;
             // Ignore EC_05 si le EC_05 est contenu dans EC_16 à cause d'un problème
-            if($questionnaire->needFixEC_16() && $aspectId == "EC_05") continue;
+            if($questionnaire->needFixEC_16() && $aspectId == "EC_05" && !in_array($this->output, array("csv", "print"))) continue;
             
-            /*
-            if($aspectId == "PSP_11") {
-                $scores["-"] = -1;
-                $scoresNb['-'] = -1;
-            }
-            */
+            $section = explode("_", $aspectId)[0];
+             
+            $jsonAspect = isset($answers[$aspectId]) ? $answers[$aspectId] : null;   
+            $scores = $this->getArrayScoresByType($questionnaire, $aspectId, $jsonAspect);
             
-            if(isset($answers[$aspectId])) {
-                $jsonAspect = $answers[$aspectId];   
+            foreach($scores as $typeScore => $score) {
+                $score = ($score < 0) ? " " : $this->formatScore($score);
                 
-                $scores = $this->getArrayScoresByType($questionnaire, $aspectId, $jsonAspect);
+                $aspectLabel = $aspectId;
+                if($questionnaire->needFixEC_16()){
+                    if($aspectId == "EC_16") $aspectLabel = "EC_05";
+                    if($aspectId == "EC_05") $aspectLabel = "EC_16";
+                }
                 
-                $section = explode("_", $aspectId)[0];
-                
-                foreach($scores as $typeScore => $score) {
-                    $score = ($score < 0) ? " " : $this->formatScore($score);
+                if(in_array($this->output, array("csv", "print"))) {
+                    $this->bufferStr .= $section.";".$aspectLabel.";".$typeScore.";".$score.";".$this->getAdditionnalInfos($questionnaire)."\n";
+                } else {
                     
-                    if(in_array($this->output, array("csv", "print"))) {
-                        $this->bufferStr .= $section.";".(($questionnaire->needFixEC_16() && $aspectId == "EC_16") ? "EC_05" : $aspectId).";".$typeScore.";".$score.";".$this->getAdditionnalInfos($questionnaire)."\n";
-                    } else {
-                        $aspectLabel = (($questionnaire->needFixEC_16() && $aspectId == "EC_16") ? "EC_05" : $aspectId);
+                    if(isset($answers[$aspectId])) {
                         if(!isset($this->bufferData[$typeScore])) {
                             $this->bufferData[$typeScore] = array();
                         }
@@ -265,7 +266,8 @@ class ScoreWriter {
                     }
                 }
                 
-            } // end if
+            }
+ 
         } // end version
         
         $this->writeDB($questionnaire);
@@ -345,6 +347,8 @@ class ScoreWriter {
         $scores     = array("academic" => -1, "adequacy" => -1, "importance" => -1);
         $scoresNb   = array("academic" => -1, "adequacy" => -1, "importance" => -1);
         
+        if($jsonAspect === null) return $scores;
+        
         foreach($jsonAspect as $numQuest => $answer) {
             $scoreRes = $questionnaire->evalScoreForQuestion($aspectId, $numQuest);
             
@@ -387,11 +391,17 @@ class ScoreWriter {
             // Ignore les tags qui ne sont pas des aspects, et les aspects non scorés
             if(in_array($aspectId, $questionnaire->getTagsToIgnore())) continue;
             // Ignore EC_05 si le EC_05 est contenu dans EC_16 à cause d'un problème
-            if($questionnaire->needFixEC_16() && $aspectId == "EC_05") continue;
+            if($questionnaire->needFixEC_16() && $aspectId == "EC_05" && !in_array($this->output, array("csv", "print"))) continue;
            
+            $section = explode("_", $aspectId)[0];
+            $aspectLabel = $aspectId;
+            if($questionnaire->needFixEC_16()){
+                if($aspectId == "EC_16") $aspectLabel = "EC_05";
+                if($aspectId == "EC_05") $aspectLabel = "EC_16";
+            }
+            
             if(isset($answers[$aspectId])) {
-                $jsonAspect = $answers[$aspectId];
-                
+                $jsonAspect = isset($answers[$aspectId]) ? $answers[$aspectId] : null;
                 foreach($jsonAspect as $numQuest => $jsonQuestion) { 
                     $scoreRes = $questionnaire->evalScoreForQuestion($aspectId, $numQuest);
                     
@@ -401,18 +411,23 @@ class ScoreWriter {
                     
                     if($scoringType == "-") continue;
                     
-                    $section = explode("_", $aspectId)[0];
-                    
                     if(in_array($this->output, array("csv", "print"))) { 
-                        $this->bufferStr .= $section.";".(($questionnaire->needFixEC_16() && $aspectId == "EC_16") ? "EC_05" : $aspectId).";".$numQuest.";".$scoringType.";".$score.";".$this->getAdditionnalInfos($questionnaire)."\n";
+                        $this->bufferStr .= $section.";".$aspectLabel.";".$numQuest.";".$scoringType.";".$score.";".$this->getAdditionnalInfos($questionnaire)."\n";
                     } else {
-                        $aspectLabel = (($questionnaire->needFixEC_16() && $aspectId == "EC_16") ? "EC_05" : $aspectId);
                         if(!isset($this->bufferData[$aspectLabel])) {
                             $this->bufferData[$aspectLabel] = array();
                         }
                         $this->bufferData[$aspectLabel][$numQuest] = $score;
                     }
                 } // end aspect
+            } else {
+                if(in_array($this->output, array("csv", "print"))) {
+                    foreach(getQuestionsList(getAbsolutePath().DIR_VERSIONS."/".$questionnaire->getVersion()."/".$section."/".$aspectLabel) as $numQuest) {
+                        $jsonQuestion = getJSONFromFile(getAbsolutePath().DIR_VERSIONS."/".$questionnaire->getVersion()."/".$section."/".$aspectLabel."/".$numQuest.".json");
+                        $scoringType = isset($jsonQuestion['scoring-type']) ? $jsonQuestion['scoring-type'] : "-";
+                        $this->bufferStr .= $section.";".$aspectLabel.";".$numQuest.";".$scoringType."; ;".$this->getAdditionnalInfos($questionnaire)."\n";
+                    }
+                }
             }
         } // end version
         
@@ -431,7 +446,7 @@ class ScoreWriter {
     
     private function getAdditionnalInfos($questionnaire) {
         $infos = $questionnaire->getPersonInfos();
-        $order = array("lastname", "firstname", "uid", "atelier", "cluster");
+        $order = array("lastname", "firstname", "uid", "region", "systeme_prod", "ktidb");
         $str = "";
         
         // nom;prenom;idinit;atelier;cluster
@@ -440,6 +455,10 @@ class ScoreWriter {
         }
         
         return $str;
+    }
+    
+    private function getAdditionnalheader() {
+        return "nom;prenom;idinit;region;systeme de production;ktidb";
     }
     
     private function formatScore($score) {

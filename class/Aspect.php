@@ -21,7 +21,11 @@ class Aspect {
 	
 	private $readonly;
 	
-	function __construct($id, $title, $color, $subtitle, $index) {
+	private $filtersEvaluation;
+	private $filtersState;
+	private $filtersScope;
+	
+	function __construct($id, $title, $color, $subtitle, $index, $filters) {
 		$this->id = $id;
 		$this->title = $title;
 		$this->color = $color;
@@ -30,6 +34,29 @@ class Aspect {
 		$this->index = $index;
 		$this->readonly = false;
 		$this->imgFile = "img/questionnaire/".$this->id.".png";
+		
+		$filtersObj = AspectFilter::parseFilters($filters);
+		
+		$this->filtersState = AspectFilter::evalFilters($filtersObj);
+		
+		$this->filtersScope = array();
+		if(is_array($filtersObj)) {
+    		foreach($filtersObj as $filter) {
+    		    if($filter->evaluate()) {
+    		      if($filter->getScope() == "all") {
+		              $this->filtersScope = "all";
+    		          break;
+    		      }
+    		      $this->filtersScope = array_merge($this->filtersScope, $filter->getScope());
+    		    }
+    		}
+		}
+		/*
+		if((is_array($this->filtersScope) && count($this->filtersScope) > 0) || $this->filtersScope == "all"){
+		    echo "<br>".$this->id." -> ";
+		    print_r($this->filtersScope);
+		}
+		*/
 	}
 	
 	public function getColor() {
@@ -49,6 +76,12 @@ class Aspect {
 		if(isset($this->jsonAnswers[$question->getIndex()]))
 			$question->setJSONAnswer($this->jsonAnswers[$question->getIndex()]);
 		
+		if(is_array($this->filtersScope)) {
+		    if(is_array($this->filtersScope) && in_array($question->getIndex(), $this->filtersScope)) {
+		        $question->setDisabled();
+		    }
+		}
+			
 		array_push($this->questions, $question);
 	}
 	
@@ -58,8 +91,25 @@ class Aspect {
 	}
 	
 	public function drawQuestions() {
+	    global $t;
+	    
 		$html = 
 		'<div class="rounded container bg-light p-2 my-3">';
+		
+		if(is_string($this->filtersScope) && $this->filtersScope == "all") {
+		    $html .= '<div class="alert alert-success mb-0">';
+		    $html .= $t['filters-alert-message-string'] . '<br>' .$this->filtersState;
+		    $html .= '</div>';
+		    $html .= '</div>';
+		    echo $html;
+		    return;
+		} else if(is_array($this->filtersScope) && count($this->filtersScope) > 0){
+		    $html .= '<div class="alert alert-success mb-2">';
+  		    $html .= sprintf($t['filters-alert-message-array'], implode($this->filtersScope, ", "));
+  		    $html .= "<br>".$this->filtersState;
+  		    $html .= '</div>';
+		} 
+		    
 		foreach($this->questions as $question) {
 		    $question->setReadOnly($this->readonly);
 			$html .= $question->draw();

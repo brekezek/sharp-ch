@@ -1,0 +1,63 @@
+.single-chart {
+  width: 85%;
+  margin:auto;
+}
+
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 80%;
+  max-height: 250px;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3.2;
+  animation: bg-progress 1.5s ease-out forwards;
+}
+
+@keyframes bg-progress {
+	0% { fill: #fff; }
+	100% { fill: #fcfcfc; }
+}
+
+.circle {
+  fill: none;
+  stroke-width: 1;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+    stroke-width: 1.7;
+  }
+}
+
+.circular-chart.orange .circle {
+  stroke: #ff9f00;
+}
+
+.circular-chart.green .circle {
+  stroke: #4CC790;
+}
+
+.circular-chart.blue .circle {
+  stroke: #3c9ee5;
+}
+.days {
+	font-weight: bold;
+	font-size: 0.3em;
+	fill: #444;
+}
+.hours {
+	font-size: 0.27em;
+	fill: #666;
+}
+.days, .hours {
+  
+  font-family: sans-serif;
+  text-anchor: middle;
+}

@@ -29,6 +29,9 @@ if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections
     $sections = unserialize(urldecode($_POST['sections']));
     $sectionsId = explode(",", $_POST['idSections']);
     $person = $_POST['person'];
+    
+    $filename = !isset($_POST['filename']) ? $_COOKIE['filename'] : $_POST['filename'];
+    $version  = !isset($_POST['version'])  ? $_COOKIE['version']  : $_POST['version']; 
 
     foreach($sections as $sectionId => $infos) {
         if(!in_array($sectionId, $sectionsId)) {
@@ -128,6 +131,8 @@ if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections
         }
         
         function drawContent() {
+            global $t, $filename, $version;
+            
             // Première page
             $this->AddPage();
             $this->SetFont('Arial','B', 32);
@@ -136,21 +141,13 @@ if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections
             $this->Cell(0, 0 , utf8_decode($this->person), 0, 2, 'C');
             $this->SetFont('Arial','', 15);
             $this->SetY($this->GetY() + 20);
-            $this->Cell(0, 0, utf8_decode("Scores de résilience par aspects"), 0, 2, 'C');
+            $this->Cell(0, 0, utf8_decode($t['pdf-page1-subtitle']), 0, 2, 'C');
             
             $this->SetFont('Arial','', 11);
-            $data = base64_encode(urlencode(serialize(array(
-                "filename" => $_COOKIE['filename'],
-                "version" => $_COOKIE['version']
-            ))));
-            $url = "http://".$_SERVER['HTTP_HOST']."/";
-            $phpself = explode("/", substr($_SERVER['PHP_SELF'], 1, strlen($_SERVER['PHP_SELF'])));
-            if(count($phpself) > 1) {
-                $url .= $phpself[0]."/";
-            }
-            $url .= "index.php?score&setData=".$data;
+            
+            $url = getURLScores($filename, $version);
             $this->SetTextColor(150, 0, 0);
-            $this->Cell(0, 20, utf8_decode("Consulter mon score en ligne"), 0, 2, 'C', false, $url);
+            $this->Cell(0, 20, utf8_decode($t['pdf-link-show-online']), 0, 2, 'C', false, $url);
             
             
             // Pages suivantes

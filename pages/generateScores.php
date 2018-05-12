@@ -18,8 +18,8 @@ if(!isset($included)) {
 }
 
 /*
-$_POST['data']      = "jan_dominique.json:v-1.0.6-FR:a%3A4%3A%7Bs%3A9%3A%22firstname%22%3Bs%3A9%3A%22Dominique%22%3Bs%3A8%3A%22lastname%22%3Bs%3A3%3A%22Jan%22%3Bs%3A7%3A%22cluster%22%3BN%3Bs%3A7%3A%22atelier%22%3BN%3B%7D";
-$_POST['typeScore'] = "byQuestion";
+$_POST['data']      = "f2abdf19dd0fbdfa5d2ce49bbdcfd9c0b18a9a23.json:v-1.0.6-FR:a%3A5%3A%7Bs%3A9%3A%22firstname%22%3Bs%3A9%3A%22Christian%22%3Bs%3A8%3A%22lastname%22%3Bs%3A9%3A%22Hockenjos%22%3Bs%3A12%3A%22systeme_prod%22%3Bi%3A12%3Bs%3A6%3A%22region%22%3Bi%3A1%3Bs%3A5%3A%22ktidb%22%3Bs%3A10%3A%22VD57950031%22%3B%7D";
+$_POST['typeScore'] = "byIndicator";
 $_POST['output']    = "print";
 */
 

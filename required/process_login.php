@@ -11,11 +11,11 @@ if (isset($_POST['email'], $_POST['password'])) {
     
     $loginRet = login($email, $password, $mysqli, $remember);
     if ($loginRet == 0) {  // Connecté 
-        header('Location: ../admin.php');
+        header('Location: ../admin');
     } else { // Pas connecté 
-        header('Location: ../admin.php?err='.intval($loginRet));
+        header('Location: ../admin/err/'.intval($loginRet));
     }
 } else {
     // Les variables POST correctes n’ont pas été envoyées à cette page
-    header('Location: ../admin.php?err=2');
+    header('Location: ../admin/err/2');
 }

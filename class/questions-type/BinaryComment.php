@@ -19,8 +19,9 @@ class BinaryComment extends Binary {
 		$displayed = ($this->comment != "" && parent::getAnswer() == $this->choices[0]);
 		
 		$html .= '<textarea 
-                 '.($this->readonly ? "readonly" : "").'
-				 name="'.$this->inputName.'" 
+                 '.($this->readonly ? "readonly" : "").' '.
+                 parent::getAdditionnalHTMLAttributes().' '.
+				 'name="'.$this->inputName.'" 
 				 id="'.$this->uid.'" 
 				 placeholder="'.$this->placeholder.'" 
 				 class="form-control w-100 rounded mt-1" 

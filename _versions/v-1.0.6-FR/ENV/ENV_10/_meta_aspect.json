@@ -1,5 +1,25 @@
 {
-	"title":"Conservation de l'énergie",
-	"id":"ENV_10",
-	"img":""
+    "title": "Conservation de l'énergie",
+    "id": "ENV_10",
+    "img": "",
+    "filters": [
+        {
+            "scope": [
+                3,
+                4,
+                5,
+                6
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "PSP_05.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }

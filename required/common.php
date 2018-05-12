@@ -18,6 +18,12 @@ function getLanguageFile($lang) {
 }
 
 
+function getBase() {
+    $uri = $_SERVER['REQUEST_URI'];
+    $suri = explode("/", $uri);
+    return "/".$suri[1]."/";
+}
+
 function getLang() {
     $lang = "fr";
     if(isset($_COOKIE['lang'])) {
@@ -182,4 +188,18 @@ function remAccent($arg) {
         array('ç', 'é','ë','è','ö','ü','ä','ù','ô','/','¹'),
         array('c', 'e','e','e','o','u','ae','u','o','-',"1"),
         $arg);
+}
+
+function getURLScores($filename, $version) {
+    $data = base64_encode(urlencode(serialize(array(
+        "filename" => $filename,
+        "version" => $version
+    ))));
+    $url = "http://".$_SERVER['HTTP_HOST']."/";
+    $phpself = explode("/", substr($_SERVER['PHP_SELF'], 1, strlen($_SERVER['PHP_SELF'])));
+    if(count($phpself) > 1) {
+        $url .= $phpself[0]."/";
+    }
+    $url .= "scores/data/".$data;
+    return $url;
 }

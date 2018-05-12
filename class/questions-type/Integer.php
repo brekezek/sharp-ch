@@ -11,8 +11,9 @@ class Integer extends Question {
 		parent::startWrapper().
 			parent::getLabel().
 			'<input 
-                 '.parent::scoredAttr().' 
-                 '.($this->readonly ? "readonly" : "").'
+                 '.parent::scoredAttr().' '.
+                 parent::getAdditionnalHTMLAttributes().' '.
+                 ($this->readonly ? "readonly" : "").'
 				 type="number" 
 				 name="'.$this->inputName.'" 
 				 id="'.$this->uid.'" 

@@ -21,6 +21,7 @@ foreach($mysqli->query("SELECT params FROM users WHERE uid=".$_SESSION['user_id'
 if($filters !== null) {
     $filters = unserialize($filters);
 }
+$hasFilters = $filters != null && is_array($filters) && count($filters) > 0;
 
 $repondants = array();
 $hidden = array();
@@ -63,12 +64,9 @@ foreach($repondants as $hash => $infos)
 echo '<table id="repondants" class="table table-striped table-hover display table-sm" data-page-length="11" style="border-collapse:collapse!important">';
 	echo '<thead>';
 		echo '<tr>';
-		/*
-		echo '<th>#</th>';
-		foreach($repondants[$lastHash] as $key => $info) {
-			echo '<th>'.$key.'</th>';
-		}*/
-		$colsHead = array("", $t['firstname'], $t['lastname'], $t['village'], $t['collected_by'], $t['atelier'], $t['cluster'], $t['creation'], $t['version'], "");
+
+		$colsHead = array("", $t['firstname'], $t['lastname'], //$t['village'],
+		    $t['collected_by'], $t['atelier'], $t['cluster'], $t['creation'], $t['version'], "");
 		foreach($colsHead as $head) {
 		    echo '<th>'.$head.'</th>';
 		}
@@ -90,16 +88,17 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
 		        
 		        $sqlCond .= " AND (";
 		        foreach($filters['collected_by'] as $filter) {
-		          $sqlCond .= " collecte_par LIKE '".$filter."%' OR";
+		          $sqlCond .= " collecte_par NOT LIKE '".$filter."%' OR";
 		        }
 		        $sqlCond = substr($sqlCond, 0, -2).") ";
 		    }
 		}
 		
 		if ($stmt = $mysqli->prepare(
-		    "SELECT collecte_par, firstname, lastname, commune, creation_date, version, cluster, p.rid, file, rlabel_".getLang().", COUNT(q.pid) as nbQuest FROM questionnaires q
+		    "SELECT collecte_par, firstname, lastname, commune, creation_date, version, cluster, ktidb, p.rid, file, rlabel_".getLang().", pslabel_".getLang().", COUNT(q.pid) as nbQuest FROM questionnaires q
             LEFT JOIN participants p ON q.pid = p.pid
             LEFT JOIN regions re ON re.rid=p.rid
+            LEFT JOIN prod_systems ps ON ps.psid=cluster
             WHERE ".$sqlCond."
             GROUP BY q.pid 
             ORDER BY lastname ASC, firstname ASC")) {
@@ -111,17 +110,21 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
                 
                 $isFromAndroid = strstr($row['file'],"android") !== false;
                 
-                $source = '<span class="oi oi-globe text-success" data-toggle="tooltip" data-placement="right" title="Collecté en ligne"></span>';
-                if($isFromAndroid) $source = '<span class="oi oi-tablet text-primary" data-toggle="tooltip" data-placement="right" title="Collecté sur tablette"></span>';
+                $source = '<span class="oi oi-globe text-success" data-toggle="tooltip" data-placement="right" title="'.$t['collected-online'].'"></span>';
+                if($isFromAndroid) $source = '<span class="oi oi-tablet text-primary" data-toggle="tooltip" data-placement="right" title="'.$t['collected-on-tablet'].'"></span>';
                 
                 $name = mb_strtolower(remAccent($row['lastname']."_".$row['firstname']));
                 
                 $infos = urlencode(serialize(array(
                     "firstname" => ucfirst($row['firstname']),
                     "lastname" => ucfirst($row['lastname']),
-                    "cluster" => $row['cluster'],
-                    "atelier" => $row['rid']
+                    "systeme_prod" => $row['cluster'],
+                    "region" => $row['rid'],
+                    "ktidb" => $row['ktidb']
                 )));
+                
+
+                $urlScores = getURLScores($row['file'], $row['version']);
                 
                 /*
                 $data = $row['file'].":".$row['version'].":".urlencode(serialize(array()));
@@ -144,15 +147,16 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
                         data-file="'.$row['file'].'"
                         data-name="'.$name.'"
                         data-infos="'.$infos.'"
+                        data-url-scores="'.$urlScores.'"
                         data-version="'.$row['version'].'">';
                
                 echo '<td class="align-middle text-center">'.$source.'</td>';
-                echo '<td class="align-middle text-capitalize font-weight-bold">'.$row['firstname'].'</td>';
-                echo '<td class="align-middle text-capitalize font-weight-bold">'.$row['lastname'].'</td>';
-                echo '<td class="align-middle text-capitalize">'.$row['commune'].'</td>';
+                echo '<td class="align-middle text-capitalize '.(empty($row['firstname']) ? 'text-muted' : 'font-weight-bold').'">'.(empty($row['firstname']) ? $t['empty'] : $row['firstname']).'</td>';
+                echo '<td class="align-middle text-capitalize '.(empty($row['lastname']) ? 'text-muted' : 'font-weight-bold').'">'.(empty($row['lastname']) ? $t['empty'] :  $row['lastname']).'</td>';
+                //echo '<td class="align-middle text-capitalize">'.$row['commune'].'</td>';
                 echo '<td class="align-middle text-capitalize">'.$row['collecte_par'].'</td>';
-                echo '<td class="align-middle text-center">'.$row['rlabel_'.getLang()].'</td>';
-                echo '<td class="align-middle text-center">'.$row['cluster'].'</td>';
+                echo '<td class="align-middle">'.$row['rlabel_'.getLang()].'</td>';
+                echo '<td class="align-middle text-center"><span class="badge badge-light" data-toggle="tooltip" data-placement="top" title="'.$row['pslabel_'.getLang()].'">'.$row['cluster'].'</span></td>';
                 echo '<td class="align-middle text-center">'.date("d.m.y", strtotime($row['creation_date'])).'</td>';
                 echo '<td class="align-middle text-center">'.$row['version'].'</td>';
 
@@ -172,17 +176,7 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
                 echo '</tr>';
             }
 		}
-		/*
-		foreach($repondants as $key => $rep) {
-			++$i;
-			echo '<tr data-file="'.$hidden[$key]['file'].'" data-name="'.$hidden[$key]['name'].'" data-version="'.$hidden[$key]['version'].'">';
-				echo '<td class="align-middle text-center">'.$i.'</td>';
-				foreach($rep as $key => $info) {
-					echo '<td class="align-middle text-capitalize '.(in_array($key, array("Nom", "Prénom")) ? "font-weight-bold" : "").'">'.$info.'</td>';
-				}
-			echo '</tr>';
-		}
-		*/
+	
 	echo '</tbody>';
 echo '</table>';
 ?>
@@ -211,13 +205,20 @@ echo '</table>';
     </div>
   </div>
 </div>
-		
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
-<script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/datetime-moment.js"></script>
-<script  src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+
+<link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">		
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/moment.min.js"></script>
+<script src="js/datetime-moment.js"></script>
+<script  src="js/dataTables.bootstrap4.min.js"></script>
 <script src="js/table.selectable.js"></script>
+
+<?php
+$nbItemsInTrash = 0;
+if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
+    $nbItemsInTrash = $stmt->num_rows;
+}
+?>
 
 <script>
 	$(document).ready(function() {
@@ -231,9 +232,9 @@ echo '</table>';
 		}
 
 		<?php if(isset($_GET['display']) && $_GET['display'] == "archive") {?>
-		$('nav.navbar #buttons').append('<div class="d-flex align-items-center"><a href="?<?php if(isset($_GET['page'])) {?>page=<?php echo $_GET['page']; } ?>" class="btn btn-light btn-sm mr-3"><span class="oi oi-chevron-left mr-1"></span></a> <h5 class="text-white mb-0"><?= $t['corbeille']?></h5></div>');
+		$('nav.navbar #buttons').append('<div class="d-flex align-items-center"><a href="admin/dashboard/<?php if(isset($_GET['page'])) { echo $_GET['page']; } ?>" class="btn btn-light btn-sm mr-3"><span class="oi oi-chevron-left mr-1"></span></a> <h5 class="text-white mb-0"><?= $t['corbeille']?></h5></div>');
 		<?php } else {?>
-		$('nav.navbar #buttons').append('<a href="?<?php if(isset($_GET['page'])) {?>page=<?php echo $_GET['page']."&"; } ?>display=archive" class="btn text-white btn-info btn-sm"><span class="oi oi-trash mr-1"></span> <?= $t['display_corbeille']?></a>');
+		$('nav.navbar #buttons').append('<a href="admin/dashboard/1/archive" id="trash-link" class="btn text-white btn-info btn-sm <?php if($nbItemsInTrash<=0){ echo 'disabled'; }?>"><span class="oi oi-trash mr-1"></span> <?= $t['display_corbeille']?> <span class="badge badge-light ml-1" id="nb-in-trash"><?= $nbItemsInTrash ?></span></a>');
 		<?php } ?>
 		
 		$.fn.dataTable.moment('DD.MM.YY');
@@ -253,7 +254,7 @@ echo '</table>';
 		    },
 		    <?php } ?>
 			pagingType: "full_numbers",
-			order: [[ 7, "desc" ]],
+			order: [[ 6, "desc" ]],
 			columnDefs: [
 			    { orderable: false, searchable: false, targets: [0,<?= (count($colsHead)-1) ?>] }
 			],
@@ -275,6 +276,10 @@ echo '</table>';
     					recover:1
     				}, function(html){
     					$('#repondants tbody tr.active').remove();
+    					$('#tools').hide();
+    					if($('#repondants tbody tr').length == 0) {
+							document.location = 'admin/dashboard/<?= (isset($_GET['page']) ? $_GET['page'] : "") ?>';
+    					}
     				});
 				})
 				<?php } ?>
@@ -286,7 +291,7 @@ echo '</table>';
 		    			modal.modal();
 		    			modal.find('#submit').removeAttr("disabled").bind("click", function(){
 		    				modal.find('#submit').attr("disabled","disabled");	
-		    				
+		    				var nbSelected = $('#repondants tbody tr.active').length;
 		    				var files = "";
 		    				$('#repondants tbody tr.active').each(function(){
 		    					files += $(this).attr("data-file")+",";
@@ -301,6 +306,9 @@ echo '</table>';
 		    				}, function(html){
 		    					modal.find('#submit').unbind("click");
 		    					$('#repondants tbody tr.active').remove();
+		    					$('#tools').hide();
+		    					$('#trash-link').removeClass("disabled");
+		    					$('#nb-in-trash').text(parseInt($('#nb-in-trash').text())+nbSelected);
 		    				});
 		    				
 		    				modal.modal('hide');
@@ -320,6 +328,7 @@ echo '</table>';
 					});
 					files = files.substring(0, files.length-1);
 					//$('input[type="search"]').val(files);
+
 					
 					$.post('pages/generateScores.php', {
 						data:files,
@@ -357,11 +366,14 @@ echo '</table>';
 				});
 
 				
-				$('#repondants_filter').append('<div id="filters-toggle" data-toggle="popover" title="<?= $t['filters']?>" data-content="Bientot disponible" style="vertical-align:top; font-size:12px;" class="btn btn-primary ml-1"><span class="oi oi-sort-descending mr-1"></span> <?= $t['filters']?></div>');
+				$('#repondants_filter').append('<div id="filters-toggle" data-toggle="popover" title="<?= $t['filters']?>" data-content="Bientot disponible" style="vertical-align:top; font-size:12px;" class="btn btn-<?= ($hasFilters) ? "success" : "primary" ?> ml-1"><span class="oi oi-sort-descending mr-1"></span> <?= $t['filters']?> <?php if($hasFilters) echo '('.(count(array_keys($filters))).')'; ?></div>');
 				$.post('pages/admin/quest.filters.php', {}, function(html){
 					$('#filters-toggle').attr("data-content", html);
 				});
 				$('[data-toggle="popover"]').popover({html:true});
+
+				$('#loader').fadeOut();
+				$('#content-loaded').fadeIn();
 			}
 		});
 		
@@ -399,6 +411,7 @@ echo '</table>';
 			
 			$.get("<?= DIR_ANSWERS ?>/"+fileURL)
 		    .done(function() { 
+			    /*
 			    deleteCookie("indexAspect");
 			    setCookie("filename", fileURL, 1);
 
@@ -411,7 +424,9 @@ echo '</table>';
 		    	} 
 		    	
 			    setCookie("scores-display", "true", 1);
-				document.location = 'index.php?score';
+				document.location = 'scores';
+				*/
+				document.location = row.data("url-scores");
 		    }).fail(function() { 
 		        alert("le fichier de questionnaire n'existe pas");
 		    });

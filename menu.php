@@ -9,7 +9,7 @@
 		
 		<div class="d-inline-flex">
     		<?php if($readonly || $logged) {?>
-    		<a href="admin.php?page=1" id="back" class="btn btn-secondary ml-2">
+    		<a href="admin/dashboard" id="back" class="btn btn-secondary ml-2">
     			<span class="oi oi-spreadsheet mr-1"></span> Admin
     		</a>
     		<?php } ?>

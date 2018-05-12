@@ -1,5 +1,20 @@
 {
-	"title":"Plantes légumineuses",
-	"id":"ENV_07",
-	"img":""
+    "title": "Plantes légumineuses",
+    "id": "ENV_07",
+    "img": "",
+    "filters": [
+        {
+            "scope": "all",
+            "dependencies": [
+                {
+                    "lookAt": "PSP_04.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }

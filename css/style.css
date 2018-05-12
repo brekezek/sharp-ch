@@ -152,6 +152,12 @@ table.dataTable tbody tr.selected {
 	word-wrap:normal;
 }
 
+.form-group.filtered {
+	opacity: .7;
+    filter: blur(3px);
+    display:none;
+}
+
 @media (pointer:coarse) { 
 	.pc_only { display:none!important; }
 	.min-width-multiselect { min-width: 165px; }

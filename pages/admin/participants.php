@@ -39,8 +39,8 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, p
     $stmt->execute();    
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
-    
-    echo '<table id="repondants" class="table table-striped table-hover table-sm" data-page-length="15" style="border-collapse:collapse!important">';
+
+    echo '<table id="repondants" class="table table-striped table-hover table-sm" data-page-length="15" style="border-collapse:collapse!important;">';
     echo '<thead>';
     echo '<tr>';
     echo '<th class="text-center"></th>';
@@ -85,6 +85,35 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, p
     echo '</table>';
     
 }	
+
+/*
+if (($handle = fopen("liste_participantsv5.csv", "r")) !== FALSE) {
+    while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+        $num = count($data);
+        
+        $nameSplit = explode(" ", $data[3]);
+        $lastname = count($nameSplit) > 0 ? substr($nameSplit[0], 0, 4) : "";
+        $firstname = count($nameSplit) > 1 ? substr($nameSplit[count($nameSplit)-1],0,4) : "";
+        
+        $stmt = $mysqli->query("SELECT * FROM participants WHERE (firstname LIKE '".$firstname."%' AND lastname LIKE '".$lastname."%') OR (firstname LIKE '".$lastname."%' AND lastname LIKE '".$firstname."%')");
+        if($stmt->num_rows > 0) {
+            $pid = 0;
+            foreach($stmt as $s) {
+                $pid = $s['pid'];
+            }
+            if($pid > 0) {
+                $mysqli->query("UPDATE participants SET ktidb='".$data[0]."', ofs=".$data[1]." WHERE pid=".$pid);
+            }
+           // echo $data[3]." - ".$data[0]." - ".$data[1];
+            
+        } else {
+            echo 'pas trouvé : '.$data[3];
+        }
+        echo '<br>';
+    }
+    fclose($handle);
+}
+*/
 ?>
 
 <br>
@@ -108,18 +137,24 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, p
     </div>
   </div>
 </div>
-		
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script  src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-<script src="js/table.selectable.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
 
+<link rel="stylesheet" href="css/dataTables.bootstrap4.min.css">	
+<script src="js/jquery.dataTables.min.js"></script>
+<script  src="js/dataTables.bootstrap4.min.js"></script>
+<script src="js/table.selectable.js"></script>
+
+<?php
+$nbItemsInTrash = 0;
+if($stmt = $mysqli->query("SELECT pid FROM participants WHERE deleted=1")) {
+    $nbItemsInTrash = $stmt->num_rows;
+}
+?>
 <script>
 	$(document).ready(function() {
 		<?php if(isset($_GET['display']) && $_GET['display'] == "archive") {?>
-		$('nav.navbar #buttons').append('<div class="d-flex align-items-center"><a href="?page=<?= $_GET['page'] ?>" class="btn btn-light btn-sm mr-3"><span class="oi oi-chevron-left mr-1"></span></a> <h5 class="text-white mb-0"><?= $t['corbeille']?></h5></div>');
+		$('nav.navbar #buttons').append('<div class="d-flex align-items-center"><a href="admin/dashboard/<?= $_GET['page'] ?>" class="btn btn-light btn-sm mr-3"><span class="oi oi-chevron-left mr-1"></span></a> <h5 class="text-white mb-0"><?= $t['corbeille']?></h5></div>');
 		<?php } else {?>
-		$('nav.navbar #buttons').append('<a href="?page=<?= $_GET['page'] ?>&display=archive" class="btn text-white btn-info btn-sm"><span class="oi oi-trash mr-1"></span> <?= $t['display_corbeille']?></a>');
+		$('nav.navbar #buttons').append('<a href="admin/dashboard/<?= $_GET['page'] ?>/archive" id="trash-link" class="btn text-white btn-info btn-sm <?php if($nbItemsInTrash<=0){ echo 'disabled'; }?>"><span class="oi oi-trash mr-1"></span> <?= $t['display_corbeille']?> <span class="badge badge-light ml-1" id="nb-in-trash"><?= $nbItemsInTrash ?></span></a>');
 		<?php } ?>
 		
 		var table = $('#repondants').dataTable( {
@@ -155,6 +190,10 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, p
     					recover:1
     				}, function(html){
     					$('#repondants tbody tr.active').remove();
+    					$('#tools').hide();
+    					if($('#repondants tbody tr').length == 0) {
+							document.location = 'admin/dashboard/<?= (isset($_GET['page']) ? $_GET['page'] : "") ?>';
+    					}
     				});
 				})
 				<?php } ?>
@@ -170,7 +209,8 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, p
 		    			modal.find('button#submit').off("click").addClass("btn-primary").removeClass("btn-success").html("<?= $t['confirm']?>");
 		    			modal.find('#submit').removeAttr("disabled").bind("click", function(){
 		    				modal.find('#submit').attr("disabled","disabled");	
-		    				
+
+		    				var nbSelected = $('#repondants tbody tr.active').length;
 		    				var data = "";
 		    				$('#repondants tbody tr.active').each(function(){
 		    					data += $(this).attr("data-pid")+",";
@@ -184,6 +224,9 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, p
 		    				}, function(html){
 		    					modal.find('#submit').unbind("click");
 		    					$('#repondants tbody tr.active').remove();
+		    					$('#tools').hide();
+		    					$('#trash-link').removeClass("disabled");
+		    					$('#nb-in-trash').text(parseInt($('#nb-in-trash').text())+nbSelected);
 		    				});
 		    				
 		    				modal.modal('hide');
@@ -197,6 +240,9 @@ if ($stmt = $mysqli->prepare("SELECT p.pid, qid, firstname, lastname, commune, p
 				.addButton("Générer lien", "link", "info", "link-intact", function(){
 					alert("Implémenté bientot");
 				});
+
+				$('#loader').fadeOut();
+				$('#content-loaded').fadeIn();
 		  	}
 		});
 

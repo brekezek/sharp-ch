@@ -19,5 +19,5 @@ if(isset($_COOKIE['sec_session_persist'])) {
 
 // Détruisez la session
 session_destroy();
-header('Location: ../admin.php?logout');
+header('Location: ../admin/logout');
 exit;
