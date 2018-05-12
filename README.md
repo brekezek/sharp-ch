@@ -1,5 +1,7 @@
 # SHARP web app
 
+Project URL: https://dominique.leroduit.com/savi
+
 ## Goal of the project
 To assess the resilience of farms, the app "SHARP" developed by the FAO (Food and Agriculture Organization of the United Nations) was used so far. SHARP is used in many parts of the world. The aim of this project is to adapt this application to the Swiss context, then to be tested and validated by agricultural experts in Switzerland.
 
