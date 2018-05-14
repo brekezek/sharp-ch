@@ -80,6 +80,14 @@ if(isset($_GET['admin'])) {
 	
 	<div id="content" class="position-relative" style="margin-top: 56px;">
 	<?php
+	if(isset($_GET['error']) && $_GET['error'] == "404") {?>
+	   <div class="jumbotron rounded-0 bg-warning mb-0 pt-4 pb-3 text-white text-center">
+	   		<div class="lead display-4">Erreur 404</div>
+	   		<div class="lead">La page que vous avez demandé n'existe malheureusement pas.</div>
+	   </div>
+	<?php 
+	}
+	
 	if($displayScorePage) {
 	    include_once('pages/end_quest.php');  
 	} else {
@@ -93,7 +101,7 @@ if(isset($_GET['admin'])) {
     	    }
             ?>
             
-    		<div class="jumbotron mb-0">
+    		<div class="jumbotron rounded-0 mb-0">
     			<div class="container" id="main">
     				<?php
     				if(isset($_COOKIE['questsList'])) {

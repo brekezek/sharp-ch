@@ -24,6 +24,6 @@ RewriteRule ^admin/dashboard/([0-9a-zA-Z-_]+)/?$ admin.dashboard.php?page=$1 [L]
 # Redirige sur index.php lorsque la page demandée n'existe pas
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ index.php?error=404&request={REQUEST_FILENAME} [L]
+RewriteRule ^ index.php?error=404&request=%{REQUEST_FILENAME} [L]
 
 
