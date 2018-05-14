@@ -149,5 +149,7 @@
     "comparaison_score_avg_canton": "en comparaison avec les scores moyens du canton",
     "jours": "jours",
     "selected": "sélectionnés",
-    "sharp_meaning": "Évaluation et renforcement de la résilience des systèmes agricoles"
+    "sharp_meaning": "Évaluation et renforcement de la résilience des systèmes agricoles",
+    "error-404":"Erreur 404",
+    "text-error-404":"La page que vous avez demandé n'existe malheureusement pas."
 }

@@ -169,6 +169,17 @@ function getInfoPage($idx) {
     	<script src="js/popper.min.js"></script>
     	<script src="js/bootstrap.min.js"></script>
     	<script src="js/cookie.js"></script>
+    	<script src="js/bootbox.min.js"></script>
+    	<script>
+    	function loading() {
+			bootbox.dialog({
+				message: '<div class="text-center"><?= $t['loading']?><br><img src="img/loader-score.svg"></div>',
+				size: 'small',
+				closeButton:false,
+				animate:false
+			});
+		}
+		</script>
     	
         <main role="main" class="<?php if(!$pages[$idxPage]["padding"]) { ?>pt-0 px-0<?php } else { ?>pt-3 px-3<?php }?>">
         	

@@ -24,70 +24,24 @@ function invokeScoreGeneration(callback) {
 }
 </script>
 
-<link rel="stylesheet" href="css/circle-chart.css">
+
 	
 <div class="container">
 	<div class="d-flex" style="opacity:0">-</div>
 	
 	<?php if(!isset($_GET['score'])) {
-	
-	    
 	    $endingTime = $_COOKIE['expirationQuest'];
 	    $startingTime = $endingTime - LIFE_COOKIE_QUEST_PENDING*60*60*24;
 	    
 	    $timeUsed = time() - $startingTime;
 	    $timeLeft = $endingTime - time();
-	    
-	    function getFormattedTime($time) {
-	        global $t;
-	        $days = floor($time / (3600*24));
-	        $hours = floor(($time - $days*24*3600) / 3600);
-	        $min = floor(($time - $days*24*3600 - $hours*3600) /  60);
-	        
-	        // $hours = 24*$days + $hours;
-	        $timeF = array();
-	        $jour = $t['jours'];
-	        if($days <= 1) $jour = substr($jour, 0, -1);
-	        $timeF['jours'] = ($days > 0)  ? sprintf("%02d %s ",$days, $jour) : "";
-	        $timeF['hours'] = sprintf("%02d%s%02d", $hours, "h", $min);
-	        return $timeF;
-	    }
-	    
-	    function drawCircleChart($color, $time, $label) {
-	        global $endingTime, $startingTime;
-	        $percentage = ($time / ($endingTime - $startingTime)) * 100;
-	        ?>
-            <div class="text-center">
-                <div class="single-chart">
-                    <svg viewbox="0 0 36 36" class="circular-chart <?= $color ?>">
-                      <path class="circle-bg"
-                        d="M18 2.0845
-                          a 15.9155 15.9155 0 0 1 0 31.831
-                          a 15.9155 15.9155 0 0 1 0 -31.831"
-                      />
-                      <path class="circle"
-                        stroke-dasharray="<?= $percentage ?>, 100"
-                        d="M18 2.0845
-                          a 15.9155 15.9155 0 0 1 0 31.831
-                          a 15.9155 15.9155 0 0 1 0 -31.831"
-                      />
-                      <?php $timeF = getFormattedTime($time); ?>
-                      <text x="18" y="<?= empty($timeF['jours']) ? "20.35" : "16.5" ?>" class="days"><?= $timeF['jours'] ?></text>
-                      <text x="18" y="<?= empty($timeF['jours']) ? "20.35" : "22.65" ?>" class="<?= empty($timeF['jours']) ? "days" : "hours" ?>"><?= $timeF['hours'] ?></text>
-                    </svg>
-                </div>
-                
-                <div class="lead">
-            	<?= $label ?>
-            	</div>
-        	</div>
-            <?php 
-        }
        ?>
+	
 	
 	<div class="d-flex justify-content-center align-items-center">
 		
 		<?php if(isset($_COOKIE['expirationQuest'])) {?>
+			<link rel="stylesheet" href="css/circle-chart.css">
     		<div class="mr-4 border-right" style="min-width: 250px;">
             	<?php drawCircleChart("blue", $timeUsed, $t['time-used']); ?>
             	<hr class="my-4">

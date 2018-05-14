@@ -285,11 +285,12 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 				<?php } ?>
 				.addButton("<?= isset($_GET['display']) && $_GET['display'] == "archive" ? $t['delete'] : $t['put_in_trash']?>", "delete", "danger", "trash", function(){
 					if($('#repondants tbody tr.active').length > 5) {
-						alert("<?= $t['security-message-1']?>");
+						bootbox.alert("<?= $t['security-message-1']?>");
 					} else {
 		    			var modal = $('#exampleModalCenter');
 		    			modal.modal();
 		    			modal.find('#submit').removeAttr("disabled").bind("click", function(){
+			    			loading();
 		    				modal.find('#submit').attr("disabled","disabled");	
 		    				var nbSelected = $('#repondants tbody tr.active').length;
 		    				var files = "";
@@ -304,6 +305,7 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 		    					actionId:"delete-files",
 		    					definitive:"<?= isset($_GET['display']) && $_GET['display'] == "archive" ? "1": "0" ?>"
 		    				}, function(html){
+		    					bootbox.hideAll();
 		    					modal.find('#submit').unbind("click");
 		    					$('#repondants tbody tr.active').remove();
 		    					$('#tools').hide();
@@ -321,6 +323,8 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 					var initBtText = button.find("span.text").html();
 					
 					button.attr("disabled","disabled").find("span.text").html('<?= $t['generation']?> <img src="img/loader-score.svg">');
+
+					loading();
 					
 					var files = "";
 					selectedRows.each(function(){
@@ -329,17 +333,18 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 					files = files.substring(0, files.length-1);
 					//$('input[type="search"]').val(files);
 
-					
 					$.post('pages/generateScores.php', {
 						data:files,
 						typeScore:$(this).attr("data-action"),
 						output:"csv"
 					}, function(resp) {
 						button.removeAttr("disabled").find("span.text").html(initBtText);
+						bootbox.hideAll();
+						
 						if(resp != "error" && resp.length > 2 && resp.length < 200) {
 							document.location = 'download.php?file=<?= DIR_ANSWERS ?>/scores/'+resp;
 						} else {
-							alert(resp);
+							bootbox.alert(resp);
 						}
 					});	
 					
@@ -350,6 +355,7 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 					if(selectedRows.length == 1) {
 						document.location = 'download.php?file=<?= DIR_ANSWERS ?>/'+selectedRows.attr("data-file")+"&name="+selectedRows.attr("data-name");
 					} else {
+						loading();
 						$(this).attr("disabled","disabled").find("span.text").text("<?= $t['generation']?>...");
 		    			var files = "";
 		    			selectedRows.each(function(){
@@ -357,16 +363,17 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 		    			});
 		    			$.post('pages/admin/download.questionnaires.php', { f:files }, function(resp) {
 		    				$('#tools #download').removeAttr("disabled").find("span.text").text("<?= $t['generation']?>");
+		    				bootbox.hideAll();
 							if(resp == "ok") 
 		    					document.location = 'download.php?file=pages/admin/questionnaires.zip';
 							else
-								alert(resp);
+								bootbox.alert(resp);
 		    			});
 					}
 				});
 
 				
-				$('#repondants_filter').append('<div id="filters-toggle" data-toggle="popover" title="<?= $t['filters']?>" data-content="Bientot disponible" style="vertical-align:top; font-size:12px;" class="btn btn-<?= ($hasFilters) ? "success" : "primary" ?> ml-1"><span class="oi oi-sort-descending mr-1"></span> <?= $t['filters']?> <?php if($hasFilters) echo '('.(count(array_keys($filters))).')'; ?></div>');
+				$('#repondants_filter').append('<div id="filters-toggle" data-toggle="popover" title="<?= $t['filters']?>" data-content="<?= $t['loading']?>" style="vertical-align:top; font-size:12px;" class="btn btn-<?= ($hasFilters) ? "success" : "primary" ?> ml-1"><span class="oi oi-sort-descending mr-1"></span> <?= $t['filters']?> <?php if($hasFilters) echo '('.(count(array_keys($filters))).')'; ?></div>');
 				$.post('pages/admin/quest.filters.php', {}, function(html){
 					$('#filters-toggle').attr("data-content", html);
 				});
@@ -381,7 +388,8 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 			var row = $(this).parents("tr");
 			var fileURL = row.attr("data-file");
 			var version = row.attr("data-version");
-			
+
+			loading();
 			$.get("<?= DIR_ANSWERS ?>/"+fileURL)
 		    .done(function() { 
 		    	var lifespan = <?= LIFE_COOKIE_QUEST_PENDING ?>;
@@ -399,8 +407,9 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 				setCookie("indexAspect", 1, lifespan);
 				document.location = 'index.php?readonly';
 		    }).fail(function() { 
-		        alert("le fichier de questionnaire n'existe pas");
-		    })
+		    	bootbox.hideAll();
+		        bootbox.alert("le fichier de questionnaire n'existe pas");
+		    });
 			
 		});
 
@@ -408,6 +417,8 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 			var row = $(this).parents("tr");
 			var fileURL = row.attr("data-file");
 			var version = row.attr("data-version");
+
+			loading();
 			
 			$.get("<?= DIR_ANSWERS ?>/"+fileURL)
 		    .done(function() { 
@@ -428,7 +439,8 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 				*/
 				document.location = row.data("url-scores");
 		    }).fail(function() { 
-		        alert("le fichier de questionnaire n'existe pas");
+		    	bootbox.hideAll();
+		        bootbox.alert("Le fichier de questionnaire n'existe pas");
 		    });
 		});
 		

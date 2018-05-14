@@ -199,7 +199,7 @@ if($stmt = $mysqli->query("SELECT pid FROM participants WHERE deleted=1")) {
 				<?php } ?>
 				.addButton("<?= isset($_GET['display']) && $_GET['display'] == "archive" ? $t['delete'] : $t['put_in_trash']?>", "delete", "danger", "x", function(){
 					if($('#repondants tbody tr.active').length > 5) {
-						alert("<?= $t['security-message-1']?>");
+						bootbox.alert("<?= $t['security-message-1']?>");
 					} else {
 		    			var modal = $('#exampleModalCenter');
 		    			modal.modal();
@@ -210,6 +210,8 @@ if($stmt = $mysqli->query("SELECT pid FROM participants WHERE deleted=1")) {
 		    			modal.find('#submit').removeAttr("disabled").bind("click", function(){
 		    				modal.find('#submit').attr("disabled","disabled");	
 
+							loading();
+							
 		    				var nbSelected = $('#repondants tbody tr.active').length;
 		    				var data = "";
 		    				$('#repondants tbody tr.active').each(function(){
@@ -222,6 +224,8 @@ if($stmt = $mysqli->query("SELECT pid FROM participants WHERE deleted=1")) {
 		    					actionId:"participants",
 		    					definitive:"<?= isset($_GET['display']) && $_GET['display'] == "archive" ? "1": "0" ?>"
 		    				}, function(html){
+		    					bootbox.hideAll();
+		    					
 		    					modal.find('#submit').unbind("click");
 		    					$('#repondants tbody tr.active').remove();
 		    					$('#tools').hide();
@@ -238,7 +242,7 @@ if($stmt = $mysqli->query("SELECT pid FROM participants WHERE deleted=1")) {
 					showFormInModal("edit", "Editer un participant", pid);
 				})
 				.addButton("Générer lien", "link", "info", "link-intact", function(){
-					alert("Implémenté bientot");
+					bootbox.alert("Implémenté bientot");
 				});
 
 				$('#loader').fadeOut();

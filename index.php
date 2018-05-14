@@ -82,8 +82,8 @@ if(isset($_GET['admin'])) {
 	<?php
 	if(isset($_GET['error']) && $_GET['error'] == "404") {?>
 	   <div class="jumbotron rounded-0 bg-warning mb-0 pt-4 pb-3 text-white text-center">
-	   		<div class="lead display-4">Erreur 404</div>
-	   		<div class="lead">La page que vous avez demandé n'existe malheureusement pas.</div>
+	   		<div class="lead display-4"><?= $t['error-404']?></div>
+	   		<div class="lead"><?= $t['text-error-404']?></div>
 	   </div>
 	<?php 
 	}
@@ -233,6 +233,16 @@ if(isset($_GET['admin'])) {
 			setCookie("scores-display", "true", 1);
 		<?php } ?>
 
+
+		function loading() {
+			bootbox.dialog({
+				message: '<div class="text-center"><?= $t['loading']?><br><img src="img/loader-score.svg"></div>',
+				size: 'small',
+				closeButton:false,
+				animate:false
+			});
+		}
+
 		
 		<?php if(isset($_COOKIE['indexAspect'])) {?>
 		function goToAspect(index) {
@@ -254,6 +264,8 @@ if(isset($_GET['admin'])) {
 		$('#questionnaire').find('#next, #prev').click(function(e){
 			var isPrev = $(this).attr("id") == "prev";
 			var canUpdateCookie = true;
+
+			loading();
 			
 			if(!isPrev) {
 				$("#questionnaire form").find('[required]').each(function() {
@@ -298,6 +310,8 @@ if(isset($_GET['admin'])) {
 				});
 				$(window).bind("resize",resizeAspectPanel);
 				$('#aspects .card:not(.cat-active)').bind('click', function(){
+					$('#aspects').hide();
+					loading();
 					goToAspect(parseInt($(this).attr("data-index")));
 					$("#questionnaire form").find('[required]').removeAttr("required");
 					$('#questionnaire #submitHidden').trigger("click");
@@ -309,6 +323,7 @@ if(isset($_GET['admin'])) {
 		});
 
 		$('#quest-progress .item[data-index]').click(function(){
+			loading();
 			goToAspect(parseInt($(this).attr("data-index")));
 			$("#questionnaire form").find('[required]').removeAttr("required");
 			$('#questionnaire #submitHidden').trigger("click");
@@ -399,6 +414,18 @@ if(isset($_GET['admin'])) {
 			$('#questionnaire #submitHidden').trigger("click");
 		});
 
+		$('.time-left').click(function(){
+			$.post('pages/getQuestTimeCharts.php', {}, function(html){
+    			bootbox.dialog({
+    				message: html,
+    				backdrop:true,
+    				onEscape:true
+    			});
+			});
+		});
+
+		
+		
 		// Geolocalisation
 		// ----------------------------------------------------------------------
 		if($('input[data-request-location]').length > 0 && navigator.geolocation) {
@@ -720,6 +747,8 @@ if(isset($_GET['admin'])) {
 				if(version == "") {
 					alert("<?= $t['alert_choose_quest_version'] ?>");
 				} else {
+					loading();
+					
 					initHTML = button.html();
 					button.html('<?= $t['loading']?> <img src="img/loader-score.svg">');
 					$.post('functions/getUniqueName.php', {}, function(html){
