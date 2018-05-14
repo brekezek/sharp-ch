@@ -47,6 +47,10 @@
 .circular-chart.blue .circle {
   stroke: #3c9ee5;
 }
+.circular-chart.red .circle {
+  stroke: #e74c3c;
+}
+
 .days {
 	font-weight: bold;
 	font-size: 0.3em;

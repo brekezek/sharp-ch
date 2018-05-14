@@ -219,7 +219,36 @@ function getFormattedTime($time) {
     return $timeF;
 }
 
-function drawCircleChart($color, $time, $label) {
+function drawCircleChart($color, $nbTotalSample, $nbEffectifSample, $label, $mode = 'p') {
+    $percentage = ($nbEffectifSample / $nbTotalSample) * 100;
+    ?>
+    <div class="text-center">
+        <div class="single-chart">
+            <svg viewbox="0 0 36 36" class="circular-chart <?= $color ?>">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+              />
+              <path class="circle"
+                stroke-dasharray="<?= $percentage ?>, 100"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+              />
+             
+              <text x="18" y="20.35" class="days"><?= $mode == "p" ? round($percentage, 1)."%" : $nbEffectifSample." / ".$nbTotalSample ?></text>
+            </svg>
+        </div>
+        
+        <div class="lead" style="font-size:1rem">
+    	<?= $label ?>
+    	</div>
+	</div>
+    <?php 
+}
+
+function drawCircleChartForTime($color, $time, $label) {
     global $endingTime, $startingTime;
     $percentage = ($time / ($endingTime - $startingTime)) * 100;
     ?>

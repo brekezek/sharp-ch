@@ -1,4 +1,5 @@
 <?php 
+include_once '../required/common.php';
 include_once '../required/securite.fct.php';
 include_once '../required/db_connect.php';
 /*
@@ -52,12 +53,11 @@ if(isset($_POST['name'], $_POST['email'], $_POST['password'])) {
         	if (! $insert_stmt->execute()) {
         	    $error_msg = 'Registration failure: INSERT';
         	} else {
-        	    header('Location: ../admin.php');
+        	    header('Location: '.getBase().'admin');
         	}
         }
     }
 }?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -66,16 +66,15 @@ if(isset($_POST['name'], $_POST['email'], $_POST['password'])) {
 		
 		<meta charset="UTF-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    	<!-- Fonts -->
-    	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     	
+    	<base href="<?= ($_SERVER['SERVER_NAME'] == "localhost") ? "/sharp-site/" : getBase() ?>offline/">
+		
     	<!-- Bootstrap CSS -->
-    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    	<link rel="stylesheet" href="../css/bootstrap.min.css">
     	<link href="../open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
     	<link href="../css/signin.css" rel="stylesheet">
     	
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    	<script src="../js/jquery.min.js"></script>
     	<script type="text/JavaScript" src="../js/sha256.js"></script>
     	
     	<style>
@@ -107,7 +106,8 @@ if(isset($_POST['name'], $_POST['email'], $_POST['password'])) {
     	</script>
     </head>
     <body class="text-center">
-        <form class="form-signin" action="#" method="post" name="registration_form">
+    	
+        <form class="form-signin" action="<?= $_SERVER['REQUEST_URI']?>" method="post" name="registration_form">
         	<img class="mb-4" src="../img/logo2.jpg" alt="" height="72">
         	
         	<h1 class="h3 mb-3 font-weight-normal">Enregistrement</h1>
@@ -134,7 +134,7 @@ if(isset($_POST['name'], $_POST['email'], $_POST['password'])) {
             <button class="btn btn-lg btn-primary btn-block" type="submit" disabled>S’enregistrer</button>
             
             <p class="mt-5 mb-3 text-muted">© 2018</p>
-
         </form>
     </body>
+    
 </html>

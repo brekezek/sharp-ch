@@ -24,7 +24,7 @@ function invokeScoreGeneration(callback) {
 }
 </script>
 
-
+<link rel="stylesheet" href="css/circle-chart.css">
 	
 <div class="container">
 	<div class="d-flex" style="opacity:0">-</div>
@@ -41,11 +41,10 @@ function invokeScoreGeneration(callback) {
 	<div class="d-flex justify-content-center align-items-center">
 		
 		<?php if(isset($_COOKIE['expirationQuest'])) {?>
-			<link rel="stylesheet" href="css/circle-chart.css">
     		<div class="mr-4 border-right" style="min-width: 250px;">
-            	<?php drawCircleChart("blue", $timeUsed, $t['time-used']); ?>
+            	<?php drawCircleChartForTime("blue", $timeUsed, $t['time-used']); ?>
             	<hr class="my-4">
-            	<?php drawCircleChart("orange", $timeLeft, $t['time-left']); ?>
+            	<?php drawCircleChartForTime("orange", $timeLeft, $t['time-left']); ?>
         	</div>
     	<?php } ?>
     	
@@ -97,6 +96,21 @@ function invokeScoreGeneration(callback) {
         height: 12px;
         margin-right: 5px;
     }
+    body { overflow-x:hidden; }
+    .pill {
+        margin:auto;
+        vertical-align:middle;
+        border-radius:35px;
+        height:16px;
+        width:16px;
+        transition: all 0.2s linear;
+    }
+    .pill:hover {
+        box-shadow: inset 0 0 100px 100px rgba(0,0,0,0.5); 
+    }
+    .pill.green { background: #4CC790; }
+    .pill.blue { background:#3c9ee5; }
+    .pill.void { background: #ccc; }
 	</style>
 	
 	<?php 
@@ -104,14 +118,17 @@ function invokeScoreGeneration(callback) {
 	$name = "";
 	
 	if ($stmt = $mysqli->prepare(
-	    "SELECT qid, firstname, lastname, rid, cluster FROM questionnaires q
+	    "SELECT qid, firstname, lastname, p.rid, cluster, rlabel_".getLang().", pslabel_".getLang()." FROM questionnaires q
         LEFT JOIN participants p ON p.pid = q.pid
+        LEFT JOIN regions r ON r.rid=p.rid
+        LEFT JOIN prod_systems ps ON ps.psid=p.cluster
         WHERE file LIKE ?")) {
         
         $filenameBN = "%".basename($filename);
+       
         $stmt->bind_param("s", $filenameBN);
         $stmt->execute();
-        $stmt->bind_result($qid, $firstname, $lastname, $rid, $cluster);
+        $stmt->bind_result($qid, $firstname, $lastname, $rid, $cluster, $rlabel, $pslabel);
         $stmt->fetch();
         $stmt->free_result();
         $stmt->close();
@@ -132,7 +149,186 @@ function invokeScoreGeneration(callback) {
                 $name = '<span class="text-muted">'.$t['noname'].'</span>';   
             }
             ?>
-        	<h1 class="display-4 border-bottom text-capitalize mb-4" id="title"><?= $name ?></h1>
+            
+        	<h1 class="display-4 border-bottom text-capitalize mb-4 d-flex justify-content-start align-items-center" id="title">
+        		<div class="mr-auto"><?= $name ?></div>   
+        	</h1>
+        	
+        	<?php 
+        	if($rid !== null || $cluster !== null) {
+        	    $queryParticipantsCluster = 
+        	       "SELECT * FROM (
+                        SELECT p.pid, q.qid, firstname, lastname, r.rlabel_".getLang().", COUNT(s.sid) as nbScores, 1 as res FROM participants p
+                        LEFT JOIN questionnaires q ON q.pid=p.pid
+                        LEFT JOIN scores s ON s.qid=q.qid
+                        LEFT JOIN regions r ON r.rid=p.rid
+                        WHERE cluster=".$cluster." AND s.type='resilience'
+                        GROUP BY s.qid
+                        
+                        UNION 
+                        
+                        SELECT p.pid, q.qid, firstname, lastname, r.rlabel_".getLang().", COUNT(s.sid) as nbScores, 0 as res FROM participants p
+                        LEFT JOIN questionnaires q ON q.pid=p.pid
+                        LEFT JOIN scores s ON s.qid=q.qid
+                        LEFT JOIN regions r ON r.rid=p.rid
+                        WHERE cluster=".$cluster."
+                        GROUP BY s.qid
+                    ) req1 
+                    GROUP BY req1.pid 
+                    ORDER BY lastname, firstname";
+                $participantsCluster = $mysqli->query($queryParticipantsCluster);
+                
+                $nbParticipantsClusterWithScores = 0;
+                $nbParticipantsClusterTotal = 0;
+                $nbParticipantsClusterWithQuestionnaire = 0;
+                foreach($participantsCluster as $p) {
+                    $nbParticipantsClusterTotal++;
+                    if($p['qid'] !== NULL) $nbParticipantsClusterWithQuestionnaire++;
+                    if($p['nbScores'] > 25 && $p['res'] == 1) $nbParticipantsClusterWithScores++;
+                }
+                //$participantsCluster->data_seek(0);
+                
+                $participantsRegion = $mysqli->query(
+                "SELECT * FROM (
+                        SELECT p.pid, q.qid, firstname, lastname, pslabel_".getLang().", COUNT(s.sid) as nbScores, 1 as res FROM participants p
+                        LEFT JOIN questionnaires q ON q.pid=p.pid
+                        LEFT JOIN scores s ON s.qid=q.qid
+                        LEFT JOIN prod_systems ps ON ps.psid=p.cluster
+                        WHERE rid=".$rid." AND s.type='resilience'
+                        GROUP BY s.qid
+	    
+                        UNION
+	    
+                        SELECT p.pid, q.qid, firstname, lastname, pslabel_".getLang().", COUNT(s.sid) as nbScores, 0 as res FROM participants p
+                        LEFT JOIN questionnaires q ON q.pid=p.pid
+                        LEFT JOIN scores s ON s.qid=q.qid
+                        LEFT JOIN prod_systems ps ON ps.psid=p.cluster
+                        WHERE rid=".$rid."
+                        GROUP BY s.qid
+                    ) req1
+                    GROUP BY req1.pid
+                    ORDER BY lastname, firstname");
+                $nbParticipantsRegionWithScores = 0;
+                $nbParticipantsRegionTotal = 0;
+                $nbParticipantsRegionWithQuestionnaire = 0;
+                foreach($participantsRegion as $p) {
+                    $nbParticipantsRegionTotal++;
+                    if($p['qid'] !== NULL) $nbParticipantsRegionWithQuestionnaire++;
+                    if($p['nbScores'] > 25 && $p['res'] == 1) $nbParticipantsRegionWithScores++;
+                }
+                ?>
+            	
+            	<div class="display-4" style="font-size:2rem"><?= $t['graphs-title-data-cluster']?></div>
+            	
+            	<div class="bg-light rounded p-3 my-3 mb-4 d-flex">
+            	
+            		<div class="w-50 border-right">
+            			<div class="text-center lead mb-1" >
+                    		<div class="font-weight-bold text-uppercase" style="font-size:1.8rem; line-height:1em"><?= $t['cluster']?></div>
+                    		<div class="text-muted"><?= $pslabel ?></div>
+                		</div>
+                		<hr>
+                		
+                		<div class="d-flex mb-3">
+                    	<?php  
+                        echo '<div style="min-width: 180px; max-width:50%">';
+                        drawCircleChart("blue", $nbParticipantsClusterTotal, $nbParticipantsClusterWithQuestionnaire, $t['part-started-quest'], "n");
+                        echo '</div>';
+                        
+                        echo '<div style="min-width: 180px; max-width:50%">';
+                        drawCircleChart("green", $nbParticipantsClusterTotal, $nbParticipantsClusterWithScores, $t['part-contribute-sysprod'], "n");
+                        echo '</div>';
+                        ?>
+                        </div>
+                        
+                        <table class="table mr-3 table-striped table-hover table-sm">
+                        	<thead>
+                        		<tr>
+                        			<th><?= $t['lastname']." ".$t['firstname']?></th>
+                        			<th class="text-center"><?= $t['started']?></th>
+                        			<th class="text-center"><?= $t['count-in-average']?></th>
+                        		</tr>
+                        	</thead>
+                        	<tbody>
+                        		<?php
+                        		foreach($participantsCluster as $p) {
+                        		    $cond1 = ($p['qid'] !== NULL); $cond2 = ($p['nbScores'] > 25 && $p['res'] == 1); ?>
+                        		<tr title="<?= $p['rlabel_'.getLang()]?>" data-toggle="tooltip" data-placement="right" style="<?php if($p['qid'] == $qid) { echo 'background: rgb(46, 204, 113, 0.3)'; }?>">
+                        			<td class="text-capitalize"><?= sprintf("<span class='text-uppercase'>%s</span> %s", $p['lastname'], $p['firstname']) ?></td>
+                        			<td class="text-center align-middle"><?php echo '<div title="'.($cond1 ? $t['started-fill-quest'] : $t['not-started-fill-quest']).'" data-toggle="tooltip" data-placement="top" class="pill '.($cond1 ? 'blue' : 'void').'"></div>'; ?></td>
+                        			<td class="text-center align-middle"><?php echo '<div title="'.($cond2 ? $t['contribute-avg-score'] : $t['not-contribute-avg-score']).'" data-toggle="tooltip" data-placement="top" class="pill '.($cond2 ? 'green' : 'void').'"></div>'; ?></td>
+                        		</tr>
+                        		<?php } ?>
+                        	</tbody>
+                        </table>
+                        
+                        <?php if($nbParticipantsClusterWithScores <= 1) {?>
+                        <div class="bg-dark rounded text-white text-center py-1 px-2 small" style="width:98%; margin-left:13px">
+                        <?= $t['only-you-answered-sysprod']?><br>
+                        <?= $t['avg-graph-not-reliable']?>
+                        </div>
+                        <?php } ?>
+                    </div>
+                    
+                    <div class="w-50">
+                    	<div class="text-center lead mb-1" >
+                    		<div class="font-weight-bold text-uppercase" style="font-size:1.8rem; line-height:1em"><?= $t['region']?></div>
+                    		<div class="text-muted"><?= $rlabel ?></div>
+                		</div>
+                		<hr>
+
+                        <div class="d-flex mb-3">
+                    	<?php  
+                        echo '<div style="min-width: 180px; max-width:50%">';
+                        drawCircleChart("blue", $nbParticipantsRegionTotal, $nbParticipantsRegionWithQuestionnaire, $t['part-started-quest'], "n");
+                        echo '</div>';
+                        
+                        echo '<div style="min-width: 180px; max-width:50%">';
+                        drawCircleChart("green", $nbParticipantsRegionTotal, $nbParticipantsRegionWithScores, $t['part-contribute-region'], "n");
+                        echo '</div>';
+                        ?>
+                        </div>
+                    
+                    	
+                    	<table class="table table-striped table-hover table-sm" style="max-width:98%; margin-left:13px">
+                        	<thead>
+                        		<tr>
+                        			<th><?= $t['lastname']." ".$t['firstname']?></th>
+                        			<th class="text-center"><?= $t['started']?></th>
+                        			<th class="text-center"><?= $t['count-in-average']?></th>
+                        		</tr>
+                        	</thead>
+                        	<tbody>
+                        		<?php
+                        		foreach($participantsRegion as $p) {
+                        		    $cond1 = ($p['qid'] !== NULL); $cond2 = ($p['nbScores'] > 25 && $p['res'] == 1); ?>
+                        		<tr title="<?= $p['pslabel_'.getLang()]?>" data-toggle="tooltip" data-placement="left" style="<?php if($p['qid'] == $qid) { echo 'background: rgb(46, 204, 113, 0.3)'; }?>">
+                        			<td class="text-capitalize"><?= sprintf("<span class='text-uppercase'>%s</span> %s", $p['lastname'], $p['firstname']) ?></td>
+                        			<td class="text-center align-middle"><?php echo '<div title="'.($cond1 ? $t['started-fill-quest'] : $t['not-started-fill-quest']).'" data-toggle="tooltip" data-placement="top" class="pill '.($cond1 ? 'blue' : 'void').'"></div>'; ?></td>
+                        			<td class="text-center align-middle"><?php echo '<div title="'.($cond2 ? $t['contribute-avg-score'] : $t['not-contribute-avg-score']).'" data-toggle="tooltip" data-placement="top" class="pill '.($cond2 ? 'green' : 'void').'"></div>'; ?></td>
+                        		</tr>
+                        		<?php } ?>
+                        	</tbody>
+                        </table>
+                        
+                        <?php if($nbParticipantsRegionWithScores <= 1) {?>
+                        <div class="bg-dark rounded text-white text-center py-1 px-2 small" style="width:98%; margin-left:13px">
+                        <?= $t['only-you-answered-region']?><br>
+                        <?= $t['avg-graph-not-reliable']?>
+                        </div>
+                        <?php } ?>
+                    </div>
+                    
+                    
+                </div>
+                
+                <?php 
+            }
+            ?>
+        	
+        	<div class="display-4" style="font-size:2rem"><?= $t['your-evaluation']?></div>
+        	
+        	<div class="border rounded p-3 my-3 mb-4">
         	
         	<h4 class="my-3">
         	<?= $t['score_resilience_par_aspect']?>, 
@@ -187,7 +383,7 @@ function invokeScoreGeneration(callback) {
             					<div class="alert alert-warning"><?= $t['not-enough-data-display-chart']?></div>
             				<?php } else { ?>
                             	<div class="chart-legend"></div>
-                            	<canvas id="chart_<?= $section ?>" data-section="<?= $section?>" height="<?= floor(80 + $nbLabels[$section]*1.2 + $maxLabelLength[$section]*1.2) ?>px" style="margin-left:-25px"></canvas>
+                            	<canvas id="chart_<?= $section ?>" data-section="<?= $section?>" height="<?= floor(80 + $nbLabels[$section]*1.2 + $maxLabelLength[$section]*1.2) ?>px" style="margin-left:0px"></canvas>
                             	 
                             	<div style="position:absolute; top:-50000px">
                                   <canvas id="hidden_chart_<?= $section ?>" data-section="<?= $section?>" width="1200" height="650"></canvas>
@@ -249,7 +445,7 @@ function invokeScoreGeneration(callback) {
             	<?= $t['scores_by_indicators']?>, 
             	<div class="d-inline text-muted lead"><?= $t['comparaison_score_avg_canton']?></div>
         	</h4>
-        	<div class="pb-4 border-bottom">
+        	<div class="pb-4">
     			<div class="chart-wrapper">
     				<?php
     				if($haveScores == 0) {
@@ -268,7 +464,7 @@ function invokeScoreGeneration(callback) {
         					<div class="alert alert-warning"><?= $t['not-enough-data-display-chart']?></div>
         				<?php } else { ?>
                         	<div class="chart-legend"></div>
-                        	<canvas id="chart_<?= $section ?>" data-section="<?= $section?>" height="140px" style="margin-left:-25px"></canvas>
+                        	<canvas id="chart_<?= $section ?>" data-section="<?= $section?>" height="140px" ></canvas>
                         	 
                         	<div style="position:absolute; top:-50000px">
                               <canvas id="hidden_chart_<?= $section ?>" data-section="<?= $section?>" width="1200" height="650"></canvas>
@@ -278,7 +474,8 @@ function invokeScoreGeneration(callback) {
     				}?>
             	</div>
 			</div>
- 		
+ 			</div>
+ 			
             <script>
 			$(function(){
 				

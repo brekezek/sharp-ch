@@ -11,6 +11,7 @@ RewriteRule ^scores/refresh/?$ index.php?score&refresh [L]
 
 
 # ADMIN PANEL
+RewriteRule ^admin/signup/?$ offline/createUser.php [NC,L]
 RewriteRule ^admin/?$ admin.php [NC,L]
 RewriteRule ^admin/logout/?$ admin.php?logout [NC,L]
 RewriteRule ^admin/err/([0-9]+)/?$ admin.php?err=$1 [NC,L]

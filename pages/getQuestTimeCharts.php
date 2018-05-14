@@ -10,8 +10,8 @@ $timeLeft = $endingTime - time();
 if(isset($_COOKIE['expirationQuest'])) {?>
 	<link rel="stylesheet" href="css/circle-chart.css">
 	<div class="" style="min-width: 250px;">
-    	<?php drawCircleChart("blue", $timeUsed, $t['time-used']); ?>
+    	<?php drawCircleChartForTime("blue", $timeUsed, $t['time-used']); ?>
     	<hr class="my-4">
-    	<?php drawCircleChart("orange", $timeLeft, $t['time-left']); ?>
+    	<?php drawCircleChartForTime("orange", $timeLeft, $t['time-left']); ?>
 	</div>
 <?php } ?>

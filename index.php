@@ -745,7 +745,7 @@ if(isset($_GET['admin'])) {
 			} else {
 				var version = getCookie("version");
 				if(version == "") {
-					alert("<?= $t['alert_choose_quest_version'] ?>");
+					bootbox.alert("<?= $t['alert_choose_quest_version'] ?>");
 				} else {
 					loading();
 					
@@ -777,7 +777,7 @@ if(isset($_GET['admin'])) {
 
 							document.location = '?start';
 						} else {
-							alert("<?= $t['error_get_unique_name']?>");
+							bootbox.alert("<?= $t['error_get_unique_name']?>");
 						}
 						//button.html(initHTML);
 					});
@@ -792,6 +792,8 @@ if(isset($_GET['admin'])) {
 			var filename = parent.attr("data-filename");
 			var version = parent.attr("data-version");
 
+			loading();
+			
 			$.get("<?= DIR_ANSWERS ?>/"+filename).done(function() { 
     			deleteCookie("expirationQuest");
     			setCookie("filename", filename, <?= LIFE_COOKIE_QUEST_PENDING ?>);
@@ -800,18 +802,21 @@ if(isset($_GET['admin'])) {
     			setCookie("readonly", "true", <?= LIFE_COOKIE_QUEST_PENDING ?>);
     			document.location = '?review';
 		    }).fail(function() { 
-		        alert("le fichier de questionnaire n'existe pas");
+		    	bootbox.hideAll();
+		        bootbox.alert("Le fichier de questionnaire n'existe pas");
 		    });
 		});
 		$('#list-quest .quest-item div[data-action="scores"]').click(function(){
 			var parent = $(this).parents(".quest-item");
 			var setData = parent.attr("data-setData");
 			var filename = parent.attr("data-filename");
+			loading();
 			
 			$.get("<?= DIR_ANSWERS ?>/"+filename).done(function() { 
 				document.location = 'scores/data/'+setData;
 		    }).fail(function() { 
-		        alert("le fichier de questionnaire n'existe pas");
+		    	bootbox.hideAll();
+		        bootbox.alert("Le fichier de questionnaire n'existe pas");
 		    });
 		});
 

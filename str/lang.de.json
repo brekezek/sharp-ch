@@ -19,7 +19,7 @@
     "help_multiple_multiple": "Um mehrere Optionen auszuwählen, halten Sie die Taste <kbd>ctrl</kbd> gedrückt",
     "thank_you": "Danke",
     "txt1_end_quest": "Herzlichen Glückwunsch und vielen Dank für Ihre Zeit beim Ausfüllen dieses Fragebogens",
-    "txt2_end_quest": "Ihre Antworten wurden automatisch analysiert und eine Punktzahl errechnet. ",
+    "txt2_end_quest": "Ihre Antworten wurden analysiert und ihnen wurde eine Punktzahl zugewiesen. Basierend auf diesen Bewertungen wurden automatisch Statistiken berechnet. Die Diagramme, die Sie auf der folgenden Seite finden, stellen auf Grundlage dieser Bewertungen die Bewertung der Belastbarkeit Ihrer Farm für jeden Aspekt und Abschnitt dar, den Sie in diesem Fragebogen beantwortet haben. In Ihren Grafiken finden Sie Vergleichspunkte mit den Herstellern des gleichen Produktionssystems wie Sie und mit den Produzenten in der gleichen Region wie Sie.",
     "display_my_score": "Zeige meine Punktzahl",
     "quest_version_not_exist": "Diese Version des Fragebogens existiert leider nicht!",
     "error_restart_quest": "Ein Fehler ist aufgetreten, bitte versuchen Sie es nochmal.",
@@ -35,7 +35,7 @@
     "score_obtenu": "Ergebnis erhalten",
     "resilience_importance_par_section": "Resilienz und Wichtigkeit nach Sektionen",
     "score_resilience_par_aspect": "Resilienzpunkte nach Aspekten",
-    "comparaison_score_avg_canton": "im Vergleich zu den Durchschnittswerten des Kantons/Region",
+    "comparaison_score_avg_canton": "im Vergleich zum Durchschnitt der Individuen des gleichen Produktionssystems und derselben Region wie Sie",
     "empty": "Leer",
     "translations": "Übersetzungen",
     "remember-me": "Angemeldet bleiben",
@@ -92,7 +92,7 @@
     "confirm": "Bestätigen",
     "confirm-deletion": "Bestätigen Sie die Löschung?",
     "close": "Schließen",
-    "delete-participants-also": "Löschen Sie auch Teilnehmer in Bezug auf die Fragebögen",
+    "delete-participants-also": "Löschen Sie auch Teilnehmer in Bezug auf die Fragebögen (definitiv)",
     "security-message-1": "Aus Sicherheitsgründen können Sie nicht mehr als 5 Elemente gleichzeitig löschen",
     "atelier": "Geographisches Gebiet",
     "cluster": "Art der Produktion",
@@ -147,5 +147,9 @@
     "login-err-4": "Falsches Passwort 5x hintereinander. Für 10 Minuten gesperrt",
     "login-err-1": "Konnte keine sichere Sitzung initiieren (ini_set)",
     "login-err-2": "Ungültige Anfrage",
-    "txt_print_end_quest": "Sie können eine PDF-Datei mit der Bewertung Ihrer Belastbarkeit herunterladen. Sie können Ihre Charts auch jederzeit online über die Homepage oder über den Link im PDF einsehen."
+    "txt_print_end_quest": "Sie können eine PDF-Datei mit der Bewertung Ihrer Belastbarkeit herunterladen. Sie können Ihre Charts auch jederzeit online über die Homepage oder über den Link im PDF einsehen.",
+    "time-left": "Verbleibende Zeit",
+    "time-used": "Zeit verwendet",
+    "error-404": "Fehler 404",
+    "text-error-404": "Leider existiert die von Ihnen angeforderte Seite nicht."
 }
