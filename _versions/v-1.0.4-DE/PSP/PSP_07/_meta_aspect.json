@@ -1,5 +1,20 @@
 {
-	"title":"Tierernährung",
-	"id":"PSP_07",
-	"img":""
+    "title": "Tierernährung",
+    "id": "PSP_07",
+    "img": "",
+    "filters": [
+        {
+            "scope": "all",
+            "dependencies": [
+                {
+                    "lookAt": "PSP_05.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }

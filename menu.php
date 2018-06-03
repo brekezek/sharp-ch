@@ -1,6 +1,6 @@
 <?php $readonly = isset($_COOKIE['indexAspect'], $_COOKIE['readonly']) && $_COOKIE['readonly'] == "true"; ?>
 
-<nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark justify-content-between">
+<nav class="navbar navbar-expand-sm navbar-dark sticky-top bg-dark justify-content-between">
 	
 	<div class="navbar-brand mr-0">
 		
@@ -8,8 +8,8 @@
 		<img src="img/logo_menu.jpg" width="80px"> <span class="badge badge-danger text-uppercase"><?= getLang() == "fr" ? "CH" : getLang() ?></span>
 		
 		<div class="d-inline-flex">
-    		<?php if($readonly || $logged) {?>
-    		<a href="admin/dashboard" id="back" class="btn btn-secondary ml-2">
+    		<?php if($logged) {?>
+    		<a href="<?= getBase() ?>admin/dashboard" id="back" class="btn btn-secondary ml-2">
     			<span class="oi oi-spreadsheet mr-1"></span> Admin
     		</a>
     		<?php } ?>
@@ -37,12 +37,8 @@
 		    echo '<span class="oi oi-eye mr-1"></span> <span id="name-ro">'.$t['read-only'].'</span>';
 		} else {
 		    if(isset($_COOKIE['expirationQuest'])) {
-    		    $expirationQuest = $_COOKIE['expirationQuest'];
-                $time = ($expirationQuest - time());
-                $days = floor($time / (3600*24));
-                $hours = floor(($time - $days*24*3600) / 3600);
-                $min = floor(($time - $days*24*3600 - $hours*3600) /  60);
-                echo '<div class="time-left" data-toggle="tooltip" data-placement="bottom" title="'.$t['quest-time-left'].'"><span class="oi oi-clock mr-1"></span> <b>'.$t['restant'].'</b>: '.$days." ".$t['jours'].", ".$hours."h".$min.'</div>';
+		        $fTime = getFormattedTime($_COOKIE['expirationQuest'] - time(), "%02d %s, ", "%02d%s%02d");
+                echo '<div class="time-left" data-toggle="tooltip" data-placement="bottom" title="'.$t['quest-time-left'].'"><span class="oi oi-clock mr-1"></span> <b>'.$t['restant'].'</b>: '.$fTime['jours'].$fTime['hours'].'</div>';
 		    } else {
 		        echo $_COOKIE['version'];   
 		    }
@@ -92,20 +88,28 @@
 		<div class="mr-auto"></div>
 		
 		<div class="navbar-nav mr-2">
-		  <?php if(!$displayScorePage) { ?>
+		  <?php
+		  if(!$displayScorePage) {
+		      $versionsByLang = getVersions();
+		      $langUpper = strtoupper(getLang());
+		      $langVersion = isset($versionsByLang[$langUpper]) ? $langUpper : "FR"; ?>
 		  <div class="nav-item dropdown">
-			<a class="btn btn-primary btn-md dropdown-toggle" href="#" id="dropdown-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<span class="oi oi-cog mr-1"></span> <?= isset($_COOKIE['version']) ? $_COOKIE['version'] : $t['choose_version'] ?>
-			</a>
+			<div class="btn btn-primary btn-md dropdown-toggle align-items-center" style="display:flex" id="dropdown-version" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<span class="oi oi-cog pr-2"></span>
+				<div class="pr-2">
+					<div style="font-size:0.61rem; line-height:1.3em"><?= $t['version_quest']?></div>
+					<div style="font-size:0.8rem; line-height:1em; font-weight: bold"><?= isset($_COOKIE['version']) ? $_COOKIE['version'] : $versionsByLang[$langVersion][0]['file'] ?></div>
+				</div>
+			</div>
 			<div class="dropdown-menu" id="version" aria-labelledby="dropdown-version">
 				<?php
 				$i = 0;
-				$versionsByLang = getVersions();
+				
 				foreach($versionsByLang as $lang => $versions) {
 					echo '<h6 class="d-flex align-items-center justify-content-start p-1 bg-light mb-0"><img src="img/'.strtolower($lang).'.png" class="mr-2"> '.$lang.' </h6>';
 					foreach($versions as $v) {
 						$version = getVersionText($v); ?>
-						<a version="<?= $v['file'] ?>" lang="<?= $lang ?>" class="dropdown-item <?php if(isset($_COOKIE['version']) && $_COOKIE['version'] == $v['file']) {?>active<?php } ?>" href="#">
+						<a <?php if(!isset($_COOKIE['version']) && $langVersion == $lang) { echo 'auto-detected'; } ?> version="<?= $v['file'] ?>" lang="<?= $lang ?>" class="dropdown-item <?php if((!isset($_COOKIE['version']) && $langVersion == $lang) || (isset($_COOKIE['version']) && $_COOKIE['version'] == $v['file'])) {?>active<?php } ?>" href="#">
 							<?= $version ?>
 						</a>
 						<?php
@@ -121,7 +125,7 @@
 		</div>
 
 	   <?php if(!$displayScorePage) { ?>
-    		<button id="new-quest" class="d-none btn btn-light" type="submit">
+    		<button id="new-quest" class="btn btn-light" type="submit">
     			<?= $t['new_questionnaire']?>
     			<span class="oi oi-caret-right ml-1"></span>
     		</button>

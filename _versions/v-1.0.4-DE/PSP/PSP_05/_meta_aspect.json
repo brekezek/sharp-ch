@@ -1,5 +1,29 @@
 {
-	"title":"Viehhaltung",
-	"id":"PSP_05",
-	"img":""
+    "title": "Viehhaltung",
+    "id": "PSP_05",
+    "img": "",
+    "filters": [
+        {
+            "scope": [
+                2,
+                3,
+                4
+            ],
+            "ban": [
+                "PSP_07",
+                "PSP_15",
+                "SOC_04"
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "self.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }

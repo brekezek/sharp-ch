@@ -169,7 +169,7 @@ if($stmt = $mysqli->query("SELECT pid FROM participants WHERE deleted=1")) {
 			],
 			initComplete: function(settings, json) {
 
-				$('#repondants_filter').append('<a class="btn btn-sm btn-success ml-2" style="vertical-align:top" id="add-table"><span class="oi oi-plus mr-1"></span> Add</a>');
+				$('#repondants_filter').append('<a class="btn btn-sm btn-success ml-2" style="vertical-align:top" id="add-table"><span class="oi oi-plus mr-1"></span> <?= $t['add'] ?></a>');
 
 				$('#repondants_filter').on('click', '#add-table', function(){
 					showFormInModal("add", "Ajouter un participant");
@@ -254,6 +254,7 @@ if($stmt = $mysqli->query("SELECT pid FROM participants WHERE deleted=1")) {
 		function showFormInModal(type, title, pid) {
 			var modal = $('#exampleModalCenter');
 
+			if(modal) {
 			modal.modal();
 			modal.find('.modal-body').html("Chargement...");
 			modal.find('.modal-title').html(title);
@@ -262,6 +263,7 @@ if($stmt = $mysqli->query("SELECT pid FROM participants WHERE deleted=1")) {
 			modal.on('hide.bs.modal', function(e){
 				modal.find('button#submit').off("click");
 			});
+			}
 			
 			var params = {
 				pid: pid,

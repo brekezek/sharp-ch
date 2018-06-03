@@ -1,22 +1,29 @@
 <?php
 class AspectFilter {
     
+    public static $self;
+    
     private $aspectId;
     private $questionIndex;
     private $answerType;
     private $answerIndex;
-    private $action;
     private $answer;
     private $scope;
+    private $ban;
     
-    public function __construct($scope, $lookAt, $expectedAnswer, $action) {
-        $this->scope = $scope;
+    public static function setSelf($self) {
+        AspectFilter::$self = $self;    
+    }
+    
+    public function __construct($scope, $lookAt, $expectedAnswer) {
+        $this->scope = $scope === NULL ? array() : $scope;
+        $this->ban = array();
         
         $splitLookAt = explode(".", $lookAt);
         if(count($splitLookAt) != 2)
             throw new Exception("Le paramètre lookAt du filtre est malformé: ".$lookAt." et devrait être formé de la sorte: aspectId.questionIndex (ex. ADM_01.15)");
         
-        $this->aspectId = $splitLookAt[0];
+        $this->aspectId = ($splitLookAt[0] == "self") ? AspectFilter::$self : $splitLookAt[0];
         $this->questionIndex = $splitLookAt[1];
         
         if(!isset($expectedAnswer['type'])) throw new Exception("L'attribut answer->type n'existe pas");
@@ -24,7 +31,6 @@ class AspectFilter {
         
         $this->answerType = $expectedAnswer['type'];
         $this->answerIndex = $expectedAnswer['index'];
-        $this->action = $action; 
         $this->answer = array("given" => "", "expected" => "", "questNum" => $this->questionIndex, "aspectId" => $this->aspectId);
     }
     
@@ -37,6 +43,7 @@ class AspectFilter {
             $lookAtJson = getJSONFromFile($filepathLookAt);
             $this->answer['questNum'] = $lookAtJson['title'];
             $answerExpected = $lookAtJson['choices'][$this->answerIndex];
+            $this->answer['expected'] = $answerExpected;
         }
         
         // Récupérer la réponse donnée 
@@ -47,7 +54,6 @@ class AspectFilter {
                 $answerGiven = $jsonAnswers[$this->aspectId][$this->questionIndex]['answer'];
                 
                 $this->answer['given'] = $answerGiven;
-                $this->answer['expected'] = $answerExpected;
                 
                 if($answerGiven == $answerExpected) {
                     return true;
@@ -57,10 +63,24 @@ class AspectFilter {
         return false;
     }
     
-    public function getAction() {
-        return $this->action;   
+    public function getDependenciesAspectId() {
+        return $this->aspectId;
     }
     
+    public function getDependenciesQuestionIndex() {
+        return $this->questionIndex;
+    }
+    
+    public function getAnswerIndex() {
+        return $this->answerIndex;
+    }
+    
+    public function setBan($ban) {
+        $this->ban = $ban;
+    }
+    public function getBan() {
+        return $this->ban;    
+    }
     
     public function getAnswer() {
         return $this->answer;
@@ -81,8 +101,12 @@ class AspectFilter {
             $dependencies = $filter['dependencies'];
             if(is_array($dependencies)) {
                 foreach($dependencies as $dependency) {
-                    if(isset($dependency['lookAt']) && isset($dependency['expectedAnswer']) && isset($dependency['action'])) {
-                        $filtersObjects[] = new AspectFilter($filter['scope'], $dependency['lookAt'], $dependency['expectedAnswer'], $dependency['action']);
+                    if(isset($dependency['lookAt']) && isset($dependency['expectedAnswer'])) {
+                        $obj = new AspectFilter(isset($filter['scope']) ? $filter['scope'] : null, $dependency['lookAt'], $dependency['expectedAnswer']);
+                        if(isset($filter['ban'])) {
+                            $obj->setBan($filter['ban']);
+                        }
+                        $filtersObjects[] = $obj;
                     } else {
                         echo 'Erreur: un des filtres attaché à cet aspect est malformé: ';
                         print_r($dependency);

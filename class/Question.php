@@ -73,7 +73,13 @@ abstract class Question implements iQuestion {
 	    $this->enabled = false;
 	}
 	
+	public function setFilteredJS($filters) {
+	    $this->enabled = true;
+	    $this->jsFilterApplied = $filters;
+	}
+	
 	protected function isMandatory() {
+	       
 	    if($this->aspectId != "ADM_01") 
 	        return false;
 	    
@@ -128,9 +134,7 @@ abstract class Question implements iQuestion {
 	
 	protected function getAdditionnalHTMLAttributes() {
 	    $html = "";
-	    if(!$this->enabled) {
-	        $html .= 'disabled="disabled" ';
-	    }
+
 	    foreach($this->htmlAttrs as $attrName => $attrValue) {
 	        $html .= $attrName;
 	        if(!empty(trim($attrValue))) {
@@ -175,7 +179,9 @@ abstract class Question implements iQuestion {
 	    $this->readonly = $readonly;
 	}
 	
+	
 	protected function startWrapper() {
+	    
 	    $htmlOutOfTable = '<div class="form-group '.($this->enabled ? '' : "filtered").'" numQuest="'.$this->index.'">';
 	    return $this->isInTable ? '' : $htmlOutOfTable;
 	}

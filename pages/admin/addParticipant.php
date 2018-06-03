@@ -23,6 +23,7 @@ if($logged) {
                 $hashSet = array();
                 foreach($values as $val) {
                     $set = explode("->", $val);
+                    if(empty($set[1])) $set[1] = NULL;
                     $hashSet[$set[0]] = $set[1];
                 }
                 
@@ -102,7 +103,7 @@ if($logged) {
                            	 		<option value="<?= $row['psid']?>" <?php if($cluster == $row['psid']) { echo 'selected'; } ?>><?= $row['pslabel_'.getLang()]." (".$row['psid'].")"?></option>
                            	 		<?php } ?>
                            	 	</select>
-                           	 	<a href="?page=5&tab=prod_systems" class="btn btn-secondary text-white btn-sm ml-1"><span class="oi oi-plus small"></span></a>
+                           	 	<a href="<?= getBase() ?>admin/dashboard/translate/prod_systems" class="btn btn-secondary text-white btn-sm ml-1"><span class="oi oi-plus small"></span></a>
                        	 	</div>
                         </div>
                    </div>
@@ -117,7 +118,7 @@ if($logged) {
                            	 		<option value="<?= $row['rid']?>" <?php if($region == $row['rid']) { echo 'selected'; } ?>><?= $row['rlabel_'.getLang()]." (".$row['rid'].")"?></option>
                            	 		<?php } ?>
                            	 	</select>
-                           	 	<a href="?page=5&tab=regions" class="btn btn-secondary text-white btn-sm ml-1"><span class="oi oi-plus small"></span></a>
+                           	 	<a href="<?= getBase() ?>admin/dashboard/translate/regions" class="btn btn-secondary text-white btn-sm ml-1"><span class="oi oi-plus small"></span></a>
                        	 	</div>
                         </div>
               		</div>

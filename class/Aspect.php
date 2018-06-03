@@ -24,6 +24,8 @@ class Aspect {
 	private $filtersEvaluation;
 	private $filtersState;
 	private $filtersScope;
+	private $jsonSelfFiltersForJS;
+	private $onlySelfFilters;
 	
 	function __construct($id, $title, $color, $subtitle, $index, $filters) {
 		$this->id = $id;
@@ -35,9 +37,42 @@ class Aspect {
 		$this->readonly = false;
 		$this->imgFile = "img/questionnaire/".$this->id.".png";
 		
+		AspectFilter::setSelf($this->id);
 		$filtersObj = AspectFilter::parseFilters($filters);
 		
-		$this->filtersState = AspectFilter::evalFilters($filtersObj);
+		$filtersSelfObj = array();
+        $filtersExtObj = array();
+		if($filtersObj != null) {
+		    $filtersSelfObj = array_filter($filtersObj, function($filter) {
+		       return $filter->getDependenciesAspectId() == AspectFilter::$self;
+		    });
+	        $filtersExtObj = array_filter($filtersObj, function($filter){
+	           return $filter->getDependenciesAspectId() != AspectFilter::$self; 
+	        });
+		}
+		$this->onlySelfFilters = count($filtersObj) == count($filtersSelfObj);
+		
+		$this->filtersState = AspectFilter::evalFilters($filtersExtObj);
+		
+		/* Filtres JS -------------------------------------- */
+		$this->jsonSelfFiltersForJS = "";
+		if($filtersObj != null) {	    
+		    foreach($filtersSelfObj as $filter) {
+	            $ban = is_array($filter->getBan()) && count($filter->getBan()) > 0 ? '"'.implode("\",\"", $filter->getBan()).'"' : "";
+	            $this->jsonSelfFiltersForJS .= "{".
+  		            '"trigger":'.$filter->getDependenciesQuestionIndex().",".
+  		            '"value": {"text":"'.$filter->getAnswer()['expected'].'", "index":'.$filter->getAnswerIndex().'},'.
+  		            '"listeners":['.implode(",", $filter->getScope())."],".
+  		            '"ban":['.$ban.']'.
+	            "},";
+		    }
+		    
+		    if($this->jsonSelfFiltersForJS != "") {
+    		    $this->jsonSelfFiltersForJS = substr($this->jsonSelfFiltersForJS, 0, -1);
+    		    $this->jsonSelfFiltersForJS = '{"filters":['.$this->jsonSelfFiltersForJS.']}';
+		    }
+		}
+		/* Filtres JS -------------------------------------- */
 		
 		$this->filtersScope = array();
 		if(is_array($filtersObj)) {
@@ -78,7 +113,7 @@ class Aspect {
 		
 		if(is_array($this->filtersScope)) {
 		    if(is_array($this->filtersScope) && in_array($question->getIndex(), $this->filtersScope)) {
-		        $question->setDisabled();
+		          $question->setDisabled();
 		    }
 		}
 			
@@ -87,6 +122,9 @@ class Aspect {
 	
 	public function draw($currentIndex, $nbAspects) {
 		$this->drawHeader($currentIndex, $nbAspects);
+		if($this->jsonSelfFiltersForJS != "") {
+		  echo '<input type="hidden" id="filters" value="'.base64_encode($this->jsonSelfFiltersForJS).'">';
+		}
 		$this->drawQuestions();
 	}
 	
@@ -94,17 +132,18 @@ class Aspect {
 	    global $t;
 	    
 		$html = 
-		'<div class="rounded container bg-light p-2 my-3">';
+		'<div class="rounded container bg-light p-2 my-3 border">';
 		
 		if(is_string($this->filtersScope) && $this->filtersScope == "all") {
-		    $html .= '<div class="alert alert-success mb-0">';
+		    $html .= '<div class="alert alert-success mb-0" id="filters-alert">';
 		    $html .= $t['filters-alert-message-string'] . '<br>' .$this->filtersState;
 		    $html .= '</div>';
 		    $html .= '</div>';
 		    echo $html;
 		    return;
-		} else if(is_array($this->filtersScope) && count($this->filtersScope) > 0){
-		    $html .= '<div class="alert alert-success mb-2">';
+		}
+		else if(is_array($this->filtersScope) && count($this->filtersScope) > 0 && !$this->onlySelfFilters){
+		    $html .= '<div class="alert alert-success mb-2" id="filters-alert">';
   		    $html .= sprintf($t['filters-alert-message-array'], implode($this->filtersScope, ", "));
   		    $html .= "<br>".$this->filtersState;
   		    $html .= '</div>';
@@ -157,9 +196,14 @@ class Aspect {
 	       $title = "";
 	    }
 	    
+	    $enabled = true;
+	    if(is_string($this->filtersScope) && $this->filtersScope == "all") {
+	        $enabled = false;
+	    }
+	    
 	    global $t;
 		$html = '
-		<div data-toggle="tooltip" data-placement="top" title="'.$this->subtitle.'" data-index="'.$this->index.'" class="card text-center rounded m-2 cat-hover cat-border-'.$this->color->getColorName().' '.($this->index == $this->currentIndex ? "cat-active" : "").'" style="width: 12.7%; max-width: 160px; min-width:140px; max-height: 180px">
+		<div '.($enabled && $this->index != $this->currentIndex ? 'data-toggle="tooltip" data-placement="top"' : '').' data-id="'.$this->id.'" title="'.$this->subtitle.'" data-index="'.$this->index.'" class="'.($enabled ? '' : 'disabled').' card text-center rounded m-2 cat-hover cat-border-'.$this->color->getColorName().' '.($this->index == $this->currentIndex ? "cat-active" : "").'" style="width: 12.7%; max-width: 160px; min-width:140px; max-height: 180px">
 		  <div class="card-header d-flex p-1 '.$this->color->getClass().'">';
             
 			$html .= '<div style="text-align:left; width:100%; padding-left:6px">'.$this->index.'</div>';
@@ -178,6 +222,7 @@ class Aspect {
 			'.$this->id.'
 		  </div>
 		</div>';
+		  
 		echo $html;
 	}
 	

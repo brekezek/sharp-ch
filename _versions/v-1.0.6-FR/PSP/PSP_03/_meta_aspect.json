@@ -1,5 +1,24 @@
 {
-	"title":"Aquaculture",
-	"id":"PSP_03",
-	"img":""
+    "title": "Aquaculture",
+    "id": "PSP_03",
+    "img": "",
+    "filters": [
+        {
+            "scope": [
+                2,
+                3,
+                4
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "self.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }

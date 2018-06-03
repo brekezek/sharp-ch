@@ -1,13 +1,15 @@
 <?php 
 require_once('const.php');
 
-$lang = "fr";
+$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 if(isset($_COOKIE['lang'])) {
-    if(file_exists(getLanguageFile($_COOKIE['lang']))) {
-		$lang = $_COOKIE['lang'];
-    } else {
-        $_COOKIE['lang'] = "fr";
-    }
+    $lang = $_COOKIE['lang'];   
+} else {
+    $_COOKIE['lang'] = $lang;  
+}
+if(!file_exists(getLanguageFile($lang))) {
+    $lang = "en";
+    $_COOKIE['lang'] = "en";
 }
 
 $json_lang = file_get_contents(getLanguageFile($lang));
@@ -49,14 +51,16 @@ function getQuestionnaireSections($version, $excludeList=array()) {
     $pathVersion = getAbsolutePath().DIR_VERSIONS."/".$version;
     $packages = getJSONFromFile($pathVersion."/_meta_package.json")['order'];
     $sections = array();
-    foreach($packages as $package) {
-        $pathPackage = $pathVersion."/".$package;
-        $categories = getJSONFromFile($pathPackage."/_meta_category.json");
-        if(!in_array($package, $excludeList)) {
-            $sections[$package] = array(
-                "title" => $categories['title'],
-                "color" => $categories['color']
-            );
+    if(is_array($packages)) {
+        foreach($packages as $package) {
+            $pathPackage = $pathVersion."/".$package;
+            $categories = getJSONFromFile($pathPackage."/_meta_category.json");
+            if(!in_array($package, $excludeList)) {
+                $sections[$package] = array(
+                    "title" => $categories['title'],
+                    "color" => $categories['color']
+                );
+            }
         }
     }
     return $sections;
@@ -204,7 +208,7 @@ function getURLScores($filename, $version) {
     return $url;
 }
 
-function getFormattedTime($time) {
+function getFormattedTime($time, $patternDay = "%02d %s ", $patternHours = "%02d%s%02d") {
     global $t;
     $days = floor($time / (3600*24));
     $hours = floor(($time - $days*24*3600) / 3600);
@@ -214,8 +218,8 @@ function getFormattedTime($time) {
     $timeF = array();
     $jour = $t['jours'];
     if($days <= 1) $jour = substr($jour, 0, -1);
-    $timeF['jours'] = ($days > 0)  ? sprintf("%02d %s ",$days, $jour) : "";
-    $timeF['hours'] = sprintf("%02d%s%02d", $hours, "h", $min);
+    $timeF['jours'] = ($days > 0)  ? sprintf($patternDay, $days, $jour) : "";
+    $timeF['hours'] = sprintf($patternHours, $hours, "h", $min);
     return $timeF;
 }
 
@@ -277,4 +281,8 @@ function drawCircleChartForTime($color, $time, $label) {
     	</div>
 	</div>
     <?php 
+}
+
+function isIE() {
+    return preg_match('/Trident\/7.0; rv:11.0/', $_SERVER['HTTP_USER_AGENT']) || (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false);
 }

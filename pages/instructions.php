@@ -51,3 +51,13 @@
 </div>
 
 <hr class="my-4">
+
+<div class="text-center">
+	<div class="cancel-quest btn btn-info mr-1">
+		<?= $t['cancel']?> <span class="oi oi-x ml-1"></span>
+	</div>
+	
+    <div class="m-auto text-center btn btn-success start-new-quest">
+    	<?= $t['start']?> <span class="oi oi-power-standby ml-1"></span>
+    </div>
+</div>

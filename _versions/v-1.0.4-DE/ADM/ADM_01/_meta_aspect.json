@@ -1,5 +1,21 @@
 {
-	"title":"Willkommen zur 'Self-evaluation and Holistic Assessment of climate Resilience for farmers and Pastoralists (SHARP)'",
-	"id":"ADM_01",
-	"img":""
+    "title": "Willkommen zur 'Self-evaluation and Holistic Assessment of climate Resilience for farmers and Pastoralists (SHARP)'",
+    "id": "ADM_01",
+    "img": "",
+    "filters": [
+        {
+            "ban": [
+                "PSP_17"
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "self.17",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 0
+                    }
+                }
+            ]
+        }
+    ]
 }

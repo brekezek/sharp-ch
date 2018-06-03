@@ -4,9 +4,12 @@ class Table extends Question {
 	protected $columns;
 	private $equivQuestionType;
 	private $dependencesAnswers = array();
+	private $dynamicTable = false;
 	
 	function __construct($index, $json) {
 		parent::__construct($index, $json);
+		
+		$this->dynamicTable = isset($this->jsonQuestion['dynamic-table']) ? $this->jsonQuestion['dynamic-table'] : false;
 		
 		$this->rows = getChoices($json['lines']);
 		$this->columns = $json['columns'];
@@ -36,7 +39,11 @@ class Table extends Question {
 		    $uniq_data_type = 'data-type="'.$this->equivQuestionType[$this->columns[0]['type']].'"';
 		}
 		
-		$html .= '<table class="table table-striped table-hover" '.$uniq_data_type.'>
+		if($this->dynamicTable && count($this->jsonAnswer) > count($this->rows)) {
+		    $this->rows = array_unique(array_merge($this->rows, array_map(function($item){ return $item+1; }, array_keys($this->jsonAnswer))));
+		}
+		
+		$html .= '<table class="table table-striped table-hover '.($this->dynamicTable ? "dynamic-table" : "").'" '.$uniq_data_type.'>
 		  <thead>
 			<tr>
 				<th scope="col" class="align-middle border-right border-top-0">'.parent::getLabel().'</th>';
@@ -50,6 +57,7 @@ class Table extends Question {
 			
 		  $indexRow = 0;
 		  $dependenceInRow = array();
+		  
 		  foreach($this->rows as $row) {
 		        $row_brut = $row;
 				$row = str_replace(OTHER_INPUT_TAG, '', $row);
@@ -139,7 +147,17 @@ class Table extends Question {
 						      ($questionObj == null ? "" : $questionObj->draw()).
 						  '</span>'.
 						'</td>';
+						
+    				      
+						   
 					}
+					
+					if($this->dynamicTable && !$this->readonly) {
+					    $html .= '<td class="border-bottom">';
+					    $html .= '<button type="button" class="delete-row btn btn-danger '.($indexRow > 0 ? "" : "d-none" ).'"><span class="oi oi-delete mr-1"></span> '.$t['del'].'</button>';
+					    $html .= '</td>';
+					}
+					
 				$html .= '</tr>';
 				
 				// Other exists
@@ -173,8 +191,18 @@ class Table extends Question {
 			    ++$indexRow;
 		  } 
 			
-		 $html .= '</tbody>'.
-		 '</table>';
+		 $html .= '</tbody>';
+		 
+		 if($this->dynamicTable && !$this->readonly) {
+		     $html .= '<tfoot>';
+		     $html .=
+  		     '<tr><td class="bg-white border-bottom text-center p-0" colspan="'.(count($this->columns)+2).'">'.
+	           '<button type="button" id="add-row" class="btn btn-normal w-100 h-100 rounded-0 py-3 btn-lg text-muted">'.$t['add'].' <span class="oi oi-plus lead float-right mt-1"></span></button>'.
+             '</td></tr>';
+		     $html .= '</tfoot>';
+		 }
+		 
+		 $html .= '</table>';
 		 
 			
 		$html .= '</div>';

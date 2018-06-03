@@ -1,48 +1,63 @@
 {
-	"question-type":"table",
-	"scoring-type":"academic",
-	"title":"Dans votre système agricole pratiquez-vous:",
-	"lines": [
-		"Les grandes cultures (céréales, légumineues, oléagineux)?",
-		"L'élevage (production animale pour l'engraissement)?",
-		"Production laitière?",
-		"Culture maraîchère?",
-		"Arboriculture?",
-		"Viticulture?",
-		"L'agroforesterie (production de plants, régénération naturelle assistée, plantation d'arbres)?",
-		"L'aquaculture (production d'alevins, élevage de poissons) ?",
-		"L'apiculture?",
-		"La pêche?",
-		"L'aviculture?",
-		"_OTHER_INPUT::Autres activités (précisez)"
-	],
-	"columns": [
-		{
-			"title":"Réponse",
-			"type":"binary",
-			"scoring":"by-entries",
-			"scoring-grid": [
-				{ "0-1":0 },
-				{ "2-2":5 },
-				{ "3-3":7 },
-				{ "4-+":10 }
-			],
-			"indicateur":4
-		}, 
-		{
-			"title":"Activités traditionnelles",
-			"type":"toggle",
-			"scoring":"by-entries",
-			"scoring-grid": [
-				{ "0-0":0 },
-				{ "1-1":7 },
-				{ "2-+":10 }
-			],
-			"indicateur":11
-		},
-		{
-			"title":"Activité principale",
-			"type":"toggle_exactly_one"
-		}
-	]
+    "question-type": "table",
+    "scoring-type": "academic",
+    "title": "Dans votre système agricole pratiquez-vous:",
+    "lines": [
+        "Les grandes cultures (céréales, légumineues, oléagineux)?",
+        "L'élevage (production animale pour l'engraissement)?",
+        "Production laitière?",
+        "Culture maraîchère?",
+        "Arboriculture?",
+        "Viticulture?",
+        "L'agroforesterie (production de plants, régénération naturelle assistée, plantation d'arbres)?",
+        "L'aquaculture (production d'alevins, élevage de poissons) ?",
+        "L'apiculture?",
+        "La pêche?",
+        "L'aviculture?",
+        "_OTHER_INPUT::Autres activités (précisez)"
+    ],
+    "columns": [
+        {
+            "title": "Réponse",
+            "type": "binary",
+            "scoring": "by-entries",
+            "scoring-grid": [
+                {
+                    "0-1": 0
+                },
+                {
+                    "2-2": 5
+                },
+                {
+                    "3-3": 7
+                },
+                {
+                    "4-+": 10
+                }
+            ],
+            "indicateur": 4
+        },
+        {
+            "title": "Activités traditionnelles (secondaires)",
+            "type": "toggle",
+            "scoring": "by-entries",
+            "scoring-grid": [
+                {
+                    "0-0": 0
+                },
+                {
+                    "1-1": 7
+                },
+                {
+                    "2-+": 10
+                }
+            ],
+            "indicateur": 11
+        },
+        {
+            "title": "Activité principale",
+            "type": "toggle"
+        }
+    ],
+    "mandatory": "false"
 }

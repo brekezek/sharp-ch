@@ -40,7 +40,7 @@ if(isset($_COOKIE['version'])) {
 				
 				<div class="d-flex" style="opacity:0; height:35px">-</div>
 				
-				<div id="questionnaire" class="container" >
+				<div id="questionnaire" class="container">
 					<?php
 					if(isset($_COOKIE['score-live']) && $_COOKIE['score-live'] == "true") {
 					    if(!isset($_SESSION['resultsDefined'])) {

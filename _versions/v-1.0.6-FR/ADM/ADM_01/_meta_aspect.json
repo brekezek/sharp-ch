@@ -1,5 +1,21 @@
 {
     "title": "Bienvenue sur le Schéma Holistique pour l'Autoévaluation Paysanne de Résilience climatique (SHARP)",
     "id": "ADM_01",
-    "img": ""
+    "img": "",
+    "filters": [
+        {
+            "ban": [
+                "PSP_17"
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "self.17",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 0
+                    }
+                }
+            ]
+        }
+    ]
 }

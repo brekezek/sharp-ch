@@ -5,6 +5,7 @@
     "mandatory": true,
     "html-attr": {
         "min": "2017-11-18",
-        "max": "now"
+        "max": "now",
+        "value": "now"
     }
 }

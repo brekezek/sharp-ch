@@ -14,7 +14,7 @@ body {
 
 .sidebar {
   position: fixed;
-  top: 0;
+  top: 55px;
   bottom: 0;
   left: 0;
   z-index: 100; /* Behind the navbar */
@@ -23,18 +23,34 @@ body {
 }
 
 .sidebar-sticky {
+  margin-top: 3px!important;
   position: -webkit-sticky;
   position: sticky;
-  top: 48px; /* Height of navbar */
   height: calc(100vh - 48px);
   padding-top: .5rem;
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
+@media (max-width: 768px) {
+	.sidebar-sticky { margin-top: 0!important; }
+	.sidebar {
+		position: relative;
+		top:0;
+	}
+}
+
 .sidebar .nav-link {
   font-weight: 500;
   color: #333;
+  padding: 8px 10px;
+ 
+  border-radius: 4px;
+  margin: 1px 6px;
+}
+
+.sidebar .nav-link:hover {
+	background: rgba(0,0,0,0.02);
 }
 
 .sidebar .nav-link .feather {
@@ -43,7 +59,8 @@ body {
 }
 
 .sidebar .nav-link.active {
-  color: #007bff;
+  color: gray-dark;
+  background: rgba(0,0,0,0.035);
 }
 
 .sidebar .nav-link:hover .feather,

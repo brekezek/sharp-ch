@@ -24,3 +24,10 @@ function setCookie(cname, cvalue, exdays) {
 function deleteCookie(cname) {
 	setCookie(cname, '', -10);
 }
+
+function isIE() {
+    var ua = window.navigator.userAgent;
+    var ie = ua.search(/(MSIE|Trident|Edge)/);
+
+    return ie > -1;
+}

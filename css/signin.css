@@ -24,6 +24,13 @@ body {
   padding: 15px;
   margin: 0 auto;
 }
+@media screen\0 {
+	.form-signin {
+		margin: 0;
+		padding: 0;
+	}
+}
+
 .form-signin .checkbox {
   font-weight: 400;
 }

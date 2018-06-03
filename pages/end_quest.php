@@ -155,81 +155,89 @@ function invokeScoreGeneration(callback) {
         	</h1>
         	
         	<?php 
+        	$nbParticipantsClusterWithScores = 0;
+        	$nbParticipantsClusterTotal = 0;
+        	$nbParticipantsClusterWithQuestionnaire = 0;
+        	
+        	$nbParticipantsRegionWithScores = 0;
+        	$nbParticipantsRegionTotal = 0;
+        	$nbParticipantsRegionWithQuestionnaire = 0;
+        	
         	if($rid !== null || $cluster !== null) {
-        	    $queryParticipantsCluster = 
-        	       "SELECT * FROM (
-                        SELECT p.pid, q.qid, firstname, lastname, r.rlabel_".getLang().", COUNT(s.sid) as nbScores, 1 as res FROM participants p
-                        LEFT JOIN questionnaires q ON q.pid=p.pid
-                        LEFT JOIN scores s ON s.qid=q.qid
-                        LEFT JOIN regions r ON r.rid=p.rid
-                        WHERE cluster=".$cluster." AND s.type='resilience'
-                        GROUP BY s.qid
-                        
-                        UNION 
-                        
-                        SELECT p.pid, q.qid, firstname, lastname, r.rlabel_".getLang().", COUNT(s.sid) as nbScores, 0 as res FROM participants p
-                        LEFT JOIN questionnaires q ON q.pid=p.pid
-                        LEFT JOIN scores s ON s.qid=q.qid
-                        LEFT JOIN regions r ON r.rid=p.rid
-                        WHERE cluster=".$cluster."
-                        GROUP BY s.qid
-                    ) req1 
-                    GROUP BY req1.pid 
-                    ORDER BY lastname, firstname";
-                $participantsCluster = $mysqli->query($queryParticipantsCluster);
-                
-                $nbParticipantsClusterWithScores = 0;
-                $nbParticipantsClusterTotal = 0;
-                $nbParticipantsClusterWithQuestionnaire = 0;
-                foreach($participantsCluster as $p) {
-                    $nbParticipantsClusterTotal++;
-                    if($p['qid'] !== NULL) $nbParticipantsClusterWithQuestionnaire++;
-                    if($p['nbScores'] > 25 && $p['res'] == 1) $nbParticipantsClusterWithScores++;
-                }
-                //$participantsCluster->data_seek(0);
-                
-                $participantsRegion = $mysqli->query(
-                "SELECT * FROM (
-                        SELECT p.pid, q.qid, firstname, lastname, pslabel_".getLang().", COUNT(s.sid) as nbScores, 1 as res FROM participants p
-                        LEFT JOIN questionnaires q ON q.pid=p.pid
-                        LEFT JOIN scores s ON s.qid=q.qid
-                        LEFT JOIN prod_systems ps ON ps.psid=p.cluster
-                        WHERE rid=".$rid." AND s.type='resilience'
-                        GROUP BY s.qid
-	    
-                        UNION
-	    
-                        SELECT p.pid, q.qid, firstname, lastname, pslabel_".getLang().", COUNT(s.sid) as nbScores, 0 as res FROM participants p
-                        LEFT JOIN questionnaires q ON q.pid=p.pid
-                        LEFT JOIN scores s ON s.qid=q.qid
-                        LEFT JOIN prod_systems ps ON ps.psid=p.cluster
-                        WHERE rid=".$rid."
-                        GROUP BY s.qid
-                    ) req1
-                    GROUP BY req1.pid
-                    ORDER BY lastname, firstname");
-                $nbParticipantsRegionWithScores = 0;
-                $nbParticipantsRegionTotal = 0;
-                $nbParticipantsRegionWithQuestionnaire = 0;
-                foreach($participantsRegion as $p) {
-                    $nbParticipantsRegionTotal++;
-                    if($p['qid'] !== NULL) $nbParticipantsRegionWithQuestionnaire++;
-                    if($p['nbScores'] > 25 && $p['res'] == 1) $nbParticipantsRegionWithScores++;
-                }
+        	    
+        	    
+        	    if($cluster !== null) {
+            	    $queryParticipantsCluster = 
+            	       "SELECT * FROM (
+                            SELECT p.pid, q.qid, firstname, lastname, r.rlabel_".getLang().", COUNT(s.sid) as nbScores, 1 as res FROM participants p
+                            LEFT JOIN questionnaires q ON q.pid=p.pid
+                            LEFT JOIN scores s ON s.qid=q.qid
+                            LEFT JOIN regions r ON r.rid=p.rid
+                            WHERE cluster=".$cluster." AND s.type='resilience' AND (p.deleted IS NULL OR p.deleted = 0) AND (q.deleted IS NULL OR q.deleted=0)
+                            GROUP BY s.qid
+                            
+                            UNION 
+                            
+                            SELECT p.pid, q.qid, firstname, lastname, r.rlabel_".getLang().", COUNT(s.sid) as nbScores, 0 as res FROM participants p
+                            LEFT JOIN questionnaires q ON q.pid=p.pid
+                            LEFT JOIN scores s ON s.qid=q.qid
+                            LEFT JOIN regions r ON r.rid=p.rid
+                            WHERE cluster=".$cluster." AND (p.deleted IS NULL OR p.deleted = 0) AND (q.deleted IS NULL OR q.deleted=0)
+                            GROUP BY s.qid
+                        ) req1 
+                        GROUP BY req1.pid 
+                        ORDER BY lastname, firstname";
+                    $participantsCluster = $mysqli->query($queryParticipantsCluster);
+                    foreach($participantsCluster as $p) {
+                        $nbParticipantsClusterTotal++;
+                        if($p['qid'] !== NULL) $nbParticipantsClusterWithQuestionnaire++;
+                        if($p['nbScores'] > 25 && $p['res'] == 1) $nbParticipantsClusterWithScores++;
+                    }
+        	    }
+        	    
+        	    if($rid !== null) {
+                    $participantsRegion = $mysqli->query(
+                    "SELECT * FROM (
+                            SELECT p.pid, q.qid, firstname, lastname, pslabel_".getLang().", COUNT(s.sid) as nbScores, 1 as res FROM participants p
+                            LEFT JOIN questionnaires q ON q.pid=p.pid
+                            LEFT JOIN scores s ON s.qid=q.qid
+                            LEFT JOIN prod_systems ps ON ps.psid=p.cluster
+                            WHERE rid=".$rid." AND s.type='resilience' AND (p.deleted IS NULL OR p.deleted = 0) AND (q.deleted IS NULL OR q.deleted=0)
+                            GROUP BY s.qid
+    	    
+                            UNION
+    	    
+                            SELECT p.pid, q.qid, firstname, lastname, pslabel_".getLang().", COUNT(s.sid) as nbScores, 0 as res FROM participants p
+                            LEFT JOIN questionnaires q ON q.pid=p.pid
+                            LEFT JOIN scores s ON s.qid=q.qid
+                            LEFT JOIN prod_systems ps ON ps.psid=p.cluster
+                            WHERE rid=".$rid." AND (p.deleted IS NULL OR p.deleted = 0) AND (q.deleted IS NULL OR q.deleted=0)
+                            GROUP BY s.qid
+                        ) req1
+                        GROUP BY req1.pid
+                        ORDER BY lastname, firstname");
+                   
+                    foreach($participantsRegion as $p) {
+                        $nbParticipantsRegionTotal++;
+                        if($p['qid'] !== NULL) $nbParticipantsRegionWithQuestionnaire++;
+                        if($p['nbScores'] > 25 && $p['res'] == 1) $nbParticipantsRegionWithScores++;
+                    }
+        	    }
                 ?>
             	
             	<div class="display-4" style="font-size:2rem"><?= $t['graphs-title-data-cluster']?></div>
             	
-            	<div class="bg-light rounded p-3 my-3 mb-4 d-flex">
-            	
-            		<div class="w-50 border-right">
+            	<div class="bg-light rounded p-3 my-3 mb-4 d-flex" id="general-data">
+            		
+            		<?php if($nbParticipantsClusterTotal > 0) {?>
+            		<div class="<?= ($nbParticipantsRegionTotal > 0) ? "w-50 border-right" : "w-100" ?>">
             			<div class="text-center lead mb-1" >
                     		<div class="font-weight-bold text-uppercase" style="font-size:1.8rem; line-height:1em"><?= $t['cluster']?></div>
                     		<div class="text-muted"><?= $pslabel ?></div>
                 		</div>
                 		<hr>
                 		
-                		<div class="d-flex mb-3">
+                		<div class="d-flex mb-3 align-items-center" style="justify-content:space-evenly">
                     	<?php  
                         echo '<div style="min-width: 180px; max-width:50%">';
                         drawCircleChart("blue", $nbParticipantsClusterTotal, $nbParticipantsClusterWithQuestionnaire, $t['part-started-quest'], "n");
@@ -241,7 +249,7 @@ function invokeScoreGeneration(callback) {
                         ?>
                         </div>
                         
-                        <table class="table mr-3 table-striped table-hover table-sm">
+                        <table class="table mr-3 table-striped table-hover table-sm" style="max-width:98%; margin-right:13px">
                         	<thead>
                         		<tr>
                         			<th><?= $t['lastname']." ".$t['firstname']?></th>
@@ -251,33 +259,43 @@ function invokeScoreGeneration(callback) {
                         	</thead>
                         	<tbody>
                         		<?php
+                        		$i = 0;
                         		foreach($participantsCluster as $p) {
                         		    $cond1 = ($p['qid'] !== NULL); $cond2 = ($p['nbScores'] > 25 && $p['res'] == 1); ?>
-                        		<tr title="<?= $p['rlabel_'.getLang()]?>" data-toggle="tooltip" data-placement="right" style="<?php if($p['qid'] == $qid) { echo 'background: rgb(46, 204, 113, 0.3)'; }?>">
-                        			<td class="text-capitalize"><?= sprintf("<span class='text-uppercase'>%s</span> %s", $p['lastname'], $p['firstname']) ?></td>
+                        		<tr title="<?= $p['rlabel_'.getLang()]?>" data-toggle="tooltip" data-placement="right" style="<?php if($i >= 5) { echo 'display:none;'; } if($p['qid'] == $qid) { echo 'background: rgb(46, 204, 113, 0.3)'; }?>">
+                        			<td width="245px" class="text-capitalize"><?= sprintf("<span class='text-uppercase'>%s</span> %s", $p['lastname'], $p['firstname']) ?></td>
                         			<td class="text-center align-middle"><?php echo '<div title="'.($cond1 ? $t['started-fill-quest'] : $t['not-started-fill-quest']).'" data-toggle="tooltip" data-placement="top" class="pill '.($cond1 ? 'blue' : 'void').'"></div>'; ?></td>
                         			<td class="text-center align-middle"><?php echo '<div title="'.($cond2 ? $t['contribute-avg-score'] : $t['not-contribute-avg-score']).'" data-toggle="tooltip" data-placement="top" class="pill '.($cond2 ? 'green' : 'void').'"></div>'; ?></td>
                         		</tr>
-                        		<?php } ?>
+                        		<?php $i++; } ?>
                         	</tbody>
+                        	<?php if($i >= 5) {?>
+                        	<tfoot>
+                        		<tr><td colspan="3">
+                        			<div class="btn btn-secondary btn-sm w-100"><?= $t['display-all']?> (<?= sprintf("%s %s", $i - 5, $t['others'])?>)</div>
+                        		</td></tr>
+                        	</tfoot>
+                        	<?php } ?>
                         </table>
                         
                         <?php if($nbParticipantsClusterWithScores <= 1) {?>
-                        <div class="bg-dark rounded text-white text-center py-1 px-2 small" style="width:98%; margin-left:13px">
+                        <div class="bg-dark rounded text-white text-center py-1 px-1 small" style="width:98%;">
                         <?= $t['only-you-answered-sysprod']?><br>
                         <?= $t['avg-graph-not-reliable']?>
                         </div>
                         <?php } ?>
                     </div>
+                    <?php } ?>
                     
-                    <div class="w-50">
+                    <?php if($nbParticipantsRegionTotal > 0) {?>
+                    <div class="<?= ($nbParticipantsClusterTotal > 0) ? "w-50" : "w-100" ?>">
                     	<div class="text-center lead mb-1" >
                     		<div class="font-weight-bold text-uppercase" style="font-size:1.8rem; line-height:1em"><?= $t['region']?></div>
                     		<div class="text-muted"><?= $rlabel ?></div>
                 		</div>
                 		<hr>
 
-                        <div class="d-flex mb-3">
+                        <div class="d-flex mb-3 align-items-center" style="justify-content:space-evenly">
                     	<?php  
                         echo '<div style="min-width: 180px; max-width:50%">';
                         drawCircleChart("blue", $nbParticipantsRegionTotal, $nbParticipantsRegionWithQuestionnaire, $t['part-started-quest'], "n");
@@ -300,15 +318,23 @@ function invokeScoreGeneration(callback) {
                         	</thead>
                         	<tbody>
                         		<?php
+                        		$i = 0;
                         		foreach($participantsRegion as $p) {
                         		    $cond1 = ($p['qid'] !== NULL); $cond2 = ($p['nbScores'] > 25 && $p['res'] == 1); ?>
-                        		<tr title="<?= $p['pslabel_'.getLang()]?>" data-toggle="tooltip" data-placement="left" style="<?php if($p['qid'] == $qid) { echo 'background: rgb(46, 204, 113, 0.3)'; }?>">
-                        			<td class="text-capitalize"><?= sprintf("<span class='text-uppercase'>%s</span> %s", $p['lastname'], $p['firstname']) ?></td>
+                        		<tr title="<?= $p['pslabel_'.getLang()]?>" data-toggle="tooltip" data-placement="left" style="<?php if($i >= 5) { echo 'display:none;'; } if($p['qid'] == $qid) { echo 'background: rgb(46, 204, 113, 0.3)'; }?>">
+                        			<td width="245px" class="text-capitalize"><?= sprintf("<span class='text-uppercase'>%s</span> %s", $p['lastname'], $p['firstname']) ?></td>
                         			<td class="text-center align-middle"><?php echo '<div title="'.($cond1 ? $t['started-fill-quest'] : $t['not-started-fill-quest']).'" data-toggle="tooltip" data-placement="top" class="pill '.($cond1 ? 'blue' : 'void').'"></div>'; ?></td>
                         			<td class="text-center align-middle"><?php echo '<div title="'.($cond2 ? $t['contribute-avg-score'] : $t['not-contribute-avg-score']).'" data-toggle="tooltip" data-placement="top" class="pill '.($cond2 ? 'green' : 'void').'"></div>'; ?></td>
                         		</tr>
-                        		<?php } ?>
+                        		<?php $i++; } ?>
                         	</tbody>
+                        	<?php if($i >= 5) {?>
+                        	<tfoot>
+                        		<tr><td colspan="3">
+                        			<div class="btn btn-secondary btn-sm w-100"><?= $t['display-all']?> (<?= sprintf("%s %s", $i - 5, $t['others'])?>)</div>
+                        		</td></tr>
+                        	</tfoot>
+                        	<?php } ?>
                         </table>
                         
                         <?php if($nbParticipantsRegionWithScores <= 1) {?>
@@ -318,7 +344,7 @@ function invokeScoreGeneration(callback) {
                         </div>
                         <?php } ?>
                     </div>
-                    
+                    <?php } ?>
                     
                 </div>
                 
@@ -481,12 +507,19 @@ function invokeScoreGeneration(callback) {
 				
 				$('#finishScoreDisplay').click(function(){
 	    			deleteCookie("scores-display");
-	    			document.location = 'home';
+	    			deleteCookie("filename");
+	    			
+	    			document.location = '<?= getBase() ?>home';
+	    		});
+
+	    		$('#general-data table tfoot .btn').click(function(){
+					$(this).parents("table").find("tbody tr:hidden").fadeIn("fast");
+					$(this).hide();
 	    		});
 
 	    		<?php if(($totalOtherThanResilience <= 0 || trim($labelsStr) == "") && !isset($_GET['refresh']) ) {?>
 	    		invokeScoreGeneration(function(resp) {
-	    			document.location = 'scores<?= (isset($_GET['setData']) ? "/data/".$_GET['setData'] : "") ?>/refresh';
+	    			document.location = '<?= getBase() ?>scores<?= (isset($_GET['setData']) ? "/data/".$_GET['setData'] : "") ?>/refresh';
 			    });
 	    		<?php } else {?>
 	    			invokeScoreGeneration(function(resp) {});
@@ -559,7 +592,7 @@ function invokeScoreGeneration(callback) {
 					function(filename) {
 						
 						$('#save').removeAttr("disabled").html($('#save').attr("data-text-oncomplete")).click(function() {
-							document.location = 'download.php?file='+filename;
+							document.location = '<?= getBase() ?>download.php?file='+filename;
 	    				});
 				    	
 				    });	
@@ -575,8 +608,8 @@ function invokeScoreGeneration(callback) {
 				var dataVals = obj.personnal === false ? "" : obj.personnal.split(";");
 				for(i in dataVals) { dataVals[i] = +dataVals[i]; } 
 				
-				var dataRegion = obj.rid == "" ? [] : obj.rid.split(";");
-				var dataCluster = obj.cluster == "" ? [] : obj.cluster.split(";");
+				var dataRegion = <?php if($nbParticipantsRegionWithScores <= 1) {?>[];<?php } else {?>obj.rid == "" ? [] : obj.rid.split(";");<?php } ?>
+				var dataCluster = <?php if($nbParticipantsClusterWithScores <= 1) {?>[];<?php } else {?>obj.cluster == "" ? [] : obj.cluster.split(";");<?php } ?>
 
 				console.log(labelsVals);
 				console.log(dataVals);
@@ -586,7 +619,7 @@ function invokeScoreGeneration(callback) {
 				var datasetsArray = [];
 				if(dataRegion.length > 0) {
     				datasetsArray.push({
-    	                label: "<?= $t['score_moyen_atelier']?>",
+    	                label: "<?= sprintf($t['score_moyen_atelier'], $nbParticipantsRegionWithScores) ?>",
     	                type: "line",
     	                pointBackgroundColor: '#f1c40f',
     	                backgroundColor: '#f1c40f',
@@ -603,7 +636,7 @@ function invokeScoreGeneration(callback) {
 
 				if(dataCluster.length > 0) {
 					datasetsArray.push({
-		                label: "<?= $t['score_moyen_cluster']?>",
+		                label: "<?= sprintf($t['score_moyen_cluster'], $nbParticipantsClusterWithScores) ?>",
 		                type: "line",
 		                pointBackgroundColor: '#8e44ad',
 		                backgroundColor: '#8e44ad',
@@ -638,7 +671,7 @@ function invokeScoreGeneration(callback) {
 			        devicePixelRatio: 5*window.devicePixelRatio,
 			        options: {
 			        	animation : {
-			        		onComplete(e) {
+			        		onComplete: function(e) {
 		        		      this.options.animation.onComplete = null; //disable after first render to avoid firing each time we hover
 		        		      //console.log(e);
 		        		      if(e.chart.canvas.id.indexOf("hidden") > -1) {

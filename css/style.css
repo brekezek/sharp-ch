@@ -1,15 +1,15 @@
 .cat-hover, .cat-grey, .cat-red, .cat-blue, .cat-green, .cat-orange {
 	transition: all 0.2s linear;
 }
-.cat-hover:not(.cat-active):hover {
+.cat-hover:not(.cat-active):not(.disabled):hover {
 	transform: scale(1.03);
 }
 .cat-active [class*="cat-"],
-.cat-hover:not(.cat-active):hover [class*="cat-"] {
+.cat-hover:not(.cat-active):not(.disabled):hover [class*="cat-"] {
 	background: rgb(44, 62, 80);
 	color: white;
 }
-.cat-hover[class*="cat-border"]:not(.cat-active):hover {
+.cat-hover[class*="cat-border"]:not(.cat-active):not(.disabled):hover {
 	border: 1px solid rgb(44, 62, 80);
 }
 
@@ -17,6 +17,11 @@
 	border: 1px solid rgb(44, 62, 80);
 	box-shadow: 0 0 12px 0px rgba(0,0,0,0.8);
 	transform: scale(1.09);
+}
+.cat-hover.disabled {
+	filter:blur(3px);
+	opacity:0.3;
+	cursor: default!important;
 }
 
 /* ------------------------- */
@@ -80,6 +85,9 @@
 }
 #aspects [class*="cat-"] {
 	cursor: default;
+}
+#aspects .cat-hover.disabled [class*="cat-"] {
+	cursor: default!important;
 }
 #aspects [class*="cat-"]:not(.cat-active) {
 	cursor: pointer;
@@ -156,6 +164,21 @@ table.dataTable tbody tr.selected {
 	opacity: .7;
     filter: blur(3px);
     display:none;
+    transition: all 0.25s linear;
+}
+
+.lang-item {
+	transition: all 0.2s linear;
+}
+.lang-item:hover {
+	transform: rotate(5deg) scale(1.05);
+	opacity: 0.85;
+	cursor: pointer;
+}
+
+.btn-normal.text-muted:hover {
+	color: black!important;
+	background: #c5c5c5;
 }
 
 @media (pointer:coarse) { 

@@ -1,6 +1,11 @@
 {
     "question-type": "text",
-	"input-type":"date",
+    "input-type": "date",
     "title": "Beginn der Datenerfassung",
-    "mandatory": true
+    "mandatory": true,
+    "html-attr": {
+        "min": "2017-11-18",
+        "max": "now",
+        "value": "now"
+    }
 }

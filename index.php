@@ -23,11 +23,9 @@ if(isset($_GET['admin'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="author" content="Dominique Roduit">
 	<meta name="description" content="">
+	
 
 	<base href="<?= ($_SERVER['SERVER_NAME'] == "localhost") ? "/sharp-site/" : getBase() ?>">
-	
-	<!-- Fonts 
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
 	
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -38,7 +36,13 @@ if(isset($_GET['admin'])) {
 	<script src="js/cookie.js"></script>
 	
 	<title>SHARP-CH</title>
-	<link rel="shortcut icon" href="img/favicon.png">
+	<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+	<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon-180x180.png" />
+	
+	<link type="text/plain" rel="author" href="humans.txt">
 </head>
 <body>
 	
@@ -72,13 +76,12 @@ if(isset($_GET['admin'])) {
 
 	<?php
 	$displayScorePage = isset($_COOKIE['scores-display']) || isset($_GET['score'], $_GET['setData']);
-	
 	include_once('menu.php');
 	?>
 	
 	<?php if($displayScorePage) include_once('js_dependencies.php'); ?>
 	
-	<div id="content" class="position-relative" style="margin-top: 56px;">
+	<div id="content" class="position-relative">
 	<?php
 	if(isset($_GET['error']) && $_GET['error'] == "404") {?>
 	   <div class="jumbotron rounded-0 bg-warning mb-0 pt-4 pb-3 text-white text-center">
@@ -101,6 +104,12 @@ if(isset($_GET['admin'])) {
     	    }
             ?>
             
+          	<div class="bg-secondary p-2 small text-white d-none">
+		  		<div class="">
+		  			<div class="btn btn-outline-light btn-sm" data-toggle="tooltip" data-placement="right" title="La création d'un compte vous permet d'ouvrir vos questionnaires sur différentes machines">Créer un compte</div>
+		  		</div>
+		  	</div>
+        			  	
     		<div class="jumbotron rounded-0 mb-0">
     			<div class="container" id="main">
     				<?php
@@ -113,21 +122,36 @@ if(isset($_GET['admin'])) {
                              LEFT JOIN participants p ON p.pid=q.pid
                              WHERE file=? AND version=? LIMIT 1"
 				        );
+    				    $i = 0;
+
     				    foreach($json['list'] as $item) {
     				        if(isset($item['filename'], $item['version']) && file_exists(DIR_ANSWERS."/".$item['filename'])) {
     				            $stmt->bind_param("ss", $item['filename'], $item['version']);
     				            $stmt->execute();
     				            $result = $stmt->get_result();
-    				            while ($row = $result->fetch_assoc()) {
-    				                $rows[strtotime($row['creation_date'])] = $row;
+    				            if($result->num_rows > 0) {
+        				            while ($row = $result->fetch_assoc()) {
+        				                $rows[strtotime($row['creation_date'])] = $row;
+        				            } 
+    				            } else {
+    				                unset($json['list'][$i]); 
     				            }
+    				        } else {
+    				             unset($json['list'][$i]); 
     				        }
+    				        $i++;
     				    }
     				    $stmt->close();
     				    ksort($rows);
     				    $rows = array_reverse($rows);
+    				    
+    				    $jsonEncoded = json_encode($json);
+    				    if($_COOKIE['questsList'] != $jsonEncoded) {
+    				        $_COOKIE['questsList'] = $jsonEncoded;   
+    				    }
     				}
     				
+    				//$rows = array();
     				if(!isset($_COOKIE['questsList']) || (isset($_COOKIE['questsList']) && count($rows) == 0)) { ?>
                         <div class="text-center">
                           <img id="logo" src="img/logo_round_<?= getLang() ?>.jpg" class="mb-3" width="220" style="min-width: 220px">
@@ -139,15 +163,14 @@ if(isset($_GET['admin'])) {
                         <p><?= $t['msg1_welcome'] ?></p>
                         <hr class="my-4">
                         
-                        <p class="text-center">
-                        	<a class="btn btn-primary btn-lg start-new-quest d-none" href="#" role="button">
-                        		<?= $t['new_questionnaire']?>
-                          		<span class="oi oi-media-play ml-1"></span>
-                          	</a>
-                    	</p>
+                        <div class="text-center">
+                        	<div class="btn btn-primary btn-lg start-new-quest m-auto">
+                        		<?= $t['new_questionnaire']?> <span class="oi oi-media-play ml-1"></span>
+                          	</div>
+                    	</div>
                     <?php
                     } else {?>
-        			  
+        			  	
     			  		<div class="d-flex align-items-center" style="justify-content:space-evenly">
                           <img id="logo" src="img/logo_round_<?= getLang() ?>.jpg" class="mb-3" width="150px" height="150px" style="min-width:150px; min-height:150px;">
                           <div class="ml-4">
@@ -194,12 +217,21 @@ if(isset($_GET['admin'])) {
     			     	 <?php   
             			 } ?>
             			 </div>
+            			 
             		<?php 
         			} ?>
         			</div>
         			
         			<div id="pre-quest-instructions" class="container" style="display:none"></div>
     		</div>
+    		
+    		<?php if(isIE()) {?>
+            	<div class="bg-dark p-3 text-white small">
+                	<?= $t['msg-ie'] ?>
+                	<a class="badge badge-light" href="https://www.google.com/chrome/">Google Chrome</a>.
+            	</div>
+            <?php } ?>
+        			
 		<?php
     	}
 	}
@@ -213,7 +245,7 @@ if(isset($_GET['admin'])) {
 	
 	<script>
 	$(function(){
-		
+
 		<?php if($reset) { ?>
 			deleteCookie('device-opt');
 			deleteCookie('cookie_avert');
@@ -243,7 +275,7 @@ if(isset($_GET['admin'])) {
 			});
 		}
 
-		
+	
 		<?php if(isset($_COOKIE['indexAspect'])) {?>
 		function goToAspect(index) {
 			var lifeCookie = getCookie('expirationQuest');
@@ -253,7 +285,23 @@ if(isset($_GET['admin'])) {
 			//alert("indexAspect="+getCookie("indexAspect"));
 		}
 
-		$('#questionnaire .form-group.filtered').remove();
+		function allInputsValid() {
+			$('#questionnaire .form-group.filtered').remove();
+			
+			var canUpdateCookie = true;
+			$("#questionnaire form").find('[required]').each(function() {
+				var elem = $("#questionnaire form [name=\""+$(this).attr("name")+"\"]");
+				if(!elem.is('[type="radio"]')) {
+					if(elem.is(":hidden")) {
+						elem.remove();
+					} else {
+						if(elem.is(":invalid")) { canUpdateCookie = false;  }
+					}
+				}
+			});
+			return canUpdateCookie;
+		}
+
 		
 		$('a#quit').click(function(e){
 			deleteCookie("indexAspect");
@@ -268,22 +316,24 @@ if(isset($_GET['admin'])) {
 			loading();
 			
 			if(!isPrev) {
-				$("#questionnaire form").find('[required]').each(function() {
-					var elem = $("#questionnaire form [name=\""+$(this).attr("name")+"\"]");
-					if(!elem.is('[type="radio"]')) {
-						if(elem.is(":hidden")) {
-							elem.remove();
-						} else {
-							if(elem.is(":invalid")) { canUpdateCookie = false;  }
-						}
-					}
-				});
+				canUpdateCookie = allInputsValid();
 			} else {
 				$("#questionnaire form").find('[required]').removeAttr("required");
 			}
 			
-			if(canUpdateCookie)
-				goToAspect(parseInt(getCookie("indexAspect")) + (isPrev ? -1 : 1));
+			if(canUpdateCookie){
+				//var gotoIndex = parseInt(getCookie("indexAspect"))   + (isPrev ? -1 : 1);
+
+				if(!isPrev) {
+					gotoIndex = parseInt($('#aspects .card.cat-active').nextAll(".card:not(.disabled)").first().data("index"));
+				} else {
+					gotoIndex = parseInt($('#aspects .card.cat-active').prevAll(".card:not(.disabled)").first().data("index"));
+				}
+
+				goToAspect(gotoIndex);
+			} else {
+				bootbox.hideAll();
+			}
 		});
 	
 		function resizeAspectPanel() {
@@ -309,11 +359,14 @@ if(isset($_GET['admin'])) {
 					$('#show-aspects').trigger("click");
 				});
 				$(window).bind("resize",resizeAspectPanel);
-				$('#aspects .card:not(.cat-active)').bind('click', function(){
-					$('#aspects').hide();
-					loading();
-					goToAspect(parseInt($(this).attr("data-index")));
-					$("#questionnaire form").find('[required]').removeAttr("required");
+				$('#aspects .card:not(.cat-active):not(.disabled)').bind('click', function(){
+					$('#aspects, .modal-backdrop').hide();
+					if(allInputsValid()) {
+    					loading();
+    					goToAspect(parseInt($(this).attr("data-index")));
+    					$("#questionnaire form").find('[required]').removeAttr("required");
+					}
+					$('#show-aspects').toggleClass("active btn-dark");
 					$('#questionnaire #submitHidden').trigger("click");
 				});
 				resizeAspectPanel();
@@ -323,9 +376,12 @@ if(isset($_GET['admin'])) {
 		});
 
 		$('#quest-progress .item[data-index]').click(function(){
-			loading();
-			goToAspect(parseInt($(this).attr("data-index")));
-			$("#questionnaire form").find('[required]').removeAttr("required");
+			if(allInputsValid()) {
+    			loading();
+    			
+    			goToAspect(parseInt($(this).attr("data-index")));
+    			$("#questionnaire form").find('[required]').removeAttr("required");
+			}
 			$('#questionnaire #submitHidden').trigger("click");
 		});
 		
@@ -355,7 +411,7 @@ if(isset($_GET['admin'])) {
 		});
 
 		// Checkboxes ----------------------------
-		$('table:not([data-type="toggle"]) tbody td[data-type="toggle"]').click(function(e){
+		$('table:not([data-type="toggle"]) tbody').on('click', 'td[data-type="toggle"]', function(e){
 			if(!$(e.target).is('label')) {
 				if($(this).find("span.display-manager").css("display") != "none") {
         			var elem = $(this).find('label[type="checkbox"]');
@@ -363,26 +419,26 @@ if(isset($_GET['admin'])) {
 				}
 			}
 		});
-		$('table[data-type="toggle"] tbody tr').click(function(e){
+		$('table[data-type="toggle"] tbody').on('click', 'tr', function(e){
 			if(!$(e.target).is('label')) {
     			var elem = $(this).find('label[type="checkbox"]');
     			elem.trigger("click");
 			}
 		});
-		$('table input[type="checkbox"]').on("change", function(){
+		$('table tbody').on("change", 'input[type="checkbox"]', function(){
 			var elem = $(this).parent().find('input[name="'+$(this).attr("trigger")+'"][type="hidden"]');
 			if(elem.val() == "0") elem.val("1");
 			else elem.val("0");
 		});
 
 		// Radio buttons ---------------------------
-		$('table input[type="radio"]').on("change", function(){
+		$('table tbody').on("change", 'input[type="radio"]', function(){
 			$('input[radio-group="'+$(this).attr("name").replace('radio_', '')+'"][type="hidden"]').val("");
 			
 			var elem = $(this).parent().find('input[name="'+$(this).attr("value")+'"][type="hidden"]');
 			if($(this).is(":checked")) elem.val("1");
 		});
-		$('table:not([data-type="toggle_one"]) tbody td[data-type="toggle_one"]').click(function(e){
+		$('table:not([data-type="toggle_one"]) tbody').on('click', 'td[data-type="toggle_one"]', function(e){
 			if(!$(e.target).is('label')) {
 				if($(this).find("span.display-manager").css("display") != "none") {
         			var elem = $(this).find('label[type="radio"]');
@@ -398,10 +454,11 @@ if(isset($_GET['admin'])) {
 			row.show();
 		});
 		*/
-		$('table tr td[trigger-display]').find('input:not([type="text"]), select').on('change', function(){
+		$('table tbody').on('change', 'tr td[trigger-display] input:not([type="text"]), tr td[trigger-display] select', function(){
 			displayRowCells($(this));
 		});
-		$('table tr td[trigger-display]').find('textarea, input[type="text"], input[type="number"]').on('keyup', function(){
+		$('table tbody').on('keyup', 'tr td[trigger-display] textarea, tr td[trigger-display] input[type="text"], tr td[trigger-display] input[type="number"]', function(){
+			console.log($(this).closest("td").attr("trigger-display"));
 			displayRowCells($(this));
 		});
 
@@ -424,11 +481,151 @@ if(isset($_GET['admin'])) {
 			});
 		});
 
+		$(document).on("keypress", 'form', function(e) {
+		    var code = e.keyCode || e.which;
+		    if (code == 13) {
+		        e.preventDefault();
+		        return false;
+		    }
+		}); 
+
+		// Filters -----------------------------------------------
+		if($('#filters').length > 0 && $('#filters').val().length > 0) {
+			var jsonFilters = JSON.parse(window.atob($('#filters').val()));
+
+			console.log(jsonFilters.filters);
+
+			for(var filter of jsonFilters.filters) {
+				
+				(function (filter) {
+					var trigger = filter.trigger;
+					var value = filter.value;
+					var listeners = filter.listeners;
+					var ban = filter.ban;
+					
+					var listenersObj = $('.form-group').filter(function() {
+					    return listeners.includes(parseInt($(this).attr('numQuest')))
+					});
+
+					if(ban.length > 0) {
+						var banObj = $('#aspects .card').filter(function(){
+							return ban.includes($(this).data("id"));
+						});
+					}
+					
+    				$('.form-group[numQuest="'+trigger+'"]').find('input, select, textarea').change(function(){
+						$('#filters-alert').slideUp("fast");
+
+    					if(conditionByInputType($(this), filter.value)) {
+        					listenersObj.addClass("filtered");
+        					if(ban.length > 0) { banObj.addClass("disabled"); }
+    					} else {
+    						listenersObj.removeClass("filtered");
+        					if(ban.length > 0) { banObj.removeClass("disabled"); }
+    					}
 		
+    				});
+				}(filter));
+			}
+
+			function conditionByInputType(elm, value) {
+				if(elm.is('[type="radio"]')) {
+					return elm.attr("index") == value.index;
+				}
+				return elm.val();
+			}
+		}
+		// -------------------------------------------------------
+
 		
+		// Dynamic tables ----------------------------------------
+		var maxRowInDynamicTable = 15;
+		$('table.dynamic-table').on("click", '.delete-row', function(){
+			var elm = $(this);
+			var row = $(this).closest("tr");
+			if(row.find("[trigger-display]").find("input, select, textarea").first().val() == "") {
+				removeRowFromDynamicTable(row);
+			} else {
+    			row.addClass("bg-secondary text-white");
+    			bootbox.confirm({
+        			message:'<div class="text-center"><?= $t['confirm'] ?> ?</div>',
+        			size: "small",
+        			buttons: {
+        		        confirm: {
+        		            label: '<?= $t['delete'] ?>',
+        		            className: 'btn-danger'
+        		        },
+        		        cancel: {
+        		            label: '<?= $t['cancel'] ?>'
+        		        }
+        		    },
+        			callback: function(result){
+        				if(result) {
+            				removeRowFromDynamicTable(row);
+        				} else {
+        					row.removeClass("bg-secondary text-white");
+        				}
+        			}
+    			});
+			}
+		});
+		$('table.dynamic-table #add-row').click(function(){
+			var tbody = $(this).closest("table.dynamic-table").find("tbody");
+			
+			var newRow = tbody.find("tr:last-child").clone();
+			var newIndexRow = newRow.attr("indexRow")+newRow.index();
+			newRow.attr("indexRow", newIndexRow);
+			newRow.find("[trigger-display]").attr("trigger-display", newIndexRow).nextAll("td").find('.display-manager').hide();
+			newRow.find('input, select, textarea').each(function(){
+				if($(this).is('[type="radio"], [type="checkbox"]')) {
+					$(this).prop("checked", false);
+					if($(this).attr("type") == "checkbox") {
+						$(this).attr("id", $(this).attr("id")+"-1");
+						$(this).parent().find('label[type="checkbox"]').attr("for", $(this).attr("id"));
+					}
+				} else {
+					$(this).val("");
+				}
+				
+				if($(this).is("[name]")) {
+					$(this).attr("name", getInputNameForNewRow($(this).attr("name")));
+				} 
+			});
+			newRow.find("td:first").html(parseInt(newRow.find("td:first").text()) + 1);
+			if(tbody.find("tr").length == 1) {
+				newRow.find(".delete-row").removeClass("d-none");
+			}
+			tbody.append(newRow);
+
+			if(tbody.find('tr').length > maxRowInDynamicTable) {
+				$(this).parents("tfoot").hide();
+			}
+		});
+		function removeRowFromDynamicTable(row) {
+			var table = row.closest("table.dynamic-table");
+			row.remove();
+			if(table.find("tbody").find("tr").length <= maxRowInDynamicTable) {
+				table.find("tfoot").show();
+			}
+		}
+		function getInputNameForNewRow(previousName) {
+			// answers[PSP_03][2][3][0][answer]
+		  	var startPart = (/answers\[[A-Z]{2,3}_\d{1,2}\]\[\d{1,2}\]\[/g).exec(previousName)[0]; // arr[0] = answers[PSP_03][2][
+		  	var otherPart = previousName.replace(startPart, ""); // 3][0][answer]
+		  	var oldIndex = (/\d{1,2}/g).exec(otherPart)[0]; // 3
+		  	var endPart = otherPart.replace(oldIndex, ""); // ][0][answer]
+
+		  	var newName = startPart + (parseInt(oldIndex)+1) + endPart;
+		  	
+		  	return newName;
+		}
+		// -------------------------------------------------------
+		
+
+		<?php if(!isIE()) {?>
 		// Geolocalisation
 		// ----------------------------------------------------------------------
-		if($('input[data-request-location]').length > 0 && navigator.geolocation) {
+		if($('input[data-request-location]').length > 0 && navigator.geolocation && getCookie('readonly') == "") {
 			if(getCookie("permission-location") == 'granted') {
 				navigator.geolocation.getCurrentPosition(showPosition, showError);
 				$('input[data-request-location]').attr("data-location-loaded", "loaded");
@@ -463,8 +660,8 @@ if(isset($_GET['admin'])) {
     			setCookie("permission-location", "granted", 7);
 
     			var lat = position.coords.latitude, longit = position.coords.longitude;
-    			$('[data-location="latitude"]').val(lat); 
-    			$('[data-location="longitude"]').val(longit); 
+    			if($('[data-location="latitude"]').val() == "") { $('[data-location="latitude"]').val(lat); }
+    			if($('[data-location="longitude"]').val() == "") { $('[data-location="longitude"]').val(longit); }
 
     			$.ajax({ url:'https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+longit+'&sensor=true&key=<?= API_KEY_GEOCODE?>',
                      success: function(data){
@@ -489,10 +686,10 @@ if(isset($_GET['admin'])) {
     						}
     	                 }
     
-    					 $('[data-location="country"]').val(country); 
-    					 $('[data-location="region"]').val(region); 
-    					 $('[data-location="district"]').val(district); 
-    					 $('[data-location="commune"]').val(commune); 
+    					 if($('[data-location="country"]').val() == "") { $('[data-location="country"]').val(country); }
+    					 if($('[data-location="region"]').val() == "") { $('[data-location="region"]').val(region); }
+    					 if($('[data-location="district"]').val() == "") { $('[data-location="district"]').val(district); }
+    					 if($('[data-location="commune"]').val() == "") { $('[data-location="commune"]').val(commune); }
                      }
     			});
     			
@@ -527,7 +724,8 @@ if(isset($_GET['admin'])) {
     		}
 		}
 		// ----------------------------------------------------------------------
-
+		<?php } ?> 
+		
 		<?php 
 		if(isset($_GET['readonly'])) {?>
     		setCookie("readonly", "true", <?= LIFE_COOKIE_QUEST_PENDING ?>);
@@ -545,10 +743,15 @@ if(isset($_GET['admin'])) {
 				display = elm.is(":checked"); 
 			} else if(tagname == "TEXTAREA" || type == "number" || type == "text" || tagname == "SELECT") {
 				display = elm.val().trim() != "";
-			} 
-
-			var elems = $('table tr[indexRow="'+elm.parents("td[trigger-display]").attr("trigger-display")+'"] td:not([trigger-display]) span.display-manager');
-
+				if(type == "number" && elm.val() == 0) {
+					display = false;
+				} 
+			} else if(type == "radio") {
+				display = elm.val() == 1;
+			}
+		
+			var elems = elm.closest("td[trigger-display]").nextAll('td').find('span.display-manager');
+			console.log(elems);
 			if(display)
 				elems.slideDown(450);
 			else
@@ -650,51 +853,35 @@ if(isset($_GET['admin'])) {
 		
 		<?php } else { ?>
 		deleteCookie('readonly');
-		
-		if(getCookie("version") == "") {
-			$('#modalVersions').modal('show');
-			$('#modalVersions .list-group .list-group-item').click(function(){
-				$('#modalVersions .modal-footer').removeClass("d-none");
-			});
-			$('#modalVersions #save').click(function(){
-				var value = $('#modalVersions').find('.list-group .list-group-item.active').attr("version");
-				if(value != "undefined") {
-					setCookie("version", value, <?= LIFE_COOKIE_VERSION ?>);
-					$('.dropdown-toggle#dropdown-version').text(value);
-					$('#modalVersions').modal('hide');
-					$('#new-quest, .start-new-quest').removeClass("d-none");
-				} else {
-					$('.alert#version-empty').show();
-				}
-			});
-		} else {
-			$('#new-quest, .start-new-quest').removeClass("d-none");
-		}
-		
+
 		var userLang = navigator.language || navigator.userLanguage; 
 		if(userLang != "" && getCookie("lang") == "") {
 			setCookie("lang", userLang, <?= LIFE_COOKIE_VERSION ?>);
 		}
 		
 		$('#version.dropdown-menu .dropdown-item').click(function(){
+			switchVersion($(this), true);
+		});
+
+		function switchVersion(elm, reload) {
 			var previousLang = "";
 			if(getCookie("lang") != "") {
 				previousLang = getCookie("lang");
 			}
 			
-			setCookie("version", $(this).attr("version"), <?= LIFE_COOKIE_VERSION ?>);
-			setCookie("lang", $(this).attr("lang").toLowerCase(), <?= LIFE_COOKIE_VERSION ?>);
+			setCookie("version", elm.attr("version"), <?= LIFE_COOKIE_VERSION ?>);
+			setCookie("lang", elm.attr("lang").toLowerCase(), <?= LIFE_COOKIE_VERSION ?>);
 
-			$(this).parent().find(".active").removeClass("active");
-			$(this).addClass("active");
+			elm.parent().find(".active").removeClass("active");
+			elm.addClass("active");
 
-			$('.dropdown-toggle#dropdown-version').text($(this).attr("version"));
+			$('.dropdown-toggle#dropdown-version').text(elm.attr("version"));
 			$('#new-quest').removeClass("d-none");
 
-			if(previousLang != "" && $(this).attr("lang") != previousLang) {
+			if(reload && previousLang != "" && elm.attr("lang") != previousLang) {
 				document.location = '';
 			}
-		});
+		}
 
 		$('.dropdown[data-toggle="hover"]').hover(function() {
 		  $(this).find('.dropdown-menu').stop(true, true).delay(80).fadeIn(100);
@@ -705,37 +892,45 @@ if(isset($_GET['admin'])) {
 		});
 
 		$('#lang.dropdown-menu .dropdown-item').click(function(){
+			switchLang($(this).attr("lang"), true);
+		});
+
+		function switchLang(lang, reload) {
 			var previousLang = "";
 			if(getCookie("lang") != "") {
 				previousLang = getCookie("lang");
 			}
-			setCookie("lang", $(this).attr("lang").toLowerCase(), 365*3);
-			if(previousLang != "" && $(this).attr("lang") != previousLang) {
+			setCookie("lang", lang.toLowerCase(), 365*3);
+			if(reload && previousLang != "" && lang != previousLang) {
 				document.location = '';
 			}
-		});
+		}
+
+		if($('#version .dropdown-item[auto-detected]').length > 0) {
+			setCookie('version', $('#version .dropdown-item[auto-detected]').attr("version"), <?= LIFE_COOKIE_VERSION ?>);
+		}
 		
-		$('#new-quest, .start-new-quest').click(function(){
+		$('body').on('click', '#new-quest, .start-new-quest', function(){
 			var button = $('#new-quest, .start-new-quest');
 			var initHTML = button.html();
-			
+
 			if(!button.is("[ready]")){
     			button.hide();
     			$('#dropdown-version').hide();
     			$.post('pages/instructions.php', {}, function(html) {
-        			$('#main.container').slideUp("fast", function(){
-        				$('#pre-quest-instructions.container').html(html).slideDown("fast", function(){
-        					button.attr("ready","ready").before('<div style="display:none" id="cancel-quest" class="btn btn-info mr-1"><?= $t['cancel']?> <span class="oi oi-x ml-1"></span></div>');
-        					button.removeClass("btn-light").addClass("btn-success").html('<?= $t['start']?> <span class="oi oi-power-standby ml-1"></span>').fadeIn();
-        					$('#cancel-quest').fadeIn();
-        					$('#navbarHome').on('click', '#cancel-quest', function(){
-            					$(this).remove();
+        			$('#main.container').fadeOut("fast", function(){
+        				$('#pre-quest-instructions.container').html(html).fadeIn("fast", function(){
+        					button.attr("ready","ready").before('<div style="display:none" class="cancel-quest btn btn-info mr-1"><?= $t['cancel']?> <span class="oi oi-x ml-1"></span></div>');
+        					button.removeClass("btn-light").addClass("btn-success").html('<?= $t['start']?> <span class="oi oi-power-standby ml-1"></span>').fadeIn("fast");
+        					$('.cancel-quest').fadeIn("fast");
+        					$('body').on('click', '.cancel-quest', function(){
+            					$('.cancel-quest').remove();
             					button.hide();
         						$('#pre-quest-instructions.container').fadeOut("fast", function(){
         		    				$('#main.container').fadeIn("fast", function(){
-    									button.removeAttr("ready").removeClass("btn-success").addClass("btn-light").html(initHTML).fadeIn();
+    									button.removeAttr("ready").removeClass("btn-success").addClass("btn-light").html(initHTML).fadeIn("fast");
     									$('.start-new-quest').removeClass("btn-light").addClass("btn-primary");
-    									$('#dropdown-version').fadeIn();
+    									$('#dropdown-version').fadeIn("fast");
         		    				});
         						});
         					});
@@ -747,41 +942,59 @@ if(isset($_GET['admin'])) {
 				if(version == "") {
 					bootbox.alert("<?= $t['alert_choose_quest_version'] ?>");
 				} else {
-					loading();
 					
-					initHTML = button.html();
-					button.html('<?= $t['loading']?> <img src="img/loader-score.svg">');
-					$.post('functions/getUniqueName.php', {}, function(html){
-						var json = JSON.parse(html);
-						if(json.filename != "error") {
-							setCookie("filename", json.filename, <?= LIFE_COOKIE_QUEST_PENDING ?>);
-							setCookie("indexAspect", "1", <?= LIFE_COOKIE_QUEST_PENDING ?>);
-							setCookie("expirationQuest", <?= time() + 60*60*24*LIFE_COOKIE_QUEST_PENDING ?>, <?= LIFE_COOKIE_QUEST_PENDING ?>);
-
-							if(getCookie('questsList') == "") {
-								var jsonObj = {
-										"list":[
-											{
-												"filename": json.filename,
-												"version": version
-											}
-										],
-										"expiry": <?= (time() + 60*60*24*LIFE_COOKIE_LIST_QUESTS) ?>
-								};
+					bootbox.confirm({
+					    message: '<p class="pt-2 text-center"><?= $t['confirm-msg-quest-version']?><br><b class="lead font-weight-bold pt-1">'+getCookie("version")+'</b> </p></div>',
+					    buttons: {
+					        confirm: {
+					            label: '<?= $t['start'] ?> <img class="pl-1" src="img/'+getCookie('lang')+'.png">'
+					        },
+					        cancel: {
+					            label: '<?= $t['cancel']?>'
+					        }
+					    },
+					    closeButton:false,
+					    callback: function (result) {
+					        if(result) {
+						        
+					        	loading();
 								
-							} else {
-								var jsonObj = JSON.parse(getCookie('questsList'));
-								jsonObj['list'].push({"filename":json.filename,"version":version});
-							}
-							setCookie('questsList', JSON.stringify(jsonObj), <?= LIFE_COOKIE_LIST_QUESTS ?>);
+								initHTML = button.html();
+								button.html('<?= $t['loading']?> <img src="img/loader-score.svg">');
+								$.post('functions/getUniqueName.php', {}, function(html){
+									var json = JSON.parse(html);
+									if(json.filename != "error") {
+										setCookie("filename", json.filename, <?= LIFE_COOKIE_QUEST_PENDING ?>);
+										setCookie("indexAspect", "1", <?= LIFE_COOKIE_QUEST_PENDING ?>);
+										setCookie("expirationQuest", <?= time() + 60*60*24*LIFE_COOKIE_QUEST_PENDING ?>, <?= LIFE_COOKIE_QUEST_PENDING ?>);
 
-							document.location = '?start';
-						} else {
-							bootbox.alert("<?= $t['error_get_unique_name']?>");
-						}
-						//button.html(initHTML);
+										if(getCookie('questsList') == "") {
+											var jsonObj = {
+													"list":[
+														{
+															"filename": json.filename,
+															"version": version
+														}
+													],
+													"expiry": <?= (time() + 60*60*24*LIFE_COOKIE_LIST_QUESTS) ?>
+											};
+											
+										} else {
+											var jsonObj = JSON.parse(getCookie('questsList'));
+											jsonObj['list'].push({"filename":json.filename,"version":version});
+										}
+										setCookie('questsList', JSON.stringify(jsonObj), <?= LIFE_COOKIE_LIST_QUESTS ?>);
+
+										document.location = '?start';
+									} else {
+										bootbox.alert("<?= $t['error_get_unique_name']?>");
+									}
+									//button.html(initHTML);
+								});
+					        }
+					    }
 					});
-					
+
 				}
 			}
 		});
@@ -813,7 +1026,7 @@ if(isset($_GET['admin'])) {
 			loading();
 			
 			$.get("<?= DIR_ANSWERS ?>/"+filename).done(function() { 
-				document.location = 'scores/data/'+setData;
+				document.location = '<?= getBase() ?>scores/data/'+setData;
 		    }).fail(function() { 
 		    	bootbox.hideAll();
 		        bootbox.alert("Le fichier de questionnaire n'existe pas");
@@ -846,22 +1059,15 @@ if(isset($_GET['admin'])) {
         <?php 
 		}
 		?>
-
-		$('#dropdown-version').dropdown();
-		$('#dropdown-version').tooltip();
 		
 		if(getCookie("cookie_avert") == "") { // si le cookie n'existe pas
-			var banner_text = '<div class="d-inline"><?= $t['cookies_message'] ?> <button class="btn btn-info btn-gradient btn-sm" onclick="window.open(\'https://cookiesandyou.com/\', \'_blank\')" id="info-cookie">Plus d\'infos</button></div> <button class="btn btn-success btn-gradient btn-sm" id="accept-cookie">Ok</button>';
-			$("body").prepend('<div id="cookies-banner" class="clearfix fixed-bottom w-100 mb-0 alert alert-warning justify-content-between text-center">' + banner_text + '</div>');
+			var banner_text = '<div class="d-inline"><?= $t['cookies_message'] ?> <button class="btn btn-warning btn-sm" id="accept-cookie">Ok</button>';
+			$("body").prepend('<div id="cookies-banner" class="clearfix fixed-bottom w-100 mb-0 alert justify-content-between text-center text-white py-3" style="background: rgba(0,0,0,0.85)">' + banner_text + '</div>');
 			
 			$("#accept-cookie").click(function(){
 				setCookie("cookie_avert", "set", 365);
 				$("#cookies-banner").slideUp(550);
 			});
-			
-			setTimeout(function(){
-				$("#cookies-banner").slideUp(550);
-			}, 35000);
 		}	
 		<?php } ?>
 		
@@ -874,46 +1080,13 @@ if(isset($_GET['admin'])) {
 			$('#device-not-optimized').addClass("d-none");
 		}	
 
-		$('[data-toggle="tooltip"]').tooltip();
+		$('body').tooltip({
+		    selector: '[data-toggle="tooltip"]:not(.disabled)'
+		});
 
 	});
 	</script>
-	
-    <?php if(!isset($_COOKIE['indexAspect']) && !isset($_COOKIE['version'])) {?>
-	<div class="modal" id="modalVersions" data-backdrop="static" role="dialog">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLongTitle"><?= $t['choose_version'] ?></h5>
-		  </div>
-		  <div class="modal-body">
-		  
-			<div class="list-group">
-			<?php
-			$i = 0;
-			$versionsByLang = getVersions();
-			foreach($versionsByLang as $lang => $versions) {
-				echo '<div class="text-white mb-1 rounded text-center bg-dark">'.$lang.'</div>';
-				foreach($versions as $v) {
-					$version = getVersionText($v); ?>
-					<a version="<?= $v['file'] ?>" data-toggle="list" class="list-group-item list-group-item-action" href="#"><?= $version ?></a>
-					<?php
-				}
-				if($i != count($versionsByLang)-1) {
-					echo '<div class="mt-1"></div>';
-				}
-				$i++;
-			}?>
-			</div>
-			
-		  </div>
-		  <div class="modal-footer d-none">
-			<button type="button" class="btn btn-primary" id="save"><?= $t['save'] ?></button>
-		  </div>
-		</div>
-	  </div>
-	</div>
-	<?php } ?>
+
 	
 	<?php if(!isset($_COOKIE['indexAspect'])) {?>
 	<div id="device-not-optimized" class="fixed-bottom w-100 mb-0 alert alert-warning justify-content-between align-items-end">

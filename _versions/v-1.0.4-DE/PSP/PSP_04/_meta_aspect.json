@@ -1,6 +1,46 @@
 {
-	"title":"Kulturpflanzen",
-	"id":"PSP_04",
-	"img":"",
-	"hide_applicable":"true"
+    "title": "Kulturpflanzen",
+    "id": "PSP_04",
+    "img": "",
+    "hide_applicable": "true",
+    "filters": [
+        {
+            "scope": [
+                2,
+                3,
+                4,
+                5,
+                6
+            ],
+            "ban": [
+                "PSP_18",
+                "ENV_07"
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "self.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    },
+                    "action": "hide"
+                }
+            ]
+        },
+        {
+            "scope": [
+                4
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "self.3",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }
