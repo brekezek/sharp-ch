@@ -6,7 +6,7 @@ if(isset($_COOKIE['version'])) {
 		    $filepath = getAbsolutePath().DIR_ANSWERS."/".$_COOKIE['filename'];
 		    
 			$questManager = QuestionnaireManager::getInstance($_COOKIE['version']);
-			$questManager->setReadOnly($readonly);
+			$questManager->setReadOnly((isset($_COOKIE['readonly']) && $_COOKIE['readonly'] == "true"));
 			$questManager->goToAspect($_COOKIE['indexAspect']);
 			
 			$nbAspects = $questManager->getNumberAspects();

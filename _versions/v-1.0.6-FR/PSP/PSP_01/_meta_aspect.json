@@ -1,5 +1,21 @@
 {
-	"title":"Ménage",
-	"id":"PSP_01",
-	"img":""
+    "title": "Ménage",
+    "id": "PSP_01",
+    "img": "",
+    "filters": [
+        {
+            "scope": [
+                3
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "PSP_02.2.1.0",
+                    "expectedAnswer": {
+                        "type": "value",
+                        "value": 0
+                    }
+                }
+            ]
+        }
+    ]
 }

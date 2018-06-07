@@ -2,6 +2,11 @@
     "question-type": "text",
     "title": "District/département",
     "mandatory": true,
+    "dataSource": {
+        "table": "regions",
+        "text": "rlabel_%lang",
+        "id": "rid"
+    },
     "html-attr": {
         "data-location": "district"
     }

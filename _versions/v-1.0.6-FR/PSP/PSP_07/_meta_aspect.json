@@ -15,6 +15,56 @@
                     "action": "hide"
                 }
             ]
+        },
+        {
+            "id": "PSP_05_Q2_1",
+            "scope": [
+                2
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "PSP_05.2.0.0",
+                    "expectedAnswer": {
+                        "type": "value",
+                        "value": 0
+                    }
+                },
+                {
+                    "lookAt": "PSP_05.2.1.0",
+                    "expectedAnswer": {
+                        "type": "value",
+                        "value": 0
+                    }
+                }
+            ]
+        },
+        {
+            "scope": [
+                3
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "PSP_05.2.4.0",
+                    "expectedAnswer": {
+                        "type": "value",
+                        "value": 0
+                    }
+                }
+            ]
+        },
+        {
+            "scope": [
+                4
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "PSP_05.2.5.0",
+                    "expectedAnswer": {
+                        "type": "value",
+                        "value": 0
+                    }
+                }
+            ]
         }
     ]
 }

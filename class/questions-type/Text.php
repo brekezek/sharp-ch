@@ -11,15 +11,21 @@ class Text extends Question {
 		$html = parent::startWrapper();
 		$html.= parent::getLabel();
 		
-		$html.=	'<'.$inputType.' data-adaptheight
-                 '.($this->readonly ? "readonly" : "").' 
+		/*
+		if(isset($this->jsonQuestion['dataSource'])) {
+		    parent::bindDataSource($this->jsonQuestion['dataSource']);
+		    $html .= $this->dataSource;
+		}
+		*/
+		
+		$html.=	'<'.$inputType.' data-adaptheight 
+                 '.($this->readonly ? "readonly" : 'name="'.$this->inputName.'"').' 
                  '.parent::scoredAttr(). 
                  parent::getAdditionnalHTMLAttributes().
-				 ' name="'.$this->inputName.'" 
-				 id="'.$this->uid.'" 
+				 ' id="'.$this->uid.'" 
 				 placeholder="'.$this->placeholder.'" 
 				 class="form-control w-100 rounded" 
-				 style="max-height:210px; min-height:40px; height:40px; min-width: 128px; '.parent::getTextColor().'" ';
+				 style="max-height:210px; min-height:40px; height:40px; min-width: 128px; '.parent::getTextColor().';" ';
         		 if($inputType != "textarea") {
         		      $html .= 'type="'.$this->inputType.'" ';
         		      $html .= 'value="'.(($this->readonly && parent::getAnswer() == "") ? "-" : "").parent::getAnswer().'" ';

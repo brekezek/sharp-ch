@@ -81,8 +81,8 @@ class Questionnaire {
         return $this->version;
     }
     
-    public function getTagsToIgnore() {
-        return array("ADM_01", "filename", "meta", "version");
+    public function getTagsToIgnore($exclude=array()) {
+        return array_diff(array("ADM_01", "filename", "meta", "version"), $exclude);
     }
     
     public function getAnswers() {
@@ -244,25 +244,31 @@ class Questionnaire {
                             if($scoreTable < 0) $scoreTable = 0;
                             
                             $scoreQuestion = processTable($answer, $col['type'], $col['scoring'], $col, $indexCol, $questId, $resultsDefined);
-                            //echo $category.".".$numQuest."[".$indexCol."] = ".$scoreQuestion."<br>";
+                            /*
+                            if($aspectId == "PSP_08") {
+                                echo $category.".".$numQuest."[".$indexCol."] = ".$scoreQuestion."<br>";
+                            }
+                            */
+                            
                             if($scoreQuestion >= 0)
                                 $nbScoredCols++;
                                 
-                                if(isset($col['indicateur'])) {
-                                    $indicators = getIndicators($col['indicateur']);
-                                    $scoreIndicators = $scoreQuestion;
-                                    
-                                    if($questId == "EC_03.1") {
-                                        if(isset($answer[0][$indexCol]['answer']))
-                                            $indicators = getIndicators(10);
-                                        if(isset($answer[1][$indexCol]['answer']))
-                                            $indicators = array(4,5);
-                                        if(isset($answer[2][$indexCol]['answer']))
-                                            $indicators = array(4,5);
-                                    }
-                                    //echo $questId."[".$indexCol."].score = ".$scoreQuestion."<br>";
-                                }
+                            if(isset($col['indicateur'])) {
+                                $indicators = getIndicators($col['indicateur']);
+                                $scoreIndicators = $scoreQuestion;
                                 
+                                if($questId == "EC_03.1") {
+                                    if(isset($answer[0][$indexCol]['answer']))
+                                        $indicators = getIndicators(10);
+                                    if(isset($answer[1][$indexCol]['answer']))
+                                        $indicators = array(4,5);
+                                    if(isset($answer[2][$indexCol]['answer']))
+                                        $indicators = array(4,5);
+                                }
+                                //echo $questId."[".$indexCol."].score = ".$scoreQuestion."<br>";
+                            }
+                           
+                            if($scoreQuestion >= 0)
                                 $scoreTable += $scoreQuestion;
                         }
                         $indexCol++;

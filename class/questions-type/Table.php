@@ -43,7 +43,7 @@ class Table extends Question {
 		    $this->rows = array_unique(array_merge($this->rows, array_map(function($item){ return $item+1; }, array_keys($this->jsonAnswer))));
 		}
 		
-		$html .= '<table class="table table-striped table-hover '.($this->dynamicTable ? "dynamic-table" : "").'" '.$uniq_data_type.'>
+		$html .= '<table class="table table-striped '.($this->readonly ? '' : 'table-hover').' '.($this->dynamicTable ? "dynamic-table" : "").'" '.$uniq_data_type.'>
 		  <thead>
 			<tr>
 				<th scope="col" class="align-middle border-right border-top-0">'.parent::getLabel().'</th>';

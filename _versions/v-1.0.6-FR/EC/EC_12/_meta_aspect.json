@@ -1,5 +1,24 @@
 {
-	"title":"Activités génératrices de revenus externes à l'exploitation agricole",
-	"id":"EC_12",
-	"img":""
+    "title": "Activités génératrices de revenus externes à l'exploitation agricole",
+    "id": "EC_12",
+    "img": "",
+    "filters": [
+        {
+            "scope": [
+                2,
+                3,
+                4
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "self.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 3
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }

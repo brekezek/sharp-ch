@@ -44,24 +44,45 @@ class Aspect {
         $filtersExtObj = array();
 		if($filtersObj != null) {
 		    $filtersSelfObj = array_filter($filtersObj, function($filter) {
-		       return $filter->getDependenciesAspectId() == AspectFilter::$self;
+		        if(get_class($filter) != "AspectFilterGroupAnd") {
+		          $cond = $filter->getDependenciesAspectId() == AspectFilter::$self;
+		        } else {
+		           $cond = true;
+		           foreach($filter as $f) {
+		               if($f->getDependenciesAspectId() != AspectFilter::$self) return false;
+		           }
+		        }
+		        return $cond;
 		    });
 	        $filtersExtObj = array_filter($filtersObj, function($filter){
-	           return $filter->getDependenciesAspectId() != AspectFilter::$self; 
+	            if(get_class($filter) != "AspectFilterGroupAnd") {
+	               $cond = $filter->getDependenciesAspectId() != AspectFilter::$self;
+	            } else {
+	                $cond = true;
+	                foreach($filter as $f) {
+	                    if($f->getDependenciesAspectId() == AspectFilter::$self) return false;
+	                }
+	            }
+	            return $cond;
 	        });
 		}
 		$this->onlySelfFilters = count($filtersObj) == count($filtersSelfObj);
 		
 		$this->filtersState = AspectFilter::evalFilters($filtersExtObj);
 		
+
+		
 		/* Filtres JS -------------------------------------- */
 		$this->jsonSelfFiltersForJS = "";
 		if($filtersObj != null) {	    
 		    foreach($filtersSelfObj as $filter) {
-	            $ban = is_array($filter->getBan()) && count($filter->getBan()) > 0 ? '"'.implode("\",\"", $filter->getBan()).'"' : "";
+                $filter->evaluate();
+		        
+		        $ban = $filter->getBanJSON();
+	            
 	            $this->jsonSelfFiltersForJS .= "{".
   		            '"trigger":'.$filter->getDependenciesQuestionIndex().",".
-  		            '"value": {"text":"'.$filter->getAnswer()['expected'].'", "index":'.$filter->getAnswerIndex().'},'.
+  		            '"value": '.$filter->getJSONForJSValue().','.
   		            '"listeners":['.implode(",", $filter->getScope())."],".
   		            '"ban":['.$ban.']'.
 	            "},";
@@ -85,6 +106,9 @@ class Aspect {
     		      $this->filtersScope = array_merge($this->filtersScope, $filter->getScope());
     		    }
     		}
+		}
+		if(is_array($this->filtersScope)) {
+		  asort($this->filtersScope);
 		}
 		/*
 		if((is_array($this->filtersScope) && count($this->filtersScope) > 0) || $this->filtersScope == "all"){
@@ -134,7 +158,7 @@ class Aspect {
 		$html = 
 		'<div class="rounded container bg-light p-2 my-3 border">';
 		
-		if(is_string($this->filtersScope) && $this->filtersScope == "all") {
+		if(is_string($this->filtersScope) && $this->filtersScope == "all" && trim($this->filtersState) != "") {
 		    $html .= '<div class="alert alert-success mb-0" id="filters-alert">';
 		    $html .= $t['filters-alert-message-string'] . '<br>' .$this->filtersState;
 		    $html .= '</div>';
@@ -142,7 +166,7 @@ class Aspect {
 		    echo $html;
 		    return;
 		}
-		else if(is_array($this->filtersScope) && count($this->filtersScope) > 0 && !$this->onlySelfFilters){
+		else if(is_array($this->filtersScope) && count($this->filtersScope) > 0 && !$this->onlySelfFilters && trim($this->filtersState) != ""){
 		    $html .= '<div class="alert alert-success mb-2" id="filters-alert">';
   		    $html .= sprintf($t['filters-alert-message-array'], implode($this->filtersScope, ", "));
   		    $html .= "<br>".$this->filtersState;

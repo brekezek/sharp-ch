@@ -43,6 +43,40 @@
                     "action": "hide"
                 }
             ]
+        },
+        {
+            "scope": [
+                2,
+                3,
+                4,
+                5
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "self.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    }
+                }
+            ]
+        },
+        {
+            "scope": [
+                9,
+                10,
+                11,
+                12
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "self.8",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 1
+                    }
+                }
+            ]
         }
     ]
 }

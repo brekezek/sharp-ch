@@ -13,11 +13,14 @@ class ScoreWriter {
         if(!in_array($output, array("csv", "print", "db"))){
             throw new Exception("Ce type de sortie n'est pas prévu par l'application.");
         }
-        if(!in_array($typeScore, array("byQuestion", "byAspect", "bySection", "byIndicator", "resilience", "db_all"))){
+        if(!in_array($typeScore, array("byQuestion", "byAspect", "bySection", "byIndicator", "resilience", "db_all", "csv_answers"))){
             throw new Exception("Le type de score donné n'est pas reconnu.");
         }
         if($typeScore == "db_all" && $output != "db") {
             throw new Exception("Le type db_all n'est possible qu'avec la db en sortie");
+        }
+        if($typeScore == "csv_answers" && $output == "db") {
+            throw new Exception("Le type csv_answers n'est possible qu'avec un fichier csv ou l'écran comme buffer de sortie");
         }
         
         $this->bufferStr = "";
@@ -36,6 +39,7 @@ class ScoreWriter {
                 case "bySection": $filename = "scoresBySection"; break;
                 case "byIndicator": $filename = "scoresByIndicator"; break;
                 case "resilience": $filename = "resilience"; break;
+                case "csv_answers": $filename = "answers-extracted"; break;
                 default: $filename = "scoresByQuestion"; break;
             }
         } else {
@@ -54,9 +58,10 @@ class ScoreWriter {
     
     function write() {
 
-        if($this->output == "csv")
+        if($this->output == "csv") {
             $this->fp = fopen("../".DIR_OUTPUT_SCORES."/".$this->filename, "w");
-        
+            fprintf( $this->fp, "\xEF\xBB\xBF");
+        }
         switch($this->typeScore) {
             case "byQuestion":
                 if($this->output == "csv")
@@ -107,6 +112,14 @@ class ScoreWriter {
                     }
                 }
             break;
+            
+            case "csv_answers": 
+                if($this->output == "csv")
+                    fwrite($this->fp, "id_section;id_aspect;questionNum;intitulé;answer;".$this->getAdditionnalheader()."\n");
+                    
+                foreach($this->questionnaires as $quest)
+                    $this->writeAnswers($quest);
+            break;
         }
         
         if(trim($this->bufferStr) == "" && in_array($this->output, array("csv", "print"))) {
@@ -135,6 +148,52 @@ class ScoreWriter {
         }
         
     }
+    
+    
+    function writeAnswers($questionnaire) {
+        
+        $answers = $questionnaire->getAnswers();
+        foreach(getAspectsList($questionnaire->getVersion()) as $aspectId) {
+            // Ignore les tags qui ne sont pas des aspects, et les aspects non scorés
+            if(in_array($aspectId, $questionnaire->getTagsToIgnore($exclude = array("ADM_01")))) continue;
+            // Ignore EC_05 si le EC_05 est contenu dans EC_16 à cause d'un problème
+            if($questionnaire->needFixEC_16() && $aspectId == "EC_05" && !in_array($this->output, array("csv", "print"))) continue;
+            
+            $section = explode("_", $aspectId)[0];
+            
+            $jsonAnswerAspect = isset($answers[$aspectId]) ? $answers[$aspectId] : NULL;
+            
+            $aspectLabel = $aspectId;
+            if($questionnaire->needFixEC_16()){
+                if($aspectId == "EC_16") $aspectLabel = "EC_05";
+                if($aspectId == "EC_05") $aspectLabel = "EC_16";
+            }
+            
+            $pathJSONQuestion = getAbsolutePath().DIR_VERSIONS."/".$questionnaire->getVersion()."/".$section."/".$aspectLabel;
+            foreach(getQuestionsList($pathJSONQuestion) as $questNum) {
+                $jsonQuestQuestion = getJSONFromFile($pathJSONQuestion."/".$questNum.".json");
+                
+                $intituleQuestion = $jsonQuestQuestion['title'];
+                
+                $jsonAnswerQuestion = ($jsonAnswerAspect !== NULL && isset($jsonAnswerAspect[$questNum])) ? $jsonAnswerAspect[$questNum] : NULL;
+                
+                if($jsonAnswerQuestion !== NULL && !isset($jsonAnswerQuestion['answer'])) { // Tableaux seulement
+                    $answer = count($jsonAnswerQuestion) == 0 ? "" : '<TABLE>';
+                } else { // Tout ce qui n'est pas tableau
+                    $answer = ($jsonAnswerQuestion !== NULL && isset($jsonAnswerQuestion['answer'])) ? $jsonAnswerQuestion['answer'] : "";
+                    $answer = !is_array($answer) ? $answer : implode(", ", $answer);
+                    if($jsonAnswerQuestion !== NULL && isset($jsonAnswerQuestion['comment']) && !empty($jsonAnswerQuestion['comment'])) {
+                        $answer .= ". ".$jsonAnswerQuestion['comment'];
+                    }
+                }
+                
+                $this->bufferStr .= $section.";".$aspectLabel.";".$questNum.";".$intituleQuestion.";".$answer.";".$this->getAdditionnalInfos($questionnaire)."\n"; 
+            }
+        } // end foreach aspects
+
+    } // end function
+    
+    
     
     function writeByIndicator($questionnaire) {
         $answers = $questionnaire->getAnswers();

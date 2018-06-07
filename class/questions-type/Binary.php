@@ -18,9 +18,16 @@ class Binary extends Question {
 		if(!$this->hasComment)
 			$html .= parent::startWrapper();
 		
-		$html .= parent::getLabel().
-			'<div class="btn-group btn-group-toggle" data-toggle="buttons">';
-			
+		$html .= parent::getLabel();
+		
+		$html .= '<div class="position-relative">';
+		
+		if($this->readonly) {
+		    $html .= '<div style="background: transparent; position: absolute;opacity:0;top:0;left:0px;width:100%;height:100%;z-index: 99;"></div>';
+		}
+		
+		$html .= '<div class="btn-group btn-group-toggle" data-toggle="buttons">';
+		
 			$i = 0;
 			foreach($this->choices as $choice) {
 				$id = ($i == 0) ? $this->uid : $this->uid."_".$i;
@@ -44,22 +51,18 @@ class Binary extends Question {
 		
 				$html .=
 				'<label class="btn btn-secondary '.$checked[1].' '.$withComment.'">'.
-					'<input index="'.$i.'" type="radio" id="'.$id.'" name="'.$this->inputName.'"
-                    '.($this->readonly ? "disabled" : "").' '.parent::scoredAttr().' '.parent::getAdditionnalHTMLAttributes().' '.
+					'<input index="'.$i.'" type="radio" id="'.$id.'" 
+                    '.($this->readonly ? "disabled" : 'name="'.$this->inputName.'"').' '.parent::scoredAttr().' '.parent::getAdditionnalHTMLAttributes().' '.
 					'value="'.$value.'" autocomplete="off" '.$checked[0].' '.(parent::isMandatory() ? "required" : "").'> '.$choice.
 				'</label>';
-				/*
-				'<div class="custom-control custom-radio custom-control-inline">'.
-					'<input type="radio" id="'.$id.'" name="'.$this->inputName.'" value="'.$choice.'" class="custom-control-input" >'.
-					'<label class="custom-control-label" for="'.$id.'">'.$choice.'</label>'.
-				'</div>';
-				*/
+			
 				
 				$i++;
 			}
 		
 
 		
+		$html .= '</div>';
 		$html .= '</div>';
 		
 		if(!$this->hasComment)

@@ -13,9 +13,8 @@ class Integer extends Question {
 			'<input 
                  '.parent::scoredAttr().' '.
                  parent::getAdditionnalHTMLAttributes().' '.
-                 ($this->readonly ? "readonly" : "").'
+                 ($this->readonly ? "readonly" : 'name="'.$this->inputName.'"').'
 				 type="number" 
-				 name="'.$this->inputName.'" 
 				 id="'.$this->uid.'" 
 				 placeholder="'.($this->placeholder != "" ? $this->placeholder : "0").'" 
 				 min="0"

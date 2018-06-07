@@ -102,6 +102,11 @@ function getAspectsList($version, $includeQuestions = false) {
 	return $orderedAspectsList;
 }
 
+/**
+ * Retourne une liste des questions d'un aspect donné, dans l'ordre numérique (1,2,3,...). 
+ * @param String $aspect le chemin vers le fichier JSON de l'aspect
+ * @return mixed[] Liste des questions de l'aspect
+ */
 function getQuestionsList($aspect) {
 	$list = getListDir($aspect);
 	$formattedList = array();

@@ -4,6 +4,16 @@ include_once("login.redirect.php");
 
 if(isset($_POST['filter'])) {
     $query = "UPDATE users SET params=? WHERE uid=?";
+    if(isset($_POST['filter']['version']) && $_POST['filter']['version'] == "all") unset($_POST['filter']['version']);
+    
+    if(isset($_POST['filter']['date']['start'])) {
+        if(empty($_POST['filter']['date']['start']) && empty($_POST['filter']['date']['end'])) unset($_POST['filter']['date']);
+        if(empty($_POST['filter']['date']['start'])) unset($_POST['filter']['date']['start']);
+        if(empty($_POST['filter']['date']['end'])) unset($_POST['filter']['date']['end']);
+    }
+    
+    if(isset($_POST['filter']['origin']) && $_POST['filter']['origin'] == "all") unset($_POST['filter']['origin']);
+    
     $filters = serialize($_POST['filter']);
     if(isset($_REQUEST['reset'])) {
         $filters = NULL;
@@ -92,17 +102,29 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
 		        }
 		        $sqlCond = substr($sqlCond, 0, -2).") ";
 		    }
+		    if(isset($filters['date'])) {
+		        if(isset($filters['date']['start'])) {
+		          $sqlCond .= " AND creation_date >= '".$filters['date']['start']." 23:59:59' ";   
+		        }
+		        if(isset($filters['date']['end'])) {
+		            $sqlCond .= " AND creation_date <= '".$filters['date']['end']." 23:59:59' ";
+		        }
+		    }
+		    if(isset($filters['origin']) && $filters['origin'] != "all") {
+		        $sqlCond .= " AND file ".($filters['origin'] == "tablet" ? "" : "NOT")." LIKE '%android%' ";
+		    }
 		}
 		
-		if ($stmt = $mysqli->prepare(
-		    "SELECT collecte_par, firstname, lastname, commune, creation_date, version, cluster, ktidb, p.rid, file, rlabel_".getLang().", pslabel_".getLang().", COUNT(q.pid) as nbQuest FROM questionnaires q
+		$queryQuest = "SELECT p.pid, collecte_par, firstname, lastname, commune, creation_date, version, cluster, ktidb, p.rid, file, rlabel_".getLang().", pslabel_".getLang()." FROM questionnaires q
             LEFT JOIN participants p ON q.pid = p.pid
             LEFT JOIN regions re ON re.rid=p.rid
             LEFT JOIN prod_systems ps ON ps.psid=cluster
             WHERE ".$sqlCond."
-            GROUP BY q.pid 
-            ORDER BY lastname ASC, firstname ASC")) {
-                
+            ORDER BY lastname ASC, firstname ASC";
+	
+		
+		if ($stmt = $mysqli->prepare($queryQuest)) {
+            
             $stmt->execute();
             $result = $stmt->get_result();
             
@@ -148,6 +170,7 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
                         data-name="'.$name.'"
                         data-infos="'.$infos.'"
                         data-url-scores="'.$urlScores.'"
+                        data-pid="'.$row['pid'].'" 
                         data-version="'.$row['version'].'">';
                
                 echo '<td class="align-middle text-center">'.$source.'</td>';
@@ -160,20 +183,25 @@ echo '<table id="repondants" class="table table-striped table-hover display tabl
                 echo '<td class="align-middle text-center">'.date("d.m.y", strtotime($row['creation_date'])).'</td>';
                 echo '<td class="align-middle text-center">'.$row['version'].'</td>';
 
-                echo '<td class="align-middle text-center" width="100px">
+                echo '<td class="align-middle text-center" width="100px">';
                        
-                        <div class="dropleft d-inline" id="actions">
-                    	 	<button class="btn btn-primary btn-sm mr-1 dropdown-toggle" type="button" id="action_'.$i.'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    	 		 <span class="text">'.$t['actions'].'</span> <span class="oi oi-menu ml-1"></span>
-                        	</button>
-                    		<div class="dropdown-menu" aria-labelledby="action_'.$i.'">
-                    			<div class="dropdown-item" style="cursor:pointer" data-action="reviewFile"><span class="oi oi-eye m-1"></span> '.$t['display-questionnaire'].'</div>
-                                <div class="dropdown-item" style="cursor:pointer" data-action="score"><span class="oi oi-bar-chart m-1"></span> '.$t['graphiques-scores'].'</div>
-                    		</div>
-                    	</div>
-                      </td>';
                 
-                echo '</tr>';
+          
+                echo
+                '<div class="dropleft d-inline" id="actions">
+            	 	<button class="btn btn-primary btn-sm mr-1 dropdown-toggle" type="button" id="action_'.$i.'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            	 		 <span class="text">'.$t['actions'].'</span> <span class="oi oi-menu ml-1"></span>
+                	</button>
+            		<div class="dropdown-menu" aria-labelledby="action_'.$i.'">
+            			<div class="dropdown-item" style="cursor:pointer" data-action="reviewFile"><span class="oi oi-eye m-1"></span> '.$t['display-questionnaire'].'</div>
+                        <div class="dropdown-item" style="cursor:pointer" data-action="score"><span class="oi oi-bar-chart m-1"></span> '.$t['graphiques-scores'].'</div>
+            		    <hr>
+                        <div class="dropdown-item" style="cursor:pointer" data-action="view-participant"><span class="oi oi-person m-1"></span> '.$t['view-participant'].'</div>
+                    </div>
+            	</div>';
+
+                echo '</td>
+                </tr>';
             }
 		}
 	
@@ -246,6 +274,22 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 			{text:"<?= $t['byIndicator']?>", action:"byIndicator"},
 			{text:"<?= $t['resilience']?>", action:"resilience"}
 		];
+
+		var itemsDownload = [
+			{text: "<?= $t['brut_file']?>", action:"brut"},
+			{text: "<?= $t['csv_answer_file']?>", action:"csv_answers"}		
+		];
+
+		function callbackGenerateScores(resp, button, initBtText) {
+			button.removeAttr("disabled").find("span.text").html(initBtText);
+			bootbox.hideAll();
+			
+			if(resp != "error" && resp.length > 2 && resp.length < 200) {
+				document.location = '<?= getBase() ?>download.php?file=<?= DIR_ANSWERS ?>/scores/'+resp;
+			} else {
+				bootbox.alert(resp);
+			}
+		}
 		
 		$('#repondants').dataTable({
 			<?php if(getLang() != "en") { ?>
@@ -332,42 +376,58 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 					});
 					files = files.substring(0, files.length-1);
 					//$('input[type="search"]').val(files);
-
+					
 					$.post('pages/generateScores.php', {
 						data:files,
 						typeScore:$(this).attr("data-action"),
 						output:"csv"
 					}, function(resp) {
-						button.removeAttr("disabled").find("span.text").html(initBtText);
-						bootbox.hideAll();
+						callbackGenerateScores(resp, button, initBtText);
+					});
 						
-						if(resp != "error" && resp.length > 2 && resp.length < 200) {
-							document.location = '<?= getBase() ?>download.php?file=<?= DIR_ANSWERS ?>/scores/'+resp;
-						} else {
-							bootbox.alert(resp);
-						}
-					});	
-					
-					
 				})
-				.addButton("<?= $t['download']?>", "download", "primary", "cloud-download", function(){
+				.addDropdown("<?= $t['download']?>", "download", itemsDownload, "primary", "cloud-download", function(){
 					var selectedRows = $('#repondants tr.active');
-					if(selectedRows.length == 1) {
-						document.location = '<?= getBase() ?>download.php?file=<?= DIR_ANSWERS ?>/'+selectedRows.attr("data-file")+"&name="+selectedRows.attr("data-name");
+					var button = $(this).parents(".dropdown").find("button");
+					var initBtText = button.find("span.text").html();
+					var action = $(this).attr("data-action");
+					
+					button.attr("disabled","disabled").find("span.text").html('<?= $t['generation']?> <img src="img/loader-score.svg">');
+
+					loading();
+
+					var files = "";
+	    			
+	    			
+					if(action == "brut") {
+    					if(selectedRows.length == 1) {
+    						button.removeAttr("disabled").find("span.text").html(initBtText);
+    						bootbox.hideAll();
+    						document.location = '<?= getBase() ?>download.php?file=<?= DIR_ANSWERS ?>/'+selectedRows.attr("data-file")+"&name="+selectedRows.attr("data-name");
+    					} else {
+    						selectedRows.each(function(){
+    		    				files += $(this).attr("data-file")+":"+$(this).attr("data-name")+",";
+    		    			});
+    		    			$.post('pages/admin/download.questionnaires.php', { f:files }, function(resp) {
+    		    				button.removeAttr("disabled").find("span.text").html(initBtText);
+    							bootbox.hideAll();
+    							
+    							if(resp == "ok") 
+    		    					document.location = '<?= getBase() ?>download.php?file=pages/admin/questionnaires.zip';
+    							else
+    								bootbox.alert(resp);
+    		    			});
+    					}
 					} else {
-						loading();
-						$(this).attr("disabled","disabled").find("span.text").text("<?= $t['generation']?>...");
-		    			var files = "";
-		    			selectedRows.each(function(){
-		    				files += $(this).attr("data-file")+":"+$(this).attr("data-name")+",";
+						selectedRows.each(function(){
+							files += $(this).attr("data-file")+":"+$(this).attr("data-version")+":"+$(this).attr("data-infos")+",";
 		    			});
-		    			$.post('pages/admin/download.questionnaires.php', { f:files }, function(resp) {
-		    				$('#tools #download').removeAttr("disabled").find("span.text").text("<?= $t['generation']?>");
-		    				bootbox.hideAll();
-							if(resp == "ok") 
-		    					document.location = '<?= getBase() ?>download.php?file=pages/admin/questionnaires.zip';
-							else
-								bootbox.alert(resp);
+						$.post('pages/generateScores.php', {
+							data:files,
+							typeScore:$(this).attr("data-action"),
+							output:"csv"
+						}, function(resp) {
+							callbackGenerateScores(resp, button, initBtText);
 		    			});
 					}
 				});
@@ -422,26 +482,25 @@ if($stmt = $mysqli->query("SELECT qid FROM questionnaires WHERE deleted=1")) {
 			
 			$.get("<?= DIR_ANSWERS ?>/"+fileURL)
 		    .done(function() { 
-			    /*
-			    deleteCookie("indexAspect");
-			    setCookie("filename", fileURL, 1);
-
-			    if(getCookie("version") != "" && version != getCookie("version")) {
-					setCookie('savedVersion', getCookie('version'), <?= LIFE_COOKIE_VERSION ?>);
-		    	}
-		    	
-		    	if(version != '?' && version != getCookie('version')) {
-			    	setCookie("version", version, <?= LIFE_COOKIE_VERSION ?>);
-		    	} 
-		    	
-			    setCookie("scores-display", "true", 1);
-				document.location = 'scores';
-				*/
 				document.location = row.data("url-scores");
 		    }).fail(function() { 
 		    	bootbox.hideAll();
 		        bootbox.alert("Le fichier de questionnaire n'existe pas");
 		    });
+		});
+
+
+		$('body').on('click', '#actions .dropdown-item[data-action="view-participant"]', function(){
+			loading();
+
+			$.post('pages/admin/participant.view.advanced.php', { pid:$(this).closest("tr").data("pid") }, function(html) {
+				bootbox.hideAll();
+				bootbox.dialog({
+					size: "large",
+					animate:false,
+					message: html
+				});
+			}); 
 		});
 		
 				

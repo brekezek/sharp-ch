@@ -32,15 +32,36 @@
 	</div>
   	
 	<?php if(isset($_COOKIE['indexAspect'])) {?>
-	<div class="text-light" >
-		<?php if($readonly) {
-		    echo '<span class="oi oi-eye mr-1"></span> <span id="name-ro">'.$t['read-only'].'</span>';
+	<div class="text-light position-relative" >
+		<?php
+		if($readonly) {
+		    $jsonFileAnswersMenu = getJSONFromFile(DIR_ANSWERS."/".$_COOKIE['filename']);
+		    $lastnameMenu = optInfoAdm($jsonFileAnswersMenu, 2);
+		    $firstnameMenu = optInfoAdm($jsonFileAnswersMenu, 3); ?>
+			<div style="line-height:1em">
+				<div id="name-ro" class="small text-warning text-center text-uppercase"><?= $t['read-only'] ?></div>
+				<div style="" class="text-white text-center"><?= sprintf("%s %s", $firstnameMenu, $lastnameMenu) ?></div>
+			</div>
+		<?php 
 		} else {
-		    if(isset($_COOKIE['expirationQuest'])) {
+		    if(isset($_COOKIE['expirationQuest']) && !isset($_COOKIE['readonly'])) {
 		        $fTime = getFormattedTime($_COOKIE['expirationQuest'] - time(), "%02d %s, ", "%02d%s%02d");
-                echo '<div class="time-left" data-toggle="tooltip" data-placement="bottom" title="'.$t['quest-time-left'].'"><span class="oi oi-clock mr-1"></span> <b>'.$t['restant'].'</b>: '.$fTime['jours'].$fTime['hours'].'</div>';
+                ?>
+                <div style="line-height:1em" class="time-left" data-toggle="tooltip" data-placement="bottom" title="<?= $t['quest-time-left'] ?>">
+                    <div class="small text-warning text-center text-uppercase"><?= $t['restant'] ?></div>
+    				<div class="text-white text-center"><?= $fTime['jours'].$fTime['hours'] ?></div>
+    			</div>
+    			<?php 
 		    } else {
-		        echo $_COOKIE['version'];   
+		        $jsonFileAnswersMenu = getJSONFromFile(DIR_ANSWERS."/".$_COOKIE['filename']);
+		        $lastnameMenu = optInfoAdm($jsonFileAnswersMenu, 2);
+		        $firstnameMenu = optInfoAdm($jsonFileAnswersMenu, 3);
+		        ?>
+		        <div style="line-height:1em">
+    				<div class="small text-warning text-center text-uppercase"><?= $t['edit-mode'] ?></div>
+    				<div class="text-white text-center"><?= sprintf("%s %s", $firstnameMenu, $lastnameMenu) ?></div>
+    			</div>
+		        <?php    
 		    }
 		}?>
 	</div>
@@ -60,13 +81,13 @@
 		<?php if(!$readonly) {?>
 		
     		<?php if(isset($_COOKIE['indexAspect'], $_COOKIE['readonly']) && $_COOKIE['readonly'] == "false") { ?>
-    		<button id="switch-readonly" class="btn btn-primary" type="button">
+    		<button id="switch-readonly" class="btn btn-info" type="button">
     			<span class="oi oi-lock-locked mr-1"></span> <?= $t['read-only'] ?>
     		</button>
     		<?php }?>
     		
 		<?php } else { ?>
-    		<button id="edit" class="btn btn-primary" type="button">
+    		<button id="edit" class="btn btn-success" type="button">
     			<span class="oi oi-pencil mr-1"></span> <?= $t['edit'] ?>
     		</button>
 		<?php } ?>

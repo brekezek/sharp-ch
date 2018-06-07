@@ -26,11 +26,10 @@ class MultipleOne extends Question {
 			'<select 
                  '.parent::scoredAttr().' '.
                  parent::getAdditionnalHTMLAttributes().
-                 ($this->readonly ? "disabled" : "").' 
+                 ($this->readonly ? "disabled" : 'name="'.$this->inputName.'"').' 
                  style="'.parent::getTextColor().'" 
 				 '.($this->isMultiple ? ' multiple size="'.(count($this->choices)).'" ' : "").
-				 'name="'.$this->inputName.'" 
-				 id="'.$this->uid.'"  
+				 'id="'.$this->uid.'"  
 				 class="form-control w-100 rounded '.($this->isMultiple && $this->isInTable && $this->maxChoiceSize > 58 ? 'min-width-multiselect' : '').'"
                 '.($this->otherExists ? 'other-exist="1"' : '').'
 				 aria-describedby="help_'.$this->uid.'"

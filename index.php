@@ -288,20 +288,36 @@ if(isset($_GET['admin'])) {
 		function allInputsValid() {
 			$('#questionnaire .form-group.filtered').remove();
 			
-			var canUpdateCookie = true;
-			$("#questionnaire form").find('[required]').each(function() {
+			var canUpdateCookie = true; var firstInvalidElem = null;
+			$("#questionnaire form").find('[name][required]').each(function() {
 				var elem = $("#questionnaire form [name=\""+$(this).attr("name")+"\"]");
 				if(!elem.is('[type="radio"]')) {
 					if(elem.is(":hidden")) {
-						elem.remove();
+						console.log(elem.attr("name"));
+						$("#questionnaire form [name=\""+$(this).attr("name")+"\"]:hidden").remove();
 					} else {
-						if(elem.is(":invalid")) { canUpdateCookie = false;  }
+						if(elem.is(":invalid")) {
+							canUpdateCookie = false;
+							if(firstInvalidElem == null) firstInvalidElem = elem;
+						}
 					}
 				}
 			});
+
+			if(!canUpdateCookie && firstInvalidElem != null) {
+				console.log(firstInvalidElem);
+				var eToScroll = firstInvalidElem.closest(".form-group");
+				$('html, body').animate({
+                    scrollTop: eToScroll.offset().top - eToScroll.height()
+                }, 0);
+			}
+			
 			return canUpdateCookie;
 		}
 
+		if(getCookie("readonly") == "true") {
+			$('#questionnaire form [name]').removeAttr("name");
+		}
 		
 		$('a#quit').click(function(e){
 			deleteCookie("indexAspect");
@@ -331,13 +347,18 @@ if(isset($_GET['admin'])) {
 				}
 
 				goToAspect(gotoIndex);
+
+				if(getCookie("readonly") == "true") {
+					document.location = '';
+					return false;
+				}
 			} else {
 				bootbox.hideAll();
 			}
 		});
 	
 		function resizeAspectPanel() {
-			var screenH = $(window).height() - $('nav').outerHeight(true);
+			var screenH = $(window).height() - $('nav').height() - 8;
 			$('#aspects').css({height: screenH+"px"});
 		}
 		
@@ -352,7 +373,7 @@ if(isset($_GET['admin'])) {
 				$("body").css("overflow-y","hidden");
 				$('#aspects').css({display:"block"}).animate({right:0, opacity:1 }, 500, function(){
 					if($('#aspects').scrollTop() == 0) {
-						$('#aspects').animate({scrollTop: $("#aspects .card.cat-active").offset().top + 8 - ($("#aspects .card.cat-active").height()/2) }, 600);
+						$('#aspects').animate({scrollTop: $("#aspects .card.cat-active").offset().top + 8 - ($("#aspects .card.cat-active").height()/2) }, 300);
 					}
 				});
 				$('.modal-backdrop').fadeIn(0).bind("click", function(){
@@ -366,8 +387,13 @@ if(isset($_GET['admin'])) {
     					goToAspect(parseInt($(this).attr("data-index")));
     					$("#questionnaire form").find('[required]').removeAttr("required");
 					}
-					$('#show-aspects').toggleClass("active btn-dark");
-					$('#questionnaire #submitHidden').trigger("click");
+					$("body").css("overflow","auto");
+					$('#show-aspects').removeClass("active btn-dark");
+					if(getCookie("readonly") == "true") {
+						document.location = '';
+					} else {
+						$('#questionnaire #submitHidden').trigger("click");
+					}
 				});
 				resizeAspectPanel();
 			}
@@ -382,7 +408,11 @@ if(isset($_GET['admin'])) {
     			goToAspect(parseInt($(this).attr("data-index")));
     			$("#questionnaire form").find('[required]').removeAttr("required");
 			}
-			$('#questionnaire #submitHidden').trigger("click");
+			if(getCookie("readonly") == "true") {
+				document.location = '';
+			} else {
+				$('#questionnaire #submitHidden').trigger("click");
+			}
 		});
 		
 		$('.binary_comment').on("change", function(){
@@ -425,9 +455,9 @@ if(isset($_GET['admin'])) {
     			elem.trigger("click");
 			}
 		});
-		$('table tbody').on("change", 'input[type="checkbox"]', function(){
+		$('table tbody').on("change", 'input[type="checkbox"][trigger]', function(){
 			var elem = $(this).parent().find('input[name="'+$(this).attr("trigger")+'"][type="hidden"]');
-			if(elem.val() == "0") elem.val("1");
+			if($(this).prop("checked")) elem.val("1");
 			else elem.val("0");
 		});
 
@@ -489,6 +519,23 @@ if(isset($_GET['admin'])) {
 		    }
 		}); 
 
+		// DataSources: data from database -----------------------
+		$('select.dataSource').change(function(){
+			var nextInput = $(this).next("textarea, input");
+			nextInput.toggle($(this).val() == "OTHER");
+			nextInput.focus();
+		}).next("textarea, input").blur(function(){
+			if($(this).val().trim() != "") {
+				$(this).prev("select").remove();
+			} else {
+				if($(this).prev("select").length > 0) {
+    				$(this).prev("select").find("option:first").prop("selected", true);
+    				$(this).hide();
+				}
+			}
+		});
+		// -------------------------------------------------------
+
 		// Filters -----------------------------------------------
 		if($('#filters').length > 0 && $('#filters').val().length > 0) {
 			var jsonFilters = JSON.parse(window.atob($('#filters').val()));
@@ -532,7 +579,7 @@ if(isset($_GET['admin'])) {
 				if(elm.is('[type="radio"]')) {
 					return elm.attr("index") == value.index;
 				}
-				return elm.val();
+				return elm.val() == value.text;
 			}
 		}
 		// -------------------------------------------------------
@@ -589,7 +636,10 @@ if(isset($_GET['admin'])) {
 				
 				if($(this).is("[name]")) {
 					$(this).attr("name", getInputNameForNewRow($(this).attr("name")));
-				} 
+				}
+				if($(this).is("[trigger]")) {
+					$(this).attr("trigger", getInputNameForNewRow($(this).attr("trigger")));
+				}  
 			});
 			newRow.find("td:first").html(parseInt(newRow.find("td:first").text()) + 1);
 			if(tbody.find("tr").length == 1) {
@@ -909,6 +959,12 @@ if(isset($_GET['admin'])) {
 		if($('#version .dropdown-item[auto-detected]').length > 0) {
 			setCookie('version', $('#version .dropdown-item[auto-detected]').attr("version"), <?= LIFE_COOKIE_VERSION ?>);
 		}
+
+		$('body').on('click', '.dropdown .dropdown-item', function(){
+			var bt = $(this).closest('.dropdown').find('.dropdown-toggle');
+			bt.html($(this).text());
+			bt.attr("data-value", $(this).attr("data-value"));
+		});
 		
 		$('body').on('click', '#new-quest, .start-new-quest', function(){
 			var button = $('#new-quest, .start-new-quest');
@@ -942,58 +998,62 @@ if(isset($_GET['admin'])) {
 				if(version == "") {
 					bootbox.alert("<?= $t['alert_choose_quest_version'] ?>");
 				} else {
+					loading();
 					
-					bootbox.confirm({
-					    message: '<p class="pt-2 text-center"><?= $t['confirm-msg-quest-version']?><br><b class="lead font-weight-bold pt-1">'+getCookie("version")+'</b> </p></div>',
-					    buttons: {
-					        confirm: {
-					            label: '<?= $t['start'] ?> <img class="pl-1" src="img/'+getCookie('lang')+'.png">'
-					        },
-					        cancel: {
-					            label: '<?= $t['cancel']?>'
-					        }
-					    },
-					    closeButton:false,
-					    callback: function (result) {
-					        if(result) {
-						        
-					        	loading();
-								
-								initHTML = button.html();
-								button.html('<?= $t['loading']?> <img src="img/loader-score.svg">');
-								$.post('functions/getUniqueName.php', {}, function(html){
-									var json = JSON.parse(html);
-									if(json.filename != "error") {
-										setCookie("filename", json.filename, <?= LIFE_COOKIE_QUEST_PENDING ?>);
-										setCookie("indexAspect", "1", <?= LIFE_COOKIE_QUEST_PENDING ?>);
-										setCookie("expirationQuest", <?= time() + 60*60*24*LIFE_COOKIE_QUEST_PENDING ?>, <?= LIFE_COOKIE_QUEST_PENDING ?>);
-
-										if(getCookie('questsList') == "") {
-											var jsonObj = {
-													"list":[
-														{
-															"filename": json.filename,
-															"version": version
-														}
-													],
-													"expiry": <?= (time() + 60*60*24*LIFE_COOKIE_LIST_QUESTS) ?>
-											};
-											
-										} else {
-											var jsonObj = JSON.parse(getCookie('questsList'));
-											jsonObj['list'].push({"filename":json.filename,"version":version});
-										}
-										setCookie('questsList', JSON.stringify(jsonObj), <?= LIFE_COOKIE_LIST_QUESTS ?>);
-
-										document.location = '?start';
-									} else {
-										bootbox.alert("<?= $t['error_get_unique_name']?>");
-									}
-									//button.html(initHTML);
-								});
-					        }
-					    }
-					});
+					//$.post('pages/setRegionSysProd.php', {}, function(html) {
+						bootbox.hideAll();
+    					bootbox.confirm({
+    					    message: '<p class="pt-2 text-center"><?= $t['confirm-msg-quest-version']?><br><b class="lead font-weight-bold pt-1">'+getCookie("version")+'</b> </p></div>',
+    					    buttons: {
+    					        confirm: {
+    					            label: '<?= $t['start'] ?> <img class="pl-1" src="img/'+getCookie('lang')+'.png">'
+    					        },
+    					        cancel: {
+    					            label: '<?= $t['cancel']?>'
+    					        }
+    					    },
+    					    closeButton:false,
+    					    callback: function (result) {
+    					        if(result) {
+    						        
+    					        	loading();
+    								
+    								initHTML = button.html();
+    								button.html('<?= $t['loading']?> <img src="img/loader-score.svg">');
+    								$.post('functions/getUniqueName.php', {}, function(html){
+    									var json = JSON.parse(html);
+    									if(json.filename != "error") {
+    										setCookie("filename", json.filename, <?= LIFE_COOKIE_QUEST_PENDING ?>);
+    										setCookie("indexAspect", "1", <?= LIFE_COOKIE_QUEST_PENDING ?>);
+    										setCookie("expirationQuest", <?= time() + 60*60*24*LIFE_COOKIE_QUEST_PENDING ?>, <?= LIFE_COOKIE_QUEST_PENDING ?>);
+    
+    										if(getCookie('questsList') == "") {
+    											var jsonObj = {
+    													"list":[
+    														{
+    															"filename": json.filename,
+    															"version": version
+    														}
+    													],
+    													"expiry": <?= (time() + 60*60*24*LIFE_COOKIE_LIST_QUESTS) ?>
+    											};
+    											
+    										} else {
+    											var jsonObj = JSON.parse(getCookie('questsList'));
+    											jsonObj['list'].push({"filename":json.filename,"version":version});
+    										}
+    										setCookie('questsList', JSON.stringify(jsonObj), <?= LIFE_COOKIE_LIST_QUESTS ?>);
+    
+    										document.location = '?start';
+    									} else {
+    										bootbox.alert("<?= $t['error_get_unique_name']?>");
+    									}
+    									//button.html(initHTML);
+    								});
+    					        }
+    					    }
+    					});
+					//});
 
 				}
 			}

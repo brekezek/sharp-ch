@@ -59,153 +59,155 @@
         "1": [
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
-            [
-                {
-                    "answer": true
+            {
+                "0": {
+                    "answer": 1
                 },
-                {
-                    "answer": true
+                "1": {
+                    "answer": 1
                 },
-                {
-                    "answer": false
-                }
-            ]
+                "2": {
+                    "answer": 0
+                },
+                "comment": ""
+            }
         ],
         "2": [
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
-            [
-                {
-                    "answer": false
-                }
-            ]
+            {
+                "0": {
+                    "answer": 0
+                },
+                "comment": ""
+            }
         ],
         "3": {
             "answer": "Un peu"
@@ -221,7 +223,7 @@
                     "answer": 2
                 },
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": 2
@@ -244,12 +246,6 @@
                     "answer": 4
                 },
                 {
-                    "answer": false
-                },
-                {
-                    "answer": 4
-                },
-                {
                     "answer": ""
                 },
                 {
@@ -259,6 +255,12 @@
                     "answer": ""
                 },
                 {
+                    "answer": 4
+                },
+                {
+                    "answer": ""
+                },
+                {
                     "answer": 0
                 }
             ],
@@ -267,7 +269,7 @@
                     "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": ""
                 },
                 {
                     "answer": ""
@@ -290,7 +292,7 @@
                     "answer": 0
                 },
                 {
-                    "answer": false
+                    "answer": ""
                 },
                 {
                     "answer": ""
@@ -313,7 +315,7 @@
                     "answer": 1
                 },
                 {
-                    "answer": false
+                    "answer": ""
                 },
                 {
                     "answer": 1
@@ -336,7 +338,7 @@
                     "answer": ""
                 },
                 {
-                    "answer": false
+                    "answer": ""
                 },
                 {
                     "answer": ""
@@ -358,16 +360,13 @@
         "2": {
             "answer": "Plus de 70h/semaine"
         },
-        "3": {
-            "answer": "Non-applicable"
-        },
         "4": {
             "answer": "Oui, il a pu choisir librement"
         },
         "5": [
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": "repas occasionnel"
@@ -375,7 +374,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -391,12 +390,12 @@
     },
     "PSP_04": {
         "1": {
-            "answer": "Oui"
+            "answer": 1
         },
         "2": [
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": 1
@@ -404,7 +403,7 @@
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": 1
@@ -412,7 +411,7 @@
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": 1
@@ -420,7 +419,7 @@
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": 1
@@ -428,7 +427,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -436,7 +435,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -444,7 +443,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -452,7 +451,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -460,7 +459,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -468,7 +467,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -476,7 +475,7 @@
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": 1
@@ -484,7 +483,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -492,7 +491,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -500,7 +499,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -508,7 +507,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -516,7 +515,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -524,7 +523,7 @@
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": 1
@@ -532,7 +531,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -540,7 +539,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -548,7 +547,7 @@
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": 15
@@ -556,7 +555,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -564,7 +563,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -572,7 +571,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -580,7 +579,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -588,7 +587,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -596,7 +595,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -604,7 +603,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -612,7 +611,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -620,7 +619,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -628,7 +627,7 @@
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": 1
@@ -636,7 +635,7 @@
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": 1
@@ -644,46 +643,47 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
                 }
             ],
-            [
-                {
-                    "answer": false
+            {
+                "0": {
+                    "answer": 0
                 },
-                {
+                "1": {
                     "answer": ""
-                }
-            ]
+                },
+                "comment": ""
+            }
         ],
         "3": {
-            "answer": "Oui",
-            "comment": "cassis\nraisinets\nframboises\nmure\ngroseilles\ncerises\nprunes et pruneaux\npommes poires\nasperges\nrhubarbe"
+            "answer": 1
         },
         "4": [
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
-            [
-                {
-                    "answer": true
-                }
-            ]
+            {
+                "0": {
+                    "answer": 1
+                },
+                "comment": ""
+            }
         ],
         "5": {
             "answer": "Beaucoup"
@@ -694,7 +694,7 @@
     },
     "PSP_05": {
         "1": {
-            "answer": "Non"
+            "answer": 1
         },
         "2": [
             [
@@ -703,12 +703,14 @@
                 },
                 {
                     "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": 0
                 },
                 {
-                    "answer": false
-                },
-                {
-                    "answer": false
+                    "answer": ""
                 }
             ],
             [
@@ -717,12 +719,6 @@
                 },
                 {
                     "answer": ""
-                },
-                {
-                    "answer": false
-                },
-                {
-                    "answer": false
                 }
             ],
             [
@@ -731,12 +727,14 @@
                 },
                 {
                     "answer": ""
+                }
+            ],
+            [
+                {
+                    "answer": 0
                 },
                 {
-                    "answer": false
-                },
-                {
-                    "answer": false
+                    "answer": ""
                 }
             ],
             [
@@ -745,12 +743,6 @@
                 },
                 {
                     "answer": ""
-                },
-                {
-                    "answer": false
-                },
-                {
-                    "answer": false
                 }
             ],
             [
@@ -759,120 +751,82 @@
                 },
                 {
                     "answer": ""
-                },
-                {
-                    "answer": false
-                },
-                {
-                    "answer": false
                 }
             ],
-            [
-                {
+            {
+                "0": {
                     "answer": ""
                 },
-                {
+                "1": {
                     "answer": ""
                 },
-                {
-                    "answer": false
-                },
-                {
-                    "answer": false
-                }
-            ],
-            [
-                {
-                    "answer": ""
-                },
-                {
-                    "answer": ""
-                },
-                {
-                    "answer": false
-                },
-                {
-                    "answer": false
-                }
-            ],
-            [
-                {
-                    "answer": ""
-                },
-                {
-                    "answer": ""
-                },
-                {
-                    "answer": false
-                },
-                {
-                    "answer": false
-                }
-            ]
+                "comment": ""
+            }
         ],
-        "3": [],
+        "3": {
+            "answer": ""
+        },
         "4": {
-            "answer": "Aucune"
+            "answer": ""
         }
     },
     "PSP_07": {
         "1": [
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
-            [
-                {
-                    "answer": false
-                }
-            ]
+            {
+                "0": {
+                    "answer": 0
+                },
+                "comment": ""
+            }
         ],
-        "2": {
+        "5": {
             "answer": ""
         },
-        "3": {
+        "7": {
             "answer": ""
         },
-        "4": [],
-        "5": [],
-        "6": [],
-        "7": [],
-        "8": []
+        "8": {
+            "answer": ""
+        }
     },
     "PSP_03": {
         "1": {
-            "answer": "Non"
+            "answer": 0
         },
         "2": [
             [
@@ -883,7 +837,7 @@
                     "answer": ""
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -900,7 +854,7 @@
                     "answer": ""
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -917,7 +871,7 @@
                     "answer": ""
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -934,7 +888,7 @@
                     "answer": ""
                 },
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -944,7 +898,9 @@
                 }
             ]
         ],
-        "3": [],
+        "3": {
+            "answer": ""
+        },
         "4": {
             "answer": "Nulle"
         }
@@ -1007,14 +963,15 @@
                     "answer": "Pas applicable"
                 }
             ],
-            [
-                {
+            {
+                "0": {
                     "answer": "Pas applicable"
                 },
-                {
+                "1": {
                     "answer": "Pas applicable"
-                }
-            ]
+                },
+                "comment": ""
+            }
         ],
         "2": {
             "answer": "Beaucoup"
@@ -1022,33 +979,22 @@
         "3": {
             "answer": "Moyenne"
         },
-        "4": [],
-        "5": []
+        "4": {
+            "answer": ""
+        },
+        "5": {
+            "answer": ""
+        }
     },
     "PSP_09": {
         "1": {
-            "answer": "Oui"
-        },
-        "2": {
-            "answer": "isuela pour ips"
-        },
-        "3": {
-            "answer": "tout le blé si ce melange entre dans la categorie"
-        },
-        "4": {
-            "answer": "label.   prix.  extenso.  reduction risque maladie"
-        },
-        "5": {
-            "answer": "Oui"
+            "answer": "Non"
         },
         "6": {
             "answer": "Je ne sais pas"
         },
         "7": {
             "answer": ""
-        },
-        "8": {
-            "answer": "Non"
         },
         "9": {
             "answer": ""
@@ -1059,8 +1005,6 @@
         "11": {
             "answer": ""
         },
-        "12": [],
-        "13": [],
         "14": {
             "answer": "Beaucoup"
         },
@@ -1101,19 +1045,20 @@
     },
     "PSP_11": {
         "1": {
-            "answer": "Oui"
+            "answer": 1
         },
         "2": {
             "answer": [
                 "Gel",
                 "Grêle",
                 "Autre précisez)"
-            ]
+            ],
+            "comment": ""
         },
         "3": [
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": "peu problematique vu les activites annexes et la diversite "
@@ -1121,7 +1066,7 @@
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
                     "answer": "assurance grele"
@@ -1129,15 +1074,15 @@
             ]
         ],
         "4": {
-            "answer": "Non"
+            "answer": 0
         },
         "5": {
-            "answer": []
+            "comment": ""
         },
         "6": [
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""
@@ -1145,7 +1090,7 @@
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 },
                 {
                     "answer": ""

@@ -172,5 +172,13 @@
     "msg-ie": "You are using Internet Explorer. Even if you use one of the latest versions, this type of browser often does not implement many new technologies, already widely used. Although we strive to make this site compatible with most browsers, some features may not be available or restricted. If you want to take full advantage of the features of this site and the new technologies of the web in general, we advise you to install a more efficient browser and always at the cutting edge of technology, such as",
     "choose_lang": "Choose the language",
     "version_quest": "Questionnaire version",
-    "add": "Add"
+    "add": "Add",
+    "del": "Del.",
+    "brut_file": "Raw files (JSON)",
+    "csv_answer_file": "Answers by questions (CSV)",
+    "view-participant": "View the participant",
+    "filter_label_date": "Show only the quest. collected between the following dates:",
+    "date": "Date",
+    "filter_label_title": "Origin",
+    "edit-mode": "Edition mode"
 }

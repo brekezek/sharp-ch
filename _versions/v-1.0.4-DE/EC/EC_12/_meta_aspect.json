@@ -1,5 +1,24 @@
 {
-	"title":"Einkommen generierende Aktivitäten außerhalb des Betriebs",
-	"id":"EC_12",
-	"img":""
+    "title": "Einkommen generierende Aktivitäten außerhalb des Betriebs",
+    "id": "EC_12",
+    "img": "",
+    "filters": [
+        {
+            "scope": [
+                2,
+                3,
+                4
+            ],
+            "dependencies": [
+                {
+                    "lookAt": "self.1",
+                    "expectedAnswer": {
+                        "type": "choices",
+                        "index": 3
+                    },
+                    "action": "hide"
+                }
+            ]
+        }
+    ]
 }

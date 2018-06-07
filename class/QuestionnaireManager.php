@@ -14,7 +14,7 @@ class QuestionnaireManager {
 		$this->aspects = array();
 		$this->currentIndex = 1;
 		$this->filename = $_COOKIE['filename'];
-		$this->readonly = false;
+		$this->readonly = isset($_COOKIE['readonly']) && $_COOKIE['readonly'] == "true";
 		
 		$this->collectAnswers();
 		$this->parseVersion();
@@ -95,7 +95,8 @@ class QuestionnaireManager {
 	}
 	
 	public function collectAnswers() {
-	    if($this->readonly) return;
+	    if($this->readonly == true || (isset($_COOKIE['readonly']) && $_COOKIE['readonly'] == "true"))
+	        return;
 	    
 		if(!$this->readonly && isset($_POST['answers'])) {
 		   // echo '<h1>Ecriture</h1>';
@@ -128,6 +129,7 @@ class QuestionnaireManager {
 				        $stmt->execute();
 				        $stmt->bind_result($pid);
 				        $stmt->fetch();
+				        $stmt->close();
 				        
 				        if(!empty($pid)) {
 				            $lastname = strtolower(trim($this->optADM(2)));
@@ -135,10 +137,13 @@ class QuestionnaireManager {
 				            $region = $this->optADM(9);
 				            $commune = $this->optADM(10);
 				            
+				            // echo $region;
+				            
                             $stmt = null;	
 				            if ($stmt = $mysqli->prepare("UPDATE participants SET firstname=?, lastname=?, region=?, commune=? WHERE pid=?")) {
 				                $stmt->bind_param("sssss", $firstname, $lastname, $region, $commune, $pid);
 				                $stmt->execute();
+				                $stmt->close();
 				            } 
 				        }
 				    }

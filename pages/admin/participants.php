@@ -19,10 +19,7 @@ include_once("login.redirect.php");
 
 
 <?php
-function optInfoAdm($json, $index) {
-    return (isset($json['ADM_01'][$index]['answer'])) ?
-    remAccent(trim($json['ADM_01'][$index]['answer'])) : "";
-}
+
 
 $sqlCond = "p.deleted IS NULL OR p.deleted = 0";
 if(isset($_GET['display']) && $_GET['display'] == "archive") {
@@ -276,13 +273,15 @@ if($stmt = $mysqli->query("SELECT pid FROM participants WHERE deleted=1")) {
 				modal.find('button#submit').removeAttr("disabled");
 				
 				modal.find('form').on("submit", function(){
+					
 					if(pid == "undefined") saveFromModalForm(type);
 					else saveFromModalForm(type, pid);
 					$(this).off("submit");
+					
 					return false;
 				});
 				modal.find('button#submit').on("click", function(){
-					modal.find('form').trigger("submit");
+					modal.find('form input[type="submit"]').trigger("click");
 					$(this).off("click");
 				});
 				

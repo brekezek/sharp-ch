@@ -76,7 +76,6 @@ function evalScoreForQuestion($category, $numQuest, $answer) {
 		
 		// ------------------------------------------
 		case "table":
-
 			if(isset($json['scoring']) && $scoring == "special") {
 				$score = processTableSpecial($answer, $scoringType, $scoring, $json, $questId);
 			} else {
@@ -98,6 +97,7 @@ function evalScoreForQuestion($category, $numQuest, $answer) {
 						
 						$scoreQuestion = processTable($answer, $col['type'], $col['scoring'], $col, $indexCol, $questId);
 						//echo $category.".".$numQuest."[".$indexCol."] = ".$scoreQuestion."<br>";
+						
 						if($scoreQuestion >= 0)
 							$nbScoredCols++;
 						

@@ -20,7 +20,9 @@ $pages = array(
     
     "participants" => array("page" => "participants.php", "padding" => false, "title" => $t['participants']),
     "json-editor" => array("page" => "edit-aspect.php", "padding" => true, "title" => $t['edit-aspect']),
-    "translate" => array("page" => "translations.php", "padding" => false, "title" => $t['translations'])
+    "translate" => array("page" => "translations.php", "padding" => false, "title" => $t['translations']),
+    
+    "retrieve-quest" => array("page" => "retrieve-quest-android.php", "padding" => false, "title" => "Questionnaires collectés")
 );
 $pagesKeys = array_keys($pages);
 
@@ -43,11 +45,11 @@ function getInfoPage($idx) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	
+
 	<?php if(!is_array($_SERVER['QUERY_STRING'])) {?><base href="<?= ($_SERVER['SERVER_NAME'] == "localhost") ? "/sharp-site/" : getBase() ?>"><?php } ?>
 	
-	<!-- Fonts -->
-	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
-	
+
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link href="open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet">
@@ -91,6 +93,9 @@ function getInfoPage($idx) {
 	
 	<title>SHARP - <?= getInfoPage($idxPage) ?></title>
 	<link rel="shortcut icon" href="img/favicon.png">
+	<?php if($_SERVER['SERVER_NAME'] != "localhost") {?>
+	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
+	<?php } ?>
 </head>
 <body>
 	
@@ -133,8 +138,8 @@ function getInfoPage($idx) {
            
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
               <span><?= $t['gestion'] ?></span>
-            
             </h6>
+            
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
                 <a class="nav-link <?= $idxPage == $pagesKeys[1] ? "active" : "" ?>" href="admin/dashboard/<?= $pagesKeys[1] ?>">
@@ -156,8 +161,20 @@ function getInfoPage($idx) {
                   <?= getInfoPage($pagesKeys[3])?>
                 </a>
               </li>
-              
             </ul>
+            
+            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+              <span>Application tablette</span>
+            </h6>
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link <?= $idxPage == $pagesKeys[4] ? "active" : "" ?>" href="admin/dashboard/<?= $pagesKeys[4] ?>">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <?= getInfoPage($pagesKeys[4]) ?>
+                </a>
+              </li>
+            </ul>
+            
           </div>
         </nav>
         

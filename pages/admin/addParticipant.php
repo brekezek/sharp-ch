@@ -15,6 +15,8 @@ if($logged) {
     $cluster = "";
     $atelier = "";
     $email = "";
+    $ktidb = "";
+    $ofs = "";
     
     if(isset($_POST['action'])) {
         if($_POST['action'] == "save") {
@@ -27,20 +29,20 @@ if($logged) {
                     $hashSet[$set[0]] = $set[1];
                 }
                 
-                $bindParamType = "sssiis";
+                $bindParamType = "sssiisss";
                 if(isset($_POST['pid'])) {
                     $pid = intval($_POST['pid']);
-                    $query = "UPDATE participants SET firstname=?, lastname=?, commune=?, cluster=?, rid=?, email=? WHERE pid=?";
+                    $query = "UPDATE participants SET firstname=?, lastname=?, commune=?, cluster=?, rid=?, email=?, ktidb=?, ofs=? WHERE pid=?";
                     $bindParamType .= "i";
                 } else {
-                    $query = "INSERT INTO participants (firstname, lastname, commune, cluster, rid, email) VALUES(?,?,?,?,?,?)";
+                    $query = "INSERT INTO participants (firstname, lastname, commune, cluster, rid, email, ktidb, ofs) VALUES(?,?,?,?,?,?,?,?)";
                 }
                 
                 if($stmt = $mysqli->prepare($query)) {
                     if(isset($_POST['pid'])) {
-                        $stmt->bind_param($bindParamType, $hashSet['firstname'], $hashSet['lastname'], $hashSet['commune'], $hashSet['psid'], $hashSet['rid'], $hashSet['email'], $pid);
+                        $stmt->bind_param($bindParamType, $hashSet['firstname'], $hashSet['lastname'], $hashSet['commune'], $hashSet['psid'], $hashSet['rid'], $hashSet['email'], $hashSet['ktidb'], $hashSet['ofs'], $pid);
                     } else {
-                        $stmt->bind_param($bindParamType, $hashSet['firstname'], $hashSet['lastname'],  $hashSet['commune'], $hashSet['psid'], $hashSet['rid'], $hashSet['email']);
+                        $stmt->bind_param($bindParamType, $hashSet['firstname'], $hashSet['lastname'],  $hashSet['commune'], $hashSet['psid'], $hashSet['rid'], $hashSet['email'], $hashSet['ktidb'], $hashSet['ofs']);
                     }
                     $stmt->execute();
                 }
@@ -58,20 +60,22 @@ if($logged) {
                 $village = $row['commune'];
                 $cluster = $row['cluster'];
                 $email = $row['email'];
+                $ktidb = $row['ktidb'];
+                $ofs = $row['ofs'];
             }
             ?>
-            <form>
+            <form method="post" action="#">
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                        		<label for="recipient-name" class="col-form-label"><?= $t['firstname']?></label>
-                        	<input type="text" class="form-control text-capitalize" name="firstname" required value="<?= $firstname ?>">
+                        	<input type="text" class="form-control text-capitalize" name="firstname" pattern="[a-zA-Z]+" maxlength="50" required value="<?= $firstname ?>">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                         	<label for="recipient-name" class="col-form-label"><?= $t['lastname']?></label>
-                        	<input type="text" class="form-control text-capitalize" name="lastname" required value="<?= $lastname ?>">
+                        	<input type="text" class="form-control text-capitalize" name="lastname" pattern="[a-zA-Z]+" maxlength="50" required value="<?= $lastname ?>">
                         </div>
                     </div>
                 </div>
@@ -79,15 +83,31 @@ if($logged) {
             	<div class="row">
             		<div class="col">
                         <div class="form-group">
-                    	    <label for="recipient-name" class="col-form-label"><?= $t['village']?></label>
-                        	<input type="text" class="form-control text-capitalize" name="commune" value="<?= $village ?>">
+                    	    <label for="commune" class="col-form-label"><?= $t['village']?></label>
+                        	<input type="text" class="form-control text-capitalize" name="commune" maxlength="100" value="<?= $village ?>">
                         </div>
                     </div>
                     
                     <div class="col">
                         <div class="form-group">
                        	 	<label for="email" class="col-form-label"><?= $t['email']?></label>
-                        	<input type="text" class="form-control" name="email" value="<?= $email ?>">
+                        	<input type="email" class="form-control" name="email" value="<?= $email ?>" maxlength="60">
+                        </div>
+                   </div>
+            	</div>
+            	
+            	<div class="row">
+            		<div class="col">
+                        <div class="form-group">
+                    	    <label for="ktidb" class="col-form-label">ktidb</label>
+                        	<input type="text" class="form-control text-capitalize" pattern="([A-Z]){2}([0-9]){8}" maxlength="10" name="ktidb" value="<?= $ktidb ?>">
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="form-group">
+                       	 	<label for="ofs" class="col-form-label">ofs</label>
+                        	<input type="number" class="form-control" name="ofs" maxlength="4" value="<?= $ofs ?>">
                         </div>
                    </div>
             	</div>
@@ -126,7 +146,7 @@ if($logged) {
             	
             	
 
-            	<input type="submit" value="" style="opacity:0; overflow:hidden; width:0px; height:0px; position:absolute">
+            	<input type="submit" value="" style="opacity:0; width:0px; height:0px; position:absolute">
             </form>
          <?php
         }

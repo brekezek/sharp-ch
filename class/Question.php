@@ -23,6 +23,7 @@ abstract class Question implements iQuestion {
 	protected $inputType;
 	protected $htmlAttrs;
 	protected $enabled;
+	protected $dataSource;
 	
 	function __construct($index, $json) {
 		$this->index = $index;
@@ -43,7 +44,25 @@ abstract class Question implements iQuestion {
 		$this->isInTable = false;
 		$this->readonly = false;
 		$this->enabled = true;
+
 	}
+	/*
+	protected function bindDataSource($dataSource) {
+	    global $mysqli,$t;
+	    $lang = getLang();
+	    $text = str_replace("%lang", $lang, $dataSource['text']);
+	    $id = $dataSource['id'];
+	    $table = $dataSource['table'];
+	    
+	    $this->dataSource = '<select class="dataSource form-control w-100 rounded mb-1" name="'.$this->inputName.'" id="'.$this->uid.'" '.($this->isMandatory() ? "required" : "").' '.($this->readonly ? "disabled" : "").' '.$this->scoredAttr().$this->getAdditionnalHTMLAttributes().'>';
+	    $this->dataSource .= '<option style="color:#ddd">'.$t['choose...'].'</option>';
+	    $this->dataSource .= '<option class="bg-success text-white text-capitalize" value="OTHER">'.$t['other'].'</option>';
+	    foreach($mysqli->query("SELECT ".$text.", ".$id." FROM ".$table." ORDER BY ".$text) as $item) {
+	        $this->dataSource .= '<option '.( (strtolower($this->getAnswer()) == strtolower($item[$text])) ? 'selected' : '').' value="'.$item[$id].'">'.$item[$text]."</option>";
+	    }
+	    $this->dataSource .= '</select>';
+	}
+	*/
 	
 	public function setAspectId($id) {
 		$this->aspectId = $id;

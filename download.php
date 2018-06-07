@@ -26,7 +26,7 @@ switch($ext) {
 	case 'zip': $mime = 'application/zip'; break;
 	case 'jpeg':
 	case 'jpg': $mime = 'image/jpg'; break;
-	case 'csv': $mime = 'text/csv'; break;
+	case 'csv': $mime = 'text/csv; charset=UTF-8'; break;
 	default: exit();
 }
 
@@ -39,6 +39,9 @@ header('Expires: 0');		// no cache
 header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 header('Last-Modified: '.gmdate ('D, d M Y H:i:s', filemtime ($file_name)).' GMT');
 header('Cache-Control: private',false);
+if($ext == "csv") {
+    header('Content-Encoding: UTF-8');
+}
 header('Content-Type: '.$mime);
 header('Content-Disposition: attachment; filename="'.$name.'"');
 header('Content-Transfer-Encoding: binary');

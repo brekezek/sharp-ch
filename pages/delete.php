@@ -56,6 +56,7 @@ if($logged) {
             $sql = "UPDATE questionnaires SET deleted=".$deleteFlag." WHERE file=?";
             if($definitive) {
                 $sql = "DELETE FROM questionnaires WHERE file=?";
+                $sqlScores = "DELETE FROM scores WHERE qid=(SELECT qid FROM questionnaires WHERE file='".$file."' LIMIT 1)";
             }
             if($stmt = $mysqli->prepare($sql)) {
                 foreach($data as $file) {
@@ -73,6 +74,9 @@ if($logged) {
                 $stmt->close();
                 $stmt = null;
                 
+                if($definitive) {
+                    $mysqli->query($sqlScores);
+                }
                 
             } else {
                 echo $mysqli->error;

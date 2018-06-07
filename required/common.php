@@ -149,6 +149,11 @@ function scanAllDir($dir) {
   return $result;
 }
 
+function optInfoAdm($json, $index) {
+    return (isset($json['ADM_01'][$index]['answer'])) ?
+    remAccent(trim($json['ADM_01'][$index]['answer'])) : "";
+}
+
 function getColor($colorName) {
 	global $colors;
 	return $colors[$colorName];

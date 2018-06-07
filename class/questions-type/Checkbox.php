@@ -22,10 +22,10 @@ class Checkbox extends Question {
 		$html .=
 		'<div class="custom-control custom-checkbox custom-control-inline mr-0">'.
 			'<input type="checkbox" id="'.$this->uid.'" trigger="'.$this->inputName.'"
-                '.($this->readonly ? "disabled" : "").' '.parent::scoredAttr().' '.parent::getAdditionnalHTMLAttributes().' '.
+                '.($this->readonly ? "disabled" : '').' '.parent::scoredAttr().' '.parent::getAdditionnalHTMLAttributes().' '.
                 'class="custom-control-input" '.($this->isTrue(parent::getAnswer()) ? "checked" : "").'>'.
 			'<label type="checkbox" class="custom-control-label" for="'.$this->uid.'"></label>'.
-			'<input type="hidden" value="'.$answer.'" name="'.$this->inputName.'"> '.
+			'<input type="hidden" value="'.$answer.'" '.($this->readonly ? '' : 'name="'.$this->inputName.'"').'> '.
 		'</div>';
 		
 

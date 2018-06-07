@@ -40,9 +40,8 @@ class MultipleMultiple extends MultipleOne {
 				$displayed = $this->comment != "" || $otherSelected;
 				
 				$html .= '<textarea 
-                         '.($this->readonly ? "readonly" : "").' '.
+                         '.($this->readonly ? "readonly" : 'name="'.$this->inputName.'"').' '.
                          parent::getAdditionnalHTMLAttributes().' 
-						 name="'.$this->inputName.'" 
 						 id="'.$this->uid.'" 
 						 placeholder="'.(trim($this->placeholder) == "" ? $t['other_placeholder'] : $this->placeholder).'" 
 						 class="form-control w-100 rounded mt-1" 

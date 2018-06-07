@@ -172,5 +172,13 @@
     "msg-ie": "Sie verwenden den Internet Explorer. Selbst wenn Sie eine der neuesten Versionen verwenden, implementiert dieser Browsertyp häufig nicht viele neue Technologien, die bereits weit verbreitet sind. Obwohl wir uns bemühen, diese Website mit den meisten Browsern kompatibel zu machen, sind einige Funktionen möglicherweise nicht verfügbar oder eingeschränkt. Wenn Sie die Funktionen dieser Website und die neuen Technologien des Internets in vollem Umfang nutzen möchten, empfehlen wir Ihnen, einen effizienteren Browser zu installieren und immer auf dem neuesten Stand der Technik zu sein, wie z. B.",
     "choose_lang": "Wählen Sie die Sprache",
     "version_quest": "Fragebogenversion",
-    "add": "Hinzufügen"
+    "add": "Hinzufügen",
+    "del": "Entf.",
+    "brut_file": "Rohdateien (JSON)",
+    "csv_answer_file": "Antworten auf Fragen (CSV)",
+    "view-participant": "Zeigen Sie den Teilnehmer an",
+    "filter_label_date": "Zeige nur die Quest. gesammelt zwischen den folgenden Daten:",
+    "date": "Datum",
+    "filter_label_title": "Ursprung",
+    "edit-mode": "Editionsmodus"
 }
