@@ -826,69 +826,69 @@
     },
     "PSP_03": {
         "1": {
-            "answer": 0
+            "answer": 1
         },
         "2": [
             [
                 {
-                    "answer": ""
+                    "answer": "test"
                 },
                 {
-                    "answer": ""
+                    "answer": 1
                 },
                 {
-                    "answer": 0
+                    "answer": 1
                 },
                 {
-                    "answer": ""
+                    "answer": "te"
                 },
                 {
-                    "answer": ""
+                    "answer": "s"
                 }
             ],
             [
                 {
-                    "answer": ""
+                    "answer": "das"
                 },
                 {
-                    "answer": ""
+                    "answer": 2
                 },
                 {
-                    "answer": 0
+                    "answer": 1
                 },
                 {
-                    "answer": ""
+                    "answer": "dasda"
                 },
                 {
-                    "answer": ""
+                    "answer": "dadsa"
                 }
             ],
             [
                 {
-                    "answer": ""
+                    "answer": "fsdfsdf"
                 },
                 {
-                    "answer": ""
+                    "answer": 5
                 },
                 {
                     "answer": 0
                 },
                 {
-                    "answer": ""
+                    "answer": "a"
                 },
                 {
-                    "answer": ""
+                    "answer": "g"
                 }
             ],
             [
                 {
-                    "answer": ""
+                    "answer": "fds"
                 },
                 {
                     "answer": ""
                 },
                 {
-                    "answer": 0
+                    "answer": 1
                 },
                 {
                     "answer": ""
@@ -902,7 +902,7 @@
             "answer": ""
         },
         "4": {
-            "answer": "Nulle"
+            "answer": ""
         }
     },
     "PSP_08": {
@@ -1014,28 +1014,58 @@
     },
     "PSP_10": {
         "1": {
-            "answer": "Oui"
-        },
-        "2": {
-            "answer": "environ 6"
-        },
-        "3": {
-            "answer": "Oui"
-        },
-        "4": {
-            "answer": [
-                "Produits alimentaires (personnes)"
-            ]
+            "answer": 0
         },
         "5": {
             "answer": "1-10 %"
         },
-        "6": {
-            "answer": "question pas claire. il s agit toute d espece fruits et petits fruits a priori naturel mais pas de sauvage "
-        },
-        "7": {
-            "answer": []
-        },
+        "7": [
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ]
+        ],
         "8": {
             "answer": "Complètement"
         },
@@ -1269,88 +1299,139 @@
     },
     "PSP_14": {
         "1": {
-            "answer": "Oui"
+            "answer": 1
         },
         "2": {
-            "answer": "Oui"
+            "answer": 1
         },
-        "3": {
-            "answer": [
-                "Augmentation des précipitations",
-                "Diminution des précipitations",
-                "Plus grande variabilité des précipitations",
-                "Augmentation de la température",
-                "Arrivée du printemps précoce",
-                "Infestation inhabituelle d'animaux nuisibles",
-                "Sécheresse inhabituelle",
-                "Autre (précisez)"
+        "3": [
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "label": "Autre",
+                    "answer": 1
+                }
             ]
-        },
+        ],
         "4": {
             "answer": "cout. eau et travail supplémentaire pour l arrosage.  cas suzoukii impliquant des pertes de récolte jusqu a 80-90%.  gel sur fleurs  idem"
         },
-        "5": [],
         "6": {
-            "answer": "Oui"
+            "answer": 1
         },
         "7": {
             "answer": "apps de meteo suisse surtout  jugee tres bonne et curiosite sur les autres interessante aussi comme Landi meteo ou syngenta ou autre a plus de 5 jours"
         },
         "8": {
-            "answer": "Oui"
+            "answer": 1
         },
         "9": [
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
-            [
-                {
-                    "answer": true
-                }
-            ]
+            {
+                "0": {
+                    "answer": 1
+                },
+                "comment": ""
+            }
         ],
         "10": {
-            "answer": "Oui"
+            "answer": 1
         },
         "11": {
-            "answer": "Oui"
+            "answer": 1
         },
         "12": {
             "answer": "Trois sources ou +"
@@ -1374,64 +1455,65 @@
     },
     "PSP_16": {
         "1": {
-            "answer": "Oui"
+            "answer": 1
         },
         "2": [
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": false
+                    "answer": 0
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
-            [
-                {
-                    "answer": false
-                }
-            ]
+            {
+                "0": {
+                    "answer": 0
+                },
+                "comment": ""
+            }
         ],
         "3": {
             "answer": "Moyennement"
@@ -1444,43 +1526,65 @@
         "1": [
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ],
             [
                 {
-                    "answer": true
+                    "answer": 1
                 },
                 {
-                    "answer": true
+                    "answer": 1
                 }
             ]
         ],
         "2": {
             "answer": "Toujours"
         },
-        "3": {
-            "answer": [
-                "Lunettes de protection",
-                "Gants",
-                "Veste"
+        "3": [
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "label": "test",
+                    "answer": 1
+                }
             ]
-        },
+        ],
         "4": {
             "answer": [
                 "Jetés à la poubelle"
-            ]
+            ],
+            "comment": ""
         },
         "5": {
             "answer": "Beaucoup"
@@ -1605,7 +1709,8 @@
             "answer": [
                 "Paillage",
                 "Irrigation goutte à goutte"
-            ]
+            ],
+            "comment": ""
         },
         "2": {
             "answer": "Moyennement"
@@ -1750,7 +1855,7 @@
             "answer": "Moyenne"
         },
         "4": {
-            "answer": "Non"
+            "answer": 0
         },
         "5": {
             "answer": "Moyennement"
@@ -1759,7 +1864,7 @@
             "answer": "Moyennement"
         },
         "7": {
-            "answer": "Non"
+            "answer": 0
         },
         "8": {
             "answer": ""
@@ -3549,5 +3654,32 @@
     "meta": {
         "version": "v-1.0.6-FR",
         "filename": "uuid_0f11fe78-8f79-44d1-beed-ac7b79673ffb_answer_4.json"
-    }
+    },
+    "0": [
+        [
+            [
+                {
+                    "label": ""
+                }
+            ]
+        ]
+    ],
+    "1": [
+        [
+            [
+                {
+                    "label": "savon"
+                }
+            ]
+        ]
+    ],
+    "2": [
+        [
+            [
+                {
+                    "label": "sultan"
+                }
+            ]
+        ]
+    ]
 }

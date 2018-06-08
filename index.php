@@ -450,7 +450,7 @@ if(isset($_GET['admin'])) {
 			}
 		});
 		$('table[data-type="toggle"] tbody').on('click', 'tr', function(e){
-			if(!$(e.target).is('label')) {
+			if(!$(e.target).is('label') && !$(e.target).is(".delete-row") && !$(e.target).is('input')) {
     			var elem = $(this).find('label[type="checkbox"]');
     			elem.trigger("click");
 			}
@@ -590,7 +590,14 @@ if(isset($_GET['admin'])) {
 		$('table.dynamic-table').on("click", '.delete-row', function(){
 			var elm = $(this);
 			var row = $(this).closest("tr");
-			if(row.find("[trigger-display]").find("input, select, textarea").first().val() == "") {
+
+			if(row.find("[trigger-display]").length > 0) {
+				var firstInput = row.find("[trigger-display]").find("input, select, textarea").first();
+			} else {
+				var firstInput = row.find("input, select, textarea").first();
+			}
+			
+			if(firstInput.is('[type="checkbox"]') || firstInput.val() == "") {
 				removeRowFromDynamicTable(row);
 			} else {
     			row.addClass("bg-secondary text-white");
@@ -623,6 +630,7 @@ if(isset($_GET['admin'])) {
 			var newIndexRow = newRow.attr("indexRow")+newRow.index();
 			newRow.attr("indexRow", newIndexRow);
 			newRow.find("[trigger-display]").attr("trigger-display", newIndexRow).nextAll("td").find('.display-manager').hide();
+			
 			newRow.find('input, select, textarea').each(function(){
 				if($(this).is('[type="radio"], [type="checkbox"]')) {
 					$(this).prop("checked", false);
@@ -633,7 +641,7 @@ if(isset($_GET['admin'])) {
 				} else {
 					$(this).val("");
 				}
-				
+
 				if($(this).is("[name]")) {
 					$(this).attr("name", getInputNameForNewRow($(this).attr("name")));
 				}
@@ -641,11 +649,22 @@ if(isset($_GET['admin'])) {
 					$(this).attr("trigger", getInputNameForNewRow($(this).attr("trigger")));
 				}  
 			});
-			newRow.find("td:first").html(parseInt(newRow.find("td:first").text()) + 1);
-			if(tbody.find("tr").length == 1) {
-				newRow.find(".delete-row").removeClass("d-none");
+
+
+			if(!Number.isNaN(parseInt(newRow.find("td:first").text()))) {
+				newRow.find("td:first").html(parseInt(newRow.find("td:first").text()) + 1);
+			} else {
+				var newInputName = newRow.find('input[name], select[name], textarea[name]').first().attr("name").replace("[answer]", "[label]");
+				newRow.find("td:first").html('<input required type="text" name="'+newInputName+'" class="newInput form-control w-100 rounded" placeholder="<?= $t['other_specify'] ?>">');	
 			}
+			
+			newRow.find(".delete-row").removeClass("d-none");
+			
 			tbody.append(newRow);
+
+			if(tbody.find("tr:last td:first").find("input.newInput").length > 0) {
+				tbody.find("tr:last td:first").find("input.newInput").focus();
+			}
 
 			if(tbody.find('tr').length > maxRowInDynamicTable) {
 				$(this).parents("tfoot").hide();

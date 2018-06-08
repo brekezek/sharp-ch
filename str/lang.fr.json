@@ -181,5 +181,6 @@
     "jours": "jours",
     "selected": "sélectionnés",
     "sharp_meaning": "Évaluation et renforcement de la résilience des systèmes agricoles",
-    "text-aspect-filter-group-and":"Un filtre à plusieurs conditions (impliquant %s) est appliqué."
+    "text-aspect-filter-group-and":"Un filtre à plusieurs conditions (impliquant %s) est appliqué.",
+    "other_specify":"Autre: précisez"
 }

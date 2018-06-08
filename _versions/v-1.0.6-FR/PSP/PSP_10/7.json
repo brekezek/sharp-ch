@@ -1,25 +1,39 @@
 {
-	"question-type":"multiple_multiple_solution",
-	"scoring-type":"academic",
-	"scoring":"by-entries",
-	"scoring-grid":[
-		{"0-0":0},
-		{"1-1":7},
-		{"2-+":10}
-	],
-	"title":"Quelle utilisation faites-vous des produits provenant de ces arbres spontanés/naturels?",
-	"choices": 
-		[
-			"Bois de chauffage",
-			"Bois pour les matériaux de construction",
-			"Arbres pour l'ombre",
-			"Produits alimentaires (pour animaux)",
-			"Produits alimentaires (personnes)",
-			"Fertilisants",
-			"Remèdes naturels (animaux)",
-			"Remèdes naturels (personnes)",
-			"Produits pour la protection des cultures",
-			"_OTHER_INPUT::Autre précisez)"
-		],
-	"indicateur":[11]
+    "question-type": "table",
+    "dynamic-table": true,
+    "scoring-type": "academic",
+    "title": "Quelle utilisation faites-vous des produits provenant de ces arbres spontanés/naturels?",
+    "lines": [
+        "Bois de chauffage",
+        "Bois pour les matériaux de construction",
+        "Arbres pour l'ombre",
+        "Produits alimentaires (pour animaux)",
+        "Produits alimentaires (personnes)",
+        "Fertilisants",
+        "Remèdes naturels (animaux)",
+        "Remèdes naturels (personnes)",
+        "Produits pour la protection des cultures"
+    ],
+    "columns": [
+        {
+            "title": "Cochez",
+            "type": "toggle",
+            "scoring": "by-entries",
+            "scoring-grid": [
+                {
+                    "0-0": 0
+                },
+                {
+                    "1-1": 7
+                },
+                {
+                    "2-+": 10
+                }
+            ]
+        }
+    ],
+    "indicateur": [
+        11
+    ],
+    "mandatory": "false"
 }

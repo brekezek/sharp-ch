@@ -5,14 +5,22 @@ class Table extends Question {
 	private $equivQuestionType;
 	private $dependencesAnswers = array();
 	private $dynamicTable = false;
+	private $rowsAreAllInteger;
+	private $origRowNum;
 	
 	function __construct($index, $json) {
 		parent::__construct($index, $json);
 		
 		$this->dynamicTable = isset($this->jsonQuestion['dynamic-table']) ? $this->jsonQuestion['dynamic-table'] : false;
 		
+		
 		$this->rows = getChoices($json['lines']);
 		$this->columns = $json['columns'];
+		$this->origRowNum = count($this->rows);
+		
+		$rowsNotInteger = array_filter($this->rows, function($row){ return !is_numeric($row); });
+		$this->rowsAreAllInteger = count($rowsNotInteger) == 0;
+		
 		
 		$this->equivQuestionType = array(
 			"binary" => "binary_answer",
@@ -40,8 +48,13 @@ class Table extends Question {
 		}
 		
 		if($this->dynamicTable && count($this->jsonAnswer) > count($this->rows)) {
-		    $this->rows = array_unique(array_merge($this->rows, array_map(function($item){ return $item+1; }, array_keys($this->jsonAnswer))));
-		}
+		    if($this->rowsAreAllInteger) {
+		        $this->rows = array_unique(array_merge($this->rows, array_map(function($item){ return $item+1; }, array_keys($this->jsonAnswer))));
+		    } else {
+		        $labelsAdditionnals = array_map(function($item) { return $item[0]['label']; }, $this->jsonAnswer);
+		        $this->rows = array_merge($this->rows, array_slice($labelsAdditionnals, count($this->rows)));
+		    }
+		} 
 		
 		$html .= '<table class="table table-striped '.($this->readonly ? '' : 'table-hover').' '.($this->dynamicTable ? "dynamic-table" : "").'" '.$uniq_data_type.'>
 		  <thead>
@@ -65,8 +78,16 @@ class Table extends Question {
 				
 				$html .= '<tr '.($isOther ? "other" : "").' indexRow="'.$this->uid."_".$indexRow.'">';
 				
-					$html .= '<td class="align-middle border-right '.($isOther ? "border-bottom" : "").'">'.$row.'</td>';
+				
+					$html .= '<td class="align-middle border-right '.($isOther ? "border-bottom" : "").'">';
+					if($indexRow < $this->origRowNum || $this->rowsAreAllInteger) {
+					   $html .= $row;
+					} else {
+					   $html .= '<input type="text" value="'.$row.'" placeholder="'.$t['other_specify'].'" required class="form-control w-100 rounded newInput" name="answers['.$this->aspectId.']['.$this->index.']['.$indexRow.'][0][label]">';
+					}
+					$html .= '</td>';
 					
+				
 					foreach($this->columns as $indexCol => $col) {
 						$json = $col;
 						$json['question-type'] = $this->equivQuestionType[$col['type']];
@@ -153,8 +174,14 @@ class Table extends Question {
 					}
 					
 					if($this->dynamicTable && !$this->readonly) {
-					    $html .= '<td class="border-bottom">';
-					    $html .= '<button type="button" class="delete-row btn btn-danger '.($indexRow > 0 ? "" : "d-none" ).'"><span class="oi oi-delete mr-1"></span> '.$t['del'].'</button>';
+					    if($this->rowsAreAllInteger) {
+					        $displayBtRemove = $indexRow > 0 ? "" : "d-none";
+					    } else {
+					        $displayBtRemove = $indexRow >= $this->origRowNum ? "" : "d-none";
+					    }
+					    
+					    $html .= '<td class="border-bottom" width="120px">';
+					    $html .= '<button type="button" class="delete-row btn btn-danger '.$displayBtRemove.'"><span class="oi oi-delete mr-1"></span> '.$t['del'].'</button>';
 					    $html .= '</td>';
 					}
 					

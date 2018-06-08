@@ -16,12 +16,53 @@
         "6": {
             "answer": "toutes"
         },
-        "7": {
-            "answer": [
-                "Arbres pour l'ombre",
-                "Produits alimentaires (personnes)"
+        "7": [
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
             ]
-        },
+        ],
         "8": {
             "answer": "Beaucoup"
         },
@@ -255,16 +296,69 @@
         "2": {
             "answer": "Oui"
         },
-        "3": {
-            "answer": [
-                "Plus grande variabilité des précipitations",
-                "Augmentation de la température",
-                "Retard à l'arrivée du printemps",
-                "Arrivée du printemps précoce",
-                "Infestation inhabituelle d'animaux nuisibles",
-                "Sécheresse inhabituelle"
+        "3": [
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 0
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 1
+                }
+            ],
+            [
+                {
+                    "answer": 1,
+                    "label": "Autre (précisez)"
+                }
             ]
-        },
+        ],
         "4": {
             "answer": "prévoir des réserves fourragères, semis des céréales plus tôt l automne"
         },

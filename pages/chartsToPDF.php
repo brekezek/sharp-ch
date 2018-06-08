@@ -265,7 +265,20 @@ if(isset($_POST['b64'], $_POST['sections'], $_POST['person'], $_POST['idSections
     foreach($sections as $sectionId => $infos) {
         unlink($infos['file']);
     }
-    
+	
+	/*
+	$fileArray= array("pdf1.pdf","pdf2.pdf", "pdf3.pdf");
+
+	$datadir = "";
+	$outputName = $datadir."merged.pdf";
+
+	$cmd = "gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=$outputName ";
+	foreach($fileArray as $file) {
+		$cmd .= $file." ";
+	}
+	$result = shell_exec($cmd);
+	*/
+	
     if(!$debug) {
         echo $filename;
     }

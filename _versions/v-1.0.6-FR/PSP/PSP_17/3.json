@@ -1,13 +1,19 @@
 {
-	"question-type":"multiple_multiple_solution",
-	"scoring-type":"-",
-	"title":"Si oui, quelles protections utilisez-vous?" ,
-	"choices": 
-		[
-			"Lunettes de protection",
-			"Gants",
-			"Masque",
-			"Veste",
-			"_OTHER_INPUT::Autre (précisez)"
-		]
+    "question-type": "table",
+    "dynamic-table": true,
+    "scoring-type": "-",
+    "title": "Si oui, quelles protections utilisez-vous?",
+    "lines": [
+        "Lunettes de protection",
+        "Gants",
+        "Masque",
+        "Veste"
+    ],
+    "columns": [
+        {
+            "title": "Cochez",
+            "type": "toggle"
+        }
+    ],
+    "mandatory": "false"
 }

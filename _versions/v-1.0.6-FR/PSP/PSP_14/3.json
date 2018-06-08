@@ -1,31 +1,50 @@
 {
-	"question-type":"multiple_multiple_solution",
-	"scoring-type":"academic",
-	"scoring":"by-entries",
-	"scoring-grid":[
-		{"0-0":0},
-		{"1-1":8},
-		{"2-2":10},
-		{"3-3":6},
-		{"4-4":4},
-		{"5-+":0}
-	],
-	"title":"Si oui, quels changements avez-vous observé?",
-	"choices": 
-		[
-			"Augmentation des précipitations",
-			"Diminution des précipitations",
-			"Plus grande variabilité des précipitations",
-			"Pluies tardives",
-			"Augmentation de la température",
-			"Baisse des températures",
-			"Inondations",
-			"Retard à l'arrivée du printemps",
-			"Arrivée du printemps précoce",
-			"Infestation inhabituelle d'animaux nuisibles",
-			"Sécheresse inhabituelle",
-			"_OTHER_INPUT::Autre (précisez)"
-
-		],
-	"indicateur":[7]
+    "question-type": "table",
+    "dynamic-table": true,
+    "scoring-type": "academic",
+    "title": "Si oui, quels changements avez-vous observé?",
+    "lines": [
+        "Augmentation des précipitations",
+        "Diminution des précipitations",
+        "Plus grande variabilité des précipitations",
+        "Pluies tardives",
+        "Augmentation de la température",
+        "Baisse des températures",
+        "Inondations",
+        "Retard à l'arrivée du printemps",
+        "Arrivée du printemps précoce",
+        "Infestation inhabituelle d'animaux nuisibles",
+        "Sécheresse inhabituelle"
+    ],
+    "columns": [
+        {
+            "title": "Cochez",
+            "type": "toggle",
+            "scoring": "by-entries",
+            "scoring-grid": [
+                {
+                    "0-0": 0
+                },
+                {
+                    "1-1": 8
+                },
+                {
+                    "2-2": 10
+                },
+                {
+                    "3-3": 6
+                },
+                {
+                    "4-4": 4
+                },
+                {
+                    "5-+": 0
+                }
+            ]
+        }
+    ],
+    "indicateur": [
+        7
+    ],
+    "mandatory": "false"
 }
